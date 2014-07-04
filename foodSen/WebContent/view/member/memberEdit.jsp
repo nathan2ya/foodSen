@@ -37,14 +37,16 @@
 
 <form name="memberEditForm" action="/foodSen/memberEdit.do" method="post" onSubmit="return checkIt()">
 	
-	<table border="1" align="center" width="800" bordercolor="#E7E7E7">
+	<table border="1" align="center" width="700" bordercolor="#E7E7E7">
 		<tr>
-			<td width="300" height="8" align="right">아이디</td>
-			<td width="500" height="8" align="left">${resultClass.user_id}</td>
+			<td width="200" height="8" align="right">아이디</td>
+			<td width="500" height="8" align="left">
+				${resultClass.user_id}
+			</td>
 		</tr>
 		
 		<tr>	
-			<td width="300" height="8" align="right">비밀번호</td>
+			<td width="200" height="8" align="right">비밀번호</td>
 			<td width="500" height="8" align="left">
 				<input type="password" name="user_pw" id="user_pw" size="21" maxlength="15" value="${resultClass.user_pw}"/>
 				<font color="gray" size="2">비밀번호는 최대 15자리까지 입력가능합니다.</font>
@@ -52,14 +54,14 @@
 		</tr>
 			
 		<tr>
-			<td width="300" height="8" align="right">이&nbsp;름</td>
+			<td width="200" height="8" align="right">이&nbsp;름</td>
 			<td width="500" height="8" align="left">
 				${resultClass.member_name}
 			</td>
 		</tr>
 		
 		<tr>	
-			<td width="300" height="8" align="right">학교명</td>
+			<td width="200" height="8" align="right">학교명</td>
 			<td width="500" height="8" align="left">
 				<input type="text" name="school_name" id="school_name"size="7" maxlength="5" value="${resultClass.school_name}"/>
 				<font color="gray" size="2">최대 5자 입력</font>
@@ -67,7 +69,7 @@
 		</tr>
 		
 		<tr>	
-			<td width="300" height="8" align="right">학교종류</td>
+			<td width="200" height="8" align="right">학교종류</td>
 			<td width="500" height="8" align="left">
 				
 				<c:if test="${resultClass.school_type == 1}">
@@ -98,7 +100,7 @@
 		</tr>
 		
 		<tr>	
-			<td width="300" height="8" align="right">직위</td>
+			<td width="200" height="8" align="right">직위</td>
 			<td width="500" height="8" align="left">
 				
 				<c:if test="${resultClass.position == 1}">
@@ -119,7 +121,7 @@
 		</tr>
 		
 		<tr>	
-			<td width="300" height="16" align="right">이메일</td>
+			<td width="200" height="16" align="right">이메일</td>
 			<td width="500" height="16" align="left">
 				<input type="text" name="sen_email" id="sen_email" size="45" maxlength="20" value="${resultClass.sen_email}"/>
 				<br/>
