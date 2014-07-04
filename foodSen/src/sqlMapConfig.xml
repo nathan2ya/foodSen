@@ -20,6 +20,6 @@
 		</dataSource>
 	</transactionManager>		
 
-	<sqlMap resource="/board/dao/BoardDAO.xml"/>
+	<sqlMap resource="/header/member/dao/MemberDAO.xml"/>
 	
 </sqlMapConfig>

@@ -1,1 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
+<sqlMap namespace="Member">
+	<typeAlias alias="memberDTO" type="header.member.dto.MemberDTO" />
+	
+	<resultMap id="memberRes" class="memberDTO">
+		<result property="user_id" column="user_id" />
+		<result property="user_pw" column="user_pw" />
+		<result property="member_seq" column="member_seq" />
+		<result property="member_name" column="member_name" />
+		<result property="school_name" column="school_name" />
+		<result property="position" column="position" />
+		<result property="sen_email" column="sen_email" />
+		<result property="admin_yn" column="admin_yn" />
+		<result property="admin_pw" column="admin_pw" />
+		<result property="approve_yn" column="approve_yn" />
+		<result property="school_type" column="school_type" />
+		<result property="reg_date" column="reg_date" />
+	</resultMap>
+
+
+	
+	<!-- insert -->
+	<insert id="insertMember" parameterClass="memberDTO">
+		insert into TB_00_MEMBER
+			(user_id, user_pw, member_seq, member_name, school_name, position, sen_email, admin_yn, admin_pw, approve_yn, school_type, reg_date)
+		values
+			(#user_id#, #user_pw#, TB_00_MEMBER_seq.NEXTVAL, #member_name#, #school_name#, #position#, #sen_email#, #admin_yn#, #admin_pw#, #approve_yn#, #school_type#, #reg_date#)
+	</insert>
+	
+	
+
+</sqlMap>
