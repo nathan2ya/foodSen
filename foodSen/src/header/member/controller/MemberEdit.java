@@ -80,7 +80,7 @@ public class MemberEdit {
 		paramClass.setSen_email(sen_email);
 		paramClass.setSchool_type(school_type);
 		
-		sqlMapper.update("Member.updateMember",paramClass);
+		sqlMapper.update("Member.updateMember", paramClass);
 		
 		return "redirect:/main.do";
 	}
