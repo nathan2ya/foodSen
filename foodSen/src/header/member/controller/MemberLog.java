@@ -52,7 +52,7 @@ public class MemberLog {
 	
 	
 	
-	//logIN
+	//log 汽
 	@RequestMapping("/login.do")
 	public String login(){
 		return "/view/member/memberLoginFrom.jsp";
@@ -89,4 +89,16 @@ public class MemberLog {
 		
 		return viewPath;
 	}
+	
+	
+	//logOUT 角青
+	@RequestMapping("/logoutPro.do")
+	public String logoutPro(HttpServletRequest request, HttpSession session) throws Exception{
+		
+		//技记力芭
+		session.invalidate();
+		
+		return "redirect:/login.do";
+	}
+	
 }
