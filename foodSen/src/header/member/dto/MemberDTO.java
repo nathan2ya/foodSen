@@ -8,12 +8,12 @@ public class MemberDTO {
 	private int member_seq;
 	private String member_name;
 	private String school_name;
-	private int position;
+	private String position;
 	private String sen_email;
 	private String admin_yn;
 	private String admin_pw;
 	private String approve_yn;
-	private int school_type;
+	private String school_type;
 	private Date reg_date;
 	
 	public String getUser_id() {
@@ -40,10 +40,10 @@ public class MemberDTO {
 	public void setSchool_name(String school_name) {
 		this.school_name = school_name;
 	}
-	public int getPosition() {
+	public String getPosition() {
 		return position;
 	}
-	public void setPosition(int position) {
+	public void setPosition(String position) {
 		this.position = position;
 	}
 	public String getSen_email() {
@@ -70,10 +70,10 @@ public class MemberDTO {
 	public void setApprove_yn(String approve_yn) {
 		this.approve_yn = approve_yn;
 	}
-	public int getSchool_type() {
+	public String getSchool_type() {
 		return school_type;
 	}
-	public void setSchool_type(int school_type) {
+	public void setSchool_type(String school_type) {
 		this.school_type = school_type;
 	}
 	public Date getReg_date() {

@@ -5,7 +5,6 @@ import header.member.dto.MemberDTO;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,9 +19,8 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 @Controller
 public class MemberCreate {
-	//회원가입 insert 용 DTO
+	//회원가입 insert DTO
 	private MemberDTO paramClass = new MemberDTO();
-	
 	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
@@ -55,8 +53,8 @@ public class MemberCreate {
 		String user_pw = request.getParameter("user_pw");
 		String member_name = request.getParameter("member_name");
 		String school_name = request.getParameter("school_name");
-		int school_type = Integer.parseInt(request.getParameter("school_type"));
-		int position = Integer.parseInt(request.getParameter("position"));
+		String school_type = request.getParameter("school_type");
+		String position = request.getParameter("position");
 		String sen_email = request.getParameter("sen_email");
 		Calendar today = Calendar.getInstance(); //날짜
 

@@ -21,6 +21,21 @@
 
 
 	
+	
+	
+	<!-- select -->
+	<select id="selectMemberOne" resultMap="memberRes" parameterClass="java.lang.String">
+		select * from TB_00_MEMBER
+		where user_id = #user_id#
+	</select>
+	
+	<select id="selectCountForLogin" resultClass="int" parameterClass="memberDTO">
+		SELECT count(*) FROM TB_00_MEMBER
+		where user_id = #user_id# and user_pw = #user_pw#
+	</select>
+	
+	
+	
 	<!-- insert -->
 	<insert id="insertMember" parameterClass="memberDTO">
 		insert into TB_00_MEMBER
@@ -28,6 +43,20 @@
 		values
 			(#user_id#, #user_pw#, TB_00_MEMBER_seq.NEXTVAL, #member_name#, #school_name#, #position#, #sen_email#, #admin_yn#, #admin_pw#, #approve_yn#, #school_type#, #reg_date#)
 	</insert>
+	
+	
+	
+	<!-- update -->
+	<update id="updateMember" parameterClass="memberDTO">
+		UPDATE TB_00_MEMBER
+		SET
+			user_pw = #user_pw#,
+			school_name = #school_name#,
+			position = #position#,
+			sen_email = #sen_email#,
+			school_type = #school_type#
+		where user_id = #user_id#
+	</update>
 	
 	
 
