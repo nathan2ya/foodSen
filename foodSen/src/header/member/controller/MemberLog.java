@@ -71,7 +71,6 @@ public class MemberLog {
 		request.setAttribute("notFound", notFound);
 		request.setAttribute("user_id", user_id);
 		
-		
 		return "/view/member/memberLoginFrom.jsp";
 	}
 	

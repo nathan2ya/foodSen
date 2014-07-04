@@ -36,6 +36,15 @@
 				return false;
 			}
 		}
+		
+		//비밀번호, 재입력된 비밀번호화 일치하지 않을 경우
+		function checkPw(){
+			if(!inputForm.user_pw. !=){
+				
+				alert("비밀번호가 일치하지 않습니다.");
+			}
+		}
+		
 	</script>
 </head>
 
@@ -60,6 +69,14 @@
 			<td width="500" height="8" align="left">
 				<input type="password" name="user_pw" id="user_pw" size="21" maxlength="15" />
 				<font color="gray" size="2">비밀번호는 최대 15자리까지 입력가능합니다.</font>
+			</td>
+		</tr>
+		
+		<tr>	
+			<td width="200" height="8" align="right">비밀번호</td>
+			<td width="500" height="8" align="left">
+				<input type="password" name="user_pw_re" id="user_pw_re" size="21" maxlength="15" onblur="checkPw();"/>
+				<font color="gray" size="2">비밀번호 확인을 위해 재입력해주세요.</font>
 			</td>
 		</tr>
 			
