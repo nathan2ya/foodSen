@@ -48,28 +48,40 @@
 	
 	<table border="1" align="center" width="800" bordercolor="#E7E7E7">
 		<tr>
-			<td>아이디</td>
-			<td><input type="text" name="user_id" id="user_id" size="20" maxlength="20" /></td>
+			<td width="300" height="8" align="right">아이디</td>
+			<td width="500" height="8" align="left">
+				<input type="text" name="user_id" id="user_id" size="12" maxlength="10" />
+				<font color="gray" size="2">아이디는 영문, 숫자 최대 12자리까지 생성할 수 있습니다.</font>
+			</td>
 		</tr>
 		
 		<tr>	
-			<td>비밀번호</td>
-			<td><input type="password" name="user_pw" id="user_pw" size="20" maxlength="20" /></td>
+			<td width="300" height="8" align="right">비밀번호</td>
+			<td width="500" height="8" align="left">
+				<input type="password" name="user_pw" id="user_pw" size="21" maxlength="15" />
+				<font color="gray" size="2">비밀번호는 최대 15자리까지 입력가능합니다.</font>
+			</td>
 		</tr>
 			
 		<tr>
-			<td>이&nbsp;름</td>
-			<td><input type="text" name="member_name" id="member_name" size="20" maxlength="20" /></td>
+			<td width="300" height="8" align="right">이&nbsp;름</td>
+			<td width="500" height="8" align="left">
+				<input type="text" name="member_name" id="member_name" size="7" maxlength="4" />
+				<font color="gray" size="2">이름은 쵀대 한글4자까지 입력가능합니다.</font>
+			</td>
 		</tr>
 		
 		<tr>	
-			<td>학교명</td>
-			<td><input type="text" name="school_name" id="school_name" size="20" maxlength="20" /></td>
+			<td width="300" height="8" align="right">학교명</td>
+			<td width="500" height="8" align="left">
+				<input type="text" name="school_name" id="school_name" size="7" maxlength="5" />
+				<font color="gray" size="2">최대 5자 입력</font>
+			</td>
 		</tr>
 		
 		<tr>	
-			<td>학교종류</td>
-			<td>
+			<td width="300" height="8" align="right">학교종류</td>
+			<td width="500" height="8" align="left">
 				<select name = "school_type">
 					<option value = "1">초등학교</option>
 					<option value = "2">중학교</option>
@@ -79,8 +91,8 @@
 		</tr>
 		
 		<tr>	
-			<td>직위</td>
-			<td>
+			<td width="300" height="8" align="right">직위</td>
+			<td width="500" height="8" align="left">
 				<select name = "position">
 					<option value = "1">영양사</option>
 					<option value = "2">조리원</option>
@@ -89,12 +101,16 @@
 		</tr>
 		
 		<tr>	
-			<td>이메일</td>
-			<td><input type="text" name="sen_email" id="sen_email" size="30" maxlength="30" /></td>
+			<td width="300" height="16" align="right">이메일</td>
+			<td width="800" height="16" align="left">
+				<input type="text" name="sen_email" id="sen_email" size="45" maxlength="20" />
+				<br/>
+				<font color="gray" size="2">모든 주소를 기입해주세요. 최대20자</font>
+			</td>
 		</tr>
 		
 		<tr>
-			<td colspan="2">
+			<td height="8"colspan="2" align="center">
 				<input type="submit" name="submit" value="가입"/>
 				<input type="button" name="cancel" value="취소" onClick="javascript:location.href='/foodSen/main.do'"/>
 			</td>

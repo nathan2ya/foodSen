@@ -22,7 +22,6 @@
 
 	
 	
-	
 	<!-- select -->
 	<select id="selectMemberOne" resultMap="memberRes" parameterClass="java.lang.String">
 		select * from TB_00_MEMBER
@@ -36,6 +35,7 @@
 	
 	
 	
+	
 	<!-- insert -->
 	<insert id="insertMember" parameterClass="memberDTO">
 		insert into TB_00_MEMBER
@@ -43,6 +43,7 @@
 		values
 			(#user_id#, #user_pw#, TB_00_MEMBER_seq.NEXTVAL, #member_name#, #school_name#, #position#, #sen_email#, #admin_yn#, #admin_pw#, #approve_yn#, #school_type#, #reg_date#)
 	</insert>
+	
 	
 	
 	
