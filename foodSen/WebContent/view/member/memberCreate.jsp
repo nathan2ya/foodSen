@@ -39,9 +39,11 @@
 		
 		//비밀번호, 재입력된 비밀번호화 일치하지 않을 경우
 		function checkPw(){
-			if(!inputForm.user_pw. !=){
-				
+			inputForm=eval("document.memberCreateForm");
+			
+			if(inputForm.user_pw.value != inputForm.user_pw_re.value){
 				alert("비밀번호가 일치하지 않습니다.");
+				return false;
 			}
 		}
 		
