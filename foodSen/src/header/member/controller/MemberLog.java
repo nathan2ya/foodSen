@@ -36,6 +36,7 @@ public class MemberLog {
 	
 	private String viewPath; // 리턴 뷰 경로
 	private int notFound; // 로그인 성공 or 실패에 관한 논리값
+	private String user_id; // 로그인 실패에 관한 id 저장변수
 	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
@@ -57,13 +58,19 @@ public class MemberLog {
 	@RequestMapping("/login.do")
 	public String login(HttpServletRequest request){
 		
-		if(null == request.getParameter("notFound")){
+		//로그인 실패시 else구문으로 초기화됨
+		if(null == request.getParameter("notFound") && null == request.getParameter("user_id")){
 			notFound = 0;
+			user_id = "";
 		}else{
 			notFound = Integer.parseInt(request.getParameter("notFound"));
+			user_id = request.getParameter("user_id");
 		}
 		
+		
 		request.setAttribute("notFound", notFound);
+		request.setAttribute("user_id", user_id);
+		
 		
 		return "/view/member/memberLoginFrom.jsp";
 	}
@@ -93,7 +100,7 @@ public class MemberLog {
 			
 			viewPath = "redirect:/main.do";
 		}else{ // 아이디, 비밀번호 불일치
-			viewPath = "redirect:/login.do?notFound=1"; //notFound 값을 1로 초기화 시켜 로그인폼으로 리다이렉트
+			viewPath = "redirect:/login.do?notFound=1&user_id="+user_id; //notFound 값을 1로 초기화, 사용자 입력 아이디를 로그인폼으로 리다이렉트
 		}
 		
 		return viewPath;

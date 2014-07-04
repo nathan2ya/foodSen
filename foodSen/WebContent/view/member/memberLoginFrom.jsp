@@ -26,7 +26,7 @@
 		//레코드를 찾지 못한경우
 		function notFound(){
 			alert("아이디 또는 비밀번호를 확인해주세요");
-			loginForm.user_id.focus();
+			loginForm.user_pw.focus();
 		}
 		
 	</script>
@@ -54,7 +54,7 @@
 			<table border="1" align="center" width="800" bordercolor="#E7E7E7">
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="user_id" id="user_id" size="20" maxlength="20" /></td>
+					<td><input type="text" name="user_id" id="user_id" size="20" maxlength="20" value="${user_id}"/></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
