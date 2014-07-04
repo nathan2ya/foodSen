@@ -35,6 +35,7 @@ public class MemberLog {
 	private MemberDTO resultClass = new MemberDTO(); // 통과된 아이디의 레코드 정보 가져오기 DTO
 	
 	private String viewPath; // 리턴 뷰 경로
+	private int notFound; // 로그인 성공 or 실패에 관한 논리값
 	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
@@ -54,7 +55,16 @@ public class MemberLog {
 	
 	//log 폼
 	@RequestMapping("/login.do")
-	public String login(){
+	public String login(HttpServletRequest request){
+		
+		if(null == request.getParameter("notFound")){
+			notFound = 0;
+		}else{
+			notFound = Integer.parseInt(request.getParameter("notFound"));
+		}
+		
+		request.setAttribute("notFound", notFound);
+		
 		return "/view/member/memberLoginFrom.jsp";
 	}
 	
@@ -83,8 +93,7 @@ public class MemberLog {
 			
 			viewPath = "redirect:/main.do";
 		}else{ // 아이디, 비밀번호 불일치
-			
-			viewPath = "redirect:/login.do";
+			viewPath = "redirect:/login.do?notFound=1"; //notFound 값을 1로 초기화 시켜 로그인폼으로 리다이렉트
 		}
 		
 		return viewPath;

@@ -22,16 +22,33 @@
 				return false;
 			}
 		}
+		
+		//레코드를 찾지 못한경우
+		function notFound(){
+			alert("아이디 또는 비밀번호를 확인해주세요");
+			loginForm.user_id.focus();
+		}
+		
 	</script>
 </head>
 
 
 <h1 align="center">로그인</h1>
 
-<body>
+
+<!-- 레코드를 찾지 못한 경우 경고 -->
+<c:if test="${notFound == 1}">
+	<body onload="return notFound();">
+</c:if>
+
+<!-- 정상 진입 -->
+<c:if test="${notFound == 0}">
+	<body>
+</c:if>
 	
 	<!-- 비 로그인상태 -->
 	<c:if test="${sessionScope.session_id == null}">
+		
 		<form name="loginForm" action="/foodSen/loginPro.do" method="post" onSubmit="return checkIt()">
 		
 			<table border="1" align="center" width="800" bordercolor="#E7E7E7">
