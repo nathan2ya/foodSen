@@ -1,31 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=euc-kr"
+	pageEncoding="euc-kr"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
 <head>
-	<title>ë¡œê·¸ì¸</title>
+	<title>·Î±×ÀÎ</title>
 	
 	<SCRIPT type="text/javascript">
-		//null ìœ íš¨ì„±ê²€ì‚¬
+		//null À¯È¿¼º°Ë»ç
 		function checkIt(){
 			inputForm=eval("document.loginForm");
 		 
 			if(!inputForm.user_id.value){
-				alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				loginForm.user_id.focus();
 				return false;
 			}
 			if(!inputForm.user_pw.value){
-				alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				loginForm.user_pw.focus();
 				return false;
 			}
 		}
 		
-		//ë ˆì½”ë“œë¥¼ ì°¾ì§€ ëª»í•œê²½ìš°
+		//·¹ÄÚµå¸¦ Ã£Áö ¸øÇÑ°æ¿ì
 		function notFound(){
-			alert("ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ë¥¼ í™•ì¸í•´ì£¼ì„¸ìš”");
+			alert("¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£¸¦ È®ÀÎÇØÁÖ¼¼¿ä");
 			loginForm.user_pw.focus();
 		}
 		
@@ -33,37 +33,37 @@
 </head>
 
 
-<h1 align="center">ë¡œê·¸ì¸</h1>
+<h1 align="center">·Î±×ÀÎ</h1>
 
 
-<!-- ë ˆì½”ë“œë¥¼ ì°¾ì§€ ëª»í•œ ê²½ìš° ê²½ê³  -->
+<!-- ·¹ÄÚµå¸¦ Ã£Áö ¸øÇÑ °æ¿ì °æ°í -->
 <c:if test="${notFound == 1}">
 	<body onload="return notFound();">
 </c:if>
 
-<!-- ì •ìƒ ì§„ì… -->
+<!-- Á¤»ó ÁøÀÔ -->
 <c:if test="${notFound == 0}">
 	<body>
 </c:if>
 	
-	<!-- ë¹„ ë¡œê·¸ì¸ìƒíƒœ -->
+	<!-- ºñ ·Î±×ÀÎ»óÅÂ -->
 	<c:if test="${sessionScope.session_id == null}">
 		
 		<form name="loginForm" action="/foodSen/loginPro.do" method="post" onSubmit="return checkIt()">
 		
 			<table border="1" align="center" width="800" bordercolor="#E7E7E7">
 				<tr>
-					<td>ì•„ì´ë””</td>
+					<td>¾ÆÀÌµğ</td>
 					<td><input type="text" name="user_id" id="user_id" size="20" maxlength="20" value="${user_id}"/></td>
 				</tr>
 				<tr>
-					<td>ë¹„ë°€ë²ˆí˜¸</td>
+					<td>ºñ¹Ğ¹øÈ£</td>
 					<td><input type="password" name="user_pw" id="user_pw" size="20" maxlength="20" /></td>
 				</tr>
 				
 				<tr>
 					<td colspan="2">
-						<input type="submit" name="submit" value="ë¡œê·¸ì¸"/>
+						<input type="submit" name="submit" value="·Î±×ÀÎ"/>
 					</td>
 				</tr>
 			</table>
@@ -72,20 +72,20 @@
 	</c:if>
 	
 	
-	<!-- ë¡œê·¸ì¸ëœìƒíƒœ -->
+	<!-- ·Î±×ÀÎµÈ»óÅÂ -->
 	<c:if test="${sessionScope.session_id != null}">
 		<form name="loginedForm" action="/foodSen/logoutPro.do" method="post" onSubmit="return checkIt()">
 		
 			<table border="1" align="center" width="800" bordercolor="#E7E7E7">
 				<tr>
 					<td colspan="2">
-						${sessionScope.session_id}ë‹˜ í™˜ì˜í•©ë‹ˆë‹¤.
+						${sessionScope.session_id}´Ô È¯¿µÇÕ´Ï´Ù.
 					</td>
 				</tr>
 				
 				<tr>
 					<td colspan="2">
-						<input type="submit" name="submit" value="ë¡œê·¸ì•„ì›ƒ"/>
+						<input type="submit" name="submit" value="·Î±×¾Æ¿ô"/>
 					</td>
 				</tr>
 			</table>

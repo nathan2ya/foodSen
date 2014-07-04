@@ -1,28 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=euc-kr"
+	pageEncoding="euc-kr"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
 <head>
-	<title>ìˆ˜ì •í•˜ê¸°</title>
+	<title>¼öÁ¤ÇÏ±â</title>
 	
 	<SCRIPT type="text/javascript">
-		//null ìœ íš¨ì„±ê²€ì‚¬
+		//null À¯È¿¼º°Ë»ç
 		function checkIt(){
 			inputForm=eval("document.memberEditForm");
 		 
 			if(!inputForm.user_pw.value){
-				alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				memberEditForm.user_pw.focus();
 				return false;
 			}
 			if(!inputForm.school_name.value){
-				alert("í•™êµëª…ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("ÇÐ±³¸íÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				memberEditForm.school_name.focus();
 				return false;
 			}
 			if(!inputForm.sen_email.value){
-				alert("ì´ë©”ì¼ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("ÀÌ¸ÞÀÏÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				memberEditForm.sen_email.focus();
 				return false;
 			}
@@ -31,7 +31,7 @@
 </head>
 
 
-<h1 align="center">íšŒì›ìˆ˜ì •</h1>
+<h1 align="center">È¸¿ø¼öÁ¤</h1>
 
 <body>
 
@@ -39,60 +39,60 @@
 	
 	<table border="1" align="center" width="700" bordercolor="#E7E7E7">
 		<tr>
-			<td width="200" height="8" align="right">ì•„ì´ë””</td>
+			<td width="200" height="8" align="right">¾ÆÀÌµð</td>
 			<td width="500" height="8" align="left">
 				${resultClass.user_id}
 			</td>
 		</tr>
 		
 		<tr>	
-			<td width="200" height="8" align="right">ë¹„ë°€ë²ˆí˜¸</td>
+			<td width="200" height="8" align="right">ºñ¹Ð¹øÈ£</td>
 			<td width="500" height="8" align="left">
 				<input type="password" name="user_pw" id="user_pw" size="21" maxlength="15" value="${resultClass.user_pw}"/>
-				<font color="gray" size="2">ë¹„ë°€ë²ˆí˜¸ëŠ” ìµœëŒ€ 15ìžë¦¬ê¹Œì§€ ìž…ë ¥ê°€ëŠ¥í•©ë‹ˆë‹¤.</font>
+				<font color="gray" size="2">ºñ¹Ð¹øÈ£´Â ÃÖ´ë 15ÀÚ¸®±îÁö ÀÔ·Â°¡´ÉÇÕ´Ï´Ù.</font>
 			</td>
 		</tr>
 			
 		<tr>
-			<td width="200" height="8" align="right">ì´&nbsp;ë¦„</td>
+			<td width="200" height="8" align="right">ÀÌ&nbsp;¸§</td>
 			<td width="500" height="8" align="left">
 				${resultClass.member_name}
 			</td>
 		</tr>
 		
 		<tr>	
-			<td width="200" height="8" align="right">í•™êµëª…</td>
+			<td width="200" height="8" align="right">ÇÐ±³¸í</td>
 			<td width="500" height="8" align="left">
 				<input type="text" name="school_name" id="school_name"size="7" maxlength="5" value="${resultClass.school_name}"/>
-				<font color="gray" size="2">ìµœëŒ€ 5ìž ìž…ë ¥</font>
+				<font color="gray" size="2">ÃÖ´ë 5ÀÚ ÀÔ·Â</font>
 			</td>
 		</tr>
 		
 		<tr>	
-			<td width="200" height="8" align="right">í•™êµì¢…ë¥˜</td>
+			<td width="200" height="8" align="right">ÇÐ±³Á¾·ù</td>
 			<td width="500" height="8" align="left">
 				
 				<c:if test="${resultClass.school_type == 1}">
 					<select name = "school_type">
-						<option value = "1" selected>ì´ˆë“±í•™êµ</option>
-						<option value = "2">ì¤‘í•™êµ</option>
-						<option value = "3">ê³ ë“±í•™êµ</option>
+						<option value = "1" selected>ÃÊµîÇÐ±³</option>
+						<option value = "2">ÁßÇÐ±³</option>
+						<option value = "3">°íµîÇÐ±³</option>
 					</select>
 				</c:if>
 				
 				<c:if test="${resultClass.school_type == 2}">
 					<select name = "school_type">
-						<option value = "1">ì´ˆë“±í•™êµ</option>
-						<option value = "2" selected>ì¤‘í•™êµ</option>
-						<option value = "3">ê³ ë“±í•™êµ</option>
+						<option value = "1">ÃÊµîÇÐ±³</option>
+						<option value = "2" selected>ÁßÇÐ±³</option>
+						<option value = "3">°íµîÇÐ±³</option>
 					</select>
 				</c:if>
 				
 				<c:if test="${resultClass.school_type == 3}">
 					<select name = "school_type">
-						<option value = "1">ì´ˆë“±í•™êµ</option>
-						<option value = "2">ì¤‘í•™êµ</option>
-						<option value = "3" selected>ê³ ë“±í•™êµ</option>
+						<option value = "1">ÃÊµîÇÐ±³</option>
+						<option value = "2">ÁßÇÐ±³</option>
+						<option value = "3" selected>°íµîÇÐ±³</option>
 					</select>
 				</c:if>
 				
@@ -100,20 +100,20 @@
 		</tr>
 		
 		<tr>	
-			<td width="200" height="8" align="right">ì§ìœ„</td>
+			<td width="200" height="8" align="right">Á÷À§</td>
 			<td width="500" height="8" align="left">
 				
 				<c:if test="${resultClass.position == 1}">
 					<select name = "position">
-						<option value = "1" selected>ì˜ì–‘ì‚¬</option>
-						<option value = "2">ì¡°ë¦¬ì›</option>
+						<option value = "1" selected>¿µ¾ç»ç</option>
+						<option value = "2">Á¶¸®¿ø</option>
 					</select>
 				</c:if>
 				
 				<c:if test="${resultClass.position == 2}">
 					<select name = "position">
-						<option value = "1">ì˜ì–‘ì‚¬</option>
-						<option value = "2" selected>ì¡°ë¦¬ì›</option>
+						<option value = "1">¿µ¾ç»ç</option>
+						<option value = "2" selected>Á¶¸®¿ø</option>
 					</select>
 				</c:if>
 				
@@ -121,18 +121,18 @@
 		</tr>
 		
 		<tr>	
-			<td width="200" height="16" align="right">ì´ë©”ì¼</td>
+			<td width="200" height="16" align="right">ÀÌ¸ÞÀÏ</td>
 			<td width="500" height="16" align="left">
 				<input type="text" name="sen_email" id="sen_email" size="45" maxlength="20" value="${resultClass.sen_email}"/>
 				<br/>
-				<font color="gray" size="2">ëª¨ë“  ì£¼ì†Œë¥¼ ê¸°ìž…í•´ì£¼ì„¸ìš”. ìµœëŒ€20ìž</font>
+				<font color="gray" size="2">¸ðµç ÁÖ¼Ò¸¦ ±âÀÔÇØÁÖ¼¼¿ä. ÃÖ´ë20ÀÚ</font>
 			</td>
 		</tr>
 		
 		<tr>
 			<td height="8"colspan="2" align="center">
-				<input type="submit" name="submit" value="ìˆ˜ì •"/>
-				<input type="button" name="cancel" value="ì·¨ì†Œ" onClick="javascript:location.href='/foodSen/main.do'"/>
+				<input type="submit" name="submit" value="¼öÁ¤"/>
+				<input type="button" name="cancel" value="Ãë¼Ò" onClick="javascript:location.href='/foodSen/main.do'"/>
 			</td>
 		</tr>
 	</table>

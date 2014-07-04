@@ -1,141 +1,140 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+    
 <html>
 <head>
-	<title>ê°€ì…í•˜ê¸°</title>
+	<title>°¡ÀÔÇÏ±â</title>
 	
 	<SCRIPT type="text/javascript">
-		//null ìœ íš¨ì„±ê²€ì‚¬
+		//null À¯È¿¼º°Ë»ç
 		function checkIt(){
 			inputForm=eval("document.memberCreateForm");
-		 
+
 			if(!inputForm.user_id.value){
-				alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				memberCreateForm.user_id.focus();
 				return false;
 			}
 			if(!inputForm.user_pw.value){
-				alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				memberCreateForm.user_pw.focus();
 				return false;
 			}
 			if(!inputForm.member_name.value){
-				alert("ì´ë¦„ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("ÀÌ¸§¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				memberCreateForm.member_name.focus();
 				return false;
 			}
 			if(!inputForm.school_name.value){
-				alert("í•™êµëª…ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("ÇĞ±³¸íÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				memberCreateForm.school_name.focus();
 				return false;
 			}
 			if(!inputForm.sen_email.value){
-				alert("ì´ë©”ì¼ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				alert("ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
 				memberCreateForm.sen_email.focus();
 				return false;
 			}
 		}
-		
-		//ë¹„ë°€ë²ˆí˜¸, ì¬ì…ë ¥ëœ ë¹„ë°€ë²ˆí˜¸í™” ì¼ì¹˜í•˜ì§€ ì•Šì„ ê²½ìš°
+
+		//ºñ¹Ğ¹øÈ£, ÀçÀÔ·ÂµÈ ºñ¹Ğ¹øÈ£È­ ÀÏÄ¡ÇÏÁö ¾ÊÀ» °æ¿ì
 		function checkPw(){
 			inputForm=eval("document.memberCreateForm");
-			
+
 			if(inputForm.user_pw.value != inputForm.user_pw_re.value){
-				alert("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+				alert("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
 				return false;
 			}
 		}
-		
+
 	</script>
 </head>
 
-
-<h1 align="center">íšŒì›ê°€ì…</h1>
+<h1 align="center">È¸¿ø°¡ÀÔ</h1>
 
 <body>
 
 <form name="memberCreateForm" action="/foodSen/memberCreate.do" method="post" onSubmit="return checkIt()">
-	
+
 	<table border="1" align="center" width="700" bordercolor="#E7E7E7">
 		<tr>
-			<td width="200" height="8" align="right">ì•„ì´ë””</td>
+			<td width="200" height="8" align="right">¾ÆÀÌµğ</td>
 			<td width="500" height="8" align="left">
 				<input type="text" name="user_id" id="user_id" size="12" maxlength="10" />
-				<font color="gray" size="2">ì•„ì´ë””ëŠ” ì˜ë¬¸, ìˆ«ì ìµœëŒ€ 12ìë¦¬ê¹Œì§€ ìƒì„±í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.</font>
+				<font color="gray" size="2">¾ÆÀÌµğ´Â ¿µ¹®, ¼ıÀÚ ÃÖ´ë 12ÀÚ¸®±îÁö »ı¼ºÇÒ ¼ö ÀÖ½À´Ï´Ù.</font>
 			</td>
 		</tr>
 		
 		<tr>	
-			<td width="200" height="8" align="right">ë¹„ë°€ë²ˆí˜¸</td>
+			<td width="200" height="8" align="right">ºñ¹Ğ¹øÈ£</td>
 			<td width="500" height="8" align="left">
 				<input type="password" name="user_pw" id="user_pw" size="21" maxlength="15" />
-				<font color="gray" size="2">ë¹„ë°€ë²ˆí˜¸ëŠ” ìµœëŒ€ 15ìë¦¬ê¹Œì§€ ì…ë ¥ê°€ëŠ¥í•©ë‹ˆë‹¤.</font>
+				<font color="gray" size="2">ºñ¹Ğ¹øÈ£´Â ÃÖ´ë 15ÀÚ¸®±îÁö ÀÔ·Â°¡´ÉÇÕ´Ï´Ù.</font>
 			</td>
 		</tr>
 		
 		<tr>	
-			<td width="200" height="8" align="right">ë¹„ë°€ë²ˆí˜¸</td>
+			<td width="200" height="8" align="right">ºñ¹Ğ¹øÈ£</td>
 			<td width="500" height="8" align="left">
 				<input type="password" name="user_pw_re" id="user_pw_re" size="21" maxlength="15" onblur="checkPw();"/>
-				<font color="gray" size="2">ë¹„ë°€ë²ˆí˜¸ í™•ì¸ì„ ìœ„í•´ ì¬ì…ë ¥í•´ì£¼ì„¸ìš”.</font>
+				<font color="gray" size="2">ºñ¹Ğ¹øÈ£ È®ÀÎÀ» À§ÇØ ÀçÀÔ·ÂÇØÁÖ¼¼¿ä.</font>
 			</td>
 		</tr>
-			
+		
 		<tr>
-			<td width="200" height="8" align="right">ì´&nbsp;ë¦„</td>
+			<td width="200" height="8" align="right">ÀÌ&nbsp;¸§</td>
 			<td width="500" height="8" align="left">
 				<input type="text" name="member_name" id="member_name" size="7" maxlength="4" />
-				<font color="gray" size="2">ì´ë¦„ì€ ìµ€ëŒ€ í•œê¸€4ìê¹Œì§€ ì…ë ¥ê°€ëŠ¥í•©ë‹ˆë‹¤.</font>
+				<font color="gray" size="2">ÀÌ¸§Àº 4±ÛÀÚ±îÁö ÀÔ·Â°¡´ÉÇÕ´Ï´Ù.</font>
 			</td>
 		</tr>
 		
 		<tr>	
-			<td width="200" height="8" align="right">í•™êµëª…</td>
+			<td width="200" height="8" align="right">ÇĞ±³¸í</td>
 			<td width="500" height="8" align="left">
 				<input type="text" name="school_name" id="school_name" size="7" maxlength="5" />
-				<font color="gray" size="2">ìµœëŒ€ 5ì ì…ë ¥</font>
+				<font color="gray" size="2">ÃÖ´ë 5ÀÚ ÀÔ·Â</font>
 			</td>
 		</tr>
 		
 		<tr>	
-			<td width="200" height="8" align="right">í•™êµì¢…ë¥˜</td>
+			<td width="200" height="8" align="right">ÇĞ±³Á¾·ù</td>
 			<td width="500" height="8" align="left">
 				<select name = "school_type">
-					<option value = "1">ì´ˆë“±í•™êµ</option>
-					<option value = "2">ì¤‘í•™êµ</option>
-					<option value = "3">ê³ ë“±í•™êµ</option>
+					<option value = "1">ÃÊµîÇĞ±³</option>
+					<option value = "2">ÁßÇĞ±³</option>
+					<option value = "3">°íµîÇĞ±³</option>
 				</select>
 			</td>
 		</tr>
 		
 		<tr>	
-			<td width="200" height="8" align="right">ì§ìœ„</td>
+			<td width="200" height="8" align="right">Á÷À§</td>
 			<td width="500" height="8" align="left">
 				<select name = "position">
-					<option value = "1">ì˜ì–‘ì‚¬</option>
-					<option value = "2">ì¡°ë¦¬ì›</option>
+					<option value = "1">¿µ¾ç»ç</option>
+					<option value = "2">Á¶¸®¿ø</option>
 				</select>
 			</td>
 		</tr>
-		
+
 		<tr>	
-			<td width="200" height="16" align="right">ì´ë©”ì¼</td>
+			<td width="200" height="16" align="right">ÀÌ¸ŞÀÏ</td>
 			<td width="500" height="16" align="left">
 				<input type="text" name="sen_email" id="sen_email" size="45" maxlength="20" />
 				<br/>
-				<font color="gray" size="2">ëª¨ë“  ì£¼ì†Œë¥¼ ê¸°ì…í•´ì£¼ì„¸ìš”. ìµœëŒ€20ì</font>
+				<font color="gray" size="2">¸ğµç ÁÖ¼Ò¸¦ ±âÀÔÇØÁÖ¼¼¿ä. ÃÖ´ë20ÀÚ</font>
 			</td>
 		</tr>
-		
+
 		<tr>
 			<td height="8"colspan="2" align="center">
-				<input type="submit" name="submit" value="ê°€ì…"/>
-				<input type="button" name="cancel" value="ì·¨ì†Œ" onClick="javascript:location.href='/foodSen/main.do'"/>
+				<input type="submit" name="submit" value="°¡ÀÔ"/>
+				<input type="button" name="cancel" value="Ãë¼Ò" onClick="javascript:location.href='/foodSen/main.do'"/>
 			</td>
 		</tr>
 	</table>
-	
+
 </form>
 
 </body>
