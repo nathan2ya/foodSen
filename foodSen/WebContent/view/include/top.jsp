@@ -142,45 +142,42 @@
     <h1><a href="http://localhost:8000/foodSen/main.do"><img src="./images/header/common/logo.gif" alt="서울학교급식포털" /></a></h1>
     
     
-    <div class="topmenu">
-    <c:choose>
-      <c:when test="${loginUser eq null || loginUser.user_id eq 'guest' }">
-      <ul>
-        <li class="bn"><a href="http://food.sen.go.kr/main.do">HOME</a></li>
-        <li><a href="http://food.sen.go.kr/siteMap.do">SITEMAP</a></li>
-        <li class="bn"> <a href="http://food.sen.go.kr/login.do"><img src="./images/header/common/btn_login.gif" alt="로그인" /></a></li>
-      </ul>
-      </c:when>
-      <c:when test="${loginUser ne null && loginUser.user_id ne 'guest' }">
-      <ul>
-      	<li class="bn f12">
-      	<c:choose>
-      		<c:when test="${loginUser.position eq '01' || loginUser.position eq '02' }">
-      			<c:if test="${loginUser.approve_yn eq 'Y' }">
-			      	${loginUser.code_name }
-      			</c:if>
-      			<c:if test="${loginUser.approve_yn eq 'N' }">
-			      	교직원
-      			</c:if>
-      		</c:when>
-      		<c:when test="${loginUser.position ne '01' && loginUser.position ne '02' && loginUser.position ne '99' }">
-      			교직원
-      		</c:when>
-      		<c:when test="${loginUser.position eq '99' }">
-      			
-      		</c:when>
-      	</c:choose> 
-      	<span class="orange">${loginUser.member_name }</span>님 환영합니다.</li>
-      	<c:if test="${loginUser.position ne '01' && loginUser.position ne '02' && loginUser.position ne '99' }">
-        	<li class="bn"><a href="javascript:openApprove()"><img src="images/header/common/btn_join.gif" alt="회원등록" /></a></li>
-        </c:if>
-        <li class="bn"><a href="http://food.sen.go.kr/main.do">HOME</a></li>
-        <li><a href="http://food.sen.go.kr/siteMap.do">SITEMAP</a></li>
-        <li class="bn"> <a href="http://food.sen.go.kr/logout.do"><img src="./images/header/common/btn_logout.gif" alt="로그아웃" /></a></li>
-      </ul>
-      </c:when>
-      </c:choose>
-    </div>
+	<div class="topmenu">
+	
+		<c:choose>
+		
+			<c:when test="${sessionScope.session_id eq null}">
+				<ul>
+				<li class="bn"><a href="http://localhost:8000/foodSen/main.do">HOME</a></li>
+				<li><a href="#">SITEMAP</a></li>
+				<li class="bn"> <a href="http://localhost:8000/foodSen/login.do"><img src="./images/header/common/btn_login.gif" alt="로그인" /></a></li>
+				</ul>
+			</c:when>
+			
+			<c:when test="${sessionScope.session_id ne null}">
+				<ul>
+					<li class="bn f12">
+						<span class="orange">${sessionScope.session_id}</span>님 환영합니다.
+					</li>
+					
+					<%-- 
+					<c:if test="${loginUser.position ne '01' && loginUser.position ne '02' && loginUser.position ne '99' }">
+						<li class="bn"><a href="javascript:openApprove()"><img src="images/header/common/btn_join.gif" alt="회원등록" /></a></li>
+					</c:if>
+				   --%>
+					  
+					<li class="bn"><a href="http://localhost:8000/foodSen/main.do">HOME</a></li>
+					<li><a href="#">SITEMAP</a></li>
+					<li class="bn"> <a href="/foodSen/logoutPro.do"><img src="./images/header/common/btn_logout.gif" alt="로그아웃" /></a></li>
+				</ul>
+			</c:when>
+			
+		</c:choose>
+		
+	</div>
+    
+    
+    
     <div id="gnb">
       <h2>주메뉴</h2>
       <ul class="MM">
