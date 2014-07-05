@@ -85,10 +85,8 @@
 				        	<div class="login">            
 				            	<h4><img src="./images/sub/etc/login_img_01.gif" alt="아이디를 입력하세요" /></h4>
 				                <dl>
-				                	<dt>
-				                		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				                	<dt style="padding-left: 40px">
 				                		사용자ID <input type="text" class="inp" name="user_id" id="user_id" style="width:180px;" maxlength="20" value="${user_id}"/> <br/><br/>
-				                		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				                		비밀번호 <input type="password" class="inp" name="user_pw" id="user_pw" style="width:180px;" maxlength="20" />
 				                		&nbsp;&nbsp;
 				                		<input type="submit" class="btn_submit_login" name="login" value="login" />
@@ -116,23 +114,34 @@
 				
 				<!-- 로그인된상태 -->
 				<c:if test="${sessionScope.session_id != null}">
-					<form name="loginedForm" action="/foodSen/logoutPro.do" method="post" onSubmit="return checkIt()">
+				
+					<fieldset>
+			        	<legend>로그아웃</legend>
+			        	
+			        	<form name="loginedForm" action="/foodSen/logoutPro.do" method="post" onSubmit="return checkIt()">
+				        	
+				        	<div class="login">            
+				            	<h4><img src="./images/sub/etc/login_img_01.gif" alt="아이디를 입력하세요" /></h4>
+				                <dl>
+				                	<dt style="padding-left: 90px">
+				                		<br/>
+				                		<font color="red"><b>${sessionScope.session_id}</b></font> 님
+				                		<br/>접속을 환영 합니다.
+				                	</dt>
+				                    <dd style="padding-left: 10px">
+				                    	<br/>
+				                    	<input type="submit" class="btn_submit_logout" name="logout" value="logout"/>
+			                    	</dd>
+				                </dl>
+				                
+				                <ul class="login_text">
+				                </ul>
+				                
+				            </div>
+				            
+			            </form>
+			        </fieldset>
 					
-						<table border="1" align="center" width="800" bordercolor="#E7E7E7">
-							<tr>
-								<td colspan="2">
-									${sessionScope.session_id}님 환영합니다.
-								</td>
-							</tr>
-							
-							<tr>
-								<td colspan="2">
-									<input type="submit" name="submit" value="로그아웃"/>
-								</td>
-							</tr>
-						</table>
-						
-					</form>
 				</c:if>
 				<!-- .//로그인된상태 -->
 				

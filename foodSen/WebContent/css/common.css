@@ -67,7 +67,17 @@
     background-position:  0px 0px;
     background-repeat: no-repeat;
     width: 60px;
-    height: 29px;
+    height: 30px;
+    border: 0px;
+ cursor:pointer;
+ outline: 0;
+}
+.btn_submit_logout{
+ background-image: url('/images/sub/etc/logout_btn.gif');
+    background-position:  0px 0px;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 30px;
     border: 0px;
  cursor:pointer;
  outline: 0;
