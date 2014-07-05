@@ -60,5 +60,12 @@
 	</update>
 	
 	
+	<!-- delete -->
+	<delete id="deleteMember" parameterClass="java.lang.String">
+		delete from TB_00_MEMBER
+		where user_id = #user_id#	
+	</delete>
+	
+	
 
 </sqlMap>

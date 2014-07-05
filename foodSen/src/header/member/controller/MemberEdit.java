@@ -50,7 +50,6 @@ public class MemberEdit {
 		//udate 대상 레코드 가져옴
 		resultClass = (MemberDTO)sqlMapper.queryForObject("Member.selectMemberOne", session_id);
 		
-		
 		request.setAttribute("resultClass", resultClass);
 		
 		return "/view/member/memberEdit.jsp";

@@ -31,7 +31,7 @@
 </head>
 
 
-<h1 align="center">회원수정</h1>
+<h1 align="center">가상 서울시특별교육청 홈페이지(회원수정)</h1>
 
 <body>
 
@@ -130,9 +130,8 @@
 		</tr>
 		
 		<tr>
-			<td height="8"colspan="2" align="center">
+			<td height="8"colspan="2" align="right">
 				<input type="submit" name="submit" value="수정"/>
-				<input type="button" name="cancel" value="취소" onClick="javascript:location.href='/foodSen/main.do'"/>
 			</td>
 		</tr>
 	</table>
