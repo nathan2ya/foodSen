@@ -62,6 +62,17 @@
 .notice .tabDivArea ul li .main_data { position:absolute; right:-50px; top:0; font-size:11px; color:#a6a6a6;}
 
 /*main*/
+.btn_submit_login{
+ background-image: url('/images/sub/etc/login_btn.gif');
+    background-position:  0px 0px;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 29px;
+    border: 0px;
+ cursor:pointer;
+ outline: 0;
+}
+
 .s_notice { width:194px; float:right;}
 .s_notice .tabDivArea { width:194px; float:left; position:relative; background:url('../images/main/right_box_bg1.gif') no-repeat right top; height:122px; padding-top:10px;}
 .s_notice .tabDivArea .more { position:absolute; top:-21px; right:0;}
