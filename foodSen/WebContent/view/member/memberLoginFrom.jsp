@@ -45,7 +45,13 @@
 		<p><img src="./images/sub/etc/sub_vimg_01.jpg" alt="건강한 급식 행복한 학교" /></p>
 		
 		<!-- 좌측메뉴 -->
-		<jsp:include page="/view/include/menu7/faqLnb.jsp"/>
+		<c:if test="${sessionScope.session_id == null}">
+			<jsp:include page="/view/include/member/loginLnb.jsp"/>
+		</c:if>
+		
+		<c:if test="${sessionScope.session_id != null}">
+			<jsp:include page="/view/include/member/logoutLnb.jsp"/>
+		</c:if>
 		<!-- .//좌측메뉴 -->
 		
 	
