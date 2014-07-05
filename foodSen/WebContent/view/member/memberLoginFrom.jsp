@@ -104,7 +104,7 @@
 				                <ul class="login_text">
 				                    <li>서울특별시교육청(학교포함) 소속 교직원은 서울시교육청 홈페이지 가입시 등록한 아이디와 
 										NEIS에서 사용하는 인증서를 이용하여 로그인하시기 바랍니다.<br />
-										<span class="f_eb7c10" style="vertical-align: bottom;">※ 로그인이 되지 않을 경우, 서울시교육청 홈페이지에서 먼저 <a target="_blank" href="http://www.sen.go.kr/web/services/member/agreement.action"><img src="./images/sub/etc/login_btn_01.gif" alt="사용자등록" height="20px"/></a>을 하시기 바랍니다.</span>
+										<span class="f_eb7c10" style="vertical-align: bottom;">※ 로그인이 되지 않을 경우, 서울시교육청 홈페이지에서 먼저 <a target="_blank" href="http://localhost:8000/foodSen/memberCreateFrom.do"><img src="./images/sub/etc/login_btn_01.gif" alt="사용자등록" height="20px"/></a>을 하시기 바랍니다.</span>
 									</li>
 				                	<li>학생, 학부모, 시민은 별도의 회원가입 없이 본인확인(아이핀인증 또는 실명인증)만으로 <br />서비스 이용이 가능합니다. (사용자 등록 불가)</li>
 				                </ul>

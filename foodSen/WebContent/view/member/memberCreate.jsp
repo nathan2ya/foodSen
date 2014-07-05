@@ -35,6 +35,9 @@
 				memberCreateForm.sen_email.focus();
 				return false;
 			}
+			
+			alert(inputForm.user_id.value+"님! 회원가입이 완료되었습니다.");
+			window.close();
 		}
 
 		//비밀번호, 재입력된 비밀번호화 일치하지 않을 경우
@@ -46,11 +49,11 @@
 				return false;
 			}
 		}
-
+		
 	</script>
 </head>
 
-<h1 align="center">회원가입</h1>
+<h1 align="center">가상 서울시특별교육청 홈페이지(회원가입)</h1>
 
 <body>
 
@@ -128,9 +131,8 @@
 		</tr>
 
 		<tr>
-			<td height="8"colspan="2" align="center">
-				<input type="submit" name="submit" value="가입"/>
-				<input type="button" name="cancel" value="취소" onClick="javascript:location.href='/foodSen/main.do'"/>
+			<td height="8"colspan="2" align="right">
+				<input type="submit" name="submit" value="가입하기"/>
 			</td>
 		</tr>
 	</table>
