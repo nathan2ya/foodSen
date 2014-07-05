@@ -19,13 +19,11 @@
 	
 	
 	
-	
 		<!-- 왼쪽영역 -->
 		<p class="main_img">
 			<img src="./images/main/img_v.jpg" alt="건강한급식, 행복한학교,꿈과 끼를 키우는 서울행복교육" />
 		</p>
 		<!-- .//왼쪽영역 -->
-		
 		
 		
 		
@@ -63,18 +61,225 @@
 						</ul>
 					</c:if>
 					<span class="more">
-						<a href="foodNewsList.do"><img src="./images/main/more.gif" alt="더보기" /></a>
+						<a href="#"><img src="./images/main/more.gif" alt="더보기" /></a>
+					</span>
+				</div>
+
+				<div id="tab02" class="tabDivArea" style="display: none;">
+					<c:if test="${voEvent eq null || empty voEvent}">
+						<ul>
+							<li>게시글이 없습니다. <span class="main_data"></span></li>
+						</ul>
+					</c:if>
+					<c:if test="${voEvent ne null && not empty voEvent}">
+						<ul>
+							<c:forEach var="voEvent" items="${voEvent}" varStatus="i">
+								<li>
+									<a class="title1" href="javascript:goView('${voEvent.seq }', 'event')">${voEvent.title }</a>
+									<span class="main_data"><fmt:formatDate value="${voEvent.reg_date }" pattern="yyyy-MM-dd" /></span>
+								</li>
+							</c:forEach>
+						</ul>
+					</c:if>
+					<span class="more">
+						<a href="#"><img src="./images/main/more.gif" alt="더보기" /></a>
 					</span>
 				</div>
 				
-				
-
+				<div id="tab03" class="tabDivArea" style="display: none;">
+					<c:if test="${voResearch eq null || empty voResearch}">
+						<ul>
+							<li>게시글이 없습니다. <span class="main_data"></span></li>
+						</ul>
+					</c:if>
+					<c:if test="${voResearch ne null && not empty voResearch}">
+						<ul>
+							<c:forEach var="voResearch" items="${voResearch}" varStatus="i">
+								<li>
+									<a class="title1" href="javascript:goView('${voResearch.sur_seq }', 'research')">${voResearch.sur_title }</a>
+									<span class="main_data"><fmt:formatDate value="${voResearch.reg_date }" pattern="yyyy-MM-dd" /></span>
+								</li>
+							</c:forEach>
+						</ul>
+					</c:if>
+					<span class="more">
+						<a href="#"><img src="./images/main/more.gif" alt="더보기" /></a>
+					</span>
 				</div>
-				<!-- .//공지사항 -->
-				
+				<!-- .//각 텝별 액션 -->
 				
 
-		</div>
+			</div>
+			<!-- .//공지사항 -->
+
+			<!-- 학교급식 인력풀 -->
+			<div class="m_search_box">
+				<h3>
+					<img src="./images/main/title_01.gif" alt="학교급식인력풀" />
+				</h3>
+				<fieldset>
+					<form name="search" method="post" action="recruitSearch.do">
+						<legend>검색</legend>
+						<p>
+							직종 <select name="searchString">
+								<option value="all">전체</option>
+								<c:forEach var="j" items="${job }">
+									<option value="${j.code }">${j.code_name }</option>
+								</c:forEach>
+							</select>
+						</p>
+						<p>
+							지역 <select name="searchString1">
+								<option value="all">전체</option>
+								<c:forEach var="l" items="${loc }">
+									<option value="${l.code }">${l.code_name }</option>
+								</c:forEach>
+							</select> <a href="javascript:goSearch()"><img
+								src="./images/main/btn_ser.gif" alt="검색" /></a>
+						</p>
+						<input type="hidden" name="searchType" id="searchType"
+							value="main" />
+					</form>
+				</fieldset>
+			</div>
+			<!-- .//학교급식 인력풀 -->
+			
+			
+			
+			<!-- 아이콘 -->
+			<div class="main_icon">
+				<ul>
+					<li><a href="#"><img src="./images/main/img_btn_01.gif" alt="학교급식관리기구" /></a></li>
+					<li><a href="#"><img src="./images/main/img_btn_02.gif" alt="영양(교)사이야기" /></a></li>
+					<li><a href="#"><img src="./images/main/img_btn_03.gif" alt="조리사(원)이야기" /></a></li>
+					<li><a href="#"><img src="./images/main/img_btn_04.gif" alt="추천식단" /></a></li>
+					<li><a href="#"><img src="./images/main/img_btn_05.gif" alt="추천레시피" /></a></li>
+					<li class="prn"><a href="#"><img src="./images/main/img_btn_06.gif" alt="학교급식컨설팅" /></a></li>
+				</ul>
+			</div>
+   			<!-- .//아이콘 -->
+        	
+        	
+        	
+        	<!-- 하단 왼쪽영역 -->
+			<div class="main_left_box">
+				<h3><img src="./images/main/main_h3_01.gif" alt="학교급식특색활동" /><span class="more"><a href="peculiarityActivityList.do"><img src="./images/main/more1.gif" alt="더보기" /></a></span></h3>
+				<dl>
+					<c:if test="${pa ne null && not empty pa }">
+						<dt><img src="./FOOD/peculiarityActivity/${pa.seq }/imgs/${pa.img1}" alt="" /></dt>
+						<dd><a class="title2" href="javascript:goView('${pa.seq }', 'pa')">${pa.title }</a></dd>
+						<dd class="text title3"><td class="tl h150"><pre>${pa.description }</pre></td></dd>
+					</c:if>
+					<c:if test="${pa eq null || empty pa }">
+						<dt><img src="./images/sub/factory/no_s_img.gif" alt="" /></dt>
+						<dd>게시글이 없습니다.</dd>
+						<dd class="text"></dd>
+					</c:if>
+				</dl>
+				<h3><img src="./images/main/main_h3_02.gif" alt="연수·행사 활동" /> <span class="more"><a href="trainingEvent.do"><img src="./images/main/more1.gif" alt="더보기" /></a></span></h3>
+				<dl class="dlbox">
+					<c:if test="${te ne null && not empty te }">
+						<dt><img src="./FOOD/trainingEvent/${te.seq }/imgs/${te.img1}" alt="" /></dt>
+						<dd><a class="title2" href="javascript:goView('${te.seq }', 'te')">${te.title }</a></dd>
+						<dd class="text title3"><td class="tl h150"><pre>${te.description }</pre></td></dd>
+					</c:if>
+					<c:if test="${te eq null || empty te }">
+						<dt><img src="./images/sub/factory/no_s_img.gif" alt="" /></dt>
+						<dd>게시글이 없습니다.</dd>
+						<dd class="text"></dd>
+					</c:if>
+				</dl>
+			</div>
+			<!-- .//하단 왼쪽영역 -->
+			
+			
+			
+			
+			<!-- 하단 오른쪽 상단 배너 -->
+			<div class="s_banner">
+	          <ul>
+	            <li><a href="#"><img src="./images/main/s_banner_01.gif" alt="식중독 발생시 대처요령" /></a></li>
+	            <li><a href="#"><img src="./images/main/s_banner_02.gif" alt="안전사고 발생시 대처요령" /></a></li>
+	          </ul>
+	        </div>
+			<!-- .//하단 오른쪽 상단 배너 -->
+			
+			
+			
+			<!-- 하단 오른쪽 하단 탭 -->
+			<div class="s_notice">
+				<!--tab object -->
+				<ul class="s_main_tab">
+					<li><a href="javascript:void(0)" onclick="doGoTab2(this,'01');" class="s_main_tab01_on">안내</a></li>
+					<li><a href="javascript:void(0)" onclick="doGoTab2(this,'02');" class="s_main_tab02">정보</a></li>
+					<li><a href="javascript:void(0)" onclick="doGoTab2(this,'03');" class="s_main_tab03">관련기관</a></li>
+					<li><a href="javascript:void(0)" onclick="doGoTab2(this,'04');" class="s_main_tab04">교육청</a></li>
+				</ul>
+				<!--//tab object -->
+
+				<div id="s_tab01" class="tabDivArea">
+					<ul>
+						<li><a href="http://www.mfds.go.kr/jsp/page/food_zone_new.jsp" target="_blank">식중독지수</a></li>
+						<li><a href="http://www.mfds.go.kr/fm/index.do" target="_blank">식중독예방</a></li>
+						<li><a href="http://foodnara.go.kr/ews/user/loginForm.do?error=nullSession" target="_blank">식중독조기경보시스템</a></li>
+						<li><a href="http://www.haccphub.or.kr/welcome.do" target="_blank">HACCP통합검색</a></li>
+						<li><a href="http://www.foodsafety.go.kr/fsafe/main.fs" target="_blank">농식품안전정보서비스</a></li>
+						<li><a href="baseWayList.do" target="_self">학교급식 기본방향</a></li>
+					</ul>
+				</div>
+				<div id="s_tab02" class="tabDivArea" style="display: none;">
+					<ul>
+						<li><a href="http://www.naqs.go.kr/index.jsp" target="_blank">농산물 품질</a></li>
+						<li><a href="http://www.enviagro.go.kr/" target="_blank">인증</a></li>
+						<li><a href="http://www.kamis.co.kr/customer/main/main.do" target="_blank">유통</a></li>
+						<li><a href="http://www.ekape.or.kr/view/user/main/main.asp" target="_blank">축산물 품질</a></li>
+						<li><a href="http://cattle.mtrace.go.kr/index.do" target="_blank">이력</a></li>
+						<li><a href="http://www.ekapepia.com/home/homeIndex.do" target="_blank">유통</a></li>
+						<li><a href="http://www.nfqs.go.kr/2013/index.asp" target="_blank">수산물 품질</a></li>
+						<li><a href="http://www.fishtrace.go.kr/" target="_blank">이력</a></li>
+						<li><a href="http://www.fips.go.kr/" target="_blank">유통</a></li>
+						<li><a href="https://schoolhealth.kedi.re.kr/" target="_blank">학생건강정보</a></li>
+						<li><a href="http://www.foodnara.go.kr/foodnara/index.do" target="_blank">식품나라</a></li>
+						<li><a href="http://call.mfds.go.kr/kfda" target="_blank">식약처FAQ</a></li>
+						<li><a href="http://kostat.go.kr/portal/korea/kor_nw/2/1/index.board?bmode=list&bSeq=&aSeq=&pageNo=1&rowNum=10&navCount=10&currPg=&sTarget=title&sTxt=%EC%86%8C%EB%B9%84%EC%9E%90" target="_blank">물가동향</a></li>
+					</ul>
+				</div>
+				<div id="s_tab03" class="tabDivArea" style="display: none;">
+					<ul>
+						<li><a href="http://www.moe.go.kr/" target="_blank">교육부</a></li>
+						<li><a href="http://www.mfds.go.kr/" target="_blank">식품의약품안전처</a></li>
+						<li><a href="http://www.maf.go.kr/" target="_blank">농림축산식품부</a></li>
+						<li><a href="http://www.mof.go.kr/" target="_blank">해양수산부</a></li>
+						<li><a href="http://www.moel.go.kr/" target="_blank">고용노동부</a></li>
+						<li><a href="http://www.kosha.or.kr/" target="_blank">안전보건공단</a></li>
+						<li><a href="http://www.mw.go.kr/" target="_blank">보건복지부</a></li>
+						<li><a href="http://www.cdc.go.kr/" target="_blank">질병관리본부</a></li>
+						<li><a href="http://www.g2b.go.kr/" target="_blank">g2b</a></li>
+						<li><a href="http://www.eat.co.kr/" target="_blank">eaT</a></li>
+						<li><a href="http://www.orbon.co.kr/" target="_blank">친환경유통센터</a></li>
+					</ul>
+				</div>
+				<div id="s_tab04" class="tabDivArea" style="display: none;">
+					<ul>
+						<li><a href="http://www.sen.go.kr/" target="_blank">서울특별시교육청</a></li>
+						<li><a href="http://www.bogun.seoul.kr/" target="_blank">서울특별시학교보건진흥원</a></li>
+						<li><a href="http://www.sendb.go.kr/" target="_blank">동부</a></li>
+						<li><a href="http://www.sens.go.kr/" target="_blank">서부</a></li>
+						<li><a href="http://www.nambuedu.seoul.kr/" target="_blank">남부</a></li>
+						<li><a href="http://www.ben.go.kr/" target="_blank">북부</a></li>
+						<li><a href="http://www.senjb.go.kr/" target="_blank">중부</a></li>
+						<li><a href="http://www.edugd.seoul.kr/" target="_blank">강동</a></li>
+						<li><a href="http://www.sengs.go.kr/" target="_blank">강서</a></li>
+						<li><a href="http://www.knen.go.kr/" target="_blank">강남</a></li>
+						<li><a href="http://www.djedu.go.kr/" target="_blank">동작</a></li>
+						<li><a href="http://www.sensd.go.kr/" target="_blank">성동</a></li>
+						<li><a href="http://www.sensb.go.kr/" target="_blank">성북</a></li>
+					</ul>
+				</div>
+			</div>
+	
+	
+			</div>
 		<!--.//오른쪽영역 -->
 		
 		
