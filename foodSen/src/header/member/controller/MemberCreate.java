@@ -47,6 +47,7 @@ public class MemberCreate {
 	//회원가입 db insert
 	@RequestMapping("/memberCreate.do")
 	public String memberCreate(HttpServletRequest request) throws Exception{
+		request.setCharacterEncoding("euc-kr");
 		
 		//사용자가 입력한 정보
 		String user_id = request.getParameter("user_id");

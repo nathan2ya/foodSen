@@ -42,6 +42,7 @@ public class MemberEdit {
 	//회원수정 폼
 	@RequestMapping("/memberEditFrom.do")
 	public String memberEditFrom(HttpServletRequest request, HttpSession session) throws Exception{
+		request.setCharacterEncoding("euc-kr");
 		
 		//update 대상 레코드
 		String session_id = (String) session.getAttribute("session_id");
@@ -59,6 +60,7 @@ public class MemberEdit {
 	//회원수정 db update
 	@RequestMapping("/memberEdit.do")
 	public String memberEdit(HttpServletRequest request, HttpSession session) throws Exception{
+		request.setCharacterEncoding("euc-kr");
 		
 		//update 대상 레코드
 		String session_id = (String) session.getAttribute("session_id");
