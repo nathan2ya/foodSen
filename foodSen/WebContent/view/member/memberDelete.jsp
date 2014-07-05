@@ -37,18 +37,33 @@
 	
 	<table border="1" align="center" width="700" bordercolor="#E7E7E7">
 		
-		<tr>	
-			<td colspan="2" align="center">
-				${sessionScope.session_id}님의 본인인증을 위해 비밀번호를 재확인 하겠습니다. <br/>
-				<input type="password" name="user_pw" id="user_pw" size="21" maxlength="15" />
-			</td>
-		</tr>
-			
-		<tr>
-			<td height="8"colspan="2" align="right">
-				<input type="submit" name="submit" value="탈퇴"/>
-			</td>
-		</tr>
+		<!-- 세션이 없는 경우 -->
+		<c:if test="${sessionScope.session_id == null}">
+			<tr>	
+				<td colspan="2" align="center">
+					로그인 후 이용해 주세요!
+				</td>
+			</tr>
+		</c:if>
+		<!-- .//세션이 없는 경우 -->
+		
+		
+		<!-- 세션이 있는 경우 -->
+		<c:if test="${sessionScope.session_id != null}">
+			<tr>	
+				<td colspan="2" align="center">
+					${sessionScope.session_id}님의 본인인증을 위해 비밀번호를 재확인 하겠습니다. <br/>
+					<input type="password" name="user_pw" id="user_pw" size="21" maxlength="15" />
+				</td>
+			</tr>
+				
+			<tr>
+				<td height="8"colspan="2" align="right">
+					<input type="submit" name="submit" value="탈퇴"/>
+				</td>
+			</tr>
+		</c:if>
+		<!-- .//세션이 있는 경우 -->
 		
 	</table>
 	
