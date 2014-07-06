@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
     
+    
 <html>
 <head>
 	<title>가입하기</title>
@@ -75,11 +76,9 @@
 
 <h1 align="center">가상 서울시특별교육청 홈페이지(회원가입)</h1>
 
-<body>
-
-	<img src="./images/senSeoul/memberCreate.gif"/>
+<body style="padding-left: 50px">
 	
-	<form name="memberCreateForm" action="/foodSen/memberCreate.do" method="post" style="padding-left: 50px" onSubmit="return checkIt()">
+	<form name="memberCreateForm" action="/foodSen/memberCreate.do" method="post" onSubmit="return checkIt()">
 	
 		<table border="1" align="center" width="600" bordercolor="#E7E7E7">
 			<tr>
@@ -160,6 +159,6 @@
 		</table>
 	
 	</form>
-
+	
 </body>
 </html>
