@@ -67,6 +67,11 @@
 
 <h1 align="center">아이디 중복 체크</h1>
 
+<!-- 최초진입시 -->
+<c:if test="${notFound == 2}">
+	<body>
+</c:if>
+
 <!-- 아이디 중복인 경우 경고 -->
 <c:if test="${notFound == 1}">
 	<body onload="return found();">

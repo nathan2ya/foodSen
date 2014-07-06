@@ -96,7 +96,7 @@ public class MemberCreate {
 		
 		
 		if(null == request.getParameter("notFound")){
-			notFound = 0;
+			notFound = 2;
 		}else{
 			notFound = Integer.parseInt(request.getParameter("notFound"));
 		}
