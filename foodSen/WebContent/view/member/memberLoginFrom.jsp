@@ -13,28 +13,48 @@
 	<title>로그인</title>
 	
 	<SCRIPT type="text/javascript">
+	
+		//공백제거
+		function toPass(){
+			var input = document.loginForm.user_id.value;//사용자가 입력한 값
+			document.loginForm.user_id.value = input.replace(/^\s+|\s+$/g,""); //앞뒤 공백을 제거함
+		}
+		
+		//대문자를 소문자로 변경
+		function toPass1(){ 
+			var input = document.loginForm.user_id.value;//사용자가 입력한 값
+			document.loginForm.user_id.value = input.toLowerCase(); //대문자를 소문자로 변경
+		}
+		
+		//특수문자가 있을 경우 경고
+		function toPass2(){
+			if((event.keyCode >=32&&event.keyCode <=47)||(event.keyCode>=58&&event.keyCode<=64)||(event.keyCode>=91&&event.keyCode<=96)||(event.keyCode>=123&&event.keyCode<=126) ) {
+				alert("아이디에 공백 및 특수문자는 입력할 수 없습니다.");
+			}
+		}
+		
+
 		//null 유효성검사
-		function checkIt(){
-			inputForm=eval("document.loginForm");
-		 
-			if(!inputForm.user_id.value){
+		function checkIt() {
+			inputForm = eval("document.loginForm");
+
+			if (!inputForm.user_id.value) {
 				alert("아이디를 입력해주세요.");
 				loginForm.user_id.focus();
 				return false;
 			}
-			if(!inputForm.user_pw.value){
+			if (!inputForm.user_pw.value) {
 				alert("비밀번호를 입력해주세요.");
 				loginForm.user_pw.focus();
 				return false;
 			}
 		}
-		
+
 		//레코드를 찾지 못한경우
-		function notFound(){
+		function notFound() {
 			alert("아이디 또는 비밀번호를 확인해주세요");
 			loginForm.user_pw.focus();
 		}
-		
 	</script>
 </head>
 
@@ -92,7 +112,7 @@
 				            	<h4><img src="./images/sub/etc/login_img_01.gif" alt="아이디를 입력하세요" /></h4>
 				                <dl>
 				                	<dt style="padding-left: 40px">
-				                		사용자ID <input type="text" class="inp" name="user_id" id="user_id" style="width:180px;" maxlength="20" value="${user_id}"/> <br/><br/>
+				                		사용자ID <input type="text" class="inp" name="user_id" id="user_id" style="width:180px;" maxlength="20" value="${user_id}" onkeypress="toPass(); toPass1(); toPass2();" /> <br/><br/>
 				                		비밀번호 <input type="password" class="inp" name="user_pw" id="user_pw" style="width:180px;" maxlength="20" />
 				                		&nbsp;&nbsp;
 				                		<input type="submit" class="btn_submit_login" name="login" value="login" />
