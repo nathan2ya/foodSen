@@ -27,6 +27,17 @@
 				return false;
 			}
 		}
+		
+		
+		//이메일형식 체크
+		function emailValue(){
+			var t = escape(this.memberCreateForm.sen_email.value);
+			//sung2li@naver.com 일때와 sung2li@naver.co.kr일때의 형식 체크
+			if (t.match(/^(\w+)@(\w+)[.](\w+)$/ig) == null && t.match(/^(\w+)@(\w+)[.](\w+)[.](\w+)$/ig) == null) {
+				alert("이메일이 맞지 않습니다.");
+			}
+		}
+		
 	</script>
 </head>
 
@@ -137,7 +148,7 @@
 			<tr>	
 				<td width="200" height="16" align="right">이메일</td>
 				<td width="500" height="16" align="left">
-					<input type="text" name="sen_email" id="sen_email" size="45" maxlength="20" value="${resultClass.sen_email}"/>
+					<input type="text" name="sen_email" id="sen_email" size="45" maxlength="20" value="${resultClass.sen_email}" onblur="emailValue();"/>
 					<br/>
 					<font color="gray" size="2">모든 주소를 기입해주세요. 최대20자</font>
 				</td>

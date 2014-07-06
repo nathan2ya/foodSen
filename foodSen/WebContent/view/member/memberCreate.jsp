@@ -26,51 +26,60 @@
 				alert("아이디에 공백 및 특수문자는 입력할 수 없습니다.");
 			}
 		}
-	
-		//null 유효성검사
-		function checkIt(){
-			inputForm=eval("document.memberCreateForm");
+		
+		//이메일형식 체크
+		function emailValue(){
+			var t = escape(this.memberCreateForm.sen_email.value);
+			//sung2li@naver.com 일때와 sung2li@naver.co.kr일때의 형식 체크
+			if (t.match(/^(\w+)@(\w+)[.](\w+)$/ig) == null && t.match(/^(\w+)@(\w+)[.](\w+)[.](\w+)$/ig) == null) {
+				alert("이메일이 맞지 않습니다.");
+			}
+		}
 
-			if(!inputForm.user_id.value){
+		//null 유효성검사
+		function checkIt() {
+			inputForm = eval("document.memberCreateForm");
+
+			if (!inputForm.user_id.value) {
 				alert("아이디를 입력해주세요.");
 				memberCreateForm.user_id.focus();
 				return false;
 			}
-			if(!inputForm.user_pw.value){
+			if (!inputForm.user_pw.value) {
 				alert("비밀번호를 입력해주세요.");
 				memberCreateForm.user_pw.focus();
 				return false;
 			}
-			if(!inputForm.member_name.value){
+			if (!inputForm.member_name.value) {
 				alert("이름를 입력해주세요.");
 				memberCreateForm.member_name.focus();
 				return false;
 			}
-			if(!inputForm.school_name.value){
+			if (!inputForm.school_name.value) {
 				alert("학교명을 입력해주세요.");
 				memberCreateForm.school_name.focus();
 				return false;
 			}
-			if(!inputForm.sen_email.value){
+			if (!inputForm.sen_email.value) {
 				alert("이메일을 입력해주세요.");
 				memberCreateForm.sen_email.focus();
 				return false;
 			}
-			
-			alert(inputForm.user_id.value+"님! 회원가입이 완료되었습니다.");
+
+			alert(inputForm.user_id.value + "님! 회원가입이 완료되었습니다.");
 			window.close();
 		}
 
 		//비밀번호, 재입력된 비밀번호화 일치하지 않을 경우
-		function checkPw(){
-			inputForm=eval("document.memberCreateForm");
+		function checkPw() {
+			inputForm = eval("document.memberCreateForm");
 
-			if(inputForm.user_pw.value != inputForm.user_pw_re.value){
+			if (inputForm.user_pw.value != inputForm.user_pw_re.value) {
 				alert("비밀번호가 일치하지 않습니다.");
+				memberCreateForm.user_pw_re.focus();
 				return false;
 			}
 		}
-		
 	</script>
 </head>
 
@@ -145,7 +154,7 @@
 			<tr>	
 				<td width="200" height="16" align="right">이메일</td>
 				<td width="500" height="16" align="left">
-					<input type="text" name="sen_email" id="sen_email" size="45" maxlength="20" />
+					<input type="text" name="sen_email" id="sen_email" size="45" maxlength="20" onblur="emailValue();"/>
 					<br/>
 					<font color="gray" size="2">모든 주소를 기입해주세요. 최대20자</font>
 				</td>
