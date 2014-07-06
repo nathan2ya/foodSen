@@ -23,6 +23,10 @@
 	
 	
 	<!-- select -->
+	<select id="selectMemberAll" resultMap="memberRes" parameterClass="int">
+		select * from TB_00_MEMBER
+	</select>
+	
 	<select id="selectMemberOne" resultMap="memberRes" parameterClass="java.lang.String">
 		select * from TB_00_MEMBER
 		where user_id = #user_id#
@@ -31,6 +35,11 @@
 	<select id="selectCountForLogin" resultClass="int" parameterClass="memberDTO">
 		SELECT count(*) FROM TB_00_MEMBER
 		where user_id = #user_id# and user_pw = #user_pw#
+	</select>
+	
+	<select id="selectUser_id" resultClass ="int" parameterClass="java.lang.String">
+		SELECT count(*) FROM TB_00_MEMBER
+		where user_id = #user_id#
 	</select>
 	
 	

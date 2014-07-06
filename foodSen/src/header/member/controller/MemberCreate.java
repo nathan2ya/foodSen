@@ -4,7 +4,9 @@ import header.member.dto.MemberDTO;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,6 +21,10 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 @Controller
 public class MemberCreate {
+	//회원가입 아이디,이메일 중복확인 List
+	private List<MemberDTO> list = new ArrayList<MemberDTO>();
+	private String viewPath; //최종 뷰 경로
+	
 	//회원가입 insert DTO
 	private MemberDTO paramClass = new MemberDTO();
 	
@@ -39,7 +45,7 @@ public class MemberCreate {
 	
 	//회원가입 폼
 	@RequestMapping("/memberCreateFrom.do")
-	public String memberCreateFrom(){
+	public String memberCreateFrom() throws Exception{
 		return "/view/member/memberCreate.jsp";
 	}
 	
@@ -77,6 +83,44 @@ public class MemberCreate {
 		return "redirect:/main.do";
 	}
 	
+	
+	
+	
+	
+	//아이디중복체크 폼
+	@RequestMapping("/checkUser_idFrom.do")
+	public String checkUser_idFrom(HttpServletRequest request) throws Exception{
+		//사용자가 입력한 정보
+		String user_id = request.getParameter("user_id");
+		
+		
+		request.setAttribute("user_id", user_id);
+		
+		return "/view/member/checkUser_idFrom.jsp";
+	}
+	
+	
+	//아이디중복체크
+	@RequestMapping("/checkUser_id.do")
+	public String checkUser_id(HttpServletRequest request) throws Exception{
+		//사용자가 입력한 정보
+		String user_id = request.getParameter("user_id");
+		
+		
+		//해당 아이디가 있는지 없는지 판단
+		Integer count = (Integer) sqlMapper.queryForObject("Member.selectUser_id", user_id);
+		
+		if(count == 0){ //id중복이 아닌 경우
+			
+			viewPath = "redirect:/checkUser_idFrom.do?user_id="+user_id;
+		}else{ //id중복인 경우
+			
+			viewPath = "redirect:/checkUser_idFrom.do?user_id="+user_id;
+		}
+		
+		
+		return viewPath;
+	}
 	
 	
 	

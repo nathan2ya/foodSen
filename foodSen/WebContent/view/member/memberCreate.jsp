@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     
 <html>
 <head>
 	<title>가입하기</title>
 	
 	<SCRIPT type="text/javascript">
-	
+		
 		//공백제거
 		function toPass(){
 			var input = document.memberCreateForm.user_id.value;//사용자가 입력한 값
@@ -26,6 +26,25 @@
 				alert("아이디에 공백 및 특수문자는 입력할 수 없습니다.");
 			}
 		}
+		
+		//아이디 중복 확인
+		function toPass3(){
+			inputForm = eval("document.memberCreateForm");
+			user_id=inputForm.user_id.value;
+
+			if (!inputForm.user_id.value) {
+				alert("아이디 입력 후 중복체크 해주세요!");
+				memberCreateForm.user_id.focus();
+				return false;
+			}
+			
+			//url
+			url="http://localhost:8000/foodSen/checkUser_idFrom.do?user_id="+user_id
+			// 새로운 윈도우를 엽니다.
+	        open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=220");
+		}
+		
+		
 		
 		//이메일형식 체크
 		function emailValue(){
@@ -89,11 +108,13 @@
 	
 	<form name="memberCreateForm" action="/foodSen/memberCreate.do" method="post" onSubmit="return checkIt()">
 	
-		<table border="1" align="center" width="600" bordercolor="#E7E7E7">
+		<table border="1" align="center" width="700" bordercolor="#E7E7E7">
 			<tr>
 				<td width="200" height="8" align="right">아이디</td>
 				<td width="500" height="8" align="left">
-					<input type="text" name="user_id" id="user_id" size="15" maxlength="12" onkeypress="toPass(); toPass1(); toPass2();" onblur="toPass(); toPass1();" /><br/>
+					<input type="text" name="user_id" id="user_id" size="15" maxlength="12" onkeypress="toPass(); toPass1(); toPass2();" onblur="toPass(); toPass1();" />
+					<input type="button" name="checkID" value="ID중복체크" onClick="toPass3();" />
+					<br/>
 					<font color="gray" size="2">아이디는 영문(소문자), 숫자 최대 12자리, 특수문자 및 공백이 포함될 수 없습니다.</font>
 				</td>
 			</tr>
