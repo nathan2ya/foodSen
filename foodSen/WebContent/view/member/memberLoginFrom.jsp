@@ -57,10 +57,7 @@
 			loginForm.user_pw.focus();
 		}
 		
-		 function open(){
-			 var link = "http://www.daum.net";
-			 window.open(link, "Window","width=470, height=500, resizable=no");
-		 }
+		
 	</script>
 </head>
 

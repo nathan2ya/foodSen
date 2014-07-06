@@ -24,6 +24,7 @@ public class MemberCreate {
 	//회원가입 아이디,이메일 중복확인 List
 	private List<MemberDTO> list = new ArrayList<MemberDTO>();
 	private String viewPath; //최종 뷰 경로
+	private int notFound; //id중복 유무를 판단하는 논리값 // 0 미중복, 1 중복
 	
 	//회원가입 insert DTO
 	private MemberDTO paramClass = new MemberDTO();
@@ -94,7 +95,15 @@ public class MemberCreate {
 		String user_id = request.getParameter("user_id");
 		
 		
+		if(null == request.getParameter("notFound")){
+			notFound = 0;
+		}else{
+			notFound = Integer.parseInt(request.getParameter("notFound"));
+		}
+		
+		
 		request.setAttribute("user_id", user_id);
+		request.setAttribute("notFound", notFound);
 		
 		return "/view/member/checkUser_idFrom.jsp";
 	}
@@ -111,11 +120,9 @@ public class MemberCreate {
 		Integer count = (Integer) sqlMapper.queryForObject("Member.selectUser_id", user_id);
 		
 		if(count == 0){ //id중복이 아닌 경우
-			
-			viewPath = "redirect:/checkUser_idFrom.do?user_id="+user_id;
+			viewPath = "redirect:/checkUser_idFrom.do?user_id="+user_id+"&notFound=0";
 		}else{ //id중복인 경우
-			
-			viewPath = "redirect:/checkUser_idFrom.do?user_id="+user_id;
+			viewPath = "redirect:/checkUser_idFrom.do?user_id="+user_id+"&notFound=1";
 		}
 		
 		

@@ -45,7 +45,6 @@
 		}
 		
 		
-		
 		//이메일형식 체크
 		function emailValue(){
 			var t = escape(this.memberCreateForm.sen_email.value);

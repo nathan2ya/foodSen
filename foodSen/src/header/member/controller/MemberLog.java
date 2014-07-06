@@ -59,14 +59,13 @@ public class MemberLog {
 	public String login(HttpServletRequest request){
 		
 		//로그인 실패시 else구문으로 초기화됨
-		if(null == request.getParameter("notFound") && null == request.getParameter("user_id")){
+		if(null == request.getParameter("notFound") && null == request.getParameter("user_id")){ //로그인성공
 			notFound = 0;
 			user_id = "";
-		}else{
+		}else{ //로그인 실패
 			notFound = Integer.parseInt(request.getParameter("notFound"));
 			user_id = request.getParameter("user_id");
 		}
-		
 		
 		request.setAttribute("notFound", notFound);
 		request.setAttribute("user_id", user_id);

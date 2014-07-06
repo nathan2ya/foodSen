@@ -48,13 +48,34 @@
 			opener.document.checkUser_idFrom.user_id.value = user_id;
 			self.close();
 		}
+		
+		
+		//아이디중복인경우
+		function found() {
+			alert("아이디 중복입니다! 다른아이디를 사용해주세요.");
+			checkUser_idFrom.user_id.focus();
+		}
+		
+		//중복이아닌경우
+		function notFound() {
+			alert("사용할 수 있는 아이디 입니다!");
+			checkUser_idFrom.user_id.focus();
+		}
 
 	</script>
 </head>
 
 <h1 align="center">아이디 중복 체크</h1>
 
-<body>
+<!-- 아이디 중복인 경우 경고 -->
+<c:if test="${notFound == 1}">
+	<body onload="return found();">
+</c:if>
+
+<!-- 아이디 중복이 되지 않았을 경우 -->
+<c:if test="${notFound == 0}">
+	<body onload="return notFound();">
+</c:if>
 	
 	<form name="checkUser_idFrom" action="/foodSen/checkUser_id.do" method="post" onSubmit="return checkIt()">
 	
