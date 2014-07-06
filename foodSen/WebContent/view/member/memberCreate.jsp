@@ -77,87 +77,89 @@
 
 <body>
 
-<form name="memberCreateForm" action="/foodSen/memberCreate.do" method="post" onSubmit="return checkIt()">
-
-	<table border="1" align="center" width="700" bordercolor="#E7E7E7">
-		<tr>
-			<td width="200" height="8" align="right">아이디</td>
-			<td width="500" height="8" align="left">
-				<input type="text" name="user_id" id="user_id" size="15" maxlength="12" onkeypress="toPass(); toPass1(); toPass2();" onblur="toPass(); toPass1();" /><br/>
-				<font color="gray" size="2">아이디는 영문(소문자), 숫자 최대 12자리, 특수문자 및 공백이 포함될 수 없습니다.</font>
-			</td>
-		</tr>
-		
-		<tr>	
-			<td width="200" height="8" align="right">비밀번호</td>
-			<td width="500" height="8" align="left">
-				<input type="password" name="user_pw" id="user_pw" size="21" maxlength="15" />
-				<font color="gray" size="2">비밀번호는 최대 15자리까지 입력가능합니다.</font>
-			</td>
-		</tr>
-		
-		<tr>	
-			<td width="200" height="8" align="right">비밀번호</td>
-			<td width="500" height="8" align="left">
-				<input type="password" name="user_pw_re" id="user_pw_re" size="21" maxlength="15" onblur="checkPw();"/>
-				<font color="gray" size="2">비밀번호 확인을 위해 재입력해주세요.</font>
-			</td>
-		</tr>
-		
-		<tr>
-			<td width="200" height="8" align="right">이&nbsp;름</td>
-			<td width="500" height="8" align="left">
-				<input type="text" name="member_name" id="member_name" size="7" maxlength="4" />
-				<font color="gray" size="2">이름은 4글자까지 입력가능합니다.</font>
-			</td>
-		</tr>
-		
-		<tr>	
-			<td width="200" height="8" align="right">학교명</td>
-			<td width="500" height="8" align="left">
-				<input type="text" name="school_name" id="school_name" size="7" maxlength="5" />
-				<font color="gray" size="2">최대 5자 입력</font>
-			</td>
-		</tr>
-		
-		<tr>	
-			<td width="200" height="8" align="right">학교종류</td>
-			<td width="500" height="8" align="left">
-				<select name = "school_type">
-					<option value = "1">초등학교</option>
-					<option value = "2">중학교</option>
-					<option value = "3">고등학교</option>
-				</select>
-			</td>
-		</tr>
-		
-		<tr>	
-			<td width="200" height="8" align="right">직위</td>
-			<td width="500" height="8" align="left">
-				<select name = "position">
-					<option value = "1">영양사</option>
-					<option value = "2">조리원</option>
-				</select>
-			</td>
-		</tr>
-
-		<tr>	
-			<td width="200" height="16" align="right">이메일</td>
-			<td width="500" height="16" align="left">
-				<input type="text" name="sen_email" id="sen_email" size="45" maxlength="20" />
-				<br/>
-				<font color="gray" size="2">모든 주소를 기입해주세요. 최대20자</font>
-			</td>
-		</tr>
-
-		<tr>
-			<td height="8"colspan="2" align="right">
-				<input type="submit" name="submit" value="가입하기"/>
-			</td>
-		</tr>
-	</table>
-
-</form>
+	<img src="./images/senSeoul/memberCreate.gif"/>
+	
+	<form name="memberCreateForm" action="/foodSen/memberCreate.do" method="post" style="padding-left: 50px" onSubmit="return checkIt()">
+	
+		<table border="1" align="center" width="600" bordercolor="#E7E7E7">
+			<tr>
+				<td width="200" height="8" align="right">아이디</td>
+				<td width="500" height="8" align="left">
+					<input type="text" name="user_id" id="user_id" size="15" maxlength="12" onkeypress="toPass(); toPass1(); toPass2();" onblur="toPass(); toPass1();" /><br/>
+					<font color="gray" size="2">아이디는 영문(소문자), 숫자 최대 12자리, 특수문자 및 공백이 포함될 수 없습니다.</font>
+				</td>
+			</tr>
+			
+			<tr>	
+				<td width="200" height="8" align="right">비밀번호</td>
+				<td width="500" height="8" align="left">
+					<input type="password" name="user_pw" id="user_pw" size="21" maxlength="15" />
+					<font color="gray" size="2">비밀번호는 최대 15자리까지 입력가능합니다.</font>
+				</td>
+			</tr>
+			
+			<tr>	
+				<td width="200" height="8" align="right">비밀번호</td>
+				<td width="500" height="8" align="left">
+					<input type="password" name="user_pw_re" id="user_pw_re" size="21" maxlength="15" onblur="checkPw();"/>
+					<font color="gray" size="2">비밀번호 확인을 위해 재입력해주세요.</font>
+				</td>
+			</tr>
+			
+			<tr>
+				<td width="200" height="8" align="right">이&nbsp;름</td>
+				<td width="500" height="8" align="left">
+					<input type="text" name="member_name" id="member_name" size="7" maxlength="4" />
+					<font color="gray" size="2">이름은 4글자까지 입력가능합니다.</font>
+				</td>
+			</tr>
+			
+			<tr>	
+				<td width="200" height="8" align="right">학교명</td>
+				<td width="500" height="8" align="left">
+					<input type="text" name="school_name" id="school_name" size="7" maxlength="5" />
+					<font color="gray" size="2">최대 5자 입력</font>
+				</td>
+			</tr>
+			
+			<tr>	
+				<td width="200" height="8" align="right">학교종류</td>
+				<td width="500" height="8" align="left">
+					<select name = "school_type">
+						<option value = "1">초등학교</option>
+						<option value = "2">중학교</option>
+						<option value = "3">고등학교</option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>	
+				<td width="200" height="8" align="right">직위</td>
+				<td width="500" height="8" align="left">
+					<select name = "position">
+						<option value = "1">영양사</option>
+						<option value = "2">조리원</option>
+					</select>
+				</td>
+			</tr>
+	
+			<tr>	
+				<td width="200" height="16" align="right">이메일</td>
+				<td width="500" height="16" align="left">
+					<input type="text" name="sen_email" id="sen_email" size="45" maxlength="20" />
+					<br/>
+					<font color="gray" size="2">모든 주소를 기입해주세요. 최대20자</font>
+				</td>
+			</tr>
+	
+			<tr>
+				<td height="8"colspan="2" align="right">
+					<input type="submit" name="submit" value="가입하기"/>
+				</td>
+			</tr>
+		</table>
+	
+	</form>
 
 </body>
 </html>
