@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=euc-kr"
 	pageEncoding="euc-kr"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 
 <jsp:include page="/view/include/top.jsp"/>
@@ -53,6 +54,7 @@
 						<col width="15%" />
 						<col width="10%" />
 					</colgroup>
+					
 					<tbody>
 						<tr>
 							<th>NO</th>
@@ -64,26 +66,32 @@
 						</tr>
 						
 						
-						<c:if test="${vo eq null || empty vo}">
+						<c:if test="${list == null}">
 							<tr>
 								<td colspan="6" align="center">게시글이 없습니다.</td>
 							</tr>
 						</c:if>
 						
-						<c:if test="${vo ne null && not empty vo}">
-							<c:forEach var="bw" items="${vo}" varStatus="i">
+						<c:if test="${list != null}">
+							
+							
+							<c:forEach var="list" items="${list}">
+								
 								<tr>
-									<td>${((totalCount - ((cPage-1) * ps))- i.index)}</td>
-									<td class="tl"><a class="title"
-										href="javascript:goView('${bw.seq }')">${bw.title }</a></td>
-									<td><c:if test="${bw.attach_name ne null && not empty bw.attach_name }">
+									<td align="center">seq</td>
+									<td align="left">${list.title}</td>
+									<td>
+										<c:if test="${list.attach_name != null}">
 											<img src="./images/sub/btn/btn_down.gif" alt="pdf" />
-										</c:if></td>
-									<td>${bw.writer}</td>
-									<td><fmt:formatDate value="${bw.reg_date}" pattern="yyyy-MM-dd" /></td>
-									<td>${bw.hits}</td>
+										</c:if>
+									</td>
+									<td align="center">${list.wirte}</td>
+									<td align="center"><fmt:formatDate value="${list.reg_date}"  pattern="yyyy-MM-dd" /></td>
+									<td align="center">${list.hits}</td>
 								</tr>
 							</c:forEach>
+							
+							
 						</c:if>
 					</tbody>
 					

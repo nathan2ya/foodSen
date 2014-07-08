@@ -39,6 +39,11 @@
 	<select id="selectLastNum" resultClass="inspectionResultDTO" parameterClass="int">
 		SELECT MAX(seq) AS seq from TB_02_IR
 	</select>
+	
+	<select id="selectAll" resultMap="inspectionResultRes" parameterClass="int">
+		select * from TB_02_IR
+		order by seq desc
+	</select>
 		
 
 

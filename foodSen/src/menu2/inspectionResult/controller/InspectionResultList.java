@@ -4,6 +4,7 @@ package menu2.inspectionResult.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import menu2.inspectionResult.dto.InspectionResultDTO;
+
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+
+
 
 
 import com.ibatis.common.resources.Resources;
@@ -31,6 +37,8 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 @Controller
 public class InspectionResultList {
 	
+	//리스트
+	private List<InspectionResultDTO> list = new ArrayList<InspectionResultDTO>();
 	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
@@ -49,7 +57,16 @@ public class InspectionResultList {
 	
 	//위생.안전성 검사결과 리스트
 	@RequestMapping("/inspectionResultList.do")
-	public String inspectionResultList(){
+	public String inspectionResultList(HttpServletRequest request) throws SQLException{
+		
+		list = sqlMapper.queryForList("InspectionResult.selectAll"); //전체글
+		
+		
+		
+		
+		
+		request.setAttribute("list", list);
+		
 		return "/view/menu2/inspectionResultList.jsp";
 	}
 	
