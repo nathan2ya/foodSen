@@ -41,9 +41,16 @@
 		//사용하기
 		function closeWin(){
 			var user_id = "${user_id}";
+			var notFount = "${notFound}";
 			
 			//호출한 페이지의 user_id 값 채우기
 			opener.document.memberCreateForm.user_id.value = user_id;
+			
+			//아이디 중복체크 여부
+			if(notFount==0){ // 중복체크한 후에 중복이 되지 않으면 // 호출한 페이지의 중복체크 통과 의미인 값1을 초기화함.
+				opener.document.memberCreateForm.idCheck.value = 1;
+			}
+			
 			self.close();
 		}
 		

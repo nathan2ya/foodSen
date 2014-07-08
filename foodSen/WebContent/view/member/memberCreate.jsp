@@ -44,6 +44,11 @@
 	        open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=220");
 		}
 		
+		//아이디 중복체크를 실행하지 않았을 경우
+		function checkIDvalue(){
+			memberCreateForm.idCheck.value = 0;
+		}
+		
 		
 		//이메일형식 체크
 		function emailValue(){
@@ -83,6 +88,11 @@
 				memberCreateForm.sen_email.focus();
 				return false;
 			}
+			
+			if(memberCreateForm.idCheck.value == 0){
+				alert("아이디 중복 체크를 실행해주세요.");
+				return false;
+			}
 
 			alert(inputForm.user_id.value + "님! 회원가입이 완료되었습니다.");
 			window.close();
@@ -98,6 +108,7 @@
 				return false;
 			}
 		}
+		
 	</script>
 </head>
 
@@ -111,7 +122,7 @@
 			<tr>
 				<td width="200" height="8" align="right">아이디</td>
 				<td width="500" height="8" align="left">
-					<input type="text" name="user_id" id="user_id" size="15" style='IME-MODE:disabled' maxlength="12" onkeypress="toPass(); toPass1(); toPass2();" onblur="toPass(); toPass1();" />
+					<input type="text" name="user_id" id="user_id" size="15" style='IME-MODE:disabled' maxlength="12" onkeyup="checkIDvalue();" onkeypress="toPass(); toPass1(); toPass2();" onblur="toPass(); toPass1();" />
 					<input type="button" name="checkID" value="ID중복체크" onClick="toPass3();" />
 					<br/>
 					<font color="gray" size="2">아이디는 영문(소문자), 숫자 최대 12자리, 특수문자 및 공백이 포함될 수 없습니다.</font>
@@ -182,7 +193,13 @@
 	
 			<tr>
 				<td height="8"colspan="2" align="right">
+				
+					<!-- 아이디중복체크 여부 논리값. 0은 중복체크 안함, 1은 중복체크 완료 -->
+					<input type="hidden" name="idCheck" value="0" />
+					
+					<!-- 최종가입신청 -->
 					<input type="submit" name="submit" value="가입하기"/>
+					
 				</td>
 			</tr>
 		</table>
