@@ -49,6 +49,7 @@ public class InspectionResultList {
 	
 	//검색중
 	private String tempInput;
+	private int searchingNow; // 전체글, 검색글을 판단하여 각종 논리성을 판가르는 논리값
 	
 	//페이지
 	private int totalCount;// 총 게시물의 수
@@ -78,6 +79,10 @@ public class InspectionResultList {
 	//위생.안전성 검사결과 (전체글) 리스트
 	@RequestMapping("/inspectionResultList.do")
 	public String inspectionResultList(HttpServletRequest request) throws SQLException{
+		
+		// 전체글, 검색글 판단값.
+		searchingNow = 0; //0 == 전체글//1 == 검색글//
+				
 		
 		list = sqlMapper.queryForList("InspectionResult.selectAll"); //전체글
 		int numberCount = list.size(); // 전체 레코드 개수
@@ -159,6 +164,8 @@ public class InspectionResultList {
 		request.setAttribute("list", list);
 		request.setAttribute("number", number); //글넘버 - 가변으로 선정되는 게시글의 숫자
 		
+		request.setAttribute("searchingNow", searchingNow); // 전체,검색글을 판단함
+		
 		
 		return "/view/menu2/inspectionResultList.jsp";
 	}
@@ -174,6 +181,9 @@ public class InspectionResultList {
 	//위생.안전성 검사결과 (검색글) 리스트
 	@RequestMapping("/inspectionResultSearch.do")
 	public String inspectionResultSearchList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		// 전체글, 검색글 판단값.
+		searchingNow = 1; //0 == 전체글//1 == 검색글//
 		
 		request.setCharacterEncoding("euc-kr");
 		
@@ -244,6 +254,8 @@ public class InspectionResultList {
 		
 		request.setAttribute("tempInput", tempInput);
 		request.setAttribute("totalCount", totalCount);
+		
+		request.setAttribute("searchingNow", searchingNow);
 		
 		return  "/view/menu2/inspectionResultList.jsp";
 	}

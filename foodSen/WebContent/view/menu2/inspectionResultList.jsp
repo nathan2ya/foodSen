@@ -98,6 +98,7 @@
        		<p class="pt30"></p>
 			<!-- .//우측상단 경로 정보 -->
 		
+		
 			<!-- 게시판영역 -->
 			<div class="tbl_box">
 
@@ -134,6 +135,16 @@
 							
 							
 							<c:forEach var="list" items="${list}">
+							
+								<c:url var="url" value="/inspectionResultView.do"> 
+									<c:param name="seq" value="${list.seq}"/>
+									<c:param name="currentPage" value="${currentPage}"/>
+									<c:param name="searchingNow" value="${searchingNow}"/>
+									<c:if test="${searchingNow == 1}">
+										<c:param name="searchType" value="${searchType}"/>
+										<c:param name="userinput" value="${userinput}"/>
+									</c:if>
+								</c:url>
 								
 								<tr>
 									<td align="center">
@@ -141,7 +152,7 @@
 										<c:set var="number" value="${number-1}"/>
 									</td>
 									<td align="left">
-										${list.title}
+										<a href=${url}>${list.title}</a>
 									</td>
 									<td>
 										<c:if test="${list.attach_name != null}">

@@ -8,5 +8,10 @@
 </head>
 <body>
 
+
+
+//${seq}//${currentPage}//${searchingNow}//
+
+
 </body>
 </html>
