@@ -15,6 +15,7 @@ public class InspectionResultDTO {
 	private Date reg_date;
 	private String udt_name;
 	private Date udt_date;
+	private int rownum;
 	
 	public int getSeq() {
 		return seq;

@@ -78,7 +78,10 @@
 							<c:forEach var="list" items="${list}">
 								
 								<tr>
-									<td align="center">seq</td>
+									<td align="center">
+										<c:out value="${number}" />
+										<c:set var="number" value="${number-1}"/>
+									</td>
 									<td align="left">${list.title}</td>
 									<td>
 										<c:if test="${list.attach_name != null}">
@@ -101,7 +104,7 @@
 
 				<!-- ÆäÀÌÂ¡ -->
 				<ul class="paging">
-					<li>${pageNavi}</li>
+					<li>${pagingHtml}</li>
 				</ul>
 				<!-- .//ÆäÀÌÂ¡ -->
 
