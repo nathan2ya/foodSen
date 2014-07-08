@@ -195,7 +195,7 @@
             </div>
           </div>
         </li>
-        <li class="mainMenu"><a href="http://food.sen.go.kr/inspectionResultList.do"><img src="./images/header/common/mm_safetyOff.gif" alt="학교급식위생안전" /></a>
+        <li class="mainMenu"><a href="http://localhost:8000/foodSen/inspectionResultList.do"><img src="./images/header/common/mm_safetyOff.gif" alt="학교급식위생안전" /></a>
           <div class="subMenu" id="sub02" style="display:none;">
             <div class="boxSR">
               <ul class="boxSM">
@@ -204,7 +204,7 @@
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_safety02Off.gif" alt="식중독 대처요령" /></a></li>
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_safety03Off.gif" alt="안전사고예방" /></a></li>
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_safety04Off.gif" alt="안전사고 대처요령" /></a></li>
-                <li class="last subMenu"><a href="http://food.sen.go.kr/inspectionResultList.do"><img src="./images/header/common/sm_safety05Off.gif" alt="위생.안전성 검사결과" /></a></li>
+                <li class="last subMenu"><a href="http://localhost:8000/foodSen/inspectionResultList.do"><img src="./images/header/common/sm_safety05Off.gif" alt="위생.안전성 검사결과" /></a></li>
                 <li class="right_bg"></li>
               </ul>
             </div>
