@@ -59,6 +59,7 @@
 				
 			<tr>
 				<td height="8"colspan="2" align="right">
+					<font color="red">탈퇴를 클릭하시면 영구적으로 아이디정보가 삭제됩니다. 이 후 모든정보는 되돌릴 수 없습니다.</font>
 					<input type="submit" name="submit" value="탈퇴"/>
 				</td>
 			</tr>
