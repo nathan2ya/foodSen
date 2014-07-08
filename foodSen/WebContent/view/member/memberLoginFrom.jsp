@@ -115,7 +115,7 @@
 				            	<h4><img src="./images/sub/etc/login_img_01.gif" alt="아이디를 입력하세요" /></h4>
 				                <dl>
 				                	<dt style="padding-left: 40px">
-				                		사용자ID <input type="text" class="inp" name="user_id" id="user_id" style="width:180px;" maxlength="20" value="${user_id}" onkeypress="toPass(); toPass1(); toPass2();" onblur="toPass(); toPass1();" /> <br/><br/>
+				                		사용자ID <input type="text" class="inp" name="user_id" id="user_id" style="width:180px; IME-MODE:disabled;"  maxlength="20" value="${user_id}" onkeypress="toPass(); toPass1(); toPass2();" onblur="toPass(); toPass1();" /> <br/><br/>
 				                		비밀번호 <input type="password" class="inp" name="user_pw" id="user_pw" style="width:180px;" maxlength="20" />
 				                		&nbsp;&nbsp;
 				                		<input type="submit" class="btn_submit_login" name="login" value="login" />
