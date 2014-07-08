@@ -27,34 +27,39 @@
 			}
 		}
 		
+
 		//아이디 중복 확인
-		function toPass3(){
+		function toPass3() {
 			inputForm = eval("document.memberCreateForm");
-			user_id=inputForm.user_id.value;
+			user_id = inputForm.user_id.value;
 
 			if (!inputForm.user_id.value) {
 				alert("아이디 입력 후 중복체크 해주세요!");
 				memberCreateForm.user_id.focus();
 				return false;
 			}
-			
+
 			//url
-			url="http://localhost:8000/foodSen/checkUser_idFrom.do?user_id="+user_id
+			url = "http://localhost:8000/foodSen/checkUser_idFrom.do?user_id="
+					+ user_id
 			// 새로운 윈도우를 엽니다.
-	        open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=220");
+			open(
+					url,
+					"confirm",
+					"toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=220");
 		}
-		
+
 		//아이디 중복체크를 실행하지 않았을 경우
-		function checkIDvalue(){
+		function checkIDvalue() {
 			memberCreateForm.idCheck.value = 0;
 		}
-		
-		
+
 		//이메일형식 체크
-		function emailValue(){
+		function emailValue() {
 			var t = escape(this.memberCreateForm.sen_email.value);
 			//sung2li@naver.com 일때와 sung2li@naver.co.kr일때의 형식 체크
-			if (t.match(/^(\w+)@(\w+)[.](\w+)$/ig) == null && t.match(/^(\w+)@(\w+)[.](\w+)[.](\w+)$/ig) == null) {
+			if (t.match(/^(\w+)@(\w+)[.](\w+)$/ig) == null
+					&& t.match(/^(\w+)@(\w+)[.](\w+)[.](\w+)$/ig) == null) {
 				alert("이메일이 맞지 않습니다.");
 			}
 		}
@@ -88,8 +93,8 @@
 				memberCreateForm.sen_email.focus();
 				return false;
 			}
-			
-			if(memberCreateForm.idCheck.value == 0){
+
+			if (memberCreateForm.idCheck.value == 0) {
 				alert("아이디 중복 체크를 실행해주세요.");
 				return false;
 			}
@@ -108,7 +113,6 @@
 				return false;
 			}
 		}
-		
 	</script>
 </head>
 
