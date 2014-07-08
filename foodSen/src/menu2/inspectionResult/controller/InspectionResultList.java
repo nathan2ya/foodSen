@@ -33,6 +33,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 
 
+
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
@@ -45,6 +46,9 @@ public class InspectionResultList {
 	
 	//리스트
 	private List<InspectionResultDTO> list = new ArrayList<InspectionResultDTO>();
+	
+	//검색중
+	private String tempInput;
 	
 	//페이지
 	private int totalCount;// 총 게시물의 수
@@ -71,13 +75,12 @@ public class InspectionResultList {
 	
 	
 	
-	//위생.안전성 검사결과 리스트
+	//위생.안전성 검사결과 (전체글) 리스트
 	@RequestMapping("/inspectionResultList.do")
 	public String inspectionResultList(HttpServletRequest request) throws SQLException{
 		
 		list = sqlMapper.queryForList("InspectionResult.selectAll"); //전체글
 		int numberCount = list.size(); // 전체 레코드 개수
-		
 		
 		
 		
@@ -123,7 +126,6 @@ public class InspectionResultList {
 		
 		
 		
-		
 		//제목 15글자 단위로 개행
 		String first;
 		//String second;
@@ -159,6 +161,91 @@ public class InspectionResultList {
 		
 		
 		return "/view/menu2/inspectionResultList.jsp";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//위생.안전성 검사결과 (검색글) 리스트
+	@RequestMapping("/inspectionResultSearch.do")
+	public String inspectionResultSearchList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		request.setCharacterEncoding("euc-kr");
+		
+		//사용자가 입력한 값
+		String searchType = request.getParameter("searchType"); //검색 종류 // 제목,내용,작성자
+		String userinput = request.getParameter("userinput"); //검색어
+		
+		
+		//검색종류&검색어를 만족하는 레코드 검색
+		if(searchType.equals("title")){
+			//제목 검색
+			list = sqlMapper.queryForList("InspectionResult.selectWithTitle", userinput);
+		}else if(searchType.equals("writer")){
+			//작성자 검색
+			list = sqlMapper.queryForList("InspectionResult.selectWithWriter", userinput);
+		}
+		
+		
+			
+		//페이지처리
+		blockCount = 10;// 한 페이지의 게시물의 수
+		blockPage = 5;// 한 화면에 보여줄 페이지 수
+		serviceName = "inspectionResultSearch";// 호출 URI 정의
+		totalCount = list.size(); // 전체 글 갯수
+		
+		//currentPage 초기화
+		if(null == request.getParameter("currentPage")){
+			currentPage = 1;
+		}else{
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		page = new PagingAction(serviceName, currentPage, totalCount, blockCount, blockPage, searchType, userinput); // pagingAction 객체 생성.
+		pagingHtml = page.getPagingHtml().toString(); // 페이지 HTML 생성.
+
+		int lastCount = totalCount; // 마지막 레코드 = 개수
+		
+		
+		// 현재 페이지의 마지막 글의 번호가 전체의 마지막 글 번호보다 작으면 lastCount를 +1 번호로 설정.
+		if (page.getEndCount() < totalCount)
+			lastCount = page.getEndCount() + 1;
+		
+		
+		// 전체 리스트에서 현재 페이지만큼의 리스트만 가져온다.
+		list = list.subList(page.getStartCount(), lastCount);
+		//.페이지처리 종료
+		
+		/*
+		//검색어 노출
+		if(userinput.length()>8){ // 사용자 입력값이 8자 이상일 경우
+			tempInput = userinput.substring(0, 8) + "..."; // 8까지 + ... 추가
+		}else{ // 이하일경우
+			tempInput = userinput;
+		}
+		*/
+		
+		//리스트 글번호 가변 계산
+		int number=totalCount-(page.getCurrentPage()-1)*blockCount;
+				
+		
+		
+		request.setAttribute("number", number);	
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("pagingHtml", pagingHtml);
+		request.setAttribute("list", list);
+		
+		request.setAttribute("searchType", searchType);
+		request.setAttribute("userinput", userinput);
+		
+		request.setAttribute("tempInput", tempInput);
+		request.setAttribute("totalCount", totalCount);
+		
+		return  "/view/menu2/inspectionResultList.jsp";
 	}
 	
 	

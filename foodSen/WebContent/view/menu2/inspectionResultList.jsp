@@ -11,7 +11,65 @@
 
 <script type="text/javascript">
 
+	function goSearch(){
+		if(validateSQL(search.userinput.value) > -1){
+			alert("특수문자는 입력할 수 없습니다.");
+			search.userinput.focus();
+			return;
+		}
+		search.submit();
+	}
+	
+	function validateSQL(obj){
+		// SQLInjection을 막는 가장 간단한 방법은 입력되는 내용에서 '또는 "을 찾아 바꾸거나 입력하지 못하게 하는 것이다.	
+		var x=obj;
+		var pos = 0;
+		var pos1 = 0;
+		var pos2 = 0;
+		var pos3 = 0;
+		pos=x.indexOf("'"); // 객체ID의 내용에서 '을 찾는다. "을 찾으려면 pos=x.indexOf("\""); 이렇게 쓰면 된다.
+		pos1=x.indexOf("\"");
+		pos2=x.indexOf("<");
+		pos3=x.indexOf(">");
+		if (pos!=-1){
+			return pos;
+		}
+		if (pos1!=-1){
+			return pos1;
+		}
+		if (pos2!=-1){
+			return pos2;
+		}
+		if (pos3!=-1){
+			return pos3;
+		}
+	}
+	
+	$(document).ready(function(){
+		$(".title").each(function(index, item){
+			if(getStrByte($(item).text())>46){
+				$(item).html($(item).text().cut(46));
+			}
+		});
+	});
+	
+	function getStrByte(str) {
+		var p, len = 0;
+		for(p=0; p<str.length; p++) {
+			(str.charCodeAt(p) > 255) ? len+=2 : len++; // charCodeAt(문자열) - 문자열을 유니코드값으로 변환하여 255보다 크면 한글.
+		}
+		return len;
+	} // 문자열의 byte수를 구하는 함수 - 한글이라면 글자당 2bytes, 그외에는 1byte로 계산한다.
 
+	String.prototype.cut = function(len) {
+        var str = this;
+        var l = 0;
+        for (var i=0; i<str.length; i++) {
+                l += (str.charCodeAt(i) > 255) ? 2 : 1;
+                if (l > len) return str.substring(0,i) + "...";
+        }
+        return str;
+	}; // 문자열을 잘라주는 함수 - 원하는 byte수만큼 잘라주고 '...'을 붙여준다
 	
 </script>
 
@@ -82,7 +140,9 @@
 										<c:out value="${number}" />
 										<c:set var="number" value="${number-1}"/>
 									</td>
-									<td align="left">${list.title}</td>
+									<td align="left">
+										${list.title}
+									</td>
 									<td>
 										<c:if test="${list.attach_name != null}">
 											<img src="./images/sub/btn/btn_down.gif" alt="pdf" />
@@ -133,12 +193,12 @@
 			
 			<!-- 검색 공간 -->
 			<div class="search_box">
-		        <form name="search" action="foodNewsSearch.do" method="post">
+		        <form name="search" action="/foodSen/inspectionResultSearch.do" method="post">
 		          <select name="searchType">
 		            <option value="title">제목</option>
 		            <option value="writer">등록자</option>
 		          </select>
-		          <input type="text" id="searchString" name="searchString" />
+		          <input type="text" id="userinput" name="userinput" />
 		          <a href="javascript:goSearch()"><img src="./images/sub/btn/btn_serch.gif" alt="검색" /></a> 
 		        </form>
 	        </div>

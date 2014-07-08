@@ -59,6 +59,16 @@
 		order by seq desc
 	</select>
 	
+	<select id="selectWithTitle" resultMap="inspectionResultRes" parameterClass="java.lang.String">
+		select * from TB_02_IR
+		where title like  '%'||#userinput#||'%'
+	</select>
+	
+	<select id="selectWithWriter" resultMap="inspectionResultRes" parameterClass="java.lang.String">
+		select * from TB_02_IR
+		where wirte like  '%'||#userinput#||'%'
+	</select>
+	
 		
 
 
