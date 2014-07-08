@@ -39,18 +39,12 @@
 		}
 		
 		//사용하기
-		function close(){
-			alert("aaaaaaaaaaaaaaaaaaaa");
-			
-			/* 
-			var user_id = ${user_id};
-			alert("실행여부 테스트 : 아이디value = "+user_id);
+		function closeWin(){
+			var user_id = "${user_id}";
 			
 			//호출한 페이지의 user_id 값 채우기
 			opener.document.memberCreateForm.user_id.value = user_id;
 			self.close();
-			 */
-			
 		}
 		
 		//아이디중복인경우
@@ -104,7 +98,7 @@
 	
 			<tr>
 				<td height="8"colspan="2" align="center">
-					<input type="button" value="사용하기" onclick="close()" />
+					<input type="button" value="사용하기" onclick="closeWin()" />
 				</td>
 			</tr>
 			
