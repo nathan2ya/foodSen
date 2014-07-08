@@ -40,12 +40,17 @@
 		
 		//사용하기
 		function close(){
+			alert("aaaaaaaaaaaaaaaaaaaa");
+			
+			/* 
 			var user_id = ${user_id};
 			alert("실행여부 테스트 : 아이디value = "+user_id);
 			
 			//호출한 페이지의 user_id 값 채우기
 			opener.document.memberCreateForm.user_id.value = user_id;
 			self.close();
+			 */
+			
 		}
 		
 		//아이디중복인경우
@@ -91,7 +96,7 @@
 			
 			<tr>
 				<td height="8"colspan="2" align="center">
-					<input type="text" name="user_id" id="user_id" value="${user_id}" size="15" maxlength="12" onkeypress="toPass(); toPass1(); toPass2();" onblur="toPass(); toPass1();" />
+					<input type="text" name="user_id" id="user_id" style='IME-MODE:disabled' value="${user_id}" size="15" maxlength="12" onkeypress="toPass(); toPass1(); toPass2();" onblur="toPass(); toPass1();" />
 					<input type="submit" name="submit" value="중복체크"/>
 				</td>
 			</tr>
@@ -99,7 +104,7 @@
 	
 			<tr>
 				<td height="8"colspan="2" align="center">
-					<input  type="button" name="use"  id="use" value="사용하기" onClick="close();" />
+					<input type="button" value="사용하기" onclick="close()" />
 				</td>
 			</tr>
 			
@@ -109,3 +114,4 @@
 	
 </body>
 </html>
+

@@ -111,7 +111,7 @@
 			<tr>
 				<td width="200" height="8" align="right">아이디</td>
 				<td width="500" height="8" align="left">
-					<input type="text" name="user_id" id="user_id" size="15" maxlength="12" onkeypress="toPass(); toPass1(); toPass2();" onblur="toPass(); toPass1();" />
+					<input type="text" name="user_id" id="user_id" size="15" style='IME-MODE:disabled' maxlength="12" onkeypress="toPass(); toPass1(); toPass2();" onblur="toPass(); toPass1();" />
 					<input type="button" name="checkID" value="ID중복체크" onClick="toPass3();" />
 					<br/>
 					<font color="gray" size="2">아이디는 영문(소문자), 숫자 최대 12자리, 특수문자 및 공백이 포함될 수 없습니다.</font>
