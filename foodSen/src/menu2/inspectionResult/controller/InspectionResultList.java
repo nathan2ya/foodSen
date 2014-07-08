@@ -47,7 +47,7 @@ public class InspectionResultList {
 	
 	
 	
-	//form.do
+	//위생.안전성 검사결과 리스트
 	@RequestMapping("/inspectionResultList.do")
 	public String inspectionResultList(){
 		return "/view/menu2/inspectionResultList.jsp";

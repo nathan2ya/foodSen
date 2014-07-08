@@ -8,16 +8,12 @@
 <link href="/css/common.css" rel="stylesheet" type="text/css" />
 
 
-<html>
-<head>
-	<title>위생 안전성 검사결과</title>
-	
-	<script type="text/javascript">
-	
+<script type="text/javascript">
 
-		
-	</script>
-</head>
+
+	
+</script>
+
 
 
 <div id="container">
@@ -102,11 +98,20 @@
 				<!-- .//페이징 -->
 
 
-				<!-- 목록 등록 버튼 -->
-				<span class="bbs_btn"> <span class="wte_l"><a href="foodNewsList.do" class="wte_r">목록</a></span> 
-					<c:if test="${loginUser.admin_yn eq 'Y' }">
-						<span class="per_l"><a href="foodNewsCreate.do" class="pre_r">등록</a></span>
+				<!-- 목록 . 등록 버튼 -->
+				<span class="bbs_btn"> 
+					<span class="wte_l">
+						<a href="/foodSen/inspectionResultList.do" class="wte_r">목록</a>
+					</span>
+					
+					<!-- 관리자일경우 등록버튼 노출 -->
+					<c:if test="${sessionScope.session_admin_yn == 'y'}">
+						<span class="per_l">
+							<a href="/foodSen/inspectionResultCreateFrom.do" class="pre_r">등록</a>
+						</span>
 					</c:if>
+					<!-- .//관리자일경우 등록버튼 노출 -->
+					
 				</span>
 				<!-- .//목록 등록 버튼 -->
 

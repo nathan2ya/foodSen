@@ -95,6 +95,7 @@ public class MemberLog {
 			
 			session.setAttribute("session_id", resultClass.getUser_id()); // id 技记积己
 			session.setAttribute("session_type", resultClass.getPosition()); //type 技记积己
+			session.setAttribute("session_admin_yn", resultClass.getAdmin_yn()); // 包府磊 Yes or No
 			
 			viewPath = "redirect:/main.do";
 		}else{ // 酒捞叼, 厚剐锅龋 阂老摹
