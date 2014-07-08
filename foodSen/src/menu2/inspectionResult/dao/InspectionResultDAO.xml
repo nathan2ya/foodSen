@@ -1,1 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
+<sqlMap namespace="InspectionResult">
+
+	<typeAlias alias="inspectionResultDTO" type="menu2.inspectionResult.dto.InspectionResultDTO" />
+	
+	<!-- 리절트 맵 정의 -->
+	
+	
+	
+	<resultMap id="inspectionResultRes" class="inspectionResultDTO">
+		<result property="seq" column="seq" />
+		<result property="title" column="title" />
+		<result property="attach_name" column="attach_name" />
+		<result property="attach_path" column="attach_path" />
+		<result property="description" column="description" />
+		<result property="pw" column="pw" />
+		<result property="hits" column="hits" />
+		<result property="wirte" column="wirte" />
+		<result property="reg_name" column="reg_name" />
+		<result property="reg_date" column="reg_date" />
+		<result property="udt_name" column="udt_name" />
+		<result property="udt_date" column="udt_date" />
+	</resultMap>
+	
+	
+	<!-- insert -->
+	<insert id="insertInspectionResult" parameterClass="inspectionResultDTO">
+		insert into TB_02_IR
+			(seq, title, description, pw, hits, wirte, reg_name, reg_date, udt_name, udt_date)
+		values
+			(TB_02_IR_seq.NEXTVAL, #title#, #description#, #pw#, #hits#, #wirte#, #reg_name#, #reg_date#, #udt_name#, #udt_date#)
+	</insert>
+	
+	
+	
+	<!-- select -->
+	<select id="selectLastNum" resultClass="inspectionResultDTO" parameterClass="int">
+		SELECT MAX(seq) AS seq from TB_02_IR
+	</select>
+		
+
+
+	<!-- update -->
+	<update id="updateFile" parameterClass="inspectionResultDTO">
+		UPDATE TB_02_IR
+		SET
+			attach_name = #attach_name#,
+			attach_path = #attach_path#
+		where seq = #seq#
+	</update>
+	
+	
+	
+	<!-- delete -->
+
+
+</sqlMap>

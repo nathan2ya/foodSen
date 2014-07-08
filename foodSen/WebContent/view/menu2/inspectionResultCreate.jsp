@@ -12,43 +12,42 @@
 
 
 <script type="text/javascript">
-<!--
 	function goCreate(){
-		if(!createOK.title.value){
+		if(!inspectionResultCreateFrom.title.value){
 			alert("제목을 입력하세요.");
-			createOK.title.focus();
+			inspectionResultCreateFrom.title.focus();
 			return;
 		}
 		
-		if(!createOK.pw.value){
+		if(!inspectionResultCreateFrom.pw.value){
 			alert("비밀번호를 입력하세요.");
-			createOK.pw.focus();
+			inspectionResultCreateFrom.pw.focus();
 			return;
 		}
 		
-		if(getStrByte(createOK.title.value) > 120){
+		if(getStrByte(inspectionResultCreateFrom.title.value) > 120){
 			alert("제목은 200자까지만 입력할 수 있습니다.");
-			createOK.title.value = createOK.title.value.cut(120);
-			createOK.title.focus();
+			inspectionResultCreateFrom.title.value = inspectionResultCreateFrom.title.value.cut(120);
+			inspectionResultCreateFrom.title.focus();
 			return;
 		}
 		
-		if(getStrByte(createOK.description.value) > 1200){
+		if(getStrByte(inspectionResultCreateFrom.description.value) > 1200){
 			alert("내용은 2000자까지만 입력할 수 있습니다.");
-			createOK.description.value = createOK.description.value.cut(1200);
-			createOK.description.focus();
+			inspectionResultCreateFrom.description.value = inspectionResultCreateFrom.description.value.cut(1200);
+			inspectionResultCreateFrom.description.focus();
 			return;
 		}
 		
-		if(validateSQL(createOK.title.value) > -1){
+		if(validateSQL(inspectionResultCreateFrom.title.value) > -1){
 			alert("특수문자는 입력할 수 없습니다.");
-			createOK.title.focus();
+			inspectionResultCreateFrom.title.focus();
 			return;
 		}
 		
-		if(validateSQL(createOK.description.value) > -1){
+		if(validateSQL(inspectionResultCreateFrom.description.value) > -1){
 			alert("특수문자는 입력할 수 없습니다.");
-			createOK.description.focus();
+			inspectionResultCreateFrom.description.focus();
 			return;
 		}
 		
@@ -105,7 +104,7 @@
 			}
 		}
 		
-		createOK.submit();
+		inspectionResultCreateFrom.submit();
 	}
 	
 	/* 파일사이즈 체크 */
@@ -183,7 +182,7 @@
 			obj.outerHTML  = '<input type="file" id="filename" name="filename" onkeyup="javascript:onKeyUp();"/>';
 		}
 	}
-//-->
+	
 </script>
 
 
@@ -213,7 +212,8 @@
 			
 			<!-- 게시판영역 -->
 			<div class="tbl_box">
-				<form name="createOK" action="businessReferenceCreateOK.do" method="post" enctype="multipart/form-data">
+				<form name="inspectionResultCreateFrom" action="/foodSen/inspectionResultCreate.do" method="post" enctype="multipart/form-data">
+					
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tbl_type01" summary="위생.안전성 검사결과">
 						<caption>위생.안전성 검사결과</caption>
 						<colgroup>
@@ -232,15 +232,6 @@
 								</td>
 							</tr>
 							<tr>
-								<th>분류</th>
-								<td colspan="5" class="tl">
-									<select id="gubun" name="gubun">
-											<option value="01">업무</option>
-											<option value="02">서식</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
 								<th>
 									내용<br/>(2000자 이내)
 								</th>
@@ -250,12 +241,18 @@
 							</tr>
 							<tr>
 								<th>첨부파일</th>
-								<td colspan="3" class="tl"><input type="file" id="filename" name="filename" onkeyup="javascript:onKeyUp();" /></td>
+								<td colspan="3" class="tl">
+									<input type="file" id="filename" name="filename" onkeyup="javascript:onKeyUp();" />
+								</td>
+								
 								<th>비밀번호</th>
-								<td class="tl"><input type="password" id="pw" name="pw" class="inp" /></td>
+								<td class="tl">
+									<input type="password" id="pw" name="pw" class="inp" />
+								</td>
 							</tr>
 						</tbody>
 					</table>
+					
 				</form>
 				<p class="pt40"></p>
 				

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import menu2.inspectionResult.dto.InspectionResultDTO;
+
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,13 +25,27 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 
+
+
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
+import common.Constants;
+
 
 @Controller
 public class InspectionResultCreate {
+	
+	//insert
+	private InspectionResultDTO paramClass = new InspectionResultDTO();
+	private InspectionResultDTO resultClass = new InspectionResultDTO();
+	
+	//최대시퀀스넘버
+	private int seq;
+	
+	//업로드 파일 경로
+	String file_path = Constants.COMMON_FILE_PATH + Constants.MENU2_INSPECTIONRESULT_FILE_PATH;
 	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
@@ -53,96 +69,70 @@ public class InspectionResultCreate {
 	
 	
 	
-	
-	/*
-	
 	//위생.안전 검사결과 입력
-	@RequestMapping(value="/inspectionResultCreate.do",method=RequestMethod.POST)
-	public String inspectionResultCreate(MultipartHttpServletRequest request, HttpServletRequest request1, HttpServletResponse response1, HttpSession session, @ModelAttribute("SpringDTO") SpringDTO dto) throws Exception{
-													//파일업로드용	request						//파라미터 request1				//파라미터 response1					 //세션용							//파라미터 DTO로 자동 set(), get()
-
-		//.jsp에서 리퀘스트로 받고 싶을때
-		String message = request1.getParameter("message");
-		//.jsp로 리퀘스트로 보내고 싶을때
-		request1.setAttribute("message", message);
-
+	@RequestMapping(value="/inspectionResultCreate.do", method=RequestMethod.POST)
+	public String inspectionResultCreate(MultipartHttpServletRequest request, HttpServletRequest request1, HttpServletResponse response1, HttpSession session) throws Exception{
+		request.setCharacterEncoding("euc-kr");
 		
+		//작성한 사용자(현재 로그인한 세션아이디)
+		String session_id = (String) session.getAttribute("session_id");
 		
-		//세션 생성하고싶을때
-		session.setAttribute("session_id", result.getBuyer_id()); // (세션아이디 정의,받아온값을)
-		
-		
-		
-		//현재 서버 세션 쓰고 싶을때 (현재 서버상에 sessionID로 세션이 생성되어 있는 경우) 
-		String sessionID = (String) session.getAttribute("sessionID");
-		
-		
-		
-		//현재 날짜,시간 insert하고 싶을때 - 버전1
+		//사용자가 입력한 값
+		String title = request1.getParameter("title");
+		String description = request1.getParameter("description");
+		String pw = request1.getParameter("pw");
 		Calendar today = Calendar.getInstance();
-		today.getTime(); // 반환값이 Date임.
+		
+		//DTO Set()
+		paramClass.setTitle(title);
+		paramClass.setDescription(description);
+		paramClass.setPw(pw);
+		paramClass.setHits(1);
+		paramClass.setWirte(session_id);
+		paramClass.setReg_name(session_id);
+		paramClass.setReg_date(today.getTime());
+		paramClass.setUdt_name(session_id);
+		paramClass.setUdt_date(today.getTime());
+		
+		//DB에 insert 하기 (글 등록)
+		sqlMapper.insert("InspectionResult.insertInspectionResult", paramClass);
 		
 		
-		//현재 날짜,시간 포맷한상태로 스트링으로 받기 - 버전2
-		GregorianCalendar gc = new GregorianCalendar();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd_hhmmss");
-		sdf.format(gc.getTime()); // 반환값이 String임
+		//최대시퀀스넘버 get
+		resultClass = (InspectionResultDTO) sqlMapper.queryForObject("InspectionResult.selectLastNum");
+		seq = (int)(resultClass.getSeq());
 		
 		
 		
-		//dto에서 get하고 싶을때
-		System.out.println("사용자가 입력한 메세지 : "+dto.getMessage());
-		
-		
-		
-		
-		//파일업로드할때
-		MultipartFile file = request.getFile("upload"); // 업로드된 원본
+		//파일첨부
+		MultipartFile file = request.getFile("filename"); // 업로드된 원본
 		String orgName = file.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
 		
-		String nowTime = sdf.format(gc.getTime());//현재시간
-		String randNum = Integer.toString((int)(Math.random() * 999));//랜덤번호
-		String fileName = "img_spring_"+nowTime+"_"+randNum;//서버저장 파일명(img_spring_현재날짜_랜덤번호)
-		String fileExt = orgName.substring(orgName.lastIndexOf('.'));//서버저장 확장자
+		if(orgName != ""){ //파일을 첨부했을 경우
+			
+			String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
+			String fileName = "file_inspctionResult_"+randNum;//서버저장 파일명(file_inspctionResult_랜덤번호)
+			String fileExt = orgName.substring(orgName.lastIndexOf('.'));//서버저장 확장자
+			
+			File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
+			file.transferTo(save);  // 복사본 생성
+			
+			//DB 파일 경로 저장용
+			//상대경로 path
+			//String path = save.getPath().replace("\\", "/").substring(42); // 42전까지가 절대경로
+			//절대경로 path
+			String path = file_path+fileName+fileExt;
+			
+			paramClass.setSeq(seq); //최대 시퀀스넘버
+			paramClass.setAttach_name(fileName); //파일명
+			paramClass.setAttach_path(path); // 파일경로(img src 경로를 의미함)
+			
+			//파일 정보 업데이트.
+			sqlMapper.update("InspectionResult.updateFile", paramClass);
+		}
+		//.파일첨부
 		
-		File save = new File(SPRING_TEST_FILE_PATH+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
-		file.transferTo(save);  // 복사본 생성
-		
-		//DB 파일 경로 저장용
-		String temp = save.getPath().replace("\\", "/");
-		String path = "/springEx"+temp.substring((temp.indexOf("save"))-1);
-		
-		
-		//  dto에 set만해도 jsp에서 쓸 수 있다. (63행 @ModelAttribute에 의해 자동 get()되기 때문에)
-		dto.setDestfile(path); 
-
-		
-		
-		
-		//DB에 insert 하기 (글쓰기)
-		sqlMapper.insert("insertSpring",dto);
-		sqlMapper.update("insertSpring",dto);
-		sqlMapper.delete("insertSpring",dto);
-		
-		//DB에서 select 하기 (리스트)
-		list = sqlMapper.queryForList("selectSpring");
-		
-		
-		//select 1개만
-		//private BoardDTO resultClass = new BoardDTO();
-		resultClass = (BoardDTO)sqlMapper.queryForObject("Board.selectBoardOne", board_seq_num);
-		
-		
-		request1.setAttribute("list", list);
-		
-		
-		
-		
-		//최종 목적 뷰페이지 (setAttribute 가지고 가기)
-		return "/spring/formPro.jsp";
-		//리다이렉트 시키기
-		return "redirect:/listBoard.do";
+		return "redirect:/inspectionResultList.do"; //리스트로 리다이렉트
 	}
 	
-	*/
 }

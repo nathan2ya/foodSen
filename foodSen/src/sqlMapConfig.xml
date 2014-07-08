@@ -21,5 +21,6 @@
 	</transactionManager>		
 
 	<sqlMap resource="/header/member/dao/MemberDAO.xml"/>
+	<sqlMap resource="/menu2/inspectionResult/dao/InspectionResultDAO.xml"/>
 	
 </sqlMapConfig>
