@@ -114,7 +114,7 @@
 							<th>Ã·ºÎÆÄÀÏ</th>
 							<td colspan="5" class="tl">
 								<c:if test="${resultClass.attach_name != null}">
-									<a href="foodNewsFileDown.do?attach_name=${resultClass.attach_name}&mode=board&seq=${resultClass.seq}">
+									<a href="/foodSen/FileDownload.do?attach_name=${resultClass.attach_name}">
 										${resultClass.attach_name}
 										<img src="./images/sub/btn/btn_down.gif" alt="pdf" />
 									</a>

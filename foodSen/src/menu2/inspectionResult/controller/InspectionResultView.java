@@ -1,8 +1,11 @@
 package menu2.inspectionResult.controller;
 
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -19,6 +22,7 @@ import menu2.inspectionResult.dto.InspectionResultDTO;
 
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,9 +32,15 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 
 
+
+
+
+
+
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+import common.Constants;
 
 
 @Controller
@@ -43,9 +53,14 @@ public class InspectionResultView {
 	private int currentPage;
 	private int searchingNow; // 전체글, 검색글을 판단하여 각종 논리성을 판가르는 논리값
 	
+	
 	//검색중인 경우에만 발생하는 변수(it's for uri)
 	private String searchType;
 	private String userinput;
+	
+	
+	//파일다운로드 관련
+	private String file_path = Constants.COMMON_FILE_PATH + Constants.MENU2_INSPECTIONRESULT_FILE_PATH;
 	
 	
 	//DB커넥트 인스턴스 변수
@@ -65,7 +80,7 @@ public class InspectionResultView {
 	
 	//위생 안전성 검사결과 뷰페이지
 	@RequestMapping("/inspectionResultView.do")
-	public String inspectionResultView(HttpServletRequest request1, HttpServletResponse response1, HttpSession session) throws SQLException{
+	public String inspectionResultView(HttpServletRequest request1, HttpSession session) throws SQLException{
 		
 		int seq = Integer.parseInt(request1.getParameter("seq"));
 		if(null == request1.getParameter("currentPage")){
@@ -107,5 +122,50 @@ public class InspectionResultView {
 		
 		return "/view/menu2/inspectionResultView.jsp";
 	}
+	
+	
+	
+	
+	@RequestMapping(value = "/FileDownload.do")
+	public void downloadFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		String uploadPath = file_path;
+		String requestedFile = request.getParameter("attach_name");
+		//String attach_path = request.getParameter("attach_path"); //파일과 모든 경로를 포함한 변수(향후 쓰일 수 있음)
+
+		File uFile = new File(uploadPath, requestedFile); //경로,파일명으로 파일객체 생성
+		int fSize = (int) uFile.length();
+		
+
+		if (fSize > 0){
+
+			BufferedInputStream in = new BufferedInputStream(new FileInputStream(uFile)); //파일을 읽어오되 // 버퍼에
+
+			String mimetype = "text/html";
+
+			response.setBufferSize(fSize); //버퍼크기설정
+			response.setContentType(mimetype); //컨텐츠형식설정
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + requestedFile + "\"");
+			response.setContentLength(fSize); //컨텐츠 본체의 길이
+
+			FileCopyUtils.copy(in, response.getOutputStream());
+			in.close();
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+		} else {
+			//setContentType을 프로젝트 환경에 맞추어 변경
+			response.setContentType("application/x-msdownload");
+			PrintWriter printwriter = response.getWriter();
+			printwriter.println("<html>");
+			printwriter.println("<br><br><br><h2>Could not get file name:<br>" + requestedFile + "</h2>");
+			printwriter
+			.println("<br><br><br><center><h3><a href='javascript: history.go(-1)'>Back</a></h3></center>");
+			printwriter.println("<br><br><br>&copy; webAccess");
+			printwriter.println("</html>");
+			printwriter.flush();
+			printwriter.close();
+		}
+	}
+	
 	
 }
