@@ -150,7 +150,7 @@ public class InspectionResultView {
 			in.close();
 			response.getOutputStream().flush();
 			response.getOutputStream().close();
-		}else{ //에러페이지 꾸며주기
+		}else{ //에러페이지 화면 구성
 			//setContentType을 프로젝트 환경에 맞추어 변경
 			response.setContentType("application/x-msdownload");
 			PrintWriter printwriter = response.getWriter();

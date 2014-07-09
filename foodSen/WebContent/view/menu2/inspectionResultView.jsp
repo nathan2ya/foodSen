@@ -15,19 +15,13 @@
 
 <script type="text/javascript">
 	function goDelete(){
-		var frm = document.inspectionResultDelete;  //팝업에 넘길 부모창의 폼
-	
-		//빈페이지로 팝업창을 우선 하나 띄운다.
-		window.open('', 'popup_post', 'width=500, height=310, top='+(screen.height-418)/2+', left='+(screen.width-618)/2);
-	
-		//부모창의 타겟을 빈페이지로 띄운 팝업창의 이름으로 한다
-		frm.target = 'popup_post';   
-	
-		//넘길 폼의 action을 팝업에 나타낼 페이지로 한다.
-		frm.action = '/foodSen/inspectionResultDelete.do';
-	
-		//팝업으로 넘길 값을 가지고있는 폼을 submit 한다.
-		frm.submit();
+		var seq = "${seq}"; // 뷰페이지 시퀀스넘버
+		var pw = "${resultClass.pw}"; // 뷰페이지 현재페이지
+		
+		//url
+		url="http://localhost:8000/foodSen/inspectionResultDeleteFrom.do?seq="+seq+"&pw="+pw;
+		// 새로운 윈도우를 엽니다.
+   		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=220");
 	}
 	
 	function goEdit(){
@@ -156,12 +150,5 @@
 		
 	</div>
 </div>
-
-<!-- 삭제를위한 폼 -->
-<form name="inspectionResultDelete" action="/foodSen/inspectionResultDelete.do" method="post">
-	<input type="hidden" id="seq" name="seq" value="${resultClass.seq}" />
-</form>
-<!-- .//삭제를위한 폼 -->
-
 
 <jsp:include page="/view/include/footer.jsp"/>
