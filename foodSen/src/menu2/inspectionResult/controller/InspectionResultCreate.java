@@ -106,7 +106,7 @@ public class InspectionResultCreate {
 		if(orgName != ""){ //파일을 첨부했을 경우
 			
 			String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
-			String fileName = "file_inspctionResult_"+randNum;//서버저장 파일명(file_inspctionResult_랜덤번호)
+			String fileName = "file_inspectionResult_"+randNum;//서버저장 파일명(file_inspctionResult_랜덤번호)
 			String fileExt = orgName.substring(orgName.lastIndexOf('.'));//서버저장 확장자
 			
 			File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
@@ -119,7 +119,7 @@ public class InspectionResultCreate {
 			String path = file_path+fileName+fileExt;
 			
 			paramClass.setSeq(seq); //최대 시퀀스넘버
-			paramClass.setAttach_name(fileName); //파일명
+			paramClass.setAttach_name(fileName+fileExt); //파일명
 			paramClass.setAttach_path(path); // 파일경로(img src 경로를 의미함)
 			
 			//파일 정보 업데이트.

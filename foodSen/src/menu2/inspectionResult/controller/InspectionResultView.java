@@ -99,10 +99,6 @@ public class InspectionResultView {
 		
 		
 		
-		
-		
-		
-		
 		request1.setAttribute("seq", seq);
 		request1.setAttribute("currentPage", currentPage);
 		request1.setAttribute("searchingNow", searchingNow);

@@ -15,7 +15,6 @@
 
 <script type="text/javascript">
 	function goDelete(){
-		
 		var frm = document.deleteOK;    //팝업에 넘길 부모창의 폼
 	
 		//빈페이지로 팝업창을 우선 하나 띄운다.
@@ -29,11 +28,14 @@
 	
 		//팝업으로 넘길 값을 가지고있는 폼을 submit 한다.
 		frm.submit();
-	
 	}
 	
 	function goEdit(){
-		editOK.submit();
+		var seq = "${seq}"; // 뷰페이지 시퀀스넘버
+		var currentPage = "${currentPage}"; // 뷰페이지 현재페이지
+		var searchingNow = "${searchingNow}"; // 뷰페이지 검색중인 여부
+		
+		location.href='http://localhost:8000/foodSen/inspectionResultEditFrom.do?seq='+seq+'&currentPage='+currentPage+'&searchingNow='+searchingNow;
 	}
 	
 	$(document).ready(function(){
@@ -43,16 +45,13 @@
 	function autolink(id) {
 		
 	    var container = id;
-	
 	    var doc = container.innerHTML;
-	
 	    var regURL = new RegExp("(http|https|ftp|telnet|news|irc)://([-/.a-zA-Z0-9_~#%$?&=:200-377()]+)","gi");
-	
 	    var regEmail = new RegExp("([xA1-xFEa-z0-9_-]+@[xA1-xFEa-z0-9-]+\.[a-z0-9-]+)","gi");
 	
 	    container.innerHTML = doc.replace(regURL,"<a href='$1://$2' target='_blank'>$1://$2</a>").replace(regEmail,"<a href='mailto:$1'>$1</a>");
-	
 	}
+	
 </script>
 
 <div id="container">
