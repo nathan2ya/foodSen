@@ -176,8 +176,6 @@ public class InspectionResultList {
 	
 	
 	
-	
-	
 	//위생.안전성 검사결과 (검색글) 리스트
 	@RequestMapping("/inspectionResultSearch.do")
 	public String inspectionResultSearchList(HttpServletRequest request, HttpServletResponse response) throws Exception{

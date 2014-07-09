@@ -64,7 +64,7 @@ public class InspectionResultEdit {
 	
 	
 	
-	//수정폼으로 가기
+	//위생.안전 검사결과 수정폼
 	@RequestMapping("/inspectionResultEditFrom.do")
 	public String inspectionResultEditFrom(HttpServletRequest request) throws SQLException{
 		
@@ -87,7 +87,7 @@ public class InspectionResultEdit {
 	
 	
 	
-	//수정하기
+	//위생.안전 검사결과 수정
 	@RequestMapping(value="/inspectionResultEdit.do",method=RequestMethod.POST)
 	public String inspectionResultEdit(MultipartHttpServletRequest request, HttpServletRequest request1, HttpServletResponse response1, HttpSession session) throws Exception{
 		
