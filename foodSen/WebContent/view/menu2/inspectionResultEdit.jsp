@@ -237,16 +237,17 @@
 								<th>첨부파일</th>
 								<td colspan="3" class="tl">
 									
+									<input type="file" id="filename" name="filename" onkeyup="javascript:onKeyUp();" />
+									
 									<!-- 기존파일이 있는 경우 파일명을 출력해줌 -->
 									<c:if test="${resultClass.attach_name != null}">
-										<b>기존업로드된 파일명 : </b> ${resultClass.attach_name}
+										<br/><b>기존파일명 : </b>${resultClass.attach_name}
 									</c:if>
 									<!-- 첨부파일이 없는 경우 -->
 									<c:if test="${resultClass.attach_name == null}">
-										첨부하실 파일을 추가해주세요.
+										<br/><b>기존파일없음</b>
 									</c:if>
-								
-									<input type="file" id="filename" name="filename" onkeyup="javascript:onKeyUp();" />
+									
 								</td>
 								
 								<th>비밀번호</th>
