@@ -75,7 +75,6 @@
 			<!-- 게시판영역 -->
 			<div class="tbl_box">
 				
-				
 				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tbl_type01" summary="학교급식위생안전">
 					<caption>학교급식위생안전</caption>
 					<colgroup>
