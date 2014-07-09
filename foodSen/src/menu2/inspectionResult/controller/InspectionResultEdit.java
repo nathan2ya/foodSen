@@ -103,13 +103,9 @@ public class InspectionResultEdit {
 		String description = request1.getParameter("description");
 		Calendar today = Calendar.getInstance();
 		
-		
-		//조회수+1
-		
-		//.조쇠수+1 종료
-		
-		
+
 		//DTO Set()
+		paramClass.setSeq(seq);
 		paramClass.setDescription(description); //수정내용
 		paramClass.setUdt_name(session_id); //수정인
 		paramClass.setUdt_date(today.getTime()); //수정일
@@ -119,48 +115,46 @@ public class InspectionResultEdit {
 		sqlMapper.update("InspectionResult.updateInspectionResult", paramClass);
 		
 		
-		
 		//파일삭제를 위해 생성 //파일삭제시 기존 업로드된파일의 경로를 얻기위함
 		resultClass = (InspectionResultDTO)sqlMapper.queryForObject("InspectionResult.selectInspectionResultOne", seq);
 		
 		
 		//파일첨부
-		MultipartFile file = request.getFile("filename"); // 업로드된 원본
-		String orgName = file.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
-		
-		if(orgName != ""){ //파일을 첨부했을 경우
-			System.out.println("파일을첨부했음을 의미함");
-			//기존파일 삭제시작
-			File deleteFile = new File(resultClass.getAttach_path());
-			deleteFile.delete();
-			//.기존파일 삭제종료
+			MultipartFile file = request.getFile("filename"); // 업로드된 원본
+			String orgName = file.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
 			
-			
-			//새로운파일 생성시작
-			String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
-			String fileName = "file_inspectionResult_"+randNum;//서버저장 파일명(file_inspctionResult_랜덤번호)
-			String fileExt = orgName.substring(orgName.lastIndexOf('.'));//서버저장 확장자
-			
-			File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
-			file.transferTo(save);  // 복사본 생성
-			
-			//DB 파일 경로 저장용
-			
-			//상대경로 path
-			//String path = save.getPath().replace("\\", "/").substring(42); // 42전까지가 절대경로
-			
-			//절대경로 path
-			String path = file_path+fileName+fileExt;
-			
-			paramClass.setSeq(seq); //시퀀스넘버
-			paramClass.setAttach_name(fileName+fileExt); //파일명
-			paramClass.setAttach_path(path); // 파일경로(img src 경로를 의미함)
-			
-			//파일 정보 업데이트.
-			sqlMapper.update("InspectionResult.updateFile", paramClass);
-			
-			///새로운파일 생성종료
-		}
+			if(orgName != ""){ //파일을 첨부했을 경우
+				
+				//기존파일 삭제시작
+					File deleteFile = new File(resultClass.getAttach_path());
+					deleteFile.delete();
+				//.기존파일 삭제종료
+				
+				
+				//새로운파일 생성시작
+					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
+					String fileName = "file_inspectionResult_"+randNum;//서버저장 파일명(file_inspctionResult_랜덤번호)
+					String fileExt = orgName.substring(orgName.lastIndexOf('.'));//서버저장 확장자
+					
+					File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
+					file.transferTo(save);  // 복사본 생성
+					
+					//DB 파일 경로 저장용
+					
+					//상대경로 path
+					//String path = save.getPath().replace("\\", "/").substring(42); // 42전까지가 절대경로
+					
+					//절대경로 path
+					String path = file_path+fileName+fileExt;
+					
+					paramClass.setSeq(seq); //시퀀스넘버
+					paramClass.setAttach_name(fileName+fileExt); //파일명
+					paramClass.setAttach_path(path); // 파일경로(img src 경로를 의미함)
+					
+					//파일 정보 업데이트.
+					sqlMapper.update("InspectionResult.updateFile", paramClass);
+				///새로운파일 생성종료
+			}
 		//.파일첨부
 		
 		
