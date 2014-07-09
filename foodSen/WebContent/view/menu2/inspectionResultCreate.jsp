@@ -10,7 +10,6 @@
 <link href="/css/common.css" rel="stylesheet" type="text/css" />
 
 
-
 <script type="text/javascript">
 	function goCreate(){
 		if(!inspectionResultCreateFrom.title.value){
