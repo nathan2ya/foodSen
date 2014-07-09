@@ -99,7 +99,7 @@
 				size = node.files[0].fileSize;
 			}
 			if(fileCheck(size) == false){
-				 alert("첨부파일 사이즈는 50MB 이내로 등록 가능합니다.");
+				 alert("첨부파일 사이즈는 0바이트 초과 또는 50MB 이내로 등록 가능합니다.");
 				 return;
 			}
 		}
@@ -108,14 +108,12 @@
 	}
 	
 	/* 파일사이즈 체크 */
-	function fileCheck(fileSize)
-	{
+	function fileCheck(fileSize){
 	   //사이즈체크
 	   var maxSize  = 50000000;   //50MB
-	   if(fileSize > maxSize)
-	    {
+	   if(fileSize > maxSize) {
 	        return false;
-	    }
+	   }
 	
 	   return true;
 	}

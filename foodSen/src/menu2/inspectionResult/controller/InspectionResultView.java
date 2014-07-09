@@ -124,7 +124,7 @@ public class InspectionResultView {
 	}
 	
 	
-	
+	//첨부파일 다운로드
 	@RequestMapping(value = "/FileDownload.do")
 	public void downloadFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -134,10 +134,9 @@ public class InspectionResultView {
 
 		File uFile = new File(uploadPath, requestedFile); //경로,파일명으로 파일객체 생성
 		int fSize = (int) uFile.length();
+		boolean ctrl = uFile.exists();
 		
-
-		if (fSize > 0){
-
+		if (ctrl){
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(uFile)); //파일을 읽어오되 // 버퍼에
 
 			String mimetype = "text/html";
@@ -151,7 +150,7 @@ public class InspectionResultView {
 			in.close();
 			response.getOutputStream().flush();
 			response.getOutputStream().close();
-		} else {
+		}else{ //에러페이지 꾸며주기
 			//setContentType을 프로젝트 환경에 맞추어 변경
 			response.setContentType("application/x-msdownload");
 			PrintWriter printwriter = response.getWriter();
