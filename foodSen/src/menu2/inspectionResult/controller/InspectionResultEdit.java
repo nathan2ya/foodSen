@@ -126,8 +126,10 @@ public class InspectionResultEdit {
 			if(orgName != ""){ //파일을 첨부했을 경우
 				
 				//기존파일 삭제시작
+				if(resultClass.getAttach_path() != null){
 					File deleteFile = new File(resultClass.getAttach_path());
 					deleteFile.delete();
+				}
 				//.기존파일 삭제종료
 				
 				
