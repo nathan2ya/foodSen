@@ -16,7 +16,7 @@
 		var oriPassword = "${resultClass.pw}";
 		
 		if(!inspectionResultEditFrom.pw.value){
-			alert("비밀번호를 입력하세요.");
+			alert("수정을 하시려면 비밀번호를 입력하세요.");
 			inspectionResultEditFrom.pw.focus();
 			return;
 		}
