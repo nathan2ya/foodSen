@@ -125,7 +125,6 @@ public class InspectionResultView {
 	
 	
 	
-	
 	@RequestMapping(value = "/FileDownload.do")
 	public void downloadFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
