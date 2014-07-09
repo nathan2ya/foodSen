@@ -47,6 +47,7 @@ import common.Constants;
 public class InspectionResultView {
 	
 	//뷰페이지 레코드
+	private InspectionResultDTO paramClass = new InspectionResultDTO();
 	private InspectionResultDTO resultClass = new InspectionResultDTO();
 	
 	
@@ -109,9 +110,17 @@ public class InspectionResultView {
 		}
 		
 		
-		//뷰페이지에 보여질 레코드 1개를 get한다.
+		//조회수를 위한 get
 		resultClass = (InspectionResultDTO)sqlMapper.queryForObject("InspectionResult.selectInspectionResultOne", seq);
 		
+		//뷰페이지의 조회수를 +1 업데이트
+		paramClass.setSeq(seq);
+		paramClass.setHits(resultClass.getHits()+1);
+		sqlMapper.update("InspectionResult.updateHits", paramClass);
+		
+		
+		//뷰페이지에 보여질 레코드 1개를 get
+		resultClass = (InspectionResultDTO)sqlMapper.queryForObject("InspectionResult.selectInspectionResultOne", seq);
 		
 		
 		request1.setAttribute("seq", seq);

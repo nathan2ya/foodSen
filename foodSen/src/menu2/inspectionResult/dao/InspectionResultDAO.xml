@@ -95,6 +95,13 @@
 		where seq = #seq#
 	</update>
 	
+	<update id="updateHits" parameterClass="inspectionResultDTO">
+		UPDATE TB_02_IR
+		SET
+			hits = #hits#
+		where seq = #seq#
+	</update>
+	
 	
 	
 	
