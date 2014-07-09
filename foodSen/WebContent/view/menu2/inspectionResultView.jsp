@@ -15,7 +15,7 @@
 
 <script type="text/javascript">
 	function goDelete(){
-		var frm = document.deleteOK;    //팝업에 넘길 부모창의 폼
+		var frm = document.inspectionResultDelete;  //팝업에 넘길 부모창의 폼
 	
 		//빈페이지로 팝업창을 우선 하나 띄운다.
 		window.open('', 'popup_post', 'width=500, height=310, top='+(screen.height-418)/2+', left='+(screen.width-618)/2);
@@ -24,7 +24,7 @@
 		frm.target = 'popup_post';   
 	
 		//넘길 폼의 action을 팝업에 나타낼 페이지로 한다.
-		frm.action = 'foodNewsDeleteForm.do';
+		frm.action = '/foodSen/inspectionResultDelete.do';
 	
 		//팝업으로 넘길 값을 가지고있는 폼을 submit 한다.
 		frm.submit();
@@ -156,5 +156,12 @@
 		
 	</div>
 </div>
+
+<!-- 삭제를위한 폼 -->
+<form name="inspectionResultDelete" action="/foodSen/inspectionResultDelete.do" method="post">
+	<input type="hidden" id="seq" name="seq" value="${resultClass.seq}" />
+</form>
+<!-- .//삭제를위한 폼 -->
+
 
 <jsp:include page="/view/include/footer.jsp"/>

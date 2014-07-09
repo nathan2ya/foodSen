@@ -134,7 +134,7 @@ public class InspectionResultView {
 
 		File uFile = new File(uploadPath, requestedFile); //경로,파일명으로 파일객체 생성
 		int fSize = (int) uFile.length();
-		boolean ctrl = uFile.exists();
+		boolean ctrl = uFile.exists(); //파일존재유무
 		
 		if (ctrl){
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(uFile)); //파일을 읽어오되 // 버퍼에

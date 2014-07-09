@@ -99,6 +99,10 @@
 	
 	
 	<!-- delete -->
-
+	<delete id="deleteInspectionResult" parameterClass="int">
+		delete from TB_02_IR
+		where seq = #seq#
+	</delete>
+	
 
 </sqlMap>
