@@ -86,15 +86,13 @@
 			var size = 0;
 			var browser=navigator.appName;
 			
-			if (browser=="Microsoft Internet Explorer")
-			{
+			if (browser=="Microsoft Internet Explorer"){
 				var oas = new ActiveXObject("Scripting.FileSystemObject");
 				var filepath = document.getElementById('filename').value;
 				var e = oas.getFile(filepath);
 				size = e.size;
 			}
-			else
-			{
+			else{
 				var node = document.getElementById('filename');
 				size = node.files[0].fileSize;
 			}
