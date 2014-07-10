@@ -72,73 +72,87 @@
 			<!-- .//우측상단 경로 정보 -->
 			
 			
-			<!-- 게시판영역 -->
-			<div class="tbl_box">
+			<!-- 우측게시판영역 틀 -->
+			<div class="img_list">
 				
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tbl_type01" summary="급식시설개선사례">
-					<caption>급식시설개선사례</caption>
-					<colgroup>
-						<col width="15%" />
-						<col width="20%" />
-						<col width="15%" />
-						<col width="20%" />
-						<col width="15%" />
-						<col width="%" />
-					</colgroup>
-					<tbody>
-						<tr>
-							<th>제목</th>
-							<td colspan="5" class="tl"><strong>${resultClass.title}</strong></td>
-						</tr>
-						<tr>
-							<th>등록자</th>
-							<td>${resultClass.wirte}</td>
-							<th>등록일</th>
-							<td><fmt:formatDate value="${resultClass.reg_date}" pattern="yyyy-MM-dd" /></td>
-							<th>조회수</th>
-							<td>${resultClass.hits}</td>
-						</tr>
-						<tr>
-							<th>내용</th>
-							<td id="description" colspan="5" class="tl h150"><pre>${resultClass.description}</pre>
-							</td>
-						</tr>
-						<tr>
-							<th>첨부파일</th>
-							<td colspan="5" class="tl">
-								<c:if test="${resultClass.attach_name != null}">
-									<a href="/foodSen/improvementCase_FileDownload.do?attach_name=${resultClass.attach_name}">
-										${resultClass.attach_name}
-										<img src="./images/sub/btn/btn_down.gif" alt="pdf" />
-									</a>
-								</c:if>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			
-				<p class="pt40"></p>
-			
-				<!-- 버튼 -->
-				<span class="bbs_btn"> 
-					<c:if test="${searchingNow == 0}">
-						<span class="wte_l"><a href="/foodSen/improvementCaseList.do?currentPage=${currentPage}" class="wte_r">목록</a></span>
-					</c:if>
-					<c:if test="${searchingNow == 1}">
-						<span class="wte_l"><a href="/foodSen/improvementCaseSearch.do?searchType=${searchType}&userinput=${userinput}&currentPage=${currentPage}" class="wte_r">목록</a></span>
-					</c:if>
+				
+				<!-- 이미지영역 -->
+				<div class="img_box">
 					
+				</div>
+				<!-- .//이미지영역 -->
+				
+			
+				<!-- 게시판영역 -->
+				<div class="tbl_box w490 fl">
 					
-					<c:if test="${sessionScope.session_position == 1 || sessionScope.session_position == 2}">
-						<span class="per_l"><a href="javascript:goEdit()" class="pre_r">수정</a></span>
-						<span class="wte_l"><a href="javascript:goDelete()" class="wte_r">삭제</a></span>
-					</c:if>
-				</span>
-				<!-- //버튼 -->
-			
-			
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tbl_type01" summary="급식시설개선사례">
+						<caption>급식시설개선사례</caption>
+						<colgroup>
+							<col width="15%" />
+							<col width="20%" />
+							<col width="15%" />
+							<col width="20%" />
+							<col width="15%" />
+							<col width="%" />
+						</colgroup>
+						<tbody>
+							<tr>
+								<th>제목</th>
+								<td colspan="5" class="tl"><strong>${resultClass.title}</strong></td>
+							</tr>
+							<tr>
+								<th>등록자</th>
+								<td>${resultClass.wirte}</td>
+								<th>등록일</th>
+								<td><fmt:formatDate value="${resultClass.reg_date}" pattern="yyyy-MM-dd" /></td>
+								<th>조회수</th>
+								<td>${resultClass.hits}</td>
+							</tr>
+							<tr>
+								<th>내용</th>
+								<td id="description" colspan="5" class="tl h150"><pre>${resultClass.description}</pre>
+								</td>
+							</tr>
+							<tr>
+								<th>첨부파일</th>
+								<td colspan="5" class="tl">
+									<c:if test="${resultClass.attach_name != null}">
+										<a href="/foodSen/improvementCase_FileDownload.do?attach_name=${resultClass.attach_name}">
+											${resultClass.attach_name}
+											<img src="./images/sub/btn/btn_down.gif" alt="pdf" />
+										</a>
+									</c:if>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				
+					<p class="pt40"></p>
+				
+					<!-- 버튼 -->
+					<span class="bbs_btn"> 
+						<c:if test="${searchingNow == 0}">
+							<span class="wte_l"><a href="/foodSen/improvementCaseList.do?currentPage=${currentPage}" class="wte_r">목록</a></span>
+						</c:if>
+						<c:if test="${searchingNow == 1}">
+							<span class="wte_l"><a href="/foodSen/improvementCaseSearch.do?searchType=${searchType}&userinput=${userinput}&currentPage=${currentPage}" class="wte_r">목록</a></span>
+						</c:if>
+						
+						
+						<c:if test="${sessionScope.session_position == 1 || sessionScope.session_position == 2}">
+							<span class="per_l"><a href="javascript:goEdit()" class="pre_r">수정</a></span>
+							<span class="wte_l"><a href="javascript:goDelete()" class="wte_r">삭제</a></span>
+						</c:if>
+					</span>
+					<!-- //버튼 -->
+				
+				
+				</div>
+				<!-- .//게시판영역 -->
+				
 			</div>
-			<!-- .//게시판영역 -->
+			<!-- .//우측게시판영역 틀 -->
 			
 			
 			
