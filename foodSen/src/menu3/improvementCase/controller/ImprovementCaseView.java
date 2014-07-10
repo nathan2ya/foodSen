@@ -120,7 +120,6 @@ public class ImprovementCaseView {
 		//뷰페이지에 보여질 레코드 1개를 get (조회수가 +1 업데이트된 레코드를 얻기위함)
 		resultClass = (ImprovementCaseDTO)sqlMapper.queryForObject("ImprovementCase.selectImprovementCaseOne", seq);
 		
-		
 		request1.setAttribute("seq", seq);
 		request1.setAttribute("currentPage", currentPage);
 		request1.setAttribute("searchingNow", searchingNow);
