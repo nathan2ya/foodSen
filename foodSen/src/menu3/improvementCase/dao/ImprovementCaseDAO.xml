@@ -120,6 +120,11 @@
 	
 	
 	<!-- delete -->
+	<delete id="deleteImprovementCase" parameterClass="int">
+		delete from TB_03_IC
+		where seq = #seq#
+	</delete>
+	
 	
 
 </sqlMap>
