@@ -107,7 +107,7 @@
 							<th>梅何颇老</th>
 							<td colspan="5" class="tl">
 								<c:if test="${resultClass.attach_name != null}">
-									<a href="/foodSen/FileDownload.do?attach_name=${resultClass.attach_name}">
+									<a href="/foodSen/inspectionResult_FileDownload.do?attach_name=${resultClass.attach_name}">
 										${resultClass.attach_name}
 										<img src="./images/sub/btn/btn_down.gif" alt="pdf" />
 									</a>
@@ -125,7 +125,7 @@
 						<span class="wte_l"><a href="/foodSen/inspectionResultList.do?currentPage=${currentPage}" class="wte_r">格废</a></span>
 					</c:if>
 					<c:if test="${searchingNow == 1}">
-						<span class="wte_l"><a href="/foodSen/inspectionResultList.do?searchType=${searchType}&userinput=${userinput}&currentPage=${currentPage}" class="wte_r">格废</a></span>
+						<span class="wte_l"><a href="/foodSen/inspectionResultSearch.do?searchType=${searchType}&userinput=${userinput}&currentPage=${currentPage}" class="wte_r">格废</a></span>
 					</c:if>
 					
 					

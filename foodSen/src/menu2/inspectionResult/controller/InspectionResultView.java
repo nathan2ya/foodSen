@@ -134,7 +134,7 @@ public class InspectionResultView {
 	
 	
 	//위생.안전 검사결과 첨부파일 다운로드
-	@RequestMapping(value = "/FileDownload.do")
+	@RequestMapping(value = "/inspectionResult_FileDownload.do")
 	public void downloadFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String uploadPath = file_path;
