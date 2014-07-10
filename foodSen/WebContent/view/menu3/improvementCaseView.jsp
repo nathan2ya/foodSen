@@ -246,4 +246,8 @@
 	</div>
 </div>
 
+ <form name="prevImg" method="post">
+ 	<input type="hidden" id="seq" name="seq" value="${seq}">
+ </form>
+
 <jsp:include page="/view/include/footer.jsp"/>
