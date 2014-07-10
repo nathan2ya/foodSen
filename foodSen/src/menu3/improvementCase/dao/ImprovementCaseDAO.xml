@@ -119,6 +119,56 @@
 	
 	
 	
+	
+	
+	<!-- image -->
+	<update id="updateImg1" parameterClass="improvementCaseDTO">
+		UPDATE TB_03_IC
+		SET
+			img1 = #img1#
+		where seq = #seq#
+	</update>
+	
+	<update id="updateImg2" parameterClass="improvementCaseDTO">
+		UPDATE TB_03_IC
+		SET
+			img2 = #img2#
+		where seq = #seq#
+	</update>
+	
+	<update id="updateImg3" parameterClass="improvementCaseDTO">
+		UPDATE TB_03_IC
+		SET
+			img3 = #img3#
+		where seq = #seq#
+	</update>
+	
+	<update id="updateImg4" parameterClass="improvementCaseDTO">
+		UPDATE TB_03_IC
+		SET
+			img4 = #img4#
+		where seq = #seq#
+	</update>
+	
+	<update id="updateImg5" parameterClass="improvementCaseDTO">
+		UPDATE TB_03_IC
+		SET
+			img5 = #img5#
+		where seq = #seq#
+	</update>
+	
+	<update id="updateImg6" parameterClass="improvementCaseDTO">
+		UPDATE TB_03_IC
+		SET
+			img6 = #img6#
+		where seq = #seq#
+	</update>
+	
+	
+	
+	
+	
+	
 	<!-- delete -->
 	<delete id="deleteImprovementCase" parameterClass="int">
 		delete from TB_03_IC

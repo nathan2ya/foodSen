@@ -178,6 +178,34 @@
 		}
 	}
 	
+	
+	
+	//이미지 업로더 추가
+	fields = 1;
+
+	function addInput() {
+		if (fields != 7){
+			document.getElementById('text').innerHTML += "<div><input type='file' name='optupload"+fields+"' />"
+												+"<a href='#' onclick='removeInput(this.parentNode)' /> 이미지"+fields+" 항목 제거 <br/><hr></div>";
+			fields += 1;
+		}else{
+			alert("이미지는 최대 6개까지 등록 할 수 있습니다.")
+			document.improvementCaseCreateFrom.add.disabled = true;
+		}
+	}
+	
+	//이미지 업로더 제거
+	function removeInput(el) {
+		if (fields > 0) {
+			//document.getElementById('stop').innerHTML = "";
+			var parent = document.getElementById('text');
+			parent.removeChild(el);
+			fields -= 1;
+			document.improvementCaseCreateFrom.add.disabled = false;
+		}
+	}
+	
+	
 </script>
 
 
@@ -244,6 +272,17 @@
 								<th>비밀번호</th>
 								<td class="tl">
 									<input type="password" id="pw" name="pw" class="inp" />
+								</td>
+							</tr>
+							<tr>
+								<th>첨부이미지</th>
+								<td colspan="5" class="tl">
+									<input type="button"  name="add" value="이미지추가" onclick="addInput()"/>
+									<font color='#BDBDBD'>이미지는 최대 6개까지 첨부할 수 있습니다.</font> 
+									
+									<div id="text">
+										<!-- 옵션추가 클릭시 여기에 태그 추가 -->
+									</div>
 								</td>
 							</tr>
 						</tbody>
