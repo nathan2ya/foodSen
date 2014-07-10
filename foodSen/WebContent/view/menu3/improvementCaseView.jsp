@@ -46,6 +46,33 @@
 	    container.innerHTML = doc.replace(regURL,"<a href='$1://$2' target='_blank'>$1://$2</a>").replace(regEmail,"<a href='mailto:$1'>$1</a>");
 	}
 	
+	
+	//이미지 체인져
+	function chgImg(obj,path){
+		$('#preview').attr('src',path+obj);
+	}
+	
+	//이미지 팝업띄우기
+	function openPrev(seq){
+		
+		var frm = document.prevImg;    //팝업에 넘길 부모창의 폼
+		frm.seq.value = seq;           //폼의 값들을 셋팅한다.  
+
+		//빈페이지로 팝업창을 우선 하나 띄운다.
+		window.open('', 'popup_post', 'width=408, height=415, resizable= yes');
+
+		//부모창의 타겟을 빈페이지로 띄운 팝업창의 이름으로 한다
+		frm.target = 'popup_post';   
+
+		//넘길 폼의 action을 팝업에 나타낼 페이지로 한다.
+		frm.action = 'improvementCasePrevImg.do';
+
+		//팝업으로 넘길 값을 가지고있는 폼을 submit 한다.
+		frm.submit();
+	}
+	
+	
+	
 </script>
 
 <div id="container">
@@ -78,7 +105,63 @@
 				
 				<!-- 이미지영역 -->
 				<div class="img_box">
+				
+					<span>
+						<c:if test="${resultClass.img1 != null}">
+							<a href="javascript:openPrev('${seq}')">
+								<img id="preview" src="${resultClass.attach_path}${resultClass.img1}" alt="" />
+							</a>
+						</c:if>
+						<c:if test="${resultClass.img1 == null}">
+							<li class="prn"><img src="./images/sub/factory/no_s_img.gif" alt="" /></li>
+						</c:if>
+					</span>
 					
+					<ul>
+						<c:if test="${resultClass.img1 != null}">
+							<li><a href="javascript:chgImg('${resultClass.img1}','${resultClass.attach_path}')"><img src="${resultClass.attach_path}${resultClass.img1}" alt="첫번째이미지" /></a></li>
+						</c:if>
+						<c:if test="${resultClass.img1 == null}">
+							<li class="prn"><img src="./images/sub/factory/no_s_img.gif" alt="" /></li>
+						</c:if>
+						
+						<c:if test="${resultClass.img2 != null}">
+							<li><a href="javascript:chgImg('${resultClass.img2}','${resultClass.attach_path}')"><img src="${resultClass.attach_path}${resultClass.img2}" alt="두번째이미지" /></a></li>
+						</c:if>
+						<c:if test="${resultClass.img2 == null}">
+							<li class="prn"><img src="./images/sub/factory/no_s_img.gif" alt="" /></li>
+						</c:if>
+						
+						<c:if test="${resultClass.img3 != null}">
+							<li class="prn"><a href="javascript:chgImg('${resultClass.img3}','${resultClass.attach_path}')"><img src="${resultClass.attach_path}${resultClass.img3}" alt="세번째이미지" /></a></li>
+						</c:if>
+						<c:if test="${resultClass.img3 == null}">
+							<li class="prn"><img src="./images/sub/factory/no_s_img.gif" alt="" /></li>
+						</c:if>
+						
+						<c:if test="${resultClass.img4 != null}">
+							<li ><a href="javascript:chgImg('${resultClass.img4}','${resultClass.attach_path}')"><img src="${resultClass.attach_path}${resultClass.img4}" alt="네번째이미지" /></a></li>
+						</c:if>
+						<c:if test="${resultClass.img4 == null}">
+							<li class="prn"><img src="./images/sub/factory/no_s_img.gif" alt="" /></li>
+						</c:if>
+						
+						<c:if test="${resultClass.img5 != null}">
+							<li><a href="javascript:chgImg('${resultClass.img5}','${resultClass.attach_path}')"><img src="${resultClass.attach_path}${resultClass.img5}" alt="다섯번째이미지" /></a></li>
+						</c:if>
+						<c:if test="${resultClass.img5 == null}">
+							<li class="prn"><img src="./images/sub/factory/no_s_img.gif" alt="" /></li>
+						</c:if>
+						
+						<c:if test="${resultClass.img6 != null}">
+							<li><a href="javascript:chgImg('${resultClass.img6}','${resultClass.attach_path}')"><img src="${resultClass.attach_path}${resultClass.img6}" alt="다섯번째이미지" /></a></li>
+						</c:if>
+						<c:if test="${resultClass.img6 == null}">
+							<li class="prn"><img src="./images/sub/factory/no_s_img.gif" alt="" /></li>
+						</c:if>
+						
+					</ul>
+
 				</div>
 				<!-- .//이미지영역 -->
 				
@@ -111,8 +194,7 @@
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td id="description" colspan="5" class="tl h150"><pre>${resultClass.description}</pre>
-								</td>
+								<td id="description" colspan="5" class="tl h150"><pre>${resultClass.description}</pre></td>
 							</tr>
 							<tr>
 								<th>첨부파일</th>
