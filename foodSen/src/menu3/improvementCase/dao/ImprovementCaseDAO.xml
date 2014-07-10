@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
+<sqlMap namespace="ImprovementCase">
+
+	<typeAlias alias="improvementCaseDTO" type="menu3.improvementCase.dto.ImprovementCaseDTO" />
+	
+	<!-- 리절트 맵 정의 -->
+	
+	<resultMap id="improvementCaseRes1" class="improvementCaseDTO">
+		<result property="seq" column="seq" />
+		<result property="title" column="title" />
+		<result property="attach_name" column="attach_name" />
+		<result property="attach_path" column="attach_path" />
+		<result property="description" column="description" />
+		<result property="pw" column="pw" />
+		<result property="img1" column="img1" />
+		<result property="img2" column="img2" />
+		<result property="img3" column="img3" />
+		<result property="img4" column="img4" />
+		<result property="img5" column="img5" />
+		<result property="img6" column="img6" />
+		<result property="hits" column="hits" />
+		<result property="wirte" column="wirte" />
+		<result property="reg_name" column="reg_name" />
+		<result property="reg_date" column="reg_date" />
+		<result property="udt_name" column="udt_name" />
+		<result property="udt_date" column="udt_date" />
+		<result property="rownum" column="r" />
+	</resultMap>
+	
+	<resultMap id="improvementCaseRes" class="improvementCaseDTO">
+		<result property="seq" column="seq" />
+		<result property="title" column="title" />
+		<result property="attach_name" column="attach_name" />
+		<result property="attach_path" column="attach_path" />
+		<result property="description" column="description" />
+		<result property="pw" column="pw" />
+		<result property="img1" column="img1" />
+		<result property="img2" column="img2" />
+		<result property="img3" column="img3" />
+		<result property="img4" column="img4" />
+		<result property="img5" column="img5" />
+		<result property="img6" column="img6" />
+		<result property="hits" column="hits" />
+		<result property="wirte" column="wirte" />
+		<result property="reg_name" column="reg_name" />
+		<result property="reg_date" column="reg_date" />
+		<result property="udt_name" column="udt_name" />
+		<result property="udt_date" column="udt_date" />
+	</resultMap>
+	
+	
+	<!-- insert -->
+	<insert id="insertImprovementCase" parameterClass="improvementCaseDTO">
+		insert into TB_03_IC
+			(seq, title, description, pw, hits, wirte, reg_name, reg_date, udt_name, udt_date)
+		values
+			(TB_03_IC_seq.NEXTVAL, #title#, #description#, #pw#, #hits#, #wirte#, #reg_name#, #reg_date#, #udt_name#, #udt_date#)
+	</insert>
+	
+	
+	
+	<!-- select -->
+	<select id="selectAll" resultMap="improvementCaseRes" parameterClass="int">
+		select * from TB_03_IC
+		order by seq desc
+	</select>
+	
+	<select id="selectWithTitle" resultMap="improvementCaseRes" parameterClass="java.lang.String">
+		select * from TB_03_IC
+		where title like  '%'||#userinput#||'%'
+	</select>
+	
+	<select id="selectWithWriter" resultMap="improvementCaseRes" parameterClass="java.lang.String">
+		select * from TB_03_IC
+		where wirte like  '%'||#userinput#||'%'
+	</select>
+	
+	<select id="selectLastNum" resultClass="improvementCaseDTO" parameterClass="int">
+		SELECT MAX(seq) AS seq from TB_03_IC
+	</select>
+	
+	<select id="selectImprovementCaseOne" resultMap="improvementCaseRes" parameterClass="int">
+		select * from TB_03_IC
+		where seq = #seq#
+	</select>
+	
+	
+	
+	
+		
+
+	<!-- update -->
+	<update id="updateFile" parameterClass="improvementCaseDTO">
+		UPDATE TB_03_IC
+		SET
+			attach_name = #attach_name#,
+			attach_path = #attach_path#
+		where seq = #seq#
+	</update>
+	
+	<update id="updateHits" parameterClass="improvementCaseDTO">
+		UPDATE TB_03_IC
+		SET
+			hits = #hits#
+		where seq = #seq#
+	</update>
+	
+	<update id="updateImprovementCase" parameterClass="improvementCaseDTO">
+		UPDATE TB_03_IC
+		SET
+			description = #description#,
+			udt_name = #udt_name#,
+			udt_date = #udt_date#
+		where seq = #seq#
+	</update>
+	
+	
+	
+	
+	<!-- delete -->
+	
+
+</sqlMap>
