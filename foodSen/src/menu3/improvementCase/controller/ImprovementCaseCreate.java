@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 
 
+
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
@@ -41,9 +42,10 @@ public class ImprovementCaseCreate {
 	private int seq;
 	
 	//업로드 파일 경로
-	String file_path = Constants.COMMON_FILE_PATH + Constants.MENU3_IMPROVEMENT_FILE_PATH;
+	private String file_path = Constants.COMMON_FILE_PATH + Constants.MENU3_IMPROVEMENT_FILE_PATH;
+	
 	//업로드 이미지 파일 경로
-	String image_path = Constants.MENU3_IMPROVEMENT_IMAGE_PATH;
+	private String image_path = Constants.MENU3_IMPROVEMENT_IMAGE_PATH;
 	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
@@ -119,11 +121,11 @@ public class ImprovementCaseCreate {
 			//상대경로 path
 			//String path = save.getPath().replace("\\", "/").substring(42); // 42전까지가 절대경로
 			//절대경로 path
-			String path = file_path+fileName+fileExt;
+			//String path = file_path+fileName+fileExt; //경로+파일명
 			
 			paramClass.setSeq(seq); //최대 시퀀스넘버
 			paramClass.setAttach_name(fileName+fileExt); //파일명
-			paramClass.setAttach_path(path); // 파일경로(img src 경로를 의미함)
+			paramClass.setAttach_path(file_path.replace("\\", "/")); // 파일경로(img src 경로를 의미함)
 			
 			//파일 정보 업데이트.
 			sqlMapper.update("ImprovementCase.updateFile", paramClass);

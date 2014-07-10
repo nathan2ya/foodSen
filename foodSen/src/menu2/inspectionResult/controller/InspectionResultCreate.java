@@ -116,11 +116,11 @@ public class InspectionResultCreate {
 			//상대경로 path
 			//String path = save.getPath().replace("\\", "/").substring(42); // 42전까지가 절대경로
 			//절대경로 path
-			String path = file_path+fileName+fileExt;
+			//String path = file_path+fileName+fileExt;
 			
 			paramClass.setSeq(seq); //최대 시퀀스넘버
 			paramClass.setAttach_name(fileName+fileExt); //파일명
-			paramClass.setAttach_path(path); // 파일경로(img src 경로를 의미함)
+			paramClass.setAttach_path(file_path.replace("\\", "/")); //파일경로
 			
 			//파일 정보 업데이트.
 			sqlMapper.update("InspectionResult.updateFile", paramClass);
