@@ -179,6 +179,9 @@ public class PagingAction {
     
     
     
+    /*
+    
+    //현재 미사용 - 향후 사용할 가능성 있음
     // 생성자3: String serviceName 파라미터 // 소댓글 페이징 동작시
     public PagingAction(String serviceName, int currentPage, int totalCount, int blockCount, int blockPage, int board_seq_num, int r_currentPage) {
     	//파라미터 초기화
@@ -254,7 +257,11 @@ public class PagingAction {
 		}
 	}
     // .생성자3
-
+    
+    */
+    
+    
+    
     public String getServiceName() {
         return serviceName;
     }
