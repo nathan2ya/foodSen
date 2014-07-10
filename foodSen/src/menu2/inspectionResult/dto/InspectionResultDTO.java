@@ -89,4 +89,10 @@ public class InspectionResultDTO {
 	public void setUdt_date(Date udt_date) {
 		this.udt_date = udt_date;
 	}
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 }

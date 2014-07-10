@@ -7,5 +7,5 @@
   <li><a href="#"><img src="./images/sub/safety/sub_stitle_02Off.gif" alt="식중독 대처요령" /></a></li>
   <li><a href="#"><img src="./images/sub/safety/sub_stitle_03Off.gif" alt="안전사고 예방" /></a></li>
   <li><a href="#"><img src="./images/sub/safety/sub_stitle_04Off.gif" alt="안전사고 대처요령" /></a></li>
-  <li><a href="http://localhost:8000/foodSen/inspectionResultList.do"><img src="./images/sub/safety/sub_stitle_05On.gif" alt="위생 안전성 검사결과" /></a></li>
+  <li><a href="/foodSen/inspectionResultList.do"><img src="./images/sub/safety/sub_stitle_05On.gif" alt="위생 안전성 검사결과" /></a></li>
 </ul>

@@ -139,7 +139,7 @@
   
 <!-- header-->
   <div id="header">
-    <h1><a href="http://localhost:8000/foodSen/main.do"><img src="./images/header/common/logo.gif" alt="서울학교급식포털" /></a></h1>
+    <h1><a href="/foodSen/main.do"><img src="./images/header/common/logo.gif" alt="서울학교급식포털" /></a></h1>
     
     
 	<div class="topmenu">
@@ -148,9 +148,9 @@
 		
 			<c:when test="${sessionScope.session_id eq null}">
 				<ul>
-				<li class="bn"><a href="http://localhost:8000/foodSen/main.do">HOME</a></li>
+				<li class="bn"><a href="/foodSen/main.do">HOME</a></li>
 				<li><a href="#">SITEMAP</a></li>
-				<li class="bn"> <a href="http://localhost:8000/foodSen/login.do"><img src="./images/header/common/btn_login.gif" alt="로그인" /></a></li>
+				<li class="bn"> <a href="/foodSen/login.do"><img src="./images/header/common/btn_login.gif" alt="로그인" /></a></li>
 				</ul>
 			</c:when>
 			
@@ -166,7 +166,7 @@
 					</c:if>
 				   --%>
 					  
-					<li class="bn"><a href="http://localhost:8000/foodSen/main.do">HOME</a></li>
+					<li class="bn"><a href="/foodSen/main.do">HOME</a></li>
 					<li><a href="#">SITEMAP</a></li>
 					<li class="bn"> <a href="/foodSen/logoutPro.do"><img src="./images/header/common/btn_logout.gif" alt="로그아웃" /></a></li>
 				</ul>
@@ -195,7 +195,7 @@
             </div>
           </div>
         </li>
-        <li class="mainMenu"><a href="http://localhost:8000/foodSen/inspectionResultList.do"><img src="./images/header/common/mm_safetyOff.gif" alt="학교급식위생안전" /></a>
+        <li class="mainMenu"><a href="/foodSen/inspectionResultList.do"><img src="./images/header/common/mm_safetyOff.gif" alt="학교급식위생안전" /></a>
           <div class="subMenu" id="sub02" style="display:none;">
             <div class="boxSR">
               <ul class="boxSM">
@@ -204,19 +204,19 @@
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_safety02Off.gif" alt="식중독 대처요령" /></a></li>
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_safety03Off.gif" alt="안전사고예방" /></a></li>
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_safety04Off.gif" alt="안전사고 대처요령" /></a></li>
-                <li class="last subMenu"><a href="http://localhost:8000/foodSen/inspectionResultList.do"><img src="./images/header/common/sm_safety05Off.gif" alt="위생.안전성 검사결과" /></a></li>
+                <li class="last subMenu"><a href="/foodSen/inspectionResultList.do"><img src="./images/header/common/sm_safety05Off.gif" alt="위생.안전성 검사결과" /></a></li>
                 <li class="right_bg"></li>
               </ul>
             </div>
           </div>
         </li>
-        <li class="mainMenu"><a href="http://food.sen.go.kr/improvementCaseList.do"><img src="./images/header/common/mm_factoryOff.gif" alt="학교급식시설관리" /></a>
+        <li class="mainMenu"><a href="/foodSen/improvementCaseList.do"><img src="./images/header/common/mm_factoryOff.gif" alt="학교급식시설관리" /></a>
           <div class="subMenu" id="sub03" style="display:none;">
             <div class="boxSR">
               <ul class="boxSM">
                  <li class="left_bg"></li>
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_factory01Off.gif" alt="급식환경개선사업" /></a></li>
-                <li class="subMenu"><a href="http://food.sen.go.kr/improvementCaseList.do"><img src="./images/header/common/sm_factory02Off.gif" alt="급식시설개선사례" /></a></li>
+                <li class="subMenu"><a href="/foodSen/improvementCaseList.do"><img src="./images/header/common/sm_factory02Off.gif" alt="급식시설개선사례" /></a></li>
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_factory03Off.gif" alt="급식기구관리전환" /></a></li>
                 <li class="last subMenu"><a href="#"><img src="./images/header/common/sm_factory04Off.gif" alt="컨설팅신청안내" /></a></li>
                 <li class="right_bg"></li>
