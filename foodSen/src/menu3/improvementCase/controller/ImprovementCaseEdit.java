@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 
 
+
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
@@ -140,6 +141,8 @@ public class ImprovementCaseEdit {
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("searchingNow", searchingNow);
 		request.setAttribute("resultClass", resultClass);
+		
+		request.setAttribute("cnt", cnt);
 		request.setAttribute("imgNames", imgNames);
 		
 		return "/view/menu3/improvementCaseEdit.jsp";
@@ -233,12 +236,49 @@ public class ImprovementCaseEdit {
 			
 		/*
 		##이미지첨부 수정 시나리오##
+		0. 기존값 == null 일때 -> 수정값 == null 이면, 아무것도안함 - 사용자가 어떠한 수정변화도 주지 않았음을 의미
 		1. 기존값 == null 일때 -> 수정값 != null 이면, 수정레코드 업데이트 - 사용자가 이미지를 추가등록했음을 의미
 		2. 기존값 != null 일때 -> 수정값 != null 이면, 기존레코드 삭제(이미지포함), 수정레코드 업데이트  - 사용자가 동일컬럼을 수정하였음을 의미
-		3. 기존값 != null 일때 -> 수정값 == null 이면, 기존레코드 삭제(이미지포함) - 사용자가 이미지를 감소등록했음을 의미
+		3. 기존값 != null 일때 -> 수정값 == null 이면 -> 기존개수>수정개수, 기존컬럼 삭제(이미지포함) - 사용자가 이미지를 감소등록했음을 의미
+						                    		  -> 0==수정개수, 아무것도안함 - 사용자가 어떠한 수정변화도 주지 않았음을 의미
 		*/	
 		
 		
+		
+		
+		//기존img개수 산출
+		int orgCnt = Integer.parseInt(request.getParameter("cnt"));
+		
+		
+		//수정img개수 산출
+		int uptCnt = 0;
+		if(request.getFile("optupload1") != null){
+			uptCnt++;
+		}
+		if(request.getFile("optupload2") != null){
+			uptCnt++;
+		}
+		if(request.getFile("optupload3") != null){
+			uptCnt++;
+		}
+		if(request.getFile("optupload4") != null){
+			uptCnt++;
+		}
+		if(request.getFile("optupload5") != null){
+			uptCnt++;
+		}
+		if(request.getFile("optupload6") != null){
+			uptCnt++;
+		}
+		//수정img개수 산출 종료
+		
+		
+		
+		
+		
+		// 1. 기존값 == null 일때 -> 수정값 != null 이면, 수정레코드 업데이트 - 사용자가 이미지를 추가등록했음을 의미
+		
+		//1번 이미지
 		if(resultClass.getImg1() == null){
 			//1번 이미지
 			if(request.getFile("optupload1") != null){ // 해당 변수가 존재하면
@@ -269,6 +309,181 @@ public class ImprovementCaseEdit {
 			}
 			//.1번 이미지 종료
 		}
+		//1번. 사용자가 추가등록했음을 의미하는 시나리오 종료
+		
+		
+		//2번 이미지
+		if(resultClass.getImg2() == null){
+			if(request.getFile("optupload2") != null){ // 해당 변수가 존재하면
+				
+				MultipartFile file2 = request.getFile("optupload2"); // 업로드된 원본
+				String orgName2 = file2.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
+				
+				if(orgName2 != ""){ //이미지 파일을 첨부했을 경우
+					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
+					String fileName = "img_improvementCase_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
+					String fileExt = orgName2.substring(orgName2.lastIndexOf('.'));//서버저장 확장자
+					
+					File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
+					file2.transferTo(save);  // 복사본 생성
+					
+					//이미지파일 상대경로 제작
+					String temp = image_path.replace("\\", "/");
+					//상대경로 path
+					String path = temp+fileName+fileExt; // 상대경로+파일명+확장자
+					
+					paramClass.setSeq(seq); //최대 시퀀스넘버
+					paramClass.setImg2(path); // 이미지경로
+					
+					//파일 정보 업데이트.
+					sqlMapper.update("ImprovementCase.updateImg2", paramClass);
+				}
+			}
+		}
+		//.2번 이미지 종료
+		
+		
+		//3번 이미지
+		if(resultClass.getImg3() == null){
+			if(request.getFile("optupload3") != null){ // 해당 변수가 존재하면
+				
+				MultipartFile file3 = request.getFile("optupload3"); // 업로드된 원본
+				String orgName3 = file3.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
+				
+				if(orgName3 != ""){ //이미지 파일을 첨부했을 경우
+				
+					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
+					String fileName = "img_improvementCase_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
+					String fileExt = orgName3.substring(orgName3.lastIndexOf('.'));//서버저장 확장자
+					
+					File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
+					file3.transferTo(save);  // 복사본 생성
+					
+					//이미지파일 상대경로 제작
+					String temp = image_path.replace("\\", "/");
+					//상대경로 path
+					String path = temp+fileName+fileExt; // 상대경로+파일명+확장자
+					
+					paramClass.setSeq(seq); //최대 시퀀스넘버
+					paramClass.setImg3(path); // 이미지경로
+					
+					//파일 정보 업데이트.
+					sqlMapper.update("ImprovementCase.updateImg3", paramClass);
+				}
+			}
+			//.3번 이미지 종료
+		}
+		
+		
+		//4번 이미지
+		if(resultClass.getImg4() == null){
+			if(request.getFile("optupload4") != null){ // 해당 변수가 존재하면
+				
+				MultipartFile file4 = request.getFile("optupload4"); // 업로드된 원본
+				String orgName4 = file4.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
+				
+				if(orgName4 != ""){ //이미지 파일을 첨부했을 경우
+				
+					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
+					String fileName = "img_improvementCase_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
+					String fileExt = orgName4.substring(orgName4.lastIndexOf('.'));//서버저장 확장자
+					
+					File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
+					file4.transferTo(save);  // 복사본 생성
+					
+					//이미지파일 상대경로 제작
+					String temp = image_path.replace("\\", "/");
+					//상대경로 path
+					String path = temp+fileName+fileExt; // 상대경로+파일명+확장자
+					
+					paramClass.setSeq(seq); //최대 시퀀스넘버
+					paramClass.setImg4(path); // 이미지경로
+					
+					//파일 정보 업데이트.
+					sqlMapper.update("ImprovementCase.updateImg4", paramClass);
+				}
+			}
+		}
+		//.4번 이미지 종료
+		
+		
+		//5번 이미지
+		if(resultClass.getImg5() == null){
+			if(request.getFile("optupload5") != null){ // 해당 변수가 존재하면
+				
+				MultipartFile file5 = request.getFile("optupload5"); // 업로드된 원본
+				String orgName5 = file5.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
+				
+				if(orgName5 != ""){ //이미지 파일을 첨부했을 경우
+				
+					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
+					String fileName = "img_improvementCase_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
+					String fileExt = orgName5.substring(orgName5.lastIndexOf('.'));//서버저장 확장자
+					
+					File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
+					file5.transferTo(save);  // 복사본 생성
+					
+					//이미지파일 상대경로 제작
+					String temp = image_path.replace("\\", "/");
+					//상대경로 path
+					String path = temp+fileName+fileExt; // 상대경로+파일명+확장자
+					
+					paramClass.setSeq(seq); //최대 시퀀스넘버
+					paramClass.setImg5(path); // 이미지경로
+					
+					//파일 정보 업데이트.
+					sqlMapper.update("ImprovementCase.updateImg5", paramClass);
+				}
+			}
+		}
+		//.5번 이미지 종료
+		
+		
+		//6번 이미지
+		if(resultClass.getImg6() == null){
+			if(request.getFile("optupload6") != null){ // 해당 변수가 존재하면
+				
+				MultipartFile file6 = request.getFile("optupload6"); // 업로드된 원본
+				String orgName6 = file6.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
+				
+				if(orgName6 != ""){ //이미지 파일을 첨부했을 경우
+				
+					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
+					String fileName = "img_improvementCase_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
+					String fileExt = orgName6.substring(orgName6.lastIndexOf('.'));//서버저장 확장자
+					
+					File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
+					
+					file6.transferTo(save);  // 복사본 생성
+					
+					//이미지파일 상대경로 제작
+					String temp = image_path.replace("\\", "/");
+					//상대경로 path
+					String path = temp+fileName+fileExt; // 상대경로+파일명+확장자
+					
+					paramClass.setSeq(seq); //최대 시퀀스넘버
+					paramClass.setImg6(path); // 이미지경로
+					
+					//파일 정보 업데이트.
+					sqlMapper.update("ImprovementCase.updateImg6", paramClass);
+				}
+			}
+		}
+		//.6번 이미지 종료
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		//.이미지첨부 수정 시나리오 종료
 		
 		

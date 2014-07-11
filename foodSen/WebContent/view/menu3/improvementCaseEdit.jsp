@@ -95,7 +95,6 @@
 			}
 		}
 		
-		
 		improvementCaseEditFrom.submit();
 	}
 	/* goCreate Á¾·á */
@@ -287,6 +286,8 @@
 									<input type="hidden" id="seq" name="seq" value="${seq}" />
 									<input type="hidden" id="currentPage" name="currentPage" value="${currentPage}" />
 									<input type="hidden" id="searchingNow" name="searchingNow" value="${searchingNow}" />
+									
+									<input type="hidden" id="cnt" name="cnt" value="${cnt}" />
 									
 									<c:if test="${searchingNow == 1}">
 										<input type="hidden" id="searchType" name="searchType" value="${searchType}" />
