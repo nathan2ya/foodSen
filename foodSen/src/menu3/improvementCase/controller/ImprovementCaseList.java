@@ -241,4 +241,12 @@ public class ImprovementCaseList {
 	}
 	
 	
+	
+	//삭제대기 리다이렉트2초
+	@RequestMapping("/goImprovementCaseList.do")
+	public String goImprovementCaseList() throws SQLException{
+		return "/view/menu3/stay2sec.jsp";
+	}
+	
+	
 }
