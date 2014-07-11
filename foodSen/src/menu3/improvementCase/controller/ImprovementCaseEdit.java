@@ -485,9 +485,11 @@ public class ImprovementCaseEdit {
 			if(request.getFile("optupload1") != null){ 
 				
 				//기존이미지 삭제
-				String imgName = resultClass.getImg1().substring(38); //38 이전은 상대경로
-				File deleteFile = new File(imgPath+imgName); //파일명 + 경로
-				deleteFile.delete();
+				if(orgCnt > uptCnt && 0 != uptCnt){
+					String imgName = resultClass.getImg1().substring(38); //38 이전은 상대경로
+					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
+					deleteFile.delete();
+				}
 				//기존이미지 삭제 종료
 				
 				//새로운데이터 업데이트
@@ -552,9 +554,11 @@ public class ImprovementCaseEdit {
 			if(request.getFile("optupload2") != null){
 				
 				//기존데이터 삭제
-				String imgName = resultClass.getImg2().substring(38); //38 이전은 상대경로
-				File deleteFile = new File(imgPath+imgName); //파일명 + 경로
-				deleteFile.delete();
+				if(orgCnt > uptCnt && 0 != uptCnt){
+					String imgName = resultClass.getImg2().substring(38); //38 이전은 상대경로
+					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
+					deleteFile.delete();
+				}
 				//기존데이터 삭제 종료
 				
 				//새로운데이터 업데이트
@@ -616,9 +620,11 @@ public class ImprovementCaseEdit {
 			if(request.getFile("optupload3") != null){
 				
 				//기존데이터 삭제
-				String imgName = resultClass.getImg3().substring(38); //38 이전은 상대경로
-				File deleteFile = new File(imgPath+imgName); //파일명 + 경로
-				deleteFile.delete();
+				if(orgCnt > uptCnt && 0 != uptCnt){
+					String imgName = resultClass.getImg3().substring(38); //38 이전은 상대경로
+					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
+					deleteFile.delete();
+				}
 				//기존데이터 삭제 종료
 				
 				//새로운데이터 업데이트
@@ -681,9 +687,11 @@ public class ImprovementCaseEdit {
 			if(request.getFile("optupload4") != null){
 	
 				//기존데이터 삭제
-				String imgName = resultClass.getImg4().substring(38); //38 이전은 상대경로
-				File deleteFile = new File(imgPath+imgName); //파일명 + 경로
-				deleteFile.delete();
+				if(orgCnt > uptCnt && 0 != uptCnt){
+					String imgName = resultClass.getImg4().substring(38); //38 이전은 상대경로
+					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
+					deleteFile.delete();
+				}
 				//기존데이터 삭제 종료
 				
 				//새로운데이터 업데이트
@@ -746,9 +754,11 @@ public class ImprovementCaseEdit {
 			if(request.getFile("optupload5") != null){
 	
 				//기존데이터 삭제
-				String imgName = resultClass.getImg5().substring(38); //38 이전은 상대경로
-				File deleteFile = new File(imgPath+imgName); //파일명 + 경로
-				deleteFile.delete();
+				if(orgCnt > uptCnt && 0 != uptCnt){
+					String imgName = resultClass.getImg5().substring(38); //38 이전은 상대경로
+					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
+					deleteFile.delete();
+				}
 				//기존데이터 삭제 종료
 				
 				//새로운데이터 업데이트
@@ -811,9 +821,11 @@ public class ImprovementCaseEdit {
 			if(request.getFile("optupload6") != null){
 	
 				//기존데이터 삭제
-				String imgName = resultClass.getImg6().substring(38); //38 이전은 상대경로
-				File deleteFile = new File(imgPath+imgName); //파일명 + 경로
-				deleteFile.delete();
+				if(orgCnt > uptCnt && 0 != uptCnt){
+					String imgName = resultClass.getImg6().substring(38); //38 이전은 상대경로
+					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
+					deleteFile.delete();
+				}
 				//기존데이터 삭제 종료
 				
 				//새로운데이터 업데이트
