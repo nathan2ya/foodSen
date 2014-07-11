@@ -222,7 +222,7 @@
 						</c:if>
 						
 						
-						<c:if test="${sessionScope.session_position == 1 || sessionScope.session_position == 2}">
+						<c:if test="${sessionScope.session_id == resultClass.wirte}">
 							<span class="per_l"><a href="javascript:goEdit()" class="pre_r">수정</a></span>
 							<span class="wte_l"><a href="javascript:goDelete()" class="wte_r">삭제</a></span>
 						</c:if>
