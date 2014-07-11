@@ -25,6 +25,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 
 
+
+
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
@@ -40,8 +42,8 @@ public class ImprovementCaseEdit {
 	
 	String file_path = Constants.COMMON_FILE_PATH + Constants.MENU3_IMPROVEMENT_FILE_PATH; //업로드 파일 경로
 	
-	
 	private int cnt; //이미지 개수
+	private String image_path = Constants.MENU3_IMPROVEMENT_IMAGE_PATH; //업로드 이미지 파일 경로
 	
 	
 	//DB커넥트 인스턴스 변수
@@ -155,6 +157,7 @@ public class ImprovementCaseEdit {
 		int seq = Integer.parseInt(request.getParameter("seq"));
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		int searchingNow = Integer.parseInt(request.getParameter("searchingNow"));
+		
 				
 		//사용자가 입력한 값
 		String description = request1.getParameter("description");
@@ -177,54 +180,96 @@ public class ImprovementCaseEdit {
 		resultClass = (ImprovementCaseDTO)sqlMapper.queryForObject("ImprovementCase.selectImprovementCaseOne", seq);
 		
 		
-		//파일첨부 시작
-			MultipartFile file = request.getFile("filename"); // 업로드된 원본
-			String orgName = file.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
+		
+		
+		/*
+		##파일첨부 시작##
+		업로드요청이 새로 들어올경우
+		기존 파일을 삭제한 후에 새로 복사본을 서버에 저장함
+		*/
+		
+		MultipartFile file = request.getFile("filename"); // 업로드된 원본
+		String orgName = file.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
+		
+		if(orgName != ""){ //파일을 첨부했을 경우
 			
-			if(orgName != ""){ //파일을 첨부했을 경우
-				
-				//기존파일 삭제시작
-				if(resultClass.getAttach_path() != null){
-					File deleteFile = new File(resultClass.getAttach_path());
-					deleteFile.delete();
-				}
-				//.기존파일 삭제종료
-				
-				
-				//새로운파일 생성시작
-					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
-					String fileName = "file_inspectionResult_"+randNum;//서버저장 파일명(file_inspctionResult_랜덤번호)
-					String fileExt = orgName.substring(orgName.lastIndexOf('.'));//서버저장 확장자
-					
-					File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
-					file.transferTo(save);  // 복사본 생성
-					
-					//DB 파일 경로 저장용
-					
-					//상대경로 path
-					//String path = save.getPath().replace("\\", "/").substring(42); // 42전까지가 절대경로
-					
-					//절대경로 path
-					String path = file_path+fileName+fileExt;
-					
-					paramClass.setSeq(seq); //시퀀스넘버
-					paramClass.setAttach_name(fileName+fileExt); //파일명
-					paramClass.setAttach_path(path); // 파일경로(img src 경로를 의미함)
-					
-					//파일 정보 업데이트.
-					sqlMapper.update("ImprovementCase.updateFile", paramClass);
-				///새로운파일 생성종료
+			//기존파일 삭제시작
+			if(resultClass.getAttach_path() != null){
+				File deleteFile = new File(resultClass.getAttach_path()+resultClass.getAttach_name());
+				deleteFile.delete();
 			}
+			//.기존파일 삭제종료
+			
+			
+			//새로운파일 생성시작
+				String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
+				String fileName = "file_inspectionResult_"+randNum;//서버저장 파일명(file_inspctionResult_랜덤번호)
+				String fileExt = orgName.substring(orgName.lastIndexOf('.'));//서버저장 확장자
+				
+				File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
+				file.transferTo(save);  // 복사본 생성
+				
+				//DB 파일 경로 저장용
+				
+				//상대경로 path
+				//String path = save.getPath().replace("\\", "/").substring(42); // 42전까지가 절대경로
+				
+				//절대경로 path
+				String path = file_path+fileName+fileExt;
+				
+				paramClass.setSeq(seq); //시퀀스넘버
+				paramClass.setAttach_name(fileName+fileExt); //파일명
+				paramClass.setAttach_path(path); // 파일경로(img src 경로를 의미함)
+				
+				//파일 정보 업데이트.
+				sqlMapper.update("ImprovementCase.updateFile", paramClass);
+			///새로운파일 생성종료
+		}
 		//.파일첨부 종료
 			
-			
-			
-		//이미지첨부 시작
-			if(resultClass.getImg1() == null){
-				
-			}
 		
-		//.이미지첨부 종료
+			
+			
+			
+		/*
+		##이미지첨부 수정 시나리오##
+		1. 기존값 == null 일때 -> 수정값 != null 이면, 수정레코드 업데이트 - 사용자가 이미지를 추가등록했음을 의미
+		2. 기존값 != null 일때 -> 수정값 != null 이면, 기존레코드 삭제(이미지포함), 수정레코드 업데이트  - 사용자가 동일컬럼을 수정하였음을 의미
+		3. 기존값 != null 일때 -> 수정값 == null 이면, 기존레코드 삭제(이미지포함) - 사용자가 이미지를 감소등록했음을 의미
+		*/	
+		
+		
+		if(resultClass.getImg1() == null){
+			//1번 이미지
+			if(request.getFile("optupload1") != null){ // 해당 변수가 존재하면
+				
+				MultipartFile file1 = request.getFile("optupload1"); // 업로드된 원본
+				String orgName1 = file1.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
+				
+				if(orgName1 != ""){ //이미지 파일을 첨부했을 경우
+					
+					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
+					String fileName = "img_improvementCase_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
+					String fileExt = orgName1.substring(orgName1.lastIndexOf('.'));//서버저장 확장자
+					
+					File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
+					file1.transferTo(save);  // 복사본 생성
+					
+					//이미지파일 상대경로 제작
+					String temp = image_path.replace("\\", "/");
+					//상대경로 path
+					String path = temp+fileName+fileExt; // 상대경로+파일명+확장자
+					
+					paramClass.setSeq(seq); //최대 시퀀스넘버
+					paramClass.setImg1(path); // 이미지경로
+					
+					//파일 정보 업데이트.
+					sqlMapper.update("ImprovementCase.updateImg1", paramClass);
+				}
+			}
+			//.1번 이미지 종료
+		}
+		//.이미지첨부 수정 시나리오 종료
 		
 		
 		return "redirect:/improvementCaseView.do?seq="+seq+"&currentPage="+currentPage+"&searchingNow="+searchingNow; // 호출한 뷰페이지로 리다이렉트

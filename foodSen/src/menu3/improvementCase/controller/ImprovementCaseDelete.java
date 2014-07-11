@@ -76,7 +76,7 @@ public class ImprovementCaseDelete {
 		
 		//파일삭제
 			if(resultClass.getAttach_path()!=null){
-				File deleteFile = new File(resultClass.getAttach_path());
+				File deleteFile = new File(resultClass.getAttach_path()+resultClass.getAttach_name());
 				deleteFile.delete();
 			}
 		//.파일삭제 완료
