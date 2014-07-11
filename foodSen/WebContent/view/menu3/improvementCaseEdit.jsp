@@ -177,6 +177,33 @@
 		}
 	}
 	
+	
+	//이미지 업로더 추가
+	fields = 1;
+
+	function addInput(imgName) {
+		if (fields != 7){
+			document.getElementById('text').innerHTML += "<div id=imgInput"+fields+"><input type='file' name='optupload"+fields+"' /> <br/> <font color='gray'>"+imgName+"(기존이미지)</font> </div>";
+												//+"<a href='#' onclick='removeInput(this.parentNode)' /> 이미지"+fields+" 항목 제거 <br/><hr></div>";  //해당 업로더만 제거하기.
+			fields += 1;
+		}else{
+			alert("이미지는 최대 6개까지 등록 할 수 있습니다.");
+			document.improvementCaseCreateFrom.add.disabled = true;
+		}
+	}
+	
+	//이미지 업로더 마지막DIV 제거
+	function removeInput1(){
+		var addedFormDiv = document.getElementById('text');
+		
+		if(fields > 1){ // 2일경우 폼이 1개 있다는 의미. 즉 감소할것이 존재함을 의미
+			var addedDiv = document.getElementById("imgInput"+(--fields)); // 제거할 div명을 초기화
+			addedFormDiv.removeChild(addedDiv); //해당 div 삭제 
+		}else{
+			alert("감소할 이미지 업로더가 존재하지 않습니다.");
+		}
+    }
+	
 </script>
 
 
@@ -242,11 +269,11 @@
 									
 									<!-- 기존파일이 있는 경우 파일명을 출력해줌 -->
 									<c:if test="${resultClass.attach_name != null}">
-										<br/><b>기존파일명 : </b>${resultClass.attach_name}
+										<br/><font color="gray">${resultClass.attach_name} (기존파일)</font>
 									</c:if>
 									<!-- 첨부파일이 없는 경우 -->
 									<c:if test="${resultClass.attach_name == null}">
-										<br/><b>기존파일없음</b>
+										<br/><font color="gray">기존파일없음</font>
 									</c:if>
 									
 								</td>
@@ -270,6 +297,30 @@
 									
 								</td>
 							</tr>
+							<tr>
+								<th>첨부이미지</th>
+								<td colspan="5" class="tl">
+									<input type="button"  name="add" value="이미지 업로더 추가" onclick="addInput()"/>
+									<input type="button"  name="remove" value="이미지 업로더 감소" onclick="removeInput1()"/>
+									<font color='#BDBDBD'>이미지는 최대 6개까지 첨부할 수 있습니다.</font> 
+									
+									<div id="text">
+										<!-- 옵션추가 클릭시 여기에 태그 추가 -->
+										
+										<!-- 기존레코드 가져오기 -->
+										<c:forEach var="list" items="${imgNames}">
+											
+											<script>
+												addInput('${list}');
+											</script>
+											
+										</c:forEach>
+										<!-- .//기존레코드 가져오기 -->
+										
+									</div>
+								</td>
+							</tr>
+							
 						</tbody>
 					</table>
 					

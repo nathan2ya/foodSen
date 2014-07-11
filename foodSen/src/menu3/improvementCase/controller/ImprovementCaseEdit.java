@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 
+
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
@@ -32,13 +35,14 @@ import common.Constants;
 @Controller
 public class ImprovementCaseEdit {
 	
-	//수정할 레코드 가져오기 DTO
-	private ImprovementCaseDTO resultClass = new ImprovementCaseDTO();
-	//수정 진행 레코드
-	private ImprovementCaseDTO paramClass = new ImprovementCaseDTO();
+	private ImprovementCaseDTO resultClass = new ImprovementCaseDTO(); //수정할 레코드 가져오기 DTO
+	private ImprovementCaseDTO paramClass = new ImprovementCaseDTO(); //수정 진행 레코드
 	
-	//업로드 파일 경로
-	String file_path = Constants.COMMON_FILE_PATH + Constants.MENU3_IMPROVEMENT_FILE_PATH;
+	String file_path = Constants.COMMON_FILE_PATH + Constants.MENU3_IMPROVEMENT_FILE_PATH; //업로드 파일 경로
+	
+	
+	private int cnt; //이미지 개수
+	
 	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
@@ -67,10 +71,74 @@ public class ImprovementCaseEdit {
 		resultClass = (ImprovementCaseDTO)sqlMapper.queryForObject("ImprovementCase.selectImprovementCaseOne", seq);
 		
 		
+		
+		//수정시 기존 이미지명 저장하기 위한 작업 시작
+			cnt = 0;
+			
+			//이미지 개수를 파악
+			if(resultClass.getImg1() != null){
+				cnt++;
+			}
+			if(resultClass.getImg2() != null){
+				cnt++;
+			}
+			if(resultClass.getImg3() != null){
+				cnt++;
+			}
+			if(resultClass.getImg4() != null){
+				cnt++;
+			}
+			if(resultClass.getImg5() != null){
+				cnt++;
+			}
+			if(resultClass.getImg6() != null){
+				cnt++;
+			}
+			//.이미지 개수를 파악 종료
+			
+			//이미지명을 저장하기 위한 배열
+			String[] imgNames = new String[cnt];
+		
+			//이미지명 저장 시작
+			if(resultClass.getImg1() != null){
+				imgNames[0] = new String(resultClass.getImg1().substring(38));
+			}
+			if(resultClass.getImg2() != null){
+				imgNames[1] = new String(resultClass.getImg2().substring(38));
+			}
+			if(resultClass.getImg3() != null){
+				imgNames[2] = new String(resultClass.getImg3().substring(38));
+			}
+			if(resultClass.getImg4() != null){
+				imgNames[3] = new String(resultClass.getImg4().substring(38));
+			}
+			if(resultClass.getImg5() != null){
+				imgNames[4] = new String(resultClass.getImg5().substring(38));
+			}
+			if(resultClass.getImg6() != null){
+				imgNames[5] = new String(resultClass.getImg6().substring(38));
+			}
+			//.이미지명 저장 종료
+		
+		//.수정시 기존 이미지명 저장하기 위한 작업 종료
+		
+			
+		//테스트	
+		System.out.println("-----------------------------");
+		
+		System.out.println("이미지개수 : "+cnt);
+		for(int i=0; i<imgNames.length; i++) 
+              System.out.println(imgNames[i]);
+		
+		System.out.println("-----------------------------");
+		//테스트
+		
+		
 		request.setAttribute("seq", seq);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("searchingNow", searchingNow);
 		request.setAttribute("resultClass", resultClass);
+		request.setAttribute("imgNames", imgNames);
 		
 		return "/view/menu3/improvementCaseEdit.jsp";
 	}
@@ -104,11 +172,12 @@ public class ImprovementCaseEdit {
 		sqlMapper.update("ImprovementCase.updateImprovementCase", paramClass);
 		
 		
-		//파일삭제를 위해 생성 //파일삭제시 기존 업로드된파일의 경로를 얻기위함
+		//1. 파일삭제를 위해 생성 - 파일삭제시 기존 업로드된파일의 경로를 얻기위함
+		//2. 이미지 파일 수정을 위해 생성 - 사용자가 수정시 이미지 업로더를 추가했는지 감소했는지 판단하고 업데이트를 하기 위함
 		resultClass = (ImprovementCaseDTO)sqlMapper.queryForObject("ImprovementCase.selectImprovementCaseOne", seq);
 		
 		
-		//파일첨부
+		//파일첨부 시작
 			MultipartFile file = request.getFile("filename"); // 업로드된 원본
 			String orgName = file.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
 			
@@ -146,7 +215,16 @@ public class ImprovementCaseEdit {
 					sqlMapper.update("ImprovementCase.updateFile", paramClass);
 				///새로운파일 생성종료
 			}
-		//.파일첨부
+		//.파일첨부 종료
+			
+			
+			
+		//이미지첨부 시작
+			if(resultClass.getImg1() == null){
+				
+			}
+		
+		//.이미지첨부 종료
 		
 		
 		return "redirect:/improvementCaseView.do?seq="+seq+"&currentPage="+currentPage+"&searchingNow="+searchingNow; // 호출한 뷰페이지로 리다이렉트
