@@ -182,6 +182,7 @@
 					<select name = "position">
 						<option value = "1">영양사</option>
 						<option value = "2">조리원</option>
+						<option value = "3">교직원</option>
 					</select>
 				</td>
 			</tr>
