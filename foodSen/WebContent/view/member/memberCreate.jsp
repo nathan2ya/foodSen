@@ -113,6 +113,58 @@
 				return false;
 			}
 		}
+		
+		
+		//전화번호 (-) 자동마스킹
+		function mphon( obj ) { 
+			obj.value =  PhonNumStr( obj.value ); 
+		} 
+		
+		function PhonNumStr( str ){ 
+			var RegNotNum  = /[^0-9]/g; 
+			var RegPhonNum = ""; 
+			var DataForm   = ""; 
+		
+			// return blank     
+			if( str == "" || str == null ) return ""; 
+		
+			// delete not number
+			str = str.replace(RegNotNum,''); 
+		
+			if( str.length < 4 ) return str; 
+		
+			if( str.length > 3 && str.length < 7 ) { 
+			   	DataForm = "$1-$2"; 
+				RegPhonNum = /([0-9]{3})([0-9]+)/; 
+			} else if(str.length == 7 ) {
+				DataForm = "$1-$2"; 
+				RegPhonNum = /([0-9]{3})([0-9]{4})/; 
+			} else if(str.length == 9 ) {
+				DataForm = "$1-$2-$3"; 
+				RegPhonNum = /([0-9]{2})([0-9]{3})([0-9]+)/; 
+			} else if(str.length == 10){ 
+				if(str.substring(0,2)=="02"){
+					DataForm = "$1-$2-$3"; 
+					RegPhonNum = /([0-9]{2})([0-9]{4})([0-9]+)/; 
+				}else{
+					DataForm = "$1-$2-$3"; 
+					RegPhonNum = /([0-9]{3})([0-9]{3})([0-9]+)/;
+				}
+			} else if(str.length > 10){ 
+				DataForm = "$1-$2-$3"; 
+				RegPhonNum = /([0-9]{3})([0-9]{4})([0-9]+)/; 
+			} 
+		
+			while( RegPhonNum.test(str) ) {  
+				str = str.replace(RegPhonNum, DataForm);  
+			} 
+		
+			return str; 
+		}
+		//.전화번호 자동마스킹 종료
+		
+		
+		
 	</script>
 </head>
 
@@ -201,7 +253,7 @@
 			<tr>	
 				<td width="200" height="16" align="right">폰번호</td>
 				<td width="500" height="16" align="left">
-					<input type="text" name="phone" id="phone" size="45" maxlength="20" />
+					<input type="text" name="phone" id="phone" size="45" maxlength="13" onkeydown="mphon(this);" onkeyup="mphon(this);" />
 				</td>
 			</tr>
 	

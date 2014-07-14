@@ -38,6 +38,54 @@
 			}
 		}
 		
+		//전화번호 (-) 자동마스킹
+		function mphon( obj ) { 
+			obj.value =  PhonNumStr( obj.value ); 
+		} 
+		
+		function PhonNumStr( str ){ 
+			var RegNotNum  = /[^0-9]/g; 
+			var RegPhonNum = ""; 
+			var DataForm   = ""; 
+		
+			// return blank     
+			if( str == "" || str == null ) return ""; 
+		
+			// delete not number
+			str = str.replace(RegNotNum,''); 
+		
+			if( str.length < 4 ) return str; 
+		
+			if( str.length > 3 && str.length < 7 ) { 
+			   	DataForm = "$1-$2"; 
+				RegPhonNum = /([0-9]{3})([0-9]+)/; 
+			} else if(str.length == 7 ) {
+				DataForm = "$1-$2"; 
+				RegPhonNum = /([0-9]{3})([0-9]{4})/; 
+			} else if(str.length == 9 ) {
+				DataForm = "$1-$2-$3"; 
+				RegPhonNum = /([0-9]{2})([0-9]{3})([0-9]+)/; 
+			} else if(str.length == 10){ 
+				if(str.substring(0,2)=="02"){
+					DataForm = "$1-$2-$3"; 
+					RegPhonNum = /([0-9]{2})([0-9]{4})([0-9]+)/; 
+				}else{
+					DataForm = "$1-$2-$3"; 
+					RegPhonNum = /([0-9]{3})([0-9]{3})([0-9]+)/;
+				}
+			} else if(str.length > 10){ 
+				DataForm = "$1-$2-$3"; 
+				RegPhonNum = /([0-9]{3})([0-9]{4})([0-9]+)/; 
+			} 
+		
+			while( RegPhonNum.test(str) ) {  
+				str = str.replace(RegPhonNum, DataForm);  
+			} 
+		
+			return str; 
+		}
+		//.전화번호 자동마스킹 종료
+		
 	</script>
 </head>
 
@@ -101,53 +149,53 @@
 						<font color="red">관리자</font><input type="hidden" name="school_type" value="0" />
 					</c:if>
 					
-					<c:if test="${resultClass.school_type == 1}">
+					<c:if test="${resultClass.school_type == 01}">
 						<select name = "school_type">
-							<option value = "1" selected>초등학교</option>
-							<option value = "2">중학교</option>
-							<option value = "3">고등학교</option>
-							<option value = "4">특수학교</option>
-							<option value = "5">각종</option>
+							<option value = "01" selected>초등학교</option>
+							<option value = "02">중학교</option>
+							<option value = "03">고등학교</option>
+							<option value = "04">특수학교</option>
+							<option value = "05">각종</option>
 						</select>
 					</c:if>
 					
-					<c:if test="${resultClass.school_type == 2}">
+					<c:if test="${resultClass.school_type == 02}">
 						<select name = "school_type">
-							<option value = "1">초등학교</option>
-							<option value = "2" selected>중학교</option>
-							<option value = "3">고등학교</option>
-							<option value = "4">특수학교</option>
-							<option value = "5">각종</option>
+							<option value = "01">초등학교</option>
+							<option value = "02" selected>중학교</option>
+							<option value = "03">고등학교</option>
+							<option value = "04">특수학교</option>
+							<option value = "05">각종</option>
 						</select>
 					</c:if>
 					
-					<c:if test="${resultClass.school_type == 3}">
+					<c:if test="${resultClass.school_type == 03}">
 						<select name = "school_type">
-							<option value = "1">초등학교</option>
-							<option value = "2">중학교</option>
-							<option value = "3" selected>고등학교</option>
-							<option value = "4">특수학교</option>
-							<option value = "5">각종</option>
+							<option value = "01">초등학교</option>
+							<option value = "02">중학교</option>
+							<option value = "03" selected>고등학교</option>
+							<option value = "04">특수학교</option>
+							<option value = "05">각종</option>
 						</select>
 					</c:if>
 					
-					<c:if test="${resultClass.school_type == 4}">
+					<c:if test="${resultClass.school_type == 04}">
 						<select name = "school_type">
-							<option value = "1">초등학교</option>
-							<option value = "2">중학교</option>
-							<option value = "3">고등학교</option>
-							<option value = "4" selected>특수학교</option>
-							<option value = "5">각종</option>
+							<option value = "01">초등학교</option>
+							<option value = "02">중학교</option>
+							<option value = "03">고등학교</option>
+							<option value = "04" selected>특수학교</option>
+							<option value = "05">각종</option>
 						</select>
 					</c:if>
 					
-					<c:if test="${resultClass.school_type == 5}">
+					<c:if test="${resultClass.school_type == 05}">
 						<select name = "school_type">
-							<option value = "1">초등학교</option>
-							<option value = "2">중학교</option>
-							<option value = "3">고등학교</option>
-							<option value = "4">특수학교</option>
-							<option value = "5" selected>각종</option>
+							<option value = "01">초등학교</option>
+							<option value = "02">중학교</option>
+							<option value = "03">고등학교</option>
+							<option value = "04">특수학교</option>
+							<option value = "05" selected>각종</option>
 						</select>
 					</c:if>
 					
@@ -162,17 +210,27 @@
 						<font color="red">관리자</font><input type="hidden" name="position" value="0" />
 					</c:if>
 					
-					<c:if test="${resultClass.position == 1}">
+					<c:if test="${resultClass.position == 01}">
 						<select name = "position">
-							<option value = "1" selected>영양사</option>
-							<option value = "2">조리원</option>
+							<option value = "01" selected>영양사</option>
+							<option value = "02">조리원</option>
+							<option value = "03">교직원</option>
 						</select>
 					</c:if>
 					
-					<c:if test="${resultClass.position == 2}">
+					<c:if test="${resultClass.position == 02}">
 						<select name = "position">
-							<option value = "1">영양사</option>
-							<option value = "2" selected>조리원</option>
+							<option value = "01">영양사</option>
+							<option value = "02" selected>조리원</option>
+							<option value = "03">교직원</option>
+						</select>
+					</c:if>
+					
+					<c:if test="${resultClass.position == 03}">
+						<select name = "position">
+							<option value = "01">영양사</option>
+							<option value = "02">조리원</option>
+							<option value = "03" selected>교직원</option>
 						</select>
 					</c:if>
 					
@@ -191,7 +249,7 @@
 			<tr>	
 				<td width="200" height="16" align="right">폰번호</td>
 				<td width="500" height="16" align="left">
-					<input type="text" name="phone" id="phone" size="45" maxlength="20" value="${resultClass.phone}" />
+					<input type="text" name="phone" id="phone" size="45" maxlength="13" onkeydown="mphon(this);" onkeyup="mphon(this);" value="${resultClass.phone}" />
 				</td>
 			</tr>
 			
