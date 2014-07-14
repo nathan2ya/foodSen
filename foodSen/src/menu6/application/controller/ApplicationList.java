@@ -75,7 +75,7 @@ public class ApplicationList {
 		searchingNow = 0; //0 == 전체글//1 == 검색글//
 				
 		
-		list = sqlMapper.queryForList("Recruit.selectAll"); //전체글
+		list = sqlMapper.queryForList("Application.selectAll"); //전체글
 		int numberCount = list.size(); // 전체 레코드 개수
 		
 		
