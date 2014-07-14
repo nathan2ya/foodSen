@@ -68,66 +68,18 @@
 		
 		var upfiles=document.getElementById("filename").value;
 		
-		if(upfiles.match(/\.(php|php3|html|htm|cgi|pl|asp|jsp)$/i))
-		{
+		//match 는 없으면 null 을 반환함
+		if(upfiles.match(/\.(php|php3|html|htm|cgi|pl|asp|jsp)$/i)){ //기호뒤에 다음의 확장명이 있으면 true
 			alert('업로드가 불가능한 확장자 입니다.');
 			return;
-		}
-		
-		if(inputCheckSpecial(upfiles) == false){
-			alert("파일명에 '(', ')', '-', '_', '·' 를 제외한 특수문자가 입력되어 있습니다.");
-			return;
-		}
-		
-		if(upfiles == null || upfiles == ""){
-			
-		}else{
-			var size = 0;
-			var browser=navigator.appName;
-			
-			if (browser=="Microsoft Internet Explorer"){
-				var oas = new ActiveXObject("Scripting.FileSystemObject");
-				var filepath = document.getElementById('filename').value;
-				var e = oas.getFile(filepath);
-				size = e.size;
-			}
-			else{
-				var node = document.getElementById('filename');
-				size = node.files[0].fileSize;
-			}
-			if(fileCheck(size) == false){
-				 alert("첨부파일 사이즈는 0바이트 초과 또는 50MB 이내로 등록 가능합니다.");
-				 return;
-			}
 		}
 		
 		inspectionResultCreateFrom.submit();
 	}
 	
-	/* 파일사이즈 체크 */
-	function fileCheck(fileSize){
-	   //사이즈체크
-	   var maxSize  = 50000000;   //50MB
-	   if(fileSize > maxSize) {
-	        return false;
-	   }
 	
-	   return true;
-	}
-	
-	/*특수문자사용못하게*/
-	function inputCheckSpecial(str){
-	
-	   var strobj = str;
-	   re = /[~!@\#$%^&\=+']/gi;
-	   if(re.test(strobj)){
-	   		return false;
-	   }
-	   return true;
-	}
 	
 	function validateSQL(obj){
-		
 		// SQLInjection을 막는 가장 간단한 방법은 입력되는 내용에서 '또는 "을 찾아 바꾸거나 입력하지 못하게 하는 것이다.	
 		var x=obj;
 		var pos = 0;
@@ -152,6 +104,7 @@
 		}
 	}
 	
+	//문자수 체크
 	function getStrByte(str) {
 		var p, len = 0;
 		for(p=0; p<str.length; p++) {
@@ -160,15 +113,20 @@
 		return len;
 	} // 문자열의 byte수를 구하는 함수 - 한글이라면 글자당 2bytes, 그외에는 1byte로 계산한다.
 	
+	
+	//문자열 자르기
 	String.prototype.cut = function(len) {
 	    var str = this;
 	    var l = 0;
 	    for (var i=0; i<str.length; i++) {
 	            l += (str.charCodeAt(i) > 255) ? 2 : 1;
-	            if (l > len) return str.substring(0,i);
+	            
+	            if (l > len)//초과시 잘라줌
+	            	return str.substring(0,i);
 	    }
 	    return str;
 	}; // 문자열을 잘라주는 함수 - 원하는 byte수만큼 잘라준다
+	
 	
 	function onKeyUp(){
 		var code = event.keyCode;
