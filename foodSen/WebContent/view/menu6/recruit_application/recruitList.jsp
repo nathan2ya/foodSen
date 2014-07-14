@@ -181,7 +181,6 @@
 							
 							
 							<c:forEach var="list" items="${list}">
-							
 								<c:url var="url" value="/inspectionResultView.do"> 
 									<c:param name="seq" value="${list.seq}"/>
 									<c:param name="currentPage" value="${currentPage}"/>
@@ -191,7 +190,8 @@
 										<c:param name="userinput" value="${userinput}"/>
 									</c:if>
 								</c:url>
-								
+								 
+								 
 								<tr>
 									<td align="center">
 										<c:out value="${number}" />
@@ -210,26 +210,17 @@
 										${list.loc_seq}
 									</td>
 									<td align="left">
-										마감여부 here
+										${list.end_yn}
 									</td>
 									<td align="left">
 										${list.school_name}${list.school_type}
 									</td>
 									<td align="left">
-										${list.reg_date}
+										<fmt:formatDate value="${list.reg_date}"  pattern="yyyy-MM-dd" />
 									</td>
 									<td align="left">
 										${list.hits}
 									</td>
-									
-									<td>
-										<c:if test="${list.attach_name != null}">
-											<img src="./images/sub/btn/btn_down.gif" alt="pdf" />
-										</c:if>
-									</td>
-									<td align="center">${list.wirte}</td>
-									<td align="center"><fmt:formatDate value="${list.reg_date}"  pattern="yyyy-MM-dd" /></td>
-									<td align="center">${list.hits}</td>
 								</tr>
 							</c:forEach>
 							

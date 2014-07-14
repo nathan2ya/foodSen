@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import menu2.inspectionResult.dto.InspectionResultDTO;
+import menu6.recruit.dto.RecruitDTO;
 
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
@@ -36,7 +36,7 @@ import common.PagingAction;
 public class RecruitList {
 	
 	//리스트
-	private List<InspectionResultDTO> list = new ArrayList<InspectionResultDTO>();
+	private List<RecruitDTO> list = new ArrayList<RecruitDTO>();
 	
 	//검색중
 	private String tempInput;
@@ -163,7 +163,6 @@ public class RecruitList {
 	
 	
 	
-	
 	/*
 	//학교급식인력풀(구인) (검색글) 리스트
 	@RequestMapping("/inspectionResultSearch.do")
@@ -247,5 +246,6 @@ public class RecruitList {
 		return  "/view/menu2/inspectionResultList.jsp";
 	}
 	*/
+	
 	
 }

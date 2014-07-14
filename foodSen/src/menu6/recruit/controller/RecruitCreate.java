@@ -114,7 +114,7 @@ public class RecruitCreate {
 		paramClass.setWriter(session_id);
 		
 		//등록만기 N
-		paramClass.setEnd_yn("n");
+		paramClass.setEnd_yn("N");
 		
 		//DB에 insert 하기 (글 등록)
 		sqlMapper.insert("Recruit.insertRecruit", paramClass);
