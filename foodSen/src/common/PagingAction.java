@@ -149,10 +149,11 @@ public class PagingAction {
 
 		// 이전 block 페이지
 		pagingHtml = new StringBuffer();
+		pagingHtml.append("<a href=" + serviceName + ".do?searchType="+searchType+"&userinput="+userinput+"&currentPage=1><img src='./images/sub/btn/pre_01.gif'  alt='처음으로' /></a>");
+		
 		if (currentPage > blockPage) {
-			pagingHtml.append("<a href=" + serviceName + ".do?searchType="+searchType+"&userinput="+userinput+"&currentPage=1><font size=2 color='#050099'> 처음으로 </font></a>");
 			pagingHtml.append("<a href=" + serviceName + ".do?searchType="+searchType+"&userinput="+userinput+"&currentPage=" + (startPage - 1) + ">");
-			pagingHtml.append("이전");
+			pagingHtml.append("<img src='./images/sub/btn/pre.gif' alt='이전 페이지로 가기' />");
 			pagingHtml.append("</a>");
 		}
 
@@ -179,16 +180,18 @@ public class PagingAction {
 		if (totalPage - startPage >= blockPage) {
 			pagingHtml.append("<a href=" + serviceName
 					+ ".do?searchType="+searchType+"&userinput="+userinput+"&currentPage=" + (endPage + 1) + ">");
-			pagingHtml.append("다음");
+			pagingHtml.append("<img src='./images/sub/btn/next.gif' alt='다음 페이지' />");
 			pagingHtml.append("</a>");
-			pagingHtml.append("<a href=" + serviceName + ".do?searchType="+searchType+"&userinput="+userinput+"&currentPage="+totalPage+"> <font size=2 color='#050099'> 마지막으로 </font></a>");
 		}
+		
+		//마지막
+		pagingHtml.append("<a href=" + serviceName + ".do?searchType="+searchType+"&userinput="+userinput+"&currentPage="+totalPage+"> <img src='./images/sub/btn/next_01.gif' alt='마지막페이지' /> </a>");
 	}
     // .생성자2
     
     
     
- // 생성자3: String serviceName,  searchType, userinput 파라미터 // 검색글 페이징 동작시
+ // 생성자3: String serviceName,  searchType, userinput 파라미터 // 학교급식인력풀(구인) 검색글 페이징 동작시
     public PagingAction(String serviceName, int currentPage, int totalCount, int blockCount, int blockPage, String searchType, String subType, String subValue) {
     	//파라미터 초기화
     	this.serviceName = serviceName;
@@ -226,10 +229,11 @@ public class PagingAction {
 
 		// 이전 block 페이지
 		pagingHtml = new StringBuffer();
+		pagingHtml.append("<a href=" + serviceName + ".do?searchType="+searchType+"&"+subType+"="+subValue+"&currentPage=1><img src='./images/sub/btn/pre_01.gif'  alt='처음으로' /></a>");
+		
 		if (currentPage > blockPage) {
-			pagingHtml.append("<a href=" + serviceName + ".do?searchType="+searchType+"&"+subType+"="+subValue+"&currentPage=1><font size=2 color='#050099'> 처음으로 </font></a>");
 			pagingHtml.append("<a href=" + serviceName + ".do?searchType="+searchType+"&"+subType+"="+subValue+"&currentPage=" + (startPage - 1) + ">");
-			pagingHtml.append("이전");
+			pagingHtml.append("<img src='./images/sub/btn/pre.gif' alt='이전 페이지로 가기' />");
 			pagingHtml.append("</a>");
 		}
 
@@ -256,10 +260,13 @@ public class PagingAction {
 		if (totalPage - startPage >= blockPage) {
 			pagingHtml.append("<a href=" + serviceName
 					+ ".do?searchType="+searchType+"&"+subType+"="+subValue+"&currentPage=" + (endPage + 1) + ">");
-			pagingHtml.append("다음");
+			pagingHtml.append("<img src='./images/sub/btn/next.gif' alt='다음 페이지' />");
 			pagingHtml.append("</a>");
-			pagingHtml.append("<a href=" + serviceName + ".do?searchType="+searchType+""+subType+"="+subValue+"&currentPage="+totalPage+"> <font size=2 color='#050099'> 마지막으로 </font></a>");
 		}
+		
+		//마지막
+		pagingHtml.append("<a href=" + serviceName + ".do?searchType="+searchType+"&"+subType+"="+subValue+"&currentPage="+totalPage+"> <img src='./images/sub/btn/next_01.gif' alt='마지막페이지' /></a>");
+		
 	}
     // .생성자3
     
