@@ -89,7 +89,7 @@ public class ImprovementCasePopup {
 		//.이미지 개수를 파악 종료
 		
 		
-		System.out.println("이미지 개수 산출(팝업) : "+cnt);
+		System.out.println("Popup에서 호출 // 이미지개수 : "+cnt);
 		
 		
 		request.setAttribute("cnt", cnt); // 전체,검색글을 판단함
