@@ -181,7 +181,7 @@
 							
 							
 							<c:forEach var="list" items="${list}">
-								<c:url var="url" value="/inspectionResultView.do"> 
+								<c:url var="url" value="/recruitView.do"> 
 									<c:param name="seq" value="${list.seq}"/>
 									<c:param name="currentPage" value="${currentPage}"/>
 									<c:param name="searchingNow" value="${searchingNow}"/>
@@ -201,19 +201,126 @@
 										<a href=${url}>${list.title}</a>
 									</td>
 									<td align="left">
-										${list.job}
+										<c:if test="${list.job == 01}">
+											영양교사
+										</c:if>
+										<c:if test="${list.job == 02}">
+											영양사
+										</c:if>
+										<c:if test="${list.job == 03}">
+											조리사
+										</c:if>
+										<c:if test="${list.job == 04}">
+											조리원
+										</c:if>
+										<c:if test="${list.job == 05}">
+											배식도우미
+										</c:if>
 									</td>
 									<td align="left">
-										${list.gubun}
+										<c:if test="${list.gubun == 01}">
+											전일제
+										</c:if>
+										<c:if test="${list.gubun == 02}">
+											시간제
+										</c:if>
 									</td>
 									<td align="left">
-										${list.loc_seq}
+										<c:if test="${list.loc_seq == 01}">
+											강남구
+										</c:if>
+										<c:if test="${list.loc_seq == 02}">
+											강동구
+										</c:if>
+										<c:if test="${list.loc_seq == 03}">
+											강북구
+										</c:if>
+										<c:if test="${list.loc_seq == 04}">
+											강서구
+										</c:if>
+										<c:if test="${list.loc_seq == 05}">
+											관악구
+										</c:if>
+										<c:if test="${list.loc_seq == 06}">
+											광진구
+										</c:if>
+										<c:if test="${list.loc_seq == 07}">
+											구로구
+										</c:if>
+										<c:if test="${list.loc_seq == 08}">
+											금천구
+										</c:if>
+										<c:if test="${list.loc_seq == 09}">
+											노원구
+										</c:if>
+										<c:if test="${list.loc_seq == 10}">
+											도봉구
+										</c:if>
+										<c:if test="${list.loc_seq == 11}">
+											동대문구
+										</c:if>
+										<c:if test="${list.loc_seq == 12}">
+											동작구
+										</c:if>
+										<c:if test="${list.loc_seq == 13}">
+											마포구
+										</c:if>
+										<c:if test="${list.loc_seq == 14}">
+											서대문구
+										</c:if>
+										<c:if test="${list.loc_seq == 15}">
+											서초구
+										</c:if>
+										<c:if test="${list.loc_seq == 16}">
+											성동구
+										</c:if>
+										<c:if test="${list.loc_seq == 17}">
+											성북구
+										</c:if>
+										<c:if test="${list.loc_seq == 18}">
+											송파구
+										</c:if>
+										<c:if test="${list.loc_seq == 19}">
+											양천구
+										</c:if>
+										<c:if test="${list.loc_seq == 20}">
+											영등포구
+										</c:if>
+										<c:if test="${list.loc_seq == 21}">
+											강남구
+										</c:if>
+										<c:if test="${list.loc_seq == 22}">
+											용산구
+										</c:if>
+										<c:if test="${list.loc_seq == 23}">
+											종로구
+										</c:if>
+										<c:if test="${list.loc_seq == 24}">
+											중구
+										</c:if>
+										<c:if test="${list.loc_seq == 25}">
+											중랑구
+										</c:if>
 									</td>
 									<td align="left">
 										${list.end_yn}
 									</td>
 									<td align="left">
-										${list.school_name}${list.school_type}
+										<c:if test="${list.school_type == 1}">
+											${list.school_name}초
+										</c:if>
+										<c:if test="${list.school_type == 2}">
+											${list.school_name}중
+										</c:if>
+										<c:if test="${list.school_type == 3}">
+											${list.school_name}고
+										</c:if>
+										<c:if test="${list.school_type == 4}">
+											${list.school_name}특수
+										</c:if>
+										<c:if test="${list.school_type == 5}">
+											${list.school_name}각종
+										</c:if>
 									</td>
 									<td align="left">
 										<fmt:formatDate value="${list.reg_date}"  pattern="yyyy-MM-dd" />

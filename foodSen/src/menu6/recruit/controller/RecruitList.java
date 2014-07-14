@@ -138,7 +138,6 @@ public class RecruitList {
 		}
 		//.제목 15글자 단위로 개행 종료
 				
-				
 		
 		
 		//가변 시퀀스 넘버
@@ -146,16 +145,11 @@ public class RecruitList {
 		//.가변 시퀀스 넘버 종료
 		
 		
-		
-		
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pagingHtml", pagingHtml);
-		
 		request.setAttribute("list", list);
 		request.setAttribute("number", number); //글넘버 - 가변으로 선정되는 게시글의 숫자
-		
 		request.setAttribute("searchingNow", searchingNow); // 전체,검색글을 판단함
-		
 		
 		return "/view/menu6/recruit_application/recruitList.jsp";
 	}
