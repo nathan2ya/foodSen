@@ -58,6 +58,13 @@
 	
 	
 	<!-- insert -->
+	<insert id="insertRecruit" parameterClass="recruitDTO">
+		insert into TB_05_RECRUIT
+			(seq, title, pw, school_name, school_type, loc_seq, job, gubun, email, phone, description, hits, writer, reg_name, reg_date, udt_name, udt_date, end_yn)
+		values
+			(TB_05_RECRUIT_seq.NEXTVAL, #title#, #pw#, #school_name#, #school_type#, #loc_seq#, #job#, #gubun#, #email#, #phone#, #description#, #hits#, #writer#, #reg_name#, #reg_date#, #udt_name#, #udt_date#, #end_yn#)
+	</insert>
+	
 	
 	
 	
@@ -67,9 +74,20 @@
 		order by seq desc
 	</select>
 	
+	<select id="selectLastNum" resultClass="recruitDTO" parameterClass="int">
+		SELECT MAX(seq) AS seq from TB_05_RECRUIT
+	</select>
+	
 		
 
 	<!-- update -->
+	<update id="updateFile" parameterClass="recruitDTO">
+		UPDATE TB_05_RECRUIT
+		SET
+			attach_name = #attach_name#,
+			attach_path = #attach_path#
+		where seq = #seq#
+	</update>
 	
 	
 	

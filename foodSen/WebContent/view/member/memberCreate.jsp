@@ -197,6 +197,13 @@
 					<font color="gray" size="2">모든 주소를 기입해주세요. 최대20자</font>
 				</td>
 			</tr>
+			
+			<tr>	
+				<td width="200" height="16" align="right">폰번호</td>
+				<td width="500" height="16" align="left">
+					<input type="text" name="phone" id="phone" size="45" maxlength="20" />
+				</td>
+			</tr>
 	
 			<tr>
 				<td height="8"colspan="2" align="right">

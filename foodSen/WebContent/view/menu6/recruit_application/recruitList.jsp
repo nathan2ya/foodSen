@@ -163,9 +163,9 @@
 							<th>NO</th>
 							<th>제목</th>
 							<th>직종</th>
-							<th>근무<br />형태</th>
+							<th>근무<br/>형태</th>
 							<th>지역</th>
-							<th>마감<br />여부</th>
+							<th>마감<br/>여부</th>
 							<th>학교명</th>
 							<th>등록일</th>
 							<th>조회수</th>
@@ -200,6 +200,28 @@
 									<td align="left">
 										<a href=${url}>${list.title}</a>
 									</td>
+									<td align="left">
+										${list.job}
+									</td>
+									<td align="left">
+										${list.gubun}
+									</td>
+									<td align="left">
+										${list.loc_seq}
+									</td>
+									<td align="left">
+										마감여부 here
+									</td>
+									<td align="left">
+										${list.school_name}${list.school_type}
+									</td>
+									<td align="left">
+										${list.reg_date}
+									</td>
+									<td align="left">
+										${list.hits}
+									</td>
+									
 									<td>
 										<c:if test="${list.attach_name != null}">
 											<img src="./images/sub/btn/btn_down.gif" alt="pdf" />
@@ -228,13 +250,13 @@
 				<!-- 목록 . 등록 버튼 -->
 				<span class="bbs_btn"> 
 					<span class="wte_l">
-						<a href="/foodSen/inspectionResultList.do" class="wte_r">목록</a>
+						<a href="/foodSen/recruitList.do" class="wte_r">목록</a>
 					</span>
 					
 					<!-- 교직원인 경우만 등록버튼 노출 -->
 					<c:if test="${sessionScope.session_position == 3}">
 						<span class="per_l">
-							<a href="/foodSen/inspectionResultCreateFrom.do" class="pre_r">등록</a>
+							<a href="/foodSen/recruitCreateForm.do" class="pre_r">등록</a>
 						</span>
 					</c:if>
 					<!-- .//관리자일경우 등록버튼 노출 -->

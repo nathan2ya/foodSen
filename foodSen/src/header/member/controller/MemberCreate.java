@@ -64,6 +64,7 @@ public class MemberCreate {
 		String school_type = request.getParameter("school_type");
 		String position = request.getParameter("position");
 		String sen_email = request.getParameter("sen_email");
+		String phone = request.getParameter("phone");
 		Calendar today = Calendar.getInstance(); //³¯Â¥
 
 		
@@ -74,6 +75,7 @@ public class MemberCreate {
 		paramClass.setSchool_name(school_name);
 		paramClass.setPosition(position);
 		paramClass.setSen_email(sen_email);
+		paramClass.setPhone(phone);
 		paramClass.setAdmin_yn("n");
 		paramClass.setApprove_yn("n");
 		paramClass.setSchool_type(school_type);

@@ -70,7 +70,8 @@ public class MemberEdit {
 		String school_type = request.getParameter("school_type");
 		String position = request.getParameter("position");
 		String sen_email = request.getParameter("sen_email");
-
+		String phone = request.getParameter("phone");
+		
 		
 		//사용자 정보 DB update
 		paramClass.setUser_id(session_id); // update 대상 레코드
@@ -80,6 +81,7 @@ public class MemberEdit {
 		paramClass.setPosition(position);
 		paramClass.setSen_email(sen_email);
 		paramClass.setSchool_type(school_type);
+		paramClass.setPhone(phone);
 		
 		sqlMapper.update("Member.updateMember", paramClass);
 		

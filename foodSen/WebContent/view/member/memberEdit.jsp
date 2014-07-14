@@ -97,6 +97,10 @@
 				<td width="200" height="8" align="right">학교종류</td>
 				<td width="500" height="8" align="left">
 					
+					<c:if test="${resultClass.school_type == 0}">
+						<font color="red">관리자</font><input type="hidden" name="school_type" value="0" />
+					</c:if>
+					
 					<c:if test="${resultClass.school_type == 1}">
 						<select name = "school_type">
 							<option value = "1" selected>초등학교</option>
@@ -153,6 +157,10 @@
 			<tr>	
 				<td width="200" height="8" align="right">직위</td>
 				<td width="500" height="8" align="left">
+				
+					<c:if test="${resultClass.position == 0}">
+						<font color="red">관리자</font><input type="hidden" name="position" value="0" />
+					</c:if>
 					
 					<c:if test="${resultClass.position == 1}">
 						<select name = "position">
@@ -177,6 +185,13 @@
 					<input type="text" name="sen_email" id="sen_email" size="45" maxlength="20" value="${resultClass.sen_email}" onblur="emailValue();"/>
 					<br/>
 					<font color="gray" size="2">모든 주소를 기입해주세요. 최대20자</font>
+				</td>
+			</tr>
+			
+			<tr>	
+				<td width="200" height="16" align="right">폰번호</td>
+				<td width="500" height="16" align="left">
+					<input type="text" name="phone" id="phone" size="45" maxlength="20" value="${resultClass.phone}" />
 				</td>
 			</tr>
 			

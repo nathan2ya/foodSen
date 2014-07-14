@@ -12,6 +12,7 @@
 		<result property="school_name" column="school_name" />
 		<result property="position" column="position" />
 		<result property="sen_email" column="sen_email" />
+		<result property="phone" column="phone" />
 		<result property="admin_yn" column="admin_yn" />
 		<result property="admin_pw" column="admin_pw" />
 		<result property="approve_yn" column="approve_yn" />
@@ -48,9 +49,9 @@
 	<!-- insert -->
 	<insert id="insertMember" parameterClass="memberDTO">
 		insert into TB_00_MEMBER
-			(user_id, user_pw, member_seq, member_name, school_name, position, sen_email, admin_yn, admin_pw, approve_yn, school_type, reg_date)
+			(user_id, user_pw, member_seq, member_name, school_name, position, sen_email, phone, admin_yn, admin_pw, approve_yn, school_type, reg_date)
 		values
-			(#user_id#, #user_pw#, TB_00_MEMBER_seq.NEXTVAL, #member_name#, #school_name#, #position#, #sen_email#, #admin_yn#, #admin_pw#, #approve_yn#, #school_type#, #reg_date#)
+			(#user_id#, #user_pw#, TB_00_MEMBER_seq.NEXTVAL, #member_name#, #school_name#, #position#, #sen_email#, #phone#, #admin_yn#, #admin_pw#, #approve_yn#, #school_type#, #reg_date#)
 	</insert>
 	
 	
@@ -64,6 +65,7 @@
 			school_name = #school_name#,
 			position = #position#,
 			sen_email = #sen_email#,
+			phone = #phone#,
 			school_type = #school_type#
 		where user_id = #user_id#
 	</update>

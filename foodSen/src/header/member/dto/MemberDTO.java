@@ -10,6 +10,7 @@ public class MemberDTO {
 	private String school_name;
 	private String position;
 	private String sen_email;
+	private String phone;
 	private String admin_yn;
 	private String admin_pw;
 	private String approve_yn;
@@ -87,5 +88,11 @@ public class MemberDTO {
 	}
 	public void setUser_pw(String user_pw) {
 		this.user_pw = user_pw;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 }
