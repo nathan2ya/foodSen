@@ -251,12 +251,12 @@
             </div>
           </div>
         </li>
-        <li class="mainMenu"><a href="http://food.sen.go.kr/recruitList.do"><img src="./images/header/common/mm_partOff.gif" alt="참여마당" /></a>
+        <li class="mainMenu"><a href="/foodSen/recruitList.do"><img src="./images/header/common/mm_partOff.gif" alt="참여마당" /></a>
           <div class="subMenu" id="sub06" style="display:none;">
             <div class="boxSR">
               <ul class="boxSM">
                 <li class="left_bg"></li>
-                <li class="subMenu"><a href="http://food.sen.go.kr/recruitList.do"><img src="./images/header/common/sm_part01Off.gif" alt="학교급식인력풀" /></a></li>
+                <li class="subMenu"><a href="/foodSen/recruitList.do"><img src="./images/header/common/sm_part01Off.gif" alt="학교급식인력풀" /></a></li>
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_part02Off.gif" alt="영양(교)사이야기" /></a></li>
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_part03Off.gif" alt="조리(원)사이야기" /></a></li>
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_part04Off.gif" alt="자유게시판" /></a></li>

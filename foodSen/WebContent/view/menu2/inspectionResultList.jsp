@@ -125,7 +125,7 @@
 						</tr>
 						
 						
-						<c:if test="${list == null}">
+						<c:if test="${list eq '[]'}">
 							<tr>
 								<td colspan="6" align="center">게시글이 없습니다.</td>
 							</tr>

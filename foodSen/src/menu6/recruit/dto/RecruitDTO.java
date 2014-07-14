@@ -8,9 +8,9 @@ public class RecruitDTO {
     private String title;
     private String pw;
     private String school_name;
-    private String school_type; // 초/중/고
-    private String loc_seq; // 서울/대전/강원/대구/부산/전주
-    private String job; // 영양교사/영양사/조리사/조리원
+    private String school_type; // 초/중/고/특수/각종
+    private String loc_seq;
+    private String job; // 영양교사/영양사/조리사/조리원/배식도우미
     private String gubun; // 전일제/시간제
     private String email;
     private String phone;

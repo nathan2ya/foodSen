@@ -62,7 +62,10 @@
 	
 	
 	<!-- select -->
-	
+	<select id="selectAll" resultMap="recruitRes" parameterClass="int">
+		select * from TB_05_RECRUIT
+		order by seq desc
+	</select>
 	
 		
 
