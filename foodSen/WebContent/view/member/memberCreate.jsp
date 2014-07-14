@@ -172,6 +172,8 @@
 						<option value = "1">초등학교</option>
 						<option value = "2">중학교</option>
 						<option value = "3">고등학교</option>
+						<option value = "4">특수학교</option>
+						<option value = "5">각종</option>
 					</select>
 				</td>
 			</tr>

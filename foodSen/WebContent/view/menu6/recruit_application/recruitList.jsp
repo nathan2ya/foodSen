@@ -171,7 +171,6 @@
 							<th>조회수</th>
 						</tr>
 			
-						
 						<c:if test="${list eq '[]'}">
 							<tr>
 								<td colspan="9" align="center">게시글이 없습니다.</td>
@@ -219,7 +218,6 @@
 				</table>
 
 
-
 				<!-- 페이징 -->
 				<ul class="paging">
 					<li>${pagingHtml}</li>
@@ -233,8 +231,8 @@
 						<a href="/foodSen/inspectionResultList.do" class="wte_r">목록</a>
 					</span>
 					
-					<!-- 관리자일경우 등록버튼 노출 -->
-					<c:if test="${sessionScope.session_admin_yn == 'y'}">
+					<!-- 교직원인 경우만 등록버튼 노출 -->
+					<c:if test="${sessionScope.session_position == 3}">
 						<span class="per_l">
 							<a href="/foodSen/inspectionResultCreateFrom.do" class="pre_r">등록</a>
 						</span>

@@ -102,6 +102,8 @@
 							<option value = "1" selected>초등학교</option>
 							<option value = "2">중학교</option>
 							<option value = "3">고등학교</option>
+							<option value = "4">특수학교</option>
+							<option value = "5">각종</option>
 						</select>
 					</c:if>
 					
@@ -110,6 +112,8 @@
 							<option value = "1">초등학교</option>
 							<option value = "2" selected>중학교</option>
 							<option value = "3">고등학교</option>
+							<option value = "4">특수학교</option>
+							<option value = "5">각종</option>
 						</select>
 					</c:if>
 					
@@ -118,6 +122,28 @@
 							<option value = "1">초등학교</option>
 							<option value = "2">중학교</option>
 							<option value = "3" selected>고등학교</option>
+							<option value = "4">특수학교</option>
+							<option value = "5">각종</option>
+						</select>
+					</c:if>
+					
+					<c:if test="${resultClass.school_type == 4}">
+						<select name = "school_type">
+							<option value = "1">초등학교</option>
+							<option value = "2">중학교</option>
+							<option value = "3">고등학교</option>
+							<option value = "4" selected>특수학교</option>
+							<option value = "5">각종</option>
+						</select>
+					</c:if>
+					
+					<c:if test="${resultClass.school_type == 5}">
+						<select name = "school_type">
+							<option value = "1">초등학교</option>
+							<option value = "2">중학교</option>
+							<option value = "3">고등학교</option>
+							<option value = "4">특수학교</option>
+							<option value = "5" selected>각종</option>
 						</select>
 					</c:if>
 					
