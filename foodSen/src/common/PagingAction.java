@@ -191,7 +191,7 @@ public class PagingAction {
     
     
     
- // 생성자3: String serviceName,  searchType, userinput 파라미터 // 학교급식인력풀(구인) 검색글 페이징 동작시
+    // 생성자3: String serviceName,  searchType, userinput 파라미터 // 학교급식인력풀(구인) 검색글 페이징 동작시
     public PagingAction(String serviceName, int currentPage, int totalCount, int blockCount, int blockPage, String searchType, String subType, String subValue) {
     	//파라미터 초기화
     	this.serviceName = serviceName;
