@@ -23,5 +23,8 @@
 	<sqlMap resource="/header/member/dao/MemberDAO.xml"/>
 	<sqlMap resource="/menu2/inspectionResult/dao/InspectionResultDAO.xml"/>
 	<sqlMap resource="/menu3/improvementCase/dao/ImprovementCaseDAO.xml"/>
+	<sqlMap resource="/menu6/application/dao/ApplicationDAO.xml"/>
+	<sqlMap resource="/menu6/recruit/dao/RecruitDAO.xml"/>
+	
 	
 </sqlMapConfig>

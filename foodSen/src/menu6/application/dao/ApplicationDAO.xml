@@ -1,1 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
+<sqlMap namespace="Application">
+
+	<typeAlias alias="applicationDTO" type="menu6.application.dto.ApplicationDTO" />
+	
+	<!-- 리절트 맵 정의 -->
+	
+	<!-- 
+	<resultMap id="applicationRes1" class="applicationDTO">
+		<result property="seq" column="seq" />
+		<result property="title" column="title" />
+		<result property="pw" column="pw" />
+		<result property="loc_seq" column="loc_seq" />
+		<result property="sex" column="sex" />
+		<result property="job" column="job" />
+		<result property="gubun" column="gubun" />
+		<result property="email" column="email" />
+		<result property="phone" column="phone" />
+		<result property="description" column="description" />
+		<result property="attach_name" column="attach_name" />
+		<result property="attach_path" column="attach_path" />
+		<result property="hits" column="hits" />
+		<result property="writer" column="writer" />
+		<result property="reg_name" column="reg_name" />
+		<result property="reg_date" column="reg_date" />
+		<result property="udt_name" column="udt_name" />
+		<result property="udt_date" column="udt_date" />
+		<result property="age" column="age" />
+		<result property="end_yn" column="end_yn" />
+		<result property="rownum" column="r" />
+	</resultMap>
+	 -->
+	 
+	<resultMap id="applicationRes" class="applicationDTO">
+		<result property="seq" column="seq" />
+		<result property="title" column="title" />
+		<result property="pw" column="pw" />
+		<result property="loc_seq" column="loc_seq" />
+		<result property="sex" column="sex" />
+		<result property="job" column="job" />
+		<result property="gubun" column="gubun" />
+		<result property="email" column="email" />
+		<result property="phone" column="phone" />
+		<result property="description" column="description" />
+		<result property="attach_name" column="attach_name" />
+		<result property="attach_path" column="attach_path" />
+		<result property="hits" column="hits" />
+		<result property="writer" column="writer" />
+		<result property="reg_name" column="reg_name" />
+		<result property="reg_date" column="reg_date" />
+		<result property="udt_name" column="udt_name" />
+		<result property="udt_date" column="udt_date" />
+		<result property="age" column="age" />
+		<result property="end_yn" column="end_yn" />
+	</resultMap>
+	
+	
+	<!-- insert -->
+	
+	
+	
+	<!-- select -->
+	
+	
+		
+
+	<!-- update -->
+	
+	
+	
+	
+	<!-- delete -->
+	
+	
+
+</sqlMap>
