@@ -122,7 +122,7 @@ public class ImprovementCaseEdit {
 		//테스트	
 		System.out.println("-----------------------------");
 		
-		System.out.println("이미지개수 : "+cnt);
+		System.out.println("Edit에서 호출 // 이미지개수 : "+cnt);
 		for(int i=0; i<imgNames.length; i++) 
               System.out.println(imgNames[i]);
 		
@@ -166,16 +166,16 @@ public class ImprovementCaseEdit {
 		paramClass.setUdt_name(session_id); //수정인
 		paramClass.setUdt_date(today.getTime()); //수정일
 		
-		
 		//DB에 update 하기 (글 수정)
 		sqlMapper.update("ImprovementCase.updateImprovementCase", paramClass);
+		//.기본적인 내용 업로드 종료
+		
+		
 		
 		
 		//1. 파일삭제를 위해 생성 - 파일삭제시 기존 업로드된파일의 경로를 얻기위함
 		//2. 이미지 파일 수정을 위해 생성 - 사용자가 수정시 이미지 업로더를 추가했는지 감소했는지 판단하고 업데이트를 하기 위함
 		resultClass = (ImprovementCaseDTO)sqlMapper.queryForObject("ImprovementCase.selectImprovementCaseOne", seq);
-		
-		
 		
 		
 		/*
@@ -222,10 +222,10 @@ public class ImprovementCaseEdit {
 			///새로운파일 생성종료
 		}
 		//.파일첨부 종료
-			
 		
-			
-			
+		
+		
+		
 		/*
 		##이미지첨부 수정 시나리오##
 		0. 기존값 == null 일때 -> 수정값 == null 이면, 아무것도안함 - 사용자가 어떠한 수정변화도 주지 않았음을 의미

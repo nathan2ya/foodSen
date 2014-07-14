@@ -48,8 +48,8 @@
 	
 	
 	//이미지 체인져
-	function chgImg(obj,path){
-		$('#preview').attr('src',path+obj);
+	function chgImg(obj){
+		$('#preview').attr('src',obj);
 	}
 	
 	//이미지 팝업띄우기
@@ -105,56 +105,59 @@
 				
 				<!-- 이미지영역 -->
 				<div class="img_box">
-				
+					
+					
+					<!-- 첫번째 이미지를 노출시킴 -->
 					<span>
 						<c:if test="${resultClass.img1 != null}">
 							<a href="javascript:openPrev('${seq}')">
-								<img id="preview" src="${resultClass.attach_path}${resultClass.img1}" alt="" />
+								<img id="preview" src="${resultClass.img1}" alt="" />
 							</a>
 						</c:if>
 						<c:if test="${resultClass.img1 == null}">
 							<li class="prn"><img src="./images/sub/factory/no_s_img.gif" alt="" /></li>
 						</c:if>
 					</span>
+					<!-- .//첫번째 이미지를 노출시킴 -->
 					
 					<ul>
 						<c:if test="${resultClass.img1 != null}">
-							<li><a href="javascript:chgImg('${resultClass.img1}','${resultClass.attach_path}')"><img src="${resultClass.attach_path}${resultClass.img1}" alt="첫번째이미지" /></a></li>
+							<li><a href="javascript:chgImg('${resultClass.img1}')"><img src="${resultClass.img1}" alt="첫번째이미지" /></a></li>
 						</c:if>
 						<c:if test="${resultClass.img1 == null}">
 							<li class="prn"><img src="./images/sub/factory/no_s_img.gif" alt="" /></li>
 						</c:if>
 						
 						<c:if test="${resultClass.img2 != null}">
-							<li><a href="javascript:chgImg('${resultClass.img2}','${resultClass.attach_path}')"><img src="${resultClass.attach_path}${resultClass.img2}" alt="두번째이미지" /></a></li>
+							<li><a href="javascript:chgImg('${resultClass.img2}')"><img src="${resultClass.img2}" alt="두번째이미지" /></a></li>
 						</c:if>
 						<c:if test="${resultClass.img2 == null}">
 							<li class="prn"><img src="./images/sub/factory/no_s_img.gif" alt="" /></li>
 						</c:if>
 						
 						<c:if test="${resultClass.img3 != null}">
-							<li class="prn"><a href="javascript:chgImg('${resultClass.img3}','${resultClass.attach_path}')"><img src="${resultClass.attach_path}${resultClass.img3}" alt="세번째이미지" /></a></li>
+							<li class="prn"><a href="javascript:chgImg('${resultClass.img3}')"><img src="${resultClass.img3}" alt="세번째이미지" /></a></li>
 						</c:if>
 						<c:if test="${resultClass.img3 == null}">
 							<li class="prn"><img src="./images/sub/factory/no_s_img.gif" alt="" /></li>
 						</c:if>
 						
 						<c:if test="${resultClass.img4 != null}">
-							<li ><a href="javascript:chgImg('${resultClass.img4}','${resultClass.attach_path}')"><img src="${resultClass.attach_path}${resultClass.img4}" alt="네번째이미지" /></a></li>
+							<li ><a href="javascript:chgImg('${resultClass.img4}')"><img src="${resultClass.img4}" alt="네번째이미지" /></a></li>
 						</c:if>
 						<c:if test="${resultClass.img4 == null}">
 							<li class="prn"><img src="./images/sub/factory/no_s_img.gif" alt="" /></li>
 						</c:if>
 						
 						<c:if test="${resultClass.img5 != null}">
-							<li><a href="javascript:chgImg('${resultClass.img5}','${resultClass.attach_path}')"><img src="${resultClass.attach_path}${resultClass.img5}" alt="다섯번째이미지" /></a></li>
+							<li><a href="javascript:chgImg('${resultClass.img5}')"><img src="${resultClass.img5}" alt="다섯번째이미지" /></a></li>
 						</c:if>
 						<c:if test="${resultClass.img5 == null}">
 							<li class="prn"><img src="./images/sub/factory/no_s_img.gif" alt="" /></li>
 						</c:if>
 						
 						<c:if test="${resultClass.img6 != null}">
-							<li><a href="javascript:chgImg('${resultClass.img6}','${resultClass.attach_path}')"><img src="${resultClass.attach_path}${resultClass.img6}" alt="다섯번째이미지" /></a></li>
+							<li class="prn"><a href="javascript:chgImg('${resultClass.img6}')"><img src="${resultClass.img6}" alt="다섯번째이미지" /></a></li>
 						</c:if>
 						<c:if test="${resultClass.img6 == null}">
 							<li class="prn"><img src="./images/sub/factory/no_s_img.gif" alt="" /></li>

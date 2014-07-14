@@ -65,6 +65,8 @@ public class ImprovementCasePopup {
 		//이미지경로와 개수를 파악하기 위해서 get함
 		resultClass = (ImprovementCaseDTO)sqlMapper.queryForObject("ImprovementCase.selectImprovementCaseOne", seq);
 		
+		cnt = 0; //재호출 될때 다시 초기화 시켜 카운트 하기 위함.
+		
 		//이미지 개수를 파악
 		if(resultClass.getImg1() != null){
 			cnt++;
@@ -85,6 +87,9 @@ public class ImprovementCasePopup {
 			cnt++;
 		}
 		//.이미지 개수를 파악 종료
+		
+		
+		System.out.println("이미지 개수 산출(팝업) : "+cnt);
 		
 		
 		request.setAttribute("cnt", cnt); // 전체,검색글을 판단함

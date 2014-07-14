@@ -61,12 +61,12 @@
 			<h1>급식시설개선사례</h1>
 			<div class="img_box">
 				<ul id="img" class="img_box_list">
-					<li><img src="${resultClass.attach_path}${resultClass.img1}" alt="" /></li>
-					<li><img src="${resultClass.attach_path}${resultClass.img2}" alt="" /></li>
-					<li><img src="${resultClass.attach_path}${resultClass.img3}" alt="" /></li>
-					<li><img src="${resultClass.attach_path}${resultClass.img4}" alt="" /></li>
-					<li><img src="${resultClass.attach_path}${resultClass.img5}" alt="" /></li>
-					<li><img src="${resultClass.attach_path}${resultClass.img6}" alt="" /></li>
+					<li><img src="${resultClass.img1}" alt="" /></li>
+					<li><img src="${resultClass.img2}" alt="" /></li>
+					<li><img src="${resultClass.img3}" alt="" /></li>
+					<li><img src="${resultClass.img4}" alt="" /></li>
+					<li><img src="${resultClass.img5}" alt="" /></li>
+					<li><img src="${resultClass.img6}" alt="" /></li>
 				</ul>
 
 				<div class="btn_box">
