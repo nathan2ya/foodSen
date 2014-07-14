@@ -78,6 +78,26 @@
 		SELECT MAX(seq) AS seq from TB_05_RECRUIT
 	</select>
 	
+	<select id="selectWithJob" resultMap="recruitRes" parameterClass="java.lang.String">
+		select * from TB_05_RECRUIT
+		where job = #subValue#
+	</select>
+	
+	<select id="selectWithGubun" resultMap="recruitRes" parameterClass="java.lang.String">
+		select * from TB_05_RECRUIT
+		where gubun = #subValue#
+	</select>
+	
+	<select id="selectWithLoc" resultMap="recruitRes" parameterClass="java.lang.String">
+		select * from TB_05_RECRUIT
+		where loc_seq = #subValue#
+	</select>
+	
+	<select id="selectWithSchool_type" resultMap="recruitRes" parameterClass="java.lang.String">
+		select * from TB_05_RECRUIT
+		where school_type = #subValue#
+	</select>
+	
 		
 
 	<!-- update -->

@@ -369,7 +369,7 @@
 			
 			<!-- 검색 공간 -->
 			<div class="search_box">
-				<form name="search" action="/foodSen/inspectionResultSearch.do" method="post">
+				<form name="search" action="/foodSen/recruitSearch.do" method="post">
 					<div style="display: inline;">
 						<select id="searchType" name="searchType">
 							<option value="job">직종</option>
@@ -388,7 +388,7 @@
 						</select>
 					</div>
 					<div class="loc" style="display: none;">
-						<select id="loc" name="loc">
+						<select id="loc_seq" name="loc_seq">
 							<option value="01">강남구</option>
 							<option value="02">강동구</option>
 							<option value="03">강북구</option>

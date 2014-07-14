@@ -39,8 +39,11 @@ public class RecruitList {
 	private List<RecruitDTO> list = new ArrayList<RecruitDTO>();
 	
 	//검색중
-	private String tempInput;
+	private String userInput;
 	private int searchingNow; // 전체글, 검색글을 판단하여 각종 논리성을 판가르는 논리값
+	
+	private String subType;
+	private String subValue;
 	
 	//페이지
 	private int totalCount;// 총 게시물의 수
@@ -157,36 +160,48 @@ public class RecruitList {
 	
 	
 	
-	/*
 	//학교급식인력풀(구인) (검색글) 리스트
-	@RequestMapping("/inspectionResultSearch.do")
+	@RequestMapping("/recruitSearch.do")
 	public String inspectionResultSearchList(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		// 전체글, 검색글 판단값.
 		searchingNow = 1; //0 == 전체글//1 == 검색글//
-		
 		request.setCharacterEncoding("euc-kr");
 		
 		//사용자가 입력한 값
-		String searchType = request.getParameter("searchType"); //검색 종류 // 제목,내용,작성자
-		String userinput = request.getParameter("userinput"); //검색어
+		String searchType = request.getParameter("searchType"); //검색 종류 // 직종,근무형태,지역,학교급
 		
 		
-		//검색종류&검색어를 만족하는 레코드 검색
-		if(searchType.equals("title")){
-			//제목 검색
-			list = sqlMapper.queryForList("InspectionResult.selectWithTitle", userinput);
-		}else if(searchType.equals("writer")){
-			//작성자 검색
-			list = sqlMapper.queryForList("InspectionResult.selectWithWriter", userinput);
+		//검색 타입에 따라 다른 추가입력 셀렉트에 따른 list를 get
+		if(searchType.equals("job")){
+			subType = "job";
+			subValue = request.getParameter("job");
+			list = sqlMapper.queryForList("Recruit.selectWithJob", subValue);
+			request.setAttribute("job", subValue);
+		}else if(searchType.equals("gubun")){
+			subType = "gubun";
+			subValue = request.getParameter("gubun");
+			list = sqlMapper.queryForList("Recruit.selectWithGubun", subValue);
+			request.setAttribute("gubun", subValue);
+		}else if(searchType.equals("loc_seq")){
+			subType = "loc_seq";
+			subValue = request.getParameter("loc_seq");
+			list = sqlMapper.queryForList("Recruit.selectWithLoc", subValue);
+			request.setAttribute("loc", subValue);
+		}else{
+			subType = "school_type";
+			subValue = request.getParameter("school_type");
+			list = sqlMapper.queryForList("Recruit.selectWithSchool_type", subValue);
+			request.setAttribute("school_type", subValue);
 		}
+		//.검색 타입에 따라 다른 추가입력 셀렉트
 		
 		
 			
 		//페이지처리
 		blockCount = 10;// 한 페이지의 게시물의 수
 		blockPage = 5;// 한 화면에 보여줄 페이지 수
-		serviceName = "inspectionResultSearch";// 호출 URI 정의
+		serviceName = "recruitSearch";// 호출 URI 정의
 		totalCount = list.size(); // 전체 글 갯수
 		
 		//currentPage 초기화
@@ -195,9 +210,8 @@ public class RecruitList {
 		}else{
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		page = new PagingAction(serviceName, currentPage, totalCount, blockCount, blockPage, searchType, userinput); // pagingAction 객체 생성.
+		page = new PagingAction(serviceName, currentPage, totalCount, blockCount, blockPage, searchType, subType, subValue); // pagingAction 객체 생성.
 		pagingHtml = page.getPagingHtml().toString(); // 페이지 HTML 생성.
-
 		int lastCount = totalCount; // 마지막 레코드 = 개수
 		
 		
@@ -211,35 +225,20 @@ public class RecruitList {
 		//.페이지처리 종료
 		
 		
-		//검색어 노출
-		if(userinput.length()>8){ // 사용자 입력값이 8자 이상일 경우
-			tempInput = userinput.substring(0, 8) + "..."; // 8까지 + ... 추가
-		}else{ // 이하일경우
-			tempInput = userinput;
-		}
-		
-		
 		//리스트 글번호 가변 계산
 		int number=totalCount-(page.getCurrentPage()-1)*blockCount;
 				
-		
 		
 		request.setAttribute("number", number);	
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pagingHtml", pagingHtml);
 		request.setAttribute("list", list);
-		
 		request.setAttribute("searchType", searchType);
-		request.setAttribute("userinput", userinput);
-		
-		request.setAttribute("tempInput", tempInput);
 		request.setAttribute("totalCount", totalCount);
-		
 		request.setAttribute("searchingNow", searchingNow);
 		
-		return  "/view/menu2/inspectionResultList.jsp";
+		return "/view/menu6/recruit_application/recruitList.jsp";
 	}
-	*/
 	
 	
 }

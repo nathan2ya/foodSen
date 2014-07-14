@@ -169,11 +169,11 @@
 				<td width="200" height="8" align="right">학교종류</td>
 				<td width="500" height="8" align="left">
 					<select name = "school_type">
-						<option value = "1">초등학교</option>
-						<option value = "2">중학교</option>
-						<option value = "3">고등학교</option>
-						<option value = "4">특수학교</option>
-						<option value = "5">각종</option>
+						<option value = "01">초등학교</option>
+						<option value = "02">중학교</option>
+						<option value = "03">고등학교</option>
+						<option value = "04">특수학교</option>
+						<option value = "05">각종</option>
 					</select>
 				</td>
 			</tr>
@@ -182,9 +182,9 @@
 				<td width="200" height="8" align="right">직위</td>
 				<td width="500" height="8" align="left">
 					<select name = "position">
-						<option value = "1">영양사</option>
-						<option value = "2">조리원</option>
-						<option value = "3">교직원</option>
+						<option value = "01">영양사</option>
+						<option value = "02">조리원</option>
+						<option value = "03">교직원</option>
 					</select>
 				</td>
 			</tr>
