@@ -125,14 +125,12 @@
 	}
 	
 	function validateSQL(obj){
-		
-		// SQLInjection을 막는 가장 간단한 방법은 입력되는 내용에서 '또는 "을 찾아 바꾸거나 입력하지 못하게 하는 것이다.	
 		var x=obj;
 		var pos = 0;
 		var pos1 = 0;
 		var pos2 = 0;
 		var pos3 = 0;
-		pos=x.indexOf("'"); // 객체ID의 내용에서 '을 찾는다. "을 찾으려면 pos=x.indexOf("\""); 이렇게 쓰면 된다.
+		pos=x.indexOf("'");
 		pos1=x.indexOf("\"");
 		pos2=x.indexOf("<");
 		pos3=x.indexOf(">");
@@ -156,7 +154,7 @@
 			(str.charCodeAt(p) > 255) ? len+=2 : len++; // charCodeAt(문자열) - 문자열을 유니코드값으로 변환하여 255보다 크면 한글.
 		}
 		return len;
-	} // 문자열의 byte수를 구하는 함수 - 한글이라면 글자당 2bytes, 그외에는 1byte로 계산한다.
+	} // 문자열의 byte수를 구하는 함수 - 한글이라면 글자당 2bytes, 그외에는 1byte로 계산
 	
 	String.prototype.cut = function(len) {
 	    var str = this;
@@ -195,11 +193,11 @@
 	function removeInput1(){
 		var addedFormDiv = document.getElementById('text');
 		
-		if(fields > 1){ // 2일경우 폼이 1개 있다는 의미. 즉 감소할것이 존재함을 의미
+		if(fields > 2){ // fields==3일경우 폼이 2개 있다는 의미. 즉 감소할것이 존재함을 의미 // 업데이트 과정 논리정의가 불가능하므로 최소 1개는 지울 수 없음
 			var addedDiv = document.getElementById("imgInput"+(--fields)); // 제거할 div명을 초기화
 			addedFormDiv.removeChild(addedDiv); //해당 div 삭제 
 		}else{
-			alert("감소할 이미지 업로더가 존재하지 않습니다.");
+			alert("더이상 업로더를 감소시킬 수 없습니다.");
 		}
     }
 	

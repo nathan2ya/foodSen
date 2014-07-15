@@ -233,15 +233,19 @@ public class ImprovementCaseEdit {
 		2. 기존값 != null 일때 -> 수정값 != null 이면, 기존레코드 삭제(이미지포함), 수정레코드 업데이트  - 사용자가 동일컬럼을 수정하였음을 의미
 		3. 기존값 != null 일때 -> 수정값 == null 이면 -> 기존개수>수정개수, 기존컬럼 삭제(이미지포함) - 사용자가 이미지를 감소등록했음을 의미
 						                    		  -> 0==수정개수, 아무것도안함 - 사용자가 어떠한 수정변화도 주지 않았음을 의미
+						                    		  				 if(기존개수==1) 경우 논리적으로 삭제될 수 없음. -> 1개에선 감소할 수 없게 alert 방어경고
 		*/	
 		
 		
 		
 		//기존img개수 산출
 		int orgCnt = Integer.parseInt(request.getParameter("cnt"));
+		System.out.println("기존 : "+orgCnt);
 		
 		//수정img개수 산출
 		int uptCnt = 0;
+		
+		
 		if(request.getFile("optupload1") != null){
 			uptCnt++;
 		}
@@ -261,7 +265,7 @@ public class ImprovementCaseEdit {
 			uptCnt++;
 		}
 		//수정img개수 산출 종료
-		
+		System.out.println("수정 : "+uptCnt);
 		
 		
 		// 1. 기존값 == null 일때 -> 수정값 != null 이면, 수정레코드 업데이트 - 사용자가 이미지를 추가등록했음을 의미
@@ -473,19 +477,18 @@ public class ImprovementCaseEdit {
 			//1. 수정 변수가 존재하면
 			if(request.getFile("optupload1") != null){ 
 				
-				//기존이미지 삭제
-				if(orgCnt > uptCnt && 0 != uptCnt){
-					String imgName = resultClass.getImg1().substring(38); //38 이전은 상대경로
-					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
-					deleteFile.delete();
-				}
-				//기존이미지 삭제 종료
 				
 				//새로운데이터 업데이트
 				MultipartFile file1 = request.getFile("optupload1"); // 업로드된 원본
 				String orgName1 = file1.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
 				
 				if(orgName1 != ""){ //이미지 파일을 첨부했을 경우
+					
+					//기존이미지 삭제
+					String imgName = resultClass.getImg1().substring(38); //38 이전은 상대경로
+					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
+					deleteFile.delete();
+					//기존이미지 삭제 종료
 					
 					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
 					String fileName = "img_improvementCase_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
@@ -512,7 +515,7 @@ public class ImprovementCaseEdit {
 			//2. 수정 변수가 없으면 -> 이미지 수정을 원치않거나 or 이미지를 감소했거나
 			if(request.getFile("optupload1") == null){
 				
-				if(orgCnt > uptCnt && 0 != uptCnt){ //사용자가 이미지를 감소등록했음을 의미
+				if(1 > uptCnt && 0 != uptCnt){ //사용자가 이미지를 감소등록했음을 의미
 					//기존이미지 삭제
 					String imgName = resultClass.getImg1().substring(38); //38 이전은 상대경로
 					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
@@ -542,19 +545,19 @@ public class ImprovementCaseEdit {
 			//1. 수정 변수가 존재하면
 			if(request.getFile("optupload2") != null){
 				
-				//기존데이터 삭제
-				if(orgCnt > uptCnt && 0 != uptCnt){
-					String imgName = resultClass.getImg2().substring(38); //38 이전은 상대경로
-					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
-					deleteFile.delete();
-				}
-				//기존데이터 삭제 종료
 				
 				//새로운데이터 업데이트
 				MultipartFile file2 = request.getFile("optupload2"); // 업로드된 원본
 				String orgName2 = file2.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
 				
 				if(orgName2 != ""){ //이미지 파일을 첨부했을 경우
+					
+					//기존데이터 삭제
+					String imgName = resultClass.getImg2().substring(38); //38 이전은 상대경로
+					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
+					deleteFile.delete();
+					//기존데이터 삭제 종료
+					
 					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
 					String fileName = "img_improvementCase_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
 					String fileExt = orgName2.substring(orgName2.lastIndexOf('.'));//서버저장 확장자
@@ -578,7 +581,7 @@ public class ImprovementCaseEdit {
 			//2. 수정 변수가 없으면 -> 이미지 수정을 원치않거나 or 이미지를 감소했거나
 			if(request.getFile("optupload2") == null){
 				
-				if(orgCnt > uptCnt && 0 != uptCnt){ //사용자가 이미지를 감소등록했음을 의미
+				if(2 > uptCnt && 0 != uptCnt){ //사용자가 이미지를 감소등록했음을 의미
 					//기존이미지 삭제
 					String imgName = resultClass.getImg2().substring(38); //38 이전은 상대경로
 					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
@@ -608,20 +611,19 @@ public class ImprovementCaseEdit {
 			//1. 수정 변수가 존재하면
 			if(request.getFile("optupload3") != null){
 				
-				//기존데이터 삭제
-				if(orgCnt > uptCnt && 0 != uptCnt){
-					String imgName = resultClass.getImg3().substring(38); //38 이전은 상대경로
-					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
-					deleteFile.delete();
-				}
-				//기존데이터 삭제 종료
 				
 				//새로운데이터 업데이트
 				MultipartFile file3 = request.getFile("optupload3"); // 업로드된 원본
 				String orgName3 = file3.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
 				
 				if(orgName3 != ""){ //이미지 파일을 첨부했을 경우
-				
+					
+					//기존데이터 삭제
+					String imgName = resultClass.getImg3().substring(38); //38 이전은 상대경로
+					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
+					deleteFile.delete();
+					//기존데이터 삭제 종료
+					
 					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
 					String fileName = "img_improvementCase_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
 					String fileExt = orgName3.substring(orgName3.lastIndexOf('.'));//서버저장 확장자
@@ -645,7 +647,7 @@ public class ImprovementCaseEdit {
 			//2. 수정 변수가 없으면 -> 이미지 수정을 원치않거나 or 이미지를 감소했거나
 			if(request.getFile("optupload3") == null){
 				
-				if(orgCnt > uptCnt && 0 != uptCnt){ //사용자가 이미지를 감소등록했음을 의미
+				if(3 > uptCnt && 0 != uptCnt){ //사용자가 이미지를 감소등록했음을 의미
 					//기존이미지 삭제
 					String imgName = resultClass.getImg3().substring(38); //38 이전은 상대경로
 					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
@@ -675,20 +677,19 @@ public class ImprovementCaseEdit {
 			//1. 수정 변수가 존재하면
 			if(request.getFile("optupload4") != null){
 	
-				//기존데이터 삭제
-				if(orgCnt > uptCnt && 0 != uptCnt){
-					String imgName = resultClass.getImg4().substring(38); //38 이전은 상대경로
-					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
-					deleteFile.delete();
-				}
-				//기존데이터 삭제 종료
 				
 				//새로운데이터 업데이트
 				MultipartFile file4 = request.getFile("optupload4"); // 업로드된 원본
 				String orgName4 = file4.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
 				
 				if(orgName4 != ""){ //이미지 파일을 첨부했을 경우
-				
+					
+					//기존데이터 삭제
+					String imgName = resultClass.getImg4().substring(38); //38 이전은 상대경로
+					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
+					deleteFile.delete();
+					//기존데이터 삭제 종료
+					
 					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
 					String fileName = "img_improvementCase_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
 					String fileExt = orgName4.substring(orgName4.lastIndexOf('.'));//서버저장 확장자
@@ -712,7 +713,7 @@ public class ImprovementCaseEdit {
 			//2. 수정 변수가 없으면 -> 이미지 수정을 원치않거나 or 이미지를 감소했거나
 			if(request.getFile("optupload4") == null){
 				
-				if(orgCnt > uptCnt && 0 != uptCnt){ //사용자가 이미지를 감소등록했음을 의미
+				if(4 > uptCnt && 0 != uptCnt){ //사용자가 이미지를 감소등록했음을 의미
 					//기존이미지 삭제
 					String imgName = resultClass.getImg4().substring(38); //38 이전은 상대경로
 					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
@@ -742,19 +743,18 @@ public class ImprovementCaseEdit {
 			//1. 수정 변수가 존재하면
 			if(request.getFile("optupload5") != null){
 	
-				//기존데이터 삭제
-				if(orgCnt > uptCnt && 0 != uptCnt){
-					String imgName = resultClass.getImg5().substring(38); //38 이전은 상대경로
-					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
-					deleteFile.delete();
-				}
-				//기존데이터 삭제 종료
 				
 				//새로운데이터 업데이트
 				MultipartFile file5 = request.getFile("optupload5"); // 업로드된 원본
 				String orgName5 = file5.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
 				
 				if(orgName5 != ""){ //이미지 파일을 첨부했을 경우
+					
+					//기존데이터 삭제
+					String imgName = resultClass.getImg5().substring(38); //38 이전은 상대경로
+					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
+					deleteFile.delete();
+					//기존데이터 삭제 종료
 				
 					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
 					String fileName = "img_improvementCase_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
@@ -779,7 +779,7 @@ public class ImprovementCaseEdit {
 			//2. 수정 변수가 없으면 -> 이미지 수정을 원치않거나 or 이미지를 감소했거나
 			if(request.getFile("optupload5") == null){
 				
-				if(orgCnt > uptCnt && 0 != uptCnt){ //사용자가 이미지를 감소등록했음을 의미
+				if(5 > uptCnt && 0 != uptCnt){ //사용자가 이미지를 감소등록했음을 의미
 					//기존이미지 삭제
 					String imgName = resultClass.getImg5().substring(38); //38 이전은 상대경로
 					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
@@ -809,19 +809,18 @@ public class ImprovementCaseEdit {
 			//1. 수정 변수가 존재하면
 			if(request.getFile("optupload6") != null){
 	
-				//기존데이터 삭제
-				if(orgCnt > uptCnt && 0 != uptCnt){
-					String imgName = resultClass.getImg6().substring(38); //38 이전은 상대경로
-					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
-					deleteFile.delete();
-				}
-				//기존데이터 삭제 종료
 				
 				//새로운데이터 업데이트
 				MultipartFile file6 = request.getFile("optupload6"); // 업로드된 원본
 				String orgName6 = file6.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
 				
 				if(orgName6 != ""){ //이미지 파일을 첨부했을 경우
+					
+					//기존데이터 삭제
+					String imgName = resultClass.getImg6().substring(38); //38 이전은 상대경로
+					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
+					deleteFile.delete();
+					//기존데이터 삭제 종료
 				
 					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
 					String fileName = "img_improvementCase_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
@@ -847,7 +846,7 @@ public class ImprovementCaseEdit {
 			//2. 수정 변수가 없으면 -> 이미지 수정을 원치않거나 or 이미지를 감소했거나
 			if(request.getFile("optupload6") == null){
 				
-				if(orgCnt > uptCnt && 0 != uptCnt){ //사용자가 이미지를 감소등록했음을 의미
+				if(6 > uptCnt && 0 != uptCnt){ //사용자가 이미지를 감소등록했음을 의미
 					//기존이미지 삭제
 					String imgName = resultClass.getImg6().substring(38); //38 이전은 상대경로
 					File deleteFile = new File(imgPath+imgName); //파일명 + 경로
