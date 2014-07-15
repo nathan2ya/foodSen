@@ -353,7 +353,6 @@
 					
 					<!-- 검색중인 목록 -->
 					<c:if test="${searchingNow == 1}">
-						///${searchType }//
 						<c:if test="${searchType eq 'job'}">
 							<span class="wte_l"><a href="/foodSen/recruitSearch.do?searchType=${searchType}&job=${resultClass.job}&currentPage=${currentPage}" class="wte_r">목록</a></span>
 						</c:if>
