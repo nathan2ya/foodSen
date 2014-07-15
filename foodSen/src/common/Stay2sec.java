@@ -52,7 +52,6 @@ public class Stay2sec {
 		}
 		
 		
-		
 		return stay2sec_path;
 	}
 }
