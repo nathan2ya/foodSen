@@ -38,6 +38,7 @@
 			return;
 		}
 		
+		// 제목 : <아아아아아
 		if(validateSQL(inspectionResultCreateFrom.title.value) > -1){
 			alert("특수문자는 입력할 수 없습니다.");
 			inspectionResultCreateFrom.title.focus();
@@ -79,17 +80,19 @@
 	
 	
 	
-	function validateSQL(obj){
-		// SQLInjection을 막는 가장 간단한 방법은 입력되는 내용에서 '또는 "을 찾아 바꾸거나 입력하지 못하게 하는 것이다.	
-		var x=obj;
+	function validateSQL(obj){ //태그를 막는 스크립트
+		var x=obj; // 사용자가 입력한 제목 :   <아아아아아   일경우
 		var pos = 0;
 		var pos1 = 0;
 		var pos2 = 0;
 		var pos3 = 0;
-		pos=x.indexOf("'"); // 객체ID의 내용에서 '을 찾는다. "을 찾으려면 pos=x.indexOf("\""); 이렇게 쓰면 된다.
-		pos1=x.indexOf("\"");
-		pos2=x.indexOf("<");
-		pos3=x.indexOf(">");
+		
+		//없을 경우 -1을 반환함.
+		pos=x.indexOf("'"); // -1
+		pos1=x.indexOf("\""); // -1
+		pos2=x.indexOf("<"); // -1
+		pos3=x.indexOf(">"); //  0
+		
 		if (pos!=-1){
 			return pos;
 		}
@@ -119,15 +122,16 @@
 	    var str = this;
 	    var l = 0;
 	    for (var i=0; i<str.length; i++) {
-	            l += (str.charCodeAt(i) > 255) ? 2 : 1;
-	            
-	            if (l > len)//초과시 잘라줌
-	            	return str.substring(0,i);
+            l += (str.charCodeAt(i) > 255) ? 2 : 1;
+            
+            if (l > len)//초과시 잘라줌
+            	return str.substring(0,i);
 	    }
 	    return str;
 	}; // 문자열을 잘라주는 함수 - 원하는 byte수만큼 잘라준다
 	
 	
+	//백스페이스나 delete 키를 누르면 새롭게 input 태그를 만듬
 	function onKeyUp(){
 		var code = event.keyCode;
 		if(code == 8 || code == 46){
