@@ -52,7 +52,7 @@ public class ImprovementCaseView {
 	private int searchingNow; // 전체글, 검색글을 판단하여 각종 논리성을 판가르는 논리값
 	
 	
-	//검색중인 경우에만 발생하는 변수(it's for uri)
+	//검색중인 경우에만 발생하는 변수(They're for uri)
 	private String searchType;
 	private String userinput;
 	

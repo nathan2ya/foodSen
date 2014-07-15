@@ -79,41 +79,9 @@
 			return;
 		}
 		
-		if(upfiles == null || upfiles == ""){
-			
-		}else{
-			var size = 0;
-			var browser=navigator.appName;
-			
-			if (browser=="Microsoft Internet Explorer"){
-				var oas = new ActiveXObject("Scripting.FileSystemObject");
-				var filepath = document.getElementById('filename').value;
-				var e = oas.getFile(filepath);
-				size = e.size;
-			}
-			else{
-				var node = document.getElementById('filename');
-				size = node.files[0].fileSize;
-			}
-			if(fileCheck(size) == false){
-				 alert("첨부파일 사이즈는 0바이트 초과 또는 50MB 이내로 등록 가능합니다.");
-				 return;
-			}
-		}
-		
 		recruitCreateFrom.submit();
 	}
 	
-	/* 파일사이즈 체크 */
-	function fileCheck(fileSize){
-	   //사이즈체크
-	   var maxSize  = 50000000;   //50MB
-	   if(fileSize > maxSize) {
-	        return false;
-	   }
-	
-	   return true;
-	}
 	
 	/*특수문자사용못하게*/
 	function inputCheckSpecial(str){

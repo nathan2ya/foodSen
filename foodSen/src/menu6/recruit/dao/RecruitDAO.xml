@@ -98,6 +98,11 @@
 		where school_type = #subValue#
 	</select>
 	
+	<select id="selectRecruitOne" resultMap="recruitRes" parameterClass="int">
+		select * from TB_05_RECRUIT
+		where seq = #seq#
+	</select>
+	
 		
 
 	<!-- update -->
@@ -106,6 +111,13 @@
 		SET
 			attach_name = #attach_name#,
 			attach_path = #attach_path#
+		where seq = #seq#
+	</update>
+	
+	<update id="updateHits" parameterClass="recruitDTO">
+		UPDATE TB_05_RECRUIT
+		SET
+			hits = #hits#
 		where seq = #seq#
 	</update>
 	

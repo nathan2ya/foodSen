@@ -181,15 +181,38 @@
 							
 							
 							<c:forEach var="list" items="${list}">
+							
+								<!-- 뷰페이지로 보낼 프로퍼티 -->
 								<c:url var="url" value="/recruitView.do"> 
 									<c:param name="seq" value="${list.seq}"/>
 									<c:param name="currentPage" value="${currentPage}"/>
 									<c:param name="searchingNow" value="${searchingNow}"/>
+									
+									<!-- 검색중일 경우 아래의 uri를 추가로 정의해서 뷰 페이지로 보냄 -->
 									<c:if test="${searchingNow == 1}">
+										<!-- 타입정의 -->
 										<c:param name="searchType" value="${searchType}"/>
-										<c:param name="userinput" value="${userinput}"/>
+										<!-- .//타입정의 -->
+										
+										<!-- 서브타입정의 -->
+										<c:if test="${searchType eq 'job'}">
+											<c:param name="job" value="${job}"/>
+										</c:if>
+										<c:if test="${searchType eq 'gubun'}">
+											<c:param name="gubun" value="${gubun}"/>
+										</c:if>
+										<c:if test="${searchType eq 'loc_seq'}">
+											<c:param name="loc_seq" value="${loc_seq}"/>
+										</c:if>
+										<c:if test="${searchType eq 'school_type'}">
+											<c:param name="school_type" value="${school_type}"/>
+										</c:if>
+										<!-- .//서브타입정의 -->
 									</c:if>
+									<!-- .//검색중일 경우 아래의 uri를 추가로 정의해서 뷰 페이지로 보냄 -->
+									
 								</c:url>
+								<!-- .//뷰페이지로 보낼 프로퍼티 -->
 								 
 								 
 								<tr>

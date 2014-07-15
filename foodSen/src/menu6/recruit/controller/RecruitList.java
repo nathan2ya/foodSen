@@ -187,7 +187,7 @@ public class RecruitList {
 			subType = "loc_seq";
 			subValue = request.getParameter("loc_seq");
 			list = sqlMapper.queryForList("Recruit.selectWithLoc", subValue);
-			request.setAttribute("loc", subValue);
+			request.setAttribute("loc_seq", subValue);
 		}else{
 			subType = "school_type";
 			subValue = request.getParameter("school_type");
