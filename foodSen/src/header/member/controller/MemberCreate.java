@@ -96,13 +96,13 @@ public class MemberCreate {
 		//사용자가 입력한 정보
 		String user_id = request.getParameter("user_id");
 		
-		
+		//최초 진입시 2
 		if(null == request.getParameter("notFound")){
 			notFound = 2;
+		//중복이 아닐경우 0, 중복일 경우 1 로 정의됨.
 		}else{
 			notFound = Integer.parseInt(request.getParameter("notFound"));
 		}
-		
 		
 		request.setAttribute("user_id", user_id);
 		request.setAttribute("notFound", notFound);
@@ -126,7 +126,6 @@ public class MemberCreate {
 		}else{ //id중복인 경우
 			viewPath = "redirect:/checkUser_idFrom.do?user_id="+user_id+"&notFound=1";
 		}
-		
 		
 		return viewPath;
 	}
