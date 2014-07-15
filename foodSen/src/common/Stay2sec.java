@@ -39,6 +39,10 @@ public class Stay2sec {
 		service = request.getParameter("service");
 		
 		//호출측에 따른 뷰페이지 정의
+		if(service.equals("inspectionResult")){
+			stay2sec_path = "/view/menu2/stay2sec.jsp";
+		}
+		
 		if(service.equals("improvement")){
 			stay2sec_path = "/view/menu3/stay2sec.jsp";
 		}
@@ -46,6 +50,7 @@ public class Stay2sec {
 		if(service.equals("recruit")){
 			stay2sec_path = "/view/menu6/recruit_application/stay2sec_r.jsp";
 		}
+		
 		
 		
 		return stay2sec_path;

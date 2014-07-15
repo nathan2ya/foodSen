@@ -27,7 +27,7 @@ function goCreate(){
 	inspectionResultDelete.submit();
 	
 	//부모창을 리다이렉트 시킴
-	opener.location.href = "/foodSen/inspectionResultList.do"; //2초뒤에 새로고침되는 곳으로 보냄
+	opener.location.href = "/foodSen/goStay2sec.do?service=inspectionResult";
 	self.close(); //창닫기
 }
 	
