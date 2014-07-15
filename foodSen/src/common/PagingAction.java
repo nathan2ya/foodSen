@@ -19,6 +19,7 @@ public class PagingAction {
     private int startPage; // 시작 페이지
     private int endPage; // 마지막 페이지
     
+    //다양한 URI (오버라이딩된 생성자에 따라 초기화)
     private int currentPage; // 현재페이지 // URI
     private int board_seq_num; // 소댓글의 호출페이지 // URI
     private int r_currentPage; // 소댓글 현재페이지 // URI
@@ -27,58 +28,64 @@ public class PagingAction {
     private String subType; // 서브검색종류 //URI
     private String subValue; // 서브검색값 //URI
     
-    
-    
+    //최종 페이지 완성 결과 반환변수
     private StringBuffer pagingHtml; //결과반환
-
-    // 생성자1: String serviceName 파라미터 // 전체글 페이징 동작시
+    
+    
+    // 생성자1. 전체글 동작시에 호출
     public PagingAction(String serviceName, int currentPage, int totalCount, int blockCount, int blockPage) {
-    	//파라미터 초기화
+    	
+    	//요구된 파라미터 초기화
     	this.serviceName = serviceName;
 		this.blockCount = blockCount;
 		this.blockPage = blockPage;
 		this.currentPage = currentPage;
 		this.totalCount = totalCount;
-
+		//.요구된 파라미터 초기화
+		
+		
 		// 전체 페이지 수
-		totalPage = (int) Math.ceil((double) totalCount / blockCount);
-		//리스트size() / 한페이지에 보여줄 게시글 수 = 페이지수(반올림)
-		if (totalPage == 0) {
+		totalPage = (int) Math.ceil((double) totalCount / blockCount); // 나눈뒤 반올림
+		if (totalPage == 0){ // 레코드 유무과 무관하게 최초 1페이지 초기화
 			totalPage = 1;
 		}
+		
 
-		// 특수한경우 // 현재 페이지가 전체 페이지 수보다 크면 전체 페이지 수로 설정
+		// 방어코드_ 사용자가 주소창에 현재페이지를 전체페이지 보다 크게 입력할경우 전체페이지수로 초기화 시켜버림
 		if (currentPage > totalPage) {
 			currentPage = totalPage;
 		}
 
-		// 현재 페이지의 처음과 마지막 글의 번호 가져오기
+		
+		// 현재페이지에 첫레코드, 마지막레코드로 쓰일 list 인덱스 번호를 산출한다.
 		startCount = (currentPage - 1) * blockCount;
 		endCount = startCount + blockCount - 1;
-
-		// 시작 페이지와 마지막 페이지 값 구하기
+		
+		
+		// 시작페이지, 마지막페이지는 레코드개수에 의해 정의된다.
 		startPage = (int) ((currentPage - 1) / blockPage) * blockPage + 1;
 		endPage = startPage + blockPage - 1;
 		
-		// 마지막 페이지가 전체 페이지 수보다 크면 전체 페이지 수로 설정
+		
+		// 마지막페이지 재정의_ 마지막페이지가 전체페이지 수보다 클경우 전체페이지로 재정의
 		if (endPage > totalPage) {
 			endPage = totalPage;
 		}
 
 		
-		//처음으로
+		//처음으로(항상 노출 시킨다.)
 		pagingHtml = new StringBuffer();
 		pagingHtml.append("<a href=" + serviceName + ".do?currentPage=1><img src='./images/sub/btn/pre_01.gif'  alt='처음으로' /></a>");
 		
 		
-		// 이전 block 페이지
+		// 이전 block 페이지(최초 구역을 초과할 경우에만 노출)
 		if (currentPage > blockPage) {
 			pagingHtml.append("<a href=" + serviceName + ".do?currentPage=" + (startPage - 1) + ">");
 			pagingHtml.append(" <img src='./images/sub/btn/pre.gif' alt='이전 페이지로 가기' /> ");
 			pagingHtml.append("</a>");
 		}
 
-		// 페이지 번호. 
+		// 페이지 번호
 		for (int i = startPage; i <= endPage; i++) {
 			if (i > totalPage) {
 				break;
@@ -97,7 +104,7 @@ public class PagingAction {
 			}
 		}
 
-		// 다음 block 페이지
+		// 다음 block 페이지(최후 구역이 아닐 경우에만 노출)
 		if (totalPage - startPage >= blockPage) {
 			pagingHtml.append("<a href=" + serviceName+ ".do?currentPage=" + (endPage + 1) + ">");
 			pagingHtml.append(" <img src='./images/sub/btn/next.gif' alt='다음 페이지' /> ");
@@ -112,9 +119,10 @@ public class PagingAction {
     
     
 
-    // 생성자2: String serviceName,  searchType, userinput 파라미터 // 검색글 페이징 동작시
+    // 생성자1. 검색글 동작시에 호출
     public PagingAction(String serviceName, int currentPage, int totalCount, int blockCount, int blockPage, String searchType, String userinput) {
-    	//파라미터 초기화
+    	
+    	//요구된 파라미터 초기화
     	this.serviceName = serviceName;
 		this.blockCount = blockCount;
 		this.blockPage = blockPage;
@@ -122,31 +130,38 @@ public class PagingAction {
 		this.totalCount = totalCount;
 		this.searchType = searchType;
 		this.userinput = userinput;
+		//.요구된 파라미터 초기화
+		
 		
 		// 전체 페이지 수
-		totalPage = (int) Math.ceil((double) totalCount / blockCount);
+		totalPage = (int) Math.ceil((double) totalCount / blockCount); // 나눈뒤 반올림
 		if (totalPage == 0) {
 			totalPage = 1;
 		}
 
+		
 		// 현재 페이지가 전체 페이지 수보다 크면 전체 페이지 수로 설정
 		if (currentPage > totalPage) {
 			currentPage = totalPage;
 		}
 
+		
 		// 현재 페이지의 처음과 마지막 글의 번호 가져오기
 		startCount = (currentPage - 1) * blockCount;
 		endCount = startCount + blockCount - 1;
 
+		
 		// 시작 페이지와 마지막 페이지 값 구하기
 		startPage = (int) ((currentPage - 1) / blockPage) * blockPage + 1;
 		endPage = startPage + blockPage - 1;
 
+		
 		// 마지막 페이지가 전체 페이지 수보다 크면 전체 페이지 수로 설정
 		if (endPage > totalPage) {
 			endPage = totalPage;
 		}
 
+		
 		// 이전 block 페이지
 		pagingHtml = new StringBuffer();
 		pagingHtml.append("<a href=" + serviceName + ".do?searchType="+searchType+"&userinput="+userinput+"&currentPage=1><img src='./images/sub/btn/pre_01.gif'  alt='처음으로' /></a>");
@@ -157,6 +172,7 @@ public class PagingAction {
 			pagingHtml.append("</a>");
 		}
 
+		
 		// 페이지 번호. 현재 페이지는 파란색으로 강조하고 링크를 제거
 		for (int i = startPage; i <= endPage; i++) {
 			if (i > totalPage) {
@@ -191,9 +207,10 @@ public class PagingAction {
     
     
     
-    // 생성자3: String serviceName,  searchType, userinput 파라미터 // 학교급식인력풀(구인) 검색글 페이징 동작시
+    // 생성자3. 학교급식인력풀(구인) 검색글 페이징 동작시
     public PagingAction(String serviceName, int currentPage, int totalCount, int blockCount, int blockPage, String searchType, String subType, String subValue) {
-    	//파라미터 초기화
+    	
+    	//요구된 파라미터 초기화
     	this.serviceName = serviceName;
 		this.blockCount = blockCount;
 		this.blockPage = blockPage;
@@ -202,6 +219,8 @@ public class PagingAction {
 		this.searchType = searchType;
 		this.subType = subType;
 		this.subValue = subValue;
+		//.요구된 파라미터 초기화
+		
 		
 		// 전체 페이지 수
 		totalPage = (int) Math.ceil((double) totalCount / blockCount);
@@ -209,24 +228,29 @@ public class PagingAction {
 			totalPage = 1;
 		}
 
+		
 		// 현재 페이지가 전체 페이지 수보다 크면 전체 페이지 수로 설정
 		if (currentPage > totalPage) {
 			currentPage = totalPage;
 		}
 
+		
 		// 현재 페이지의 처음과 마지막 글의 번호 가져오기
 		startCount = (currentPage - 1) * blockCount;
 		endCount = startCount + blockCount - 1;
 
+		
 		// 시작 페이지와 마지막 페이지 값 구하기
 		startPage = (int) ((currentPage - 1) / blockPage) * blockPage + 1;
 		endPage = startPage + blockPage - 1;
 
+		
 		// 마지막 페이지가 전체 페이지 수보다 크면 전체 페이지 수로 설정
 		if (endPage > totalPage) {
 			endPage = totalPage;
 		}
 
+		
 		// 이전 block 페이지
 		pagingHtml = new StringBuffer();
 		pagingHtml.append("<a href=" + serviceName + ".do?searchType="+searchType+"&"+subType+"="+subValue+"&currentPage=1><img src='./images/sub/btn/pre_01.gif'  alt='처음으로' /></a>");
@@ -237,6 +261,7 @@ public class PagingAction {
 			pagingHtml.append("</a>");
 		}
 
+		
 		// 페이지 번호. 현재 페이지는 파란색으로 강조하고 링크를 제거
 		for (int i = startPage; i <= endPage; i++) {
 			if (i > totalPage) {
@@ -275,7 +300,7 @@ public class PagingAction {
     
     /*
     
-    //현재 미사용 - 향후 사용할 가능성 있음
+    //현재 미사용 - 향후 사용할 가능성 있으므로 주석처리
     // 생성자4: String serviceName 파라미터 // 소댓글 페이징 동작시
     public PagingAction(String serviceName, int currentPage, int totalCount, int blockCount, int blockPage, int board_seq_num, int r_currentPage) {
     	//파라미터 초기화

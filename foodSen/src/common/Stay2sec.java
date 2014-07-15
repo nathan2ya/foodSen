@@ -16,8 +16,8 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 @Controller
 public class Stay2sec {
 	
-	private String service;
-	private String stay2sec_path;
+	private String service; // 호출측 uri
+	private String stay2sec_path; // 리턴경로
 	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
@@ -36,24 +36,24 @@ public class Stay2sec {
 	@RequestMapping("/goStay2sec.do")
 	public String goImprovementCaseList(HttpServletRequest request){
 		
+		//호출 uri 초기화
 		service = request.getParameter("service");
 		
 		//호출측에 따른 뷰페이지 정의
 		if(service.equals("inspectionResult")){
 			stay2sec_path = "/view/menu2/stay2sec.jsp";
 		}
-		
 		if(service.equals("improvement")){
 			stay2sec_path = "/view/menu3/stay2sec.jsp";
 		}
-		
 		if(service.equals("recruit")){
 			stay2sec_path = "/view/menu6/recruit_application/stay2sec_r.jsp";
 		}
-		
+		//.호출측에 따른 뷰페이지 정의 종료
 		
 		return stay2sec_path;
 	}
+	
 }
 
 
