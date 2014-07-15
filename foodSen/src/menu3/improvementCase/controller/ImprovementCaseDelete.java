@@ -34,6 +34,7 @@ public class ImprovementCaseDelete {
 	public static Reader reader;
 	public static SqlMapClient sqlMapper;
 	
+	
 	//DB커넥트 생성자
 	public ImprovementCaseDelete() throws IOException{
 		reader = Resources.getResourceAsReader("sqlMapConfig.xml");

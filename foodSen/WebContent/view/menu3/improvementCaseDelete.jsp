@@ -27,7 +27,7 @@ function goCreate(){
 	improvementCaseDelete.submit();
 	
 	//부모창을 리다이렉트 시킴
-	opener.location.href = "/foodSen/goImprovementCaseList.do"; //문제점캐칭 -> 2초뒤에 새로고침되는 곳으로 보냄
+	opener.location.href = "/foodSen/goStay2sec.do?service=improvement";
 	self.close(); //창닫기
 }
 	

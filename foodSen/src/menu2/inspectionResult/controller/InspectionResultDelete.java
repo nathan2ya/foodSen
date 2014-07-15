@@ -64,7 +64,7 @@ public class InspectionResultDelete {
 		request.setAttribute("seq", seq);
 		request.setAttribute("pw", pw);
 		
-		return "/view/menu2/inspectionResultDelete.jsp"; // 리스트로 리다이렉트
+		return "/view/menu2/inspectionResultDelete.jsp";
 	}
 	
 	

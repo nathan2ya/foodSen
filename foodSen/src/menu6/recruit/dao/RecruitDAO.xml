@@ -137,7 +137,10 @@
 	
 	
 	<!-- delete -->
-	
+	<delete id="deleteRecruit" parameterClass="int">
+		delete from TB_05_RECRUIT
+		where seq = #seq#
+	</delete>
 	
 
 </sqlMap>
