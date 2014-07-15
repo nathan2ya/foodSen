@@ -125,6 +125,9 @@
 		UPDATE TB_05_RECRUIT
 		SET
 			description = #description#,
+			end_yn = #end_yn#,
+			job = #job#,
+			gubun = #gubun#,
 			udt_name = #udt_name#,
 			udt_date = #udt_date#
 		where seq = #seq#

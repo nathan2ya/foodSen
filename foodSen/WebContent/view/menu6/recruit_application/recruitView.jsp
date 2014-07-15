@@ -129,16 +129,16 @@
 							<th>학교급</th>
 							<td colspan="1" class="tl">
 								<c:if test="${resultClass.school_type == 1}">
-									초등
+									초등학교
 								</c:if>
 								<c:if test="${resultClass.school_type == 2}">
-									중등
+									중학교
 								</c:if>
 								<c:if test="${resultClass.school_type == 3}">
-									고등
+									고등학교
 								</c:if>
 								<c:if test="${resultClass.school_type == 4}">
-									특수
+									특수학교
 								</c:if>
 								<c:if test="${resultClass.school_type == 5}">
 									각종

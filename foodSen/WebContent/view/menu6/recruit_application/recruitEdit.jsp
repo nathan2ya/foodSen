@@ -187,12 +187,236 @@
 							<col width="*%" />
 						</colgroup>
 						<tbody>
+							
+							<!-- 1번째줄 -->
 							<tr>
 								<th>제목</th>
 								<td colspan="5" class="tl">
 									<strong>${resultClass.title}</strong>
 								</td>
 							</tr>
+							<!-- .//1번째줄 -->
+							
+							
+							<!-- 2번째줄 -->
+							<tr>
+								<th>등록자</th>
+								<td colspan="1" class="tl">
+									${resultClass.reg_name}
+								</td>
+								<th>등록일</th>
+								<td colspan="1" class="tl">
+									<fmt:formatDate value="${resultClass.reg_date}" pattern="yyyy-MM-dd" />
+								</td>
+								<th>마감여부</th>
+								<td colspan="1" class="tl">
+									<c:if test="${resultClass.end_yn eq 'N'}">
+										<select id="end_yn" name="end_yn">
+											<option value="N" selected>아님</option>
+											<option value="Y">마감</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.end_yn eq 'Y'}">
+										<select id="end_yn" name="end_yn">
+											<option value="N">아님</option>
+											<option value="Y" selected>마감</option>
+										</select>
+									</c:if>
+								</td>
+							</tr>
+							<!-- .//2번째줄 -->
+							
+							
+							<!-- 3번째줄 -->
+							<tr>
+								<th>학교급</th>
+								<td colspan="1" class="tl">
+									<c:if test="${resultClass.school_type == 1}">
+										초등학교
+									</c:if>
+									<c:if test="${resultClass.school_type == 2}">
+										중학교
+									</c:if>
+									<c:if test="${resultClass.school_type == 3}">
+										고등학교
+									</c:if>
+									<c:if test="${resultClass.school_type == 4}">
+										특수학교
+									</c:if>
+									<c:if test="${resultClass.school_type == 5}">
+										각종
+									</c:if>
+								</td>
+								<th>학교명</th>
+								<td colspan="1" class="tl">
+									${resultClass.school_name}
+								</td>
+								<th>지역</th>
+								<td colspan="1" class="tl">
+									<c:if test="${resultClass.loc_seq == 01}">
+										강남구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 02}">
+										강동구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 03}">
+										강북구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 04}">
+										강서구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 05}">
+										관악구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 06}">
+										광진구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 07}">
+										구로구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 08}">
+										금천구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 09}">
+										노원구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 10}">
+										도봉구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 11}">
+										동대문구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 12}">
+										동작구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 13}">
+										마포구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 14}">
+										서대문구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 15}">
+										서초구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 16}">
+										성동구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 17}">
+										성북구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 18}">
+										송파구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 19}">
+										양천구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 20}">
+										영등포구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 21}">
+										강남구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 22}">
+										용산구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 23}">
+										종로구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 24}">
+										중구
+									</c:if>
+									<c:if test="${resultClass.loc_seq == 25}">
+										중랑구
+									</c:if>
+								</td>
+							</tr>
+							<!-- .//3번째줄 -->
+							
+							
+							<!-- 4번째줄 -->
+							<tr>
+								<th>직종</th>
+								<td colspan="1" class="tl">
+									<c:if test="${resultClass.job == 01}">
+										<select id="job" name="job">
+											<option value="01" selected>영양교사</option>
+											<option value="02">영양사</option>
+											<option value="03">조리사</option>
+											<option value="04">조리원</option>
+											<option value="05">배식도우미</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.job == 02}">
+										<select id="job" name="job">
+											<option value="01">영양교사</option>
+											<option value="02" selected>영양사</option>
+											<option value="03">조리사</option>
+											<option value="04">조리원</option>
+											<option value="05">배식도우미</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.job == 03}">
+										<select id="job" name="job">
+											<option value="01">영양교사</option>
+											<option value="02">영양사</option>
+											<option value="03" selected>조리사</option>
+											<option value="04">조리원</option>
+											<option value="05">배식도우미</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.job == 04}">
+										<select id="job" name="job">
+											<option value="01">영양교사</option>
+											<option value="02">영양사</option>
+											<option value="03">조리사</option>
+											<option value="04" selected>조리원</option>
+											<option value="05">배식도우미</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.job == 05}">
+										<select id="job" name="job">
+											<option value="01">영양교사</option>
+											<option value="02">영양사</option>
+											<option value="03">조리사</option>
+											<option value="04">조리원</option>
+											<option value="05" selected>배식도우미</option>
+										</select>
+									</c:if>
+								</td>
+								<th>근무형태</th>
+								<td colspan="3" class="tl">
+									<c:if test="${resultClass.gubun == 01}">
+										<select id="gubun" name="gubun">
+											<option value="01" selected>전일제</option>
+											<option value="02">시간제</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.gubun == 02}">
+										<select id="gubun" name="gubun">
+											<option value="01">전일제</option>
+											<option value="02" selected>시간제</option>
+										</select>
+									</c:if>
+								</td>
+							</tr>
+							<!-- .//4번째줄 -->
+							
+							
+							<!-- 5번째줄 -->
+							<tr>
+								<th>연락쳐</th>
+								<td colspan="1" class="tl">
+									${resultClass.phone}
+								</td>
+								<th>이메일</th>
+								<td colspan="3" class="tl">
+									${resultClass.email}
+								</td>
+							</tr>
+							<!-- .//5번째줄 -->
+							
+							
+							<!-- 6번째줄 -->
 							<tr>
 								<th>
 									내용<br/>(2000자 이내)
@@ -201,6 +425,10 @@
 									<textarea id="description" name="description" rows="12" cols="*" class="area">${resultClass.description}</textarea>
 								</td>
 							</tr>
+							<!-- .//6번째줄 -->
+							
+							
+							<!-- 7번째줄 -->
 							<tr>
 								<th>첨부파일</th>
 								<td colspan="3" class="tl">
@@ -236,6 +464,9 @@
 									
 								</td>
 							</tr>
+							<!-- .//7번째줄 -->
+							
+							
 						</tbody>
 					</table>
 					

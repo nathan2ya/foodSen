@@ -92,12 +92,18 @@ public class RecruitEdit {
 				
 		//사용자가 입력한 값
 		String description = request1.getParameter("description");
+		String end_yn = request1.getParameter("end_yn");
+		String job = request1.getParameter("job");
+		String gubun = request1.getParameter("gubun");
 		Calendar today = Calendar.getInstance();
 		
 
 		//DTO Set()
 		paramClass.setSeq(seq);
 		paramClass.setDescription(description); //수정내용
+		paramClass.setEnd_yn(end_yn);
+		paramClass.setJob(job);
+		paramClass.setGubun(gubun);
 		paramClass.setUdt_name(session_id); //수정인
 		paramClass.setUdt_date(today.getTime()); //수정일
 		
