@@ -4,13 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 
 
-
 <jsp:include page="/view/include/top.jsp"/>
 <link href="/css/base.css" rel="stylesheet" type="text/css" />
 <link href="/css/common.css" rel="stylesheet" type="text/css" />
-
-
-
 
 
 <script type="text/javascript">
@@ -32,6 +28,8 @@
 		location.href='/foodSen/inspectionResultEditFrom.do?seq='+seq+'&currentPage='+currentPage+'&searchingNow='+searchingNow;
 	}
 	
+	
+	//내용 부분 오토링크
 	$(document).ready(function(){
 		autolink(document.getElementById("description"));
 	});
@@ -45,6 +43,7 @@
 	
 	    container.innerHTML = doc.replace(regURL,"<a href='$1://$2' target='_blank'>$1://$2</a>").replace(regEmail,"<a href='mailto:$1'>$1</a>");
 	}
+	//.내용 부분 오토링크 종료
 	
 </script>
 
@@ -100,8 +99,7 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td id="description" colspan="5" class="tl h150"><pre>${resultClass.description}</pre>
-							</td>
+							<td id="description" colspan="5" class="tl h150"><pre>${resultClass.description}</pre></td>
 						</tr>
 						<tr>
 							<th>첨부파일</th>

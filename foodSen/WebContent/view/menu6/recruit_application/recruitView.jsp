@@ -12,71 +12,38 @@
 
 <script type="text/javascript">
 
-	function goDelete(){
-		
-		var frm = document.deleteOK;    //팝업에 넘길 부모창의 폼
-	
-		if(frm.sessionScope.value == null || frm.sessionScope.value == ""){
-			frm.action = 'recruitDeleteForm.do';
-			frm.submit();
-		}else{
-			//빈페이지로 팝업창을 우선 하나 띄운다.
-			window.open('', 'popup_post', 'width=500, height=310, top='+(screen.height-418)/2+', left='+(screen.width-618)/2);
-		
-			//부모창의 타겟을 빈페이지로 띄운 팝업창의 이름으로 한다
-			frm.target = 'popup_post';   
-		
-			//넘길 폼의 action을 팝업에 나타낼 페이지로 한다.
-			frm.action = 'recruitDeleteForm.do';
-		
-			//팝업으로 넘길 값을 가지고있는 폼을 submit 한다.
-			frm.submit();
-		}
-	}
-	
-	function goEditCheck(){
-		
-		var frm = document.deleteOK;    //팝업에 넘길 부모창의 폼
-	
-		if(frm.sessionScope.value == null || frm.sessionScope.value == ""){
-			frm.action = 'recruitUpdateForm.do';
-			frm.submit();
-		}else{
-			//빈페이지로 팝업창을 우선 하나 띄운다.
-			window.open('', 'popup_post', 'width=500, height=310, top='+(screen.height-418)/2+', left='+(screen.width-618)/2);
-		
-			//부모창의 타겟을 빈페이지로 띄운 팝업창의 이름으로 한다
-			frm.target = 'popup_post';   
-		
-			//넘길 폼의 action을 팝업에 나타낼 페이지로 한다.
-			frm.action = 'recruitUpdateForm.do';
-		
-			//팝업으로 넘길 값을 가지고있는 폼을 submit 한다.
-			frm.submit();
-		}
-	}
-		
 	function goEdit(){
-		editOK.submit();
+		var seq = "${seq}"; // 뷰페이지 시퀀스넘버
+		var currentPage = "${currentPage}"; // 뷰페이지 현재페이지
+		var searchingNow = "${searchingNow}"; // 뷰페이지 검색중인 여부
+		
+		location.href='/foodSen/recruitEditFrom.do?seq='+seq+'&currentPage='+currentPage+'&searchingNow='+searchingNow;
+	}
+
+	function goDelete(){
+		var seq = "${seq}"; // 뷰페이지 시퀀스넘버
+		var pw = "${resultClass.pw}"; // 뷰페이지 현재페이지
+		
+		//url
+		url="/foodSen/inspectionResultDeleteFrom.do?seq="+seq+"&pw="+pw;
+		// 새로운 윈도우를 엽니다.
+			open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=220");
 	}
 	
+	//내용 부분 오토링크
 	$(document).ready(function(){
 		autolink(document.getElementById("description"));
 	});
 	
 	function autolink(id) {
-		
 	    var container = id;
-	
 	    var doc = container.innerHTML;
-	
-	    var regURL = new RegExp("(http|https|ftp|telnet|news|irc)://([-/.a-zA-Z0-9_~#%$?&amp;=:200-377]+)","gi");
-	
+	    var regURL = new RegExp("(http|https|ftp|telnet|news|irc)://([-/.a-zA-Z0-9_~#%$?&=:200-377()]+)","gi");
 	    var regEmail = new RegExp("([xA1-xFEa-z0-9_-]+@[xA1-xFEa-z0-9-]+\.[a-z0-9-]+)","gi");
 	
 	    container.innerHTML = doc.replace(regURL,"<a href='$1://$2' target='_blank'>$1://$2</a>").replace(regEmail,"<a href='mailto:$1'>$1</a>");
-	
 	}
+	//.내용 부분 오토링크 종료
 	
 </script>
 
@@ -314,7 +281,7 @@
 							<th>
 								내용<br/>(2000자 이내)
 							</th>
-							<td colspan="5" class="tl">
+							<td id="description" colspan="5" class="tl">
 								<pre>${resultClass.description}</pre>
 							</td>
 						</tr>

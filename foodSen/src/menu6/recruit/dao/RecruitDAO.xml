@@ -121,6 +121,15 @@
 		where seq = #seq#
 	</update>
 	
+	<update id="updateRecruit" parameterClass="recruitDTO">
+		UPDATE TB_05_RECRUIT
+		SET
+			description = #description#,
+			udt_name = #udt_name#,
+			udt_date = #udt_date#
+		where seq = #seq#
+	</update>
+	
 	
 	
 	
