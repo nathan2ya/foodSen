@@ -162,7 +162,7 @@ public class RecruitList {
 	
 	//학교급식인력풀(구인) (검색글) 리스트
 	@RequestMapping("/recruitSearch.do")
-	public String inspectionResultSearchList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public String recruitSearchList(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		// 전체글, 검색글 판단값.
 		searchingNow = 1; //0 == 전체글//1 == 검색글//

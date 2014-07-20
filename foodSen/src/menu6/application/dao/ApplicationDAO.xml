@@ -84,6 +84,22 @@
 	</select>
 	
 	
+	<select id="selectWithJob" resultMap="applicationRes" parameterClass="java.lang.String">
+		select * from TB_05_APPLICATION
+		where job = #subValue#
+	</select>
+	
+	<select id="selectWithGubun" resultMap="applicationRes" parameterClass="java.lang.String">
+		select * from TB_05_APPLICATION
+		where gubun = #subValue#
+	</select>
+	
+	<select id="selectWithLoc" resultMap="applicationRes" parameterClass="java.lang.String">
+		select * from TB_05_APPLICATION
+		where loc_seq = #subValue#
+	</select>
+	
+	
 	
 		
 
