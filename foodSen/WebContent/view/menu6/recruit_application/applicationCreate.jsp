@@ -152,6 +152,15 @@
 		}
 	}
 	
+	//나이 숫자입력 제한
+	function check_age(){
+		if(!((event.keyCode >= 48 && event.keyCode<=57) || (event.keyCode >= 96 && event.keyCode <= 105) || event.keyCode==8 )){
+			alert("나이는 숫자만 입력할 수 있습니다.");
+			applicationCreateFrom.age.value = "";
+			applicationCreateFrom.age.focus();
+		} 
+	}
+	
 </script>
 
 
@@ -259,7 +268,7 @@
 							<tr>
 								<th>연령</th>
 								<td colspan="1" class="tl">
-									만 <input type="text" id="age" name="age"  size="4"  maxlength="2" /> 세
+									만 <input type="text" id="age" name="age"  size="4"  maxlength="2" onkeydown="check_age();" /> 세
 								</td>
 								
 								<th>성별</th>
