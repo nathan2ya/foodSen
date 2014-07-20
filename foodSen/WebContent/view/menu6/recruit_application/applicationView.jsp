@@ -316,16 +316,16 @@
 					<!-- 검색중인 목록 -->
 					<c:if test="${searchingNow == 1}">
 						<c:if test="${searchType eq 'job'}">
-							<span class="wte_l"><a href="/foodSen/recruitSearch.do?searchType=${searchType}&job=${resultClass.job}&currentPage=${currentPage}" class="wte_r">목록</a></span>
+							<span class="wte_l"><a href="/foodSen/applicationSearch.do?searchType=${searchType}&job=${resultClass.job}&currentPage=${currentPage}" class="wte_r">목록</a></span>
 						</c:if>
 						<c:if test="${searchType eq 'gubun'}">
-							<span class="wte_l"><a href="/foodSen/recruitSearch.do?searchType=${searchType}&gubun=${resultClass.gubun}&currentPage=${currentPage}" class="wte_r">목록</a></span>
+							<span class="wte_l"><a href="/foodSen/applicationSearch.do?searchType=${searchType}&gubun=${resultClass.gubun}&currentPage=${currentPage}" class="wte_r">목록</a></span>
 						</c:if>
 						<c:if test="${searchType eq 'loc_seq'}">
-							<span class="wte_l"><a href="/foodSen/recruitSearch.do?searchType=${searchType}&loc_seq=${resultClass.loc_seq}&currentPage=${currentPage}" class="wte_r">목록</a></span>
+							<span class="wte_l"><a href="/foodSen/applicationSearch.do?searchType=${searchType}&loc_seq=${resultClass.loc_seq}&currentPage=${currentPage}" class="wte_r">목록</a></span>
 						</c:if>
 						<c:if test="${searchType eq 'school_type'}">
-							<span class="wte_l"><a href="/foodSen/recruitSearch.do?searchType=${searchType}&school_type=${resultClass.school_type}&currentPage=${currentPage}" class="wte_r">목록</a></span>
+							<span class="wte_l"><a href="/foodSen/applicationSearch.do?searchType=${searchType}&school_type=${resultClass.school_type}&currentPage=${currentPage}" class="wte_r">목록</a></span>
 						</c:if>
 					</c:if>
 					<!-- .//검색중인 목록 -->
