@@ -119,6 +119,18 @@
 		where seq = #seq#
 	</update>
 	
+	<update id="updateApplication" parameterClass="applicationDTO">
+		UPDATE TB_05_APPLICATION
+		SET
+			description = #description#,
+			end_yn = #end_yn#,
+			job = #job#,
+			gubun = #gubun#,
+			udt_name = #udt_name#,
+			udt_date = #udt_date#
+		where seq = #seq#
+	</update>
+	
 	
 	
 	
