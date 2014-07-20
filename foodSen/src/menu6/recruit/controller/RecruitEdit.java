@@ -132,7 +132,7 @@ public class RecruitEdit {
 				
 				//새로운파일 생성시작
 					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
-					String fileName = "file_recruit_"+randNum;//서버저장 파일명(file_inspctionResult_랜덤번호)
+					String fileName = "file_recruit_"+randNum;//서버저장 파일명(file_recruit_랜덤번호)
 					String fileExt = orgName.substring(orgName.lastIndexOf('.'));//서버저장 확장자
 					
 					File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
