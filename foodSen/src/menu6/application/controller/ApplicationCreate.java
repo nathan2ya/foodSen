@@ -114,7 +114,7 @@ public class ApplicationCreate {
 		paramClass.setEnd_yn("N");
 		
 		//DB에 insert 하기 (글 등록)
-		sqlMapper.insert("Application.insertapplication", paramClass);
+		sqlMapper.insert("Application.insertApplication", paramClass);
 		
 		
 		

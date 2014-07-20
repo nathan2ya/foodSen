@@ -58,7 +58,7 @@
 	
 	
 	<!-- insert -->
-	<insert id="insertapplication" parameterClass="applicationDTO">
+	<insert id="insertApplication" parameterClass="applicationDTO">
 		insert into TB_05_APPLICATION
 			(seq, title, pw, loc_seq, sex, job, gubun, email, phone, description, hits, writer, reg_name, reg_date, udt_name, udt_date, age, end_yn)
 		values
