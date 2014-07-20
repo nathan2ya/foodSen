@@ -6,23 +6,6 @@
 	<typeAlias alias="inspectionResultDTO" type="menu2.inspectionResult.dto.InspectionResultDTO" />
 	
 	<!-- 리절트 맵 정의 -->
-	
-	<resultMap id="inspectionResultRes1" class="inspectionResultDTO">
-		<result property="seq" column="seq" />
-		<result property="title" column="title" />
-		<result property="attach_name" column="attach_name" />
-		<result property="attach_path" column="attach_path" />
-		<result property="description" column="description" />
-		<result property="pw" column="pw" />
-		<result property="hits" column="hits" />
-		<result property="wirte" column="wirte" />
-		<result property="reg_name" column="reg_name" />
-		<result property="reg_date" column="reg_date" />
-		<result property="udt_name" column="udt_name" />
-		<result property="udt_date" column="udt_date" />
-		<result property="rownum" column="r" />
-	</resultMap>
-	
 	<resultMap id="inspectionResultRes" class="inspectionResultDTO">
 		<result property="seq" column="seq" />
 		<result property="title" column="title" />
