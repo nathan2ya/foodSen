@@ -135,6 +135,10 @@
 	
 	
 	<!-- delete -->
+	<delete id="deleteApplication" parameterClass="int">
+		delete from TB_05_APPLICATION
+		where seq = #seq#
+	</delete>
 	
 	
 

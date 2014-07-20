@@ -49,6 +49,9 @@ public class Stay2sec {
 		if(service.equals("recruit")){
 			stay2sec_path = "/view/menu6/recruit_application/stay2sec_r.jsp";
 		}
+		if(service.equals("application")){
+			stay2sec_path = "/view/menu6/recruit_application/stay2sec_a.jsp";
+		}
 		//.호출측에 따른 뷰페이지 정의 종료
 		
 		return stay2sec_path;

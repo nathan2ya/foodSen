@@ -89,7 +89,7 @@ public class RecruitDelete{
 		sqlMapper.delete("Recruit.deleteRecruit", seq);
 		
 		
-		return "redirect://recruitList.do"; // 리스트로 리다이렉트
+		return "redirect:/recruitList.do"; // 리스트로 리다이렉트
 	}
 }
 
