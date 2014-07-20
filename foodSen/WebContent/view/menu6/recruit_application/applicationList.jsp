@@ -198,7 +198,7 @@
 							
 							<c:forEach var="list" items="${list}">
 							
-								<c:url var="url" value="/inspectionResultView.do"> 
+								<c:url var="url" value="/applicationView.do"> 
 									<c:param name="seq" value="${list.seq}"/>
 									<c:param name="currentPage" value="${currentPage}"/>
 									<c:param name="searchingNow" value="${searchingNow}"/>

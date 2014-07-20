@@ -67,7 +67,7 @@
 		<div class="right_box">
 			
 			<!-- 우측상단 제목 -->
-			<h3><img src="./images/sub/particiation/title_01.gif" alt="구인" /></h3>
+			<h3><img src="./images/sub/particiation/title_01.gif" alt="학교급식인력풀" /></h3>
 			<!-- .//우측상단 제목 -->
 			
 			

@@ -78,6 +78,13 @@
 		SELECT MAX(seq) AS seq from TB_05_APPLICATION
 	</select>
 	
+	<select id="selectApplicationOne" resultMap="applicationRes" parameterClass="int">
+		select * from TB_05_APPLICATION
+		where seq = #seq#
+	</select>
+	
+	
+	
 		
 
 	<!-- update -->
@@ -86,6 +93,13 @@
 		SET
 			attach_name = #attach_name#,
 			attach_path = #attach_path#
+		where seq = #seq#
+	</update>
+	
+	<update id="updateHits" parameterClass="applicationDTO">
+		UPDATE TB_05_APPLICATION
+		SET
+			hits = #hits#
 		where seq = #seq#
 	</update>
 	
