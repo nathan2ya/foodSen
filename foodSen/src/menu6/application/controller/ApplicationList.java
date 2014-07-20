@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import menu2.inspectionResult.dto.InspectionResultDTO;
+import menu6.application.dto.ApplicationDTO;
 
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
@@ -36,7 +36,7 @@ import common.PagingAction;
 public class ApplicationList {
 	
 	//리스트
-	private List<InspectionResultDTO> list = new ArrayList<InspectionResultDTO>();
+	private List<ApplicationDTO> list = new ArrayList<ApplicationDTO>();
 	
 	//검색중
 	private String tempInput;

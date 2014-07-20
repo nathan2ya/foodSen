@@ -346,7 +346,7 @@
 										</c:if>
 									</td>
 									<td align="left">
-										<fmt:formatDate value="${list.reg_date}"  pattern="yyyy-MM-dd" />
+										<fmt:formatDate value="${list.reg_date}"  pattern="YY-MM-dd" />
 									</td>
 									<td align="left">
 										${list.hits}
@@ -380,7 +380,7 @@
 							<a href="/foodSen/recruitCreateForm.do" class="pre_r">등록</a>
 						</span>
 					</c:if>
-					<!-- .//관리자일경우 등록버튼 노출 -->
+					<!-- .//교직원인 경우만 등록버튼 노출 -->
 					
 				</span>
 				<!-- .//목록 등록 버튼 -->

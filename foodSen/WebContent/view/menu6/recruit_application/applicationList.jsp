@@ -178,9 +178,9 @@
 			                <th>제목</th>
 			                <th>성별</th>
 			                <th>직종</th>
-			                <th>근무<br />형태</th>
-			                <th>희망<br />지역</th>
-			                <th>마감<br />여부</th>
+			                <th>근무<br/>형태</th>
+			                <th>희망<br/>지역</th>
+			                <th>마감<br/>여부</th>
 			                <th>작성자</th>
 			                <th>등록일</th>
 			                <th>조회수</th>
@@ -216,13 +216,121 @@
 									<td align="left">
 										<a href=${url}>${list.title}</a>
 									</td>
-									<td>
-										<c:if test="${list.attach_name != null}">
-											<img src="./images/sub/btn/btn_down.gif" alt="pdf" />
+									<td align="center">
+										<c:if test="${list.sex == 01}">
+											남자
+										</c:if>
+										<c:if test="${list.sex == 02}">
+											여자
 										</c:if>
 									</td>
-									<td align="center">${list.wirte}</td>
-									<td align="center"><fmt:formatDate value="${list.reg_date}"  pattern="yyyy-MM-dd" /></td>
+									<td align="left">
+										<c:if test="${list.job == 01}">
+											영양교사
+										</c:if>
+										<c:if test="${list.job == 02}">
+											영양사
+										</c:if>
+										<c:if test="${list.job == 03}">
+											조리사
+										</c:if>
+										<c:if test="${list.job == 04}">
+											조리원
+										</c:if>
+										<c:if test="${list.job == 05}">
+											배식도우미
+										</c:if>
+									</td>
+									<td align="left">
+										<c:if test="${list.gubun == 01}">
+											전일제
+										</c:if>
+										<c:if test="${list.gubun == 02}">
+											시간제
+										</c:if>
+									</td>
+									<td align="left">
+										<c:if test="${list.loc_seq == 01}">
+											강남구
+										</c:if>
+										<c:if test="${list.loc_seq == 02}">
+											강동구
+										</c:if>
+										<c:if test="${list.loc_seq == 03}">
+											강북구
+										</c:if>
+										<c:if test="${list.loc_seq == 04}">
+											강서구
+										</c:if>
+										<c:if test="${list.loc_seq == 05}">
+											관악구
+										</c:if>
+										<c:if test="${list.loc_seq == 06}">
+											광진구
+										</c:if>
+										<c:if test="${list.loc_seq == 07}">
+											구로구
+										</c:if>
+										<c:if test="${list.loc_seq == 08}">
+											금천구
+										</c:if>
+										<c:if test="${list.loc_seq == 09}">
+											노원구
+										</c:if>
+										<c:if test="${list.loc_seq == 10}">
+											도봉구
+										</c:if>
+										<c:if test="${list.loc_seq == 11}">
+											동대문구
+										</c:if>
+										<c:if test="${list.loc_seq == 12}">
+											동작구
+										</c:if>
+										<c:if test="${list.loc_seq == 13}">
+											마포구
+										</c:if>
+										<c:if test="${list.loc_seq == 14}">
+											서대문구
+										</c:if>
+										<c:if test="${list.loc_seq == 15}">
+											서초구
+										</c:if>
+										<c:if test="${list.loc_seq == 16}">
+											성동구
+										</c:if>
+										<c:if test="${list.loc_seq == 17}">
+											성북구
+										</c:if>
+										<c:if test="${list.loc_seq == 18}">
+											송파구
+										</c:if>
+										<c:if test="${list.loc_seq == 19}">
+											양천구
+										</c:if>
+										<c:if test="${list.loc_seq == 20}">
+											영등포구
+										</c:if>
+										<c:if test="${list.loc_seq == 21}">
+											강남구
+										</c:if>
+										<c:if test="${list.loc_seq == 22}">
+											용산구
+										</c:if>
+										<c:if test="${list.loc_seq == 23}">
+											종로구
+										</c:if>
+										<c:if test="${list.loc_seq == 24}">
+											중구
+										</c:if>
+										<c:if test="${list.loc_seq == 25}">
+											중랑구
+										</c:if>
+									</td>
+									<td align="left">
+										${list.end_yn}
+									</td>
+									<td align="center">${list.writer}</td>
+									<td align="center"><fmt:formatDate value="${list.reg_date}"  pattern="YY-MM-dd" /></td>
 									<td align="center">${list.hits}</td>
 								</tr>
 							</c:forEach>
@@ -245,16 +353,16 @@
 				<!-- 목록 . 등록 버튼 -->
 				<span class="bbs_btn"> 
 					<span class="wte_l">
-						<a href="/foodSen/inspectionResultList.do" class="wte_r">목록</a>
+						<a href="/foodSen/applicationList.do" class="wte_r">목록</a>
 					</span>
 					
-					<!-- 관리자일경우 등록버튼 노출 -->
-					<c:if test="${sessionScope.session_admin_yn == 'y'}">
+					<!-- 교직원인 경우만 등록버튼 노출 -->
+					<c:if test="${sessionScope.session_position == 3}">
 						<span class="per_l">
-							<a href="/foodSen/inspectionResultCreateFrom.do" class="pre_r">등록</a>
+							<a href="/foodSen/applicationCreateForm.do" class="pre_r">등록</a>
 						</span>
 					</c:if>
-					<!-- .//관리자일경우 등록버튼 노출 -->
+					<!-- .//교직원인 경우만 등록버튼 노출 -->
 					
 				</span>
 				<!-- .//목록 등록 버튼 -->

@@ -58,6 +58,13 @@
 	
 	
 	<!-- insert -->
+	<insert id="insertapplication" parameterClass="applicationDTO">
+		insert into TB_05_APPLICATION
+			(seq, title, pw, loc_seq, sex, job, gubun, email, phone, description, hits, writer, reg_name, reg_date, udt_name, udt_date, age, end_yn)
+		values
+			(TB_05_APPLICATION_seq.NEXTVAL, #title#, #pw#, #loc_seq#, #sex#, #job#, #gubun#, #email#, #phone#, #description#, #hits#, #writer#, #reg_name#, #reg_date#, #udt_name#, #udt_date#, #age#, #end_yn#)
+	</insert>
+	
 	
 	
 	
@@ -67,9 +74,20 @@
 		order by seq desc
 	</select>
 	
+	<select id="selectLastNum" resultClass="applicationDTO" parameterClass="int">
+		SELECT MAX(seq) AS seq from TB_05_APPLICATION
+	</select>
+	
 		
 
 	<!-- update -->
+	<update id="updateFile" parameterClass="applicationDTO">
+		UPDATE TB_05_APPLICATION
+		SET
+			attach_name = #attach_name#,
+			attach_path = #attach_path#
+		where seq = #seq#
+	</update>
 	
 	
 	
