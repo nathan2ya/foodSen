@@ -36,7 +36,7 @@ public class ApplicationEdit {
 	private ApplicationDTO paramClass = new ApplicationDTO();
 	
 	//업로드 파일 경로
-	private String file_path = Constants.COMMON_FILE_PATH + Constants.MENU6_RECRUIT_FILE_PATH;
+	private String file_path = Constants.COMMON_FILE_PATH + Constants.MENU6_APPLICATION_FILE_PATH;
 	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
