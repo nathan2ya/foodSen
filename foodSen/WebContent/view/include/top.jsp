@@ -266,13 +266,13 @@
             </div>
           </div>
         </li>
-        <li class="mainMenu last"><a href="http://food.sen.go.kr/trainingEvent.do"><img src="./images/header/common/mm_noticeOff.gif" alt="알림마당" /></a>
+        <li class="mainMenu last"><a href="/foodSen/TrainingEvent.do"><img src="./images/header/common/mm_noticeOff.gif" alt="알림마당" /></a>
           <div class="subMenu" id="sub07" style="display:none;">
             <div class="boxSR">
               <ul class="boxSM">
                 <li class="left_bg"></li>
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_notice01Off.gif" alt="급식소식" /></a></li>
-                <li class="subMenu"><a href="http://food.sen.go.kr/trainingEvent.do"><img src="./images/header/common/sm_notice02Off.gif" alt="연수·행사" /></a></li>
+                <li class="subMenu"><a href="/foodSen/TrainingEvent.do"><img src="./images/header/common/sm_notice02Off.gif" alt="연수·행사" /></a></li>
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_notice03Off.gif" alt="업무자료실" /></a></li>
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_notice04Off.gif" alt="관련법규" /></a></li>
                 <li class="last subMenu"><a href="

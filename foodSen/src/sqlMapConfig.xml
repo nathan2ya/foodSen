@@ -25,6 +25,6 @@
 	<sqlMap resource="/menu3/improvementCase/dao/ImprovementCaseDAO.xml"/>
 	<sqlMap resource="/menu6/application/dao/ApplicationDAO.xml"/>
 	<sqlMap resource="/menu6/recruit/dao/RecruitDAO.xml"/>
-	
+	<sqlMap resource="/menu7/trainingEvent/dao/TrainingEventDAO.xml"/>
 	
 </sqlMapConfig>
