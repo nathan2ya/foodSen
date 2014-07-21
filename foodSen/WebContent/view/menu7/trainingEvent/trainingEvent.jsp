@@ -331,7 +331,7 @@
 		
 		
 		<!-- ÁÂÃø¸Þ´º -->
-		<jsp:include page="/view/include/menu6/recruitLnb.jsp"/>
+		<jsp:include page="/view/include/menu7/trainingEventLnb.jsp"/>
 		<!-- .//ÁÂÃø¸Þ´º -->
 		
 	
