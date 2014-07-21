@@ -1,1 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
+<sqlMap namespace="TrainingEvent">
+
+	<typeAlias alias="trainingEventDTO" type="menu7.trainingEvent.dto.TrainingEventDTO" />
+	
+	<!-- 리절트 맵 정의 -->
+	<resultMap id="trainingEventRes" class="trainingEventDTO">
+		<result property="seq" column="seq" />
+		<result property="title" column="title" />
+		<result property="gubun" column="gubun" />
+		<result property="str_date" column="str_date" />
+		<result property="end_date" column="end_date" />
+		<result property="attach_name" column="attach_name" />
+		<result property="attach_path" column="attach_path" />
+		<result property="pw" column="pw" />
+		<result property="img1" column="img1" />
+		<result property="img2" column="img2" />
+		<result property="img3" column="img3" />
+		<result property="description" column="description" />
+		<result property="up_seq" column="up_seq" />
+		<result property="hits" column="hits" />
+		<result property="writer" column="writer" />
+		<result property="reg_name" column="reg_name" />
+		<result property="reg_date" column="reg_date" />
+		<result property="udt_name" column="udt_name" />
+		<result property="udt_date" column="udt_date" />
+		<result property="turn" column="turn" />
+	</resultMap>
+	
+	
+	
+	
+	<!-- insert -->
+
+	
+	
+	
+	
+	<!-- select -->
+	
+	
+	
+		
+
+	<!-- update -->
+	
+	
+	
+	
+	
+	<!-- delete -->
+	
+	
+	
+	
+
+</sqlMap>
