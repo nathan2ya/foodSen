@@ -96,6 +96,7 @@ public class MemberLog {
 			session.setAttribute("session_id", resultClass.getUser_id()); // id 세션생성
 			session.setAttribute("session_position", resultClass.getPosition()); //type 세션생성
 			session.setAttribute("session_admin_yn", resultClass.getAdmin_yn()); // 관리자 Yes or No
+			session.setAttribute("session_resultClass", resultClass); // 멤버에 대한 정보
 			
 			viewPath = "redirect:/main.do";
 		}else{ // 아이디, 비밀번호 불일치

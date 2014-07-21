@@ -157,7 +157,7 @@
 			<c:when test="${sessionScope.session_id ne null}">
 				<ul>
 					<li class="bn f12">
-						<span class="orange">${sessionScope.session_id}</span>님 환영합니다.
+						<span class="orange">${sessionScope.session_resultClass.member_name}</span>님 환영합니다.
 					</li>
 					
 					<%-- 
