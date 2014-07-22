@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import menu2.inspectionResult.dto.InspectionResultDTO;
 import menu7.trainingEvent.dto.TrainingEventDTO;
+
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,13 +54,13 @@ public class TrainingEventCreate {
 	//.DB커넥트 생성자 버전 끝
 	
 	
-	//연수행사 입력폼
+	//연수행사 새글 입력폼
 	@RequestMapping("/trainingEventCreateFrom.do")
 	public String trainingEventCreateFrom(){
 		return "/view/menu7/trainingEvent/trainingEventCreate.jsp";
 	}
 	
-	//연수행사 입력
+	//연수행사 새글 입력
 	@RequestMapping(value="/trainingEventCreate.do", method=RequestMethod.POST)
 	public String trainingEventCreate(MultipartHttpServletRequest request, HttpServletRequest request1, HttpServletResponse response1, HttpSession session) throws Exception{
 		request.setCharacterEncoding("euc-kr");
@@ -137,4 +139,26 @@ public class TrainingEventCreate {
 		
 		return "redirect:/TrainingEventList.do"; //리스트로 리다이렉트
 	}
+	
+	
+	
+	
+	
+	//연수행사 답글 입력폼
+	@RequestMapping("/trainingEventResCreateFrom.do")
+	public String trainingEventResCreateFrom(HttpServletRequest request){
+		
+		int seq = Integer.parseInt(request.getParameter("seq"));
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		int searchingNow = Integer.parseInt(request.getParameter("searchingNow"));
+		
+		
+		request.setAttribute("seq", seq);
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("searchingNow", searchingNow);
+		
+		return "/view/menu7/trainingEvent/trainingEventResCreate.jsp";
+	}
+		
+		
 }

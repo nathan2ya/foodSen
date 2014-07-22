@@ -10,6 +10,15 @@
 
 
 <script type="text/javascript">
+	
+	function goEdit(){
+		var seq = "${seq}"; // 뷰페이지 시퀀스넘버
+		var currentPage = "${currentPage}"; // 뷰페이지 현재페이지
+		var searchingNow = "${searchingNow}"; // 뷰페이지 검색중인 여부
+		
+		location.href='/foodSen/inspectionResultEditFrom.do?seq='+seq+'&currentPage='+currentPage+'&searchingNow='+searchingNow;
+	}
+	
 	function goDelete(){
 		var seq = "${seq}"; // 뷰페이지 시퀀스넘버
 		var pw = "${resultClass.pw}"; // 뷰페이지 현재페이지
@@ -20,14 +29,14 @@
    		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=220");
 	}
 	
-	function goEdit(){
+	function goInsertRes(){
 		var seq = "${seq}"; // 뷰페이지 시퀀스넘버
 		var currentPage = "${currentPage}"; // 뷰페이지 현재페이지
 		var searchingNow = "${searchingNow}"; // 뷰페이지 검색중인 여부
 		
-		location.href='/foodSen/inspectionResultEditFrom.do?seq='+seq+'&currentPage='+currentPage+'&searchingNow='+searchingNow;
+		location.href='/foodSen/trainingEventResCreateFrom.do?seq='+seq+'&currentPage='+currentPage+'&searchingNow='+searchingNow;
+		
 	}
-	
 	
 	//내용 부분 오토링크
 	$(document).ready(function(){
@@ -137,6 +146,11 @@
 						<span class="per_l"><a href="javascript:goEdit()" class="pre_r">수정</a></span>
 						<span class="wte_l"><a href="javascript:goDelete()" class="wte_r">삭제</a></span>
 					</c:if>
+					
+					<c:if test="${resultClass.turn == '0'}">
+						<span class="wte_l"><a href="javascript:goInsertRes()" class="pre_r">결과등록</a></span>
+					</c:if>
+					
 				</span>
 				<!-- //버튼 -->
 			

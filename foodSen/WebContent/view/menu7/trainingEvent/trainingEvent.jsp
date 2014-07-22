@@ -195,6 +195,7 @@
 	}
 	
 	function getMonthEvent(){
+		
 		$.ajax({
 			type: 'post',
 			url: 'trainingEventMonth.do',
@@ -217,6 +218,7 @@
 		        //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		      }
 		});
+		
 	}
 	
 	function nextMonth(){ //다음 달로 넘어가는 기능
