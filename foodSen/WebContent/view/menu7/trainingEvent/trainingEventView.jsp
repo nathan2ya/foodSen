@@ -50,7 +50,7 @@
 <div id="container">
 	<div id="contents">
 	
-		<p><img src="./images/sub/notice/sub_vimg_01.jp" alt="건강한 급식 행복한 학교" /></p>
+		<p><img src="./images/sub/notice/sub_vimg_01.jpg" alt="건강한 급식 행복한 학교" /></p>
 		
 		<!-- 좌측메뉴 -->
 		<jsp:include page="/view/include/menu7/trainingEventLnb.jsp"/>

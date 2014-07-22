@@ -253,20 +253,21 @@
 				
 				
 				<!-- 검색 공간 -->
-			<div class="search_box">
-				<form name="search" action="/foodSen/applicationSearch.do" method="post">
-					<div style="display: inline;">
-						<select id="searchType" name="searchType">
-							<option value="title">제목</option>
-							<option value="writer">등록자</option>
-						</select>
-					</div>
-					
-					<input type="hidden" id="searchString" name="searchString" value="01" /> 
-					<a href="javascript:goSearch()"><img src="./images/sub/btn/btn_serch.gif" alt="검색" /></a>
-				</form>
-			</div>
-			<!-- .//검색 공간 -->
+				<div class="search_box">
+					<form name="search" action="/foodSen/applicationSearch.do" method="post">
+						<div style="display: inline;">
+							<select id="searchType" name="searchType">
+								<option value="title">제목</option>
+								<option value="writer">등록자</option>
+							</select>
+						</div>
+						
+						<input type="text" id="userinput" name="userinput" />
+						 
+						<a href="javascript:goSearch()"><img src="./images/sub/btn/btn_serch.gif" alt="검색" /></a>
+					</form>
+				</div>
+				<!-- .//검색 공간 -->
 			
 			
 		</div>

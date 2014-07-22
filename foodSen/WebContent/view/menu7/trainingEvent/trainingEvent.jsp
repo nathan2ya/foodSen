@@ -354,7 +354,6 @@
 			<div class="tbl_box">
 				
 				
-				<%-- 
 				<div>
 				
 					<form action="trainingEventView.do" method="post" id="view" name="view">
@@ -369,7 +368,6 @@
 					</c:forEach>
 					
 				</div>
-				 --%>
 				
 				
 				<!-- 달력영역 -->
