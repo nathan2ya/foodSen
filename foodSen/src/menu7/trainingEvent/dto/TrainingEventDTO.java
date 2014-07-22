@@ -16,8 +16,8 @@ public class TrainingEventDTO {
 	private String img2;
 	private String img3;
 	private String description;
-	private String up_seq;
-	private String hits;
+	private int up_seq;
+	private int hits;
 	private String writer;
 	private String reg_name;
 	private Date reg_date;
@@ -98,16 +98,16 @@ public class TrainingEventDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getUp_seq() {
+	public int getUp_seq() {
 		return up_seq;
 	}
-	public void setUp_seq(String up_seq) {
+	public void setUp_seq(int up_seq) {
 		this.up_seq = up_seq;
 	}
-	public String getHits() {
+	public int getHits() {
 		return hits;
 	}
-	public void setHits(String hits) {
+	public void setHits(int hits) {
 		this.hits = hits;
 	}
 	public String getWriter() {

@@ -246,7 +246,7 @@
 					<!-- 관리자인 경우만 등록버튼 노출 -->
 					<c:if test="${sessionScope.session_admin_yn == 'y'}">
 						<span class="per_l">
-							<a href="/foodSen/trainingEventCreateForm.do" class="pre_r">등록</a>
+							<a href="/foodSen/trainingEventCreateFrom.do" class="pre_r">등록</a>
 						</span>
 					</c:if>
 					<!-- .//관리자인 경우만 등록버튼 노출 -->

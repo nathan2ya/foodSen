@@ -33,6 +33,12 @@
 	
 	
 	<!-- insert -->
+	<insert id="insertTrainingEvent" parameterClass="trainingEventDTO">
+		insert into TB_07_TE
+			(seq, title, gubun, str_date, end_date, description, up_seq, pw, hits, writer, reg_name, reg_date, udt_name, udt_date, turn)
+		values
+			(TB_07_TE_seq.NEXTVAL, #title#, #gubun#, #str_date#, #end_date#, #description#, #up_seq#, #pw#, #hits#, #writer#, #reg_name#, #reg_date#, #udt_name#, #udt_date#, #turn#)
+	</insert>
 
 	
 	
@@ -44,11 +50,26 @@
 		order by seq desc
 	</select>
 	
+	<select id="selectLastNum" resultClass="trainingEventDTO" parameterClass="int">
+		SELECT MAX(seq) AS seq from TB_07_TE
+	</select>
+	
+	<select id="selectCount" resultClass ="int" parameterClass="java.lang.String">
+		SELECT count(*) FROM TB_07_TE
+	</select>
+		
 	
 	
 		
 
 	<!-- update -->
+	<update id="updateFile" parameterClass="trainingEventDTO">
+		UPDATE TB_07_TE
+		SET
+			attach_name = #attach_name#,
+			attach_path = #attach_path#
+		where seq = #seq#
+	</update>
 	
 	
 	

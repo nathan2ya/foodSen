@@ -327,7 +327,7 @@
 <div id="container">
 	<div id="contents">
 	
-		<p><img src="./images/sub/info/sub_vimg_01.jpg" alt="건강한 급식 행복한 학교" /></p>
+		<p><img src="./images/sub/notice/sub_vimg_01.jpg" alt="건강한 급식 행복한 학교" /></p>
 		
 		
 		<!-- 좌측메뉴 -->
@@ -390,7 +390,7 @@
 					<!-- 관리자인 경우만 등록버튼 노출 -->
 					<c:if test="${sessionScope.session_admin_yn == 'y'}">
 						<span class="per_l">
-							<a href="/foodSen/trainingEventCreateForm.do" class="pre_r">등록</a>
+							<a href="/foodSen/trainingEventCreateFrom.do" class="pre_r">등록</a>
 						</span>
 					</c:if>
 					<!-- .//관리자인 경우만 등록버튼 노출 -->
