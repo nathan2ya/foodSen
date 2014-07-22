@@ -250,8 +250,6 @@
 				<!-- .//목록 등록 버튼 -->
 				
 				
-				
-				
 				<!-- 검색 공간 -->
 				<div class="search_box">
 					<form name="search" action="/foodSen/applicationSearch.do" method="post">
