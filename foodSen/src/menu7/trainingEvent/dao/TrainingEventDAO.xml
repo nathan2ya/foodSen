@@ -57,6 +57,11 @@
 	<select id="selectCount" resultClass ="int" parameterClass="java.lang.String">
 		SELECT count(*) FROM TB_07_TE
 	</select>
+	
+	<select id="selectTrainingEventOne" resultMap="trainingEventRes" parameterClass="int">
+		select * from TB_07_TE
+		where seq = #seq#
+	</select>
 		
 	
 	
@@ -68,6 +73,13 @@
 		SET
 			attach_name = #attach_name#,
 			attach_path = #attach_path#
+		where seq = #seq#
+	</update>
+	
+	<update id="updateHits" parameterClass="trainingEventDTO">
+		UPDATE TB_07_TE
+		SET
+			hits = #hits#
 		where seq = #seq#
 	</update>
 	

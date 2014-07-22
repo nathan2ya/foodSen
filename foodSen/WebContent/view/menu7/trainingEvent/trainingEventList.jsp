@@ -161,9 +161,9 @@
 						<c:if test="${list != null}">
 						
 							<c:forEach var="list" items="${list}">
-							
-								<!-- 아직정의되지않음 -->
-								<c:url var="url" value="/applicationView.do"> 
+								
+								
+								<c:url var="url" value="/trainingEventView.do"> 
 									<c:param name="seq" value="${list.seq}"/>
 									<c:param name="currentPage" value="${currentPage}"/>
 									<c:param name="searchingNow" value="${searchingNow}"/>
@@ -172,7 +172,6 @@
 										<c:param name="userinput" value="${userinput}"/>
 									</c:if>
 								</c:url>
-								<!-- 아직정의되지않음 -->
 								
 								
 								<tr>
@@ -186,16 +185,12 @@
 									<td class="tl">
 									
 										<c:if test="${list.seq eq list.up_seq }">
-											<a class="title1" href="javascript:goView('1','${bw.seq }')">
-												${list.title }
-											</a>
+											<a href=${url}>${list.title}</a>
 										</c:if>
 										
 										<c:if test="${list.seq ne list.up_seq }">
 											&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/sub/btn/btn_re.gif" alt="결과" />
-											<a class="title2" href="javascript:goView('2','${bw.seq }')">
-												${list.title }
-											</a>
+											<a href=${url}>${list.title}</a>
 										</c:if>
 										
 									</td>
