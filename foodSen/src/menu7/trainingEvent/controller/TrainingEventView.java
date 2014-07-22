@@ -8,28 +8,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import menu7.trainingEvent.dto.TrainingEventDTO;
-
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -44,20 +32,13 @@ public class TrainingEventView {
 	//뷰페이지 레코드
 	private TrainingEventDTO paramClass = new TrainingEventDTO();
 	private TrainingEventDTO resultClass = new TrainingEventDTO();
-	
-	
 	private int currentPage;
 	private int searchingNow; // 전체글, 검색글을 판단하여 각종 논리성을 판가르는 논리값
-	
-	
-	//검색중인 경우에만 발생하는 변수(it's for uri)
 	private String searchType;
 	private String userinput;
 	
-	
 	//파일다운로드 관련
 	private String file_path = Constants.COMMON_FILE_PATH + Constants.MENU7_TRAININGEVENT_FILE_PATH;
-	
 	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
