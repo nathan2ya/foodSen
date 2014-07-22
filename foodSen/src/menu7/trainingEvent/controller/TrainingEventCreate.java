@@ -4,6 +4,7 @@ package menu7.trainingEvent.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
+import java.sql.SQLException;
 import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
@@ -77,7 +78,7 @@ public class TrainingEventCreate {
 		Calendar today = Calendar.getInstance();
 		
 		//DTO Set()
-		paramClass.setGubun("0"); // 0은 새글, 1은 답글
+		paramClass.setGubun("0"); // 0은 새글
 		paramClass.setTitle(title);
 		paramClass.setStr_date(str_date);
 		paramClass.setEnd_date(end_date);
@@ -89,9 +90,9 @@ public class TrainingEventCreate {
 		paramClass.setReg_date(today.getTime());
 		paramClass.setUdt_name(session_id);
 		paramClass.setUdt_date(today.getTime());
-		paramClass.setTurn("0");
+		paramClass.setTurn("0"); //0은 답글없음
 		
-		Integer count = (Integer) sqlMapper.queryForObject("TrainingEvent.selectCount", session_id);
+		Integer count = (Integer) sqlMapper.queryForObject("TrainingEvent.selectCount");
 		if(count==0){
 			paramClass.setUp_seq(1);
 		}else{
@@ -146,18 +147,111 @@ public class TrainingEventCreate {
 	
 	//연수행사 답글 입력폼
 	@RequestMapping("/trainingEventResCreateFrom.do")
-	public String trainingEventResCreateFrom(HttpServletRequest request){
+	public String trainingEventResCreateFrom(HttpServletRequest request) throws SQLException{
 		
 		int seq = Integer.parseInt(request.getParameter("seq"));
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		int searchingNow = Integer.parseInt(request.getParameter("searchingNow"));
 		
+		resultClass = (TrainingEventDTO)sqlMapper.queryForObject("TrainingEvent.selectTrainingEventOne", seq);
 		
 		request.setAttribute("seq", seq);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("searchingNow", searchingNow);
+		request.setAttribute("resultClass", resultClass);
 		
 		return "/view/menu7/trainingEvent/trainingEventResCreate.jsp";
+	}
+	
+	
+	//연수행사 답글 입력
+	@RequestMapping(value="/trainingEventResCreate.do", method=RequestMethod.POST)
+	public String trainingEventResCreate(MultipartHttpServletRequest request, HttpServletRequest request1, HttpServletResponse response1, HttpSession session) throws Exception{
+		request.setCharacterEncoding("euc-kr");
+		
+		//작성한 사용자(현재 로그인한 세션아이디)
+		String session_id = (String) session.getAttribute("session_id");
+		
+		//돌아갈 view 정보
+		int seq = Integer.parseInt(request.getParameter("seq"));
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		int searchingNow = Integer.parseInt(request.getParameter("searchingNow"));
+		
+		
+		//사용자가 입력한 값
+		String title = request1.getParameter("title");
+		String str_date = request1.getParameter("str_date");
+		String end_date = request1.getParameter("end_date");
+		String description = request1.getParameter("description");
+		String pw = request1.getParameter("pw");
+		Calendar today = Calendar.getInstance();
+		
+		//DTO Set()
+		paramClass.setGubun("1"); //1은 답글
+		paramClass.setTitle(title);
+		paramClass.setStr_date(str_date);
+		paramClass.setEnd_date(end_date);
+		paramClass.setDescription(description);
+		paramClass.setPw(pw);
+		paramClass.setHits(1);
+		paramClass.setWriter(session_id);
+		paramClass.setReg_name(session_id);
+		paramClass.setReg_date(today.getTime());
+		paramClass.setUdt_name(session_id);
+		paramClass.setUdt_date(today.getTime());
+		paramClass.setTurn("0"); //0은 답글없음
+		paramClass.setUp_seq(seq);
+		
+		//DB에 insert 하기 (글 등록)
+		sqlMapper.insert("TrainingEvent.insertTrainingEvent", paramClass);
+		
+		
+		//호출한 부모의 turn 값을 1로 업데이트
+		sqlMapper.update("TrainingEvent.updateParentTurn", seq);
+		
+		
+		
+		//최대시퀀스넘버 get
+		resultClass = (TrainingEventDTO) sqlMapper.queryForObject("TrainingEvent.selectLastNum");
+		seq = (int)(resultClass.getSeq());
+		
+		
+		//파일첨부
+		MultipartFile file = request.getFile("filename"); // 업로드된 원본
+		String orgName = file.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
+		
+		if(orgName != ""){ //파일을 첨부했을 경우
+			
+			String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
+			String fileName = "file_trainingEvent_"+randNum;//서버저장 파일명(file_inspctionResult_랜덤번호)
+			String fileExt = orgName.substring(orgName.lastIndexOf('.'));//서버저장 확장자
+			
+			File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
+			file.transferTo(save);  // 복사본 생성
+			
+			//DB 파일 경로 저장용
+			//상대경로 path
+			//String path = save.getPath().replace("\\", "/").substring(42); // 42전까지가 절대경로
+			//절대경로 path
+			//String path = file_path+fileName+fileExt;
+			
+			paramClass.setSeq(seq); //최대 시퀀스넘버
+			paramClass.setAttach_name(fileName+fileExt); //파일명
+			paramClass.setAttach_path(file_path.replace("\\", "/")); //파일경로
+			
+			//파일 정보 업데이트.
+			sqlMapper.update("TrainingEvent.updateFile", paramClass);
+		}
+		//.파일첨부
+		
+		
+		
+		
+		
+		
+		
+		
+		return "redirect://trainingEventView.do?seq="+seq+"&currentPage="+currentPage+"&searchingNow="+searchingNow; //호출한 뷰로 리다이렉트
 	}
 		
 		

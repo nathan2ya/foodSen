@@ -54,7 +54,7 @@
 		SELECT MAX(seq) AS seq from TB_07_TE
 	</select>
 	
-	<select id="selectCount" resultClass ="int" parameterClass="java.lang.String">
+	<select id="selectCount" resultClass ="int" parameterClass="int">
 		SELECT count(*) FROM TB_07_TE
 	</select>
 	
@@ -83,6 +83,12 @@
 		where seq = #seq#
 	</update>
 	
+	<update id="updateParentTurn" parameterClass="int">
+		UPDATE TB_07_TE
+		SET
+			turn = 1
+		where seq = #seq#
+	</update>
 	
 	
 	

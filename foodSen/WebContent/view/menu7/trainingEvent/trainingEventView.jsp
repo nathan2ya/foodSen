@@ -147,7 +147,7 @@
 						<span class="wte_l"><a href="javascript:goDelete()" class="wte_r">삭제</a></span>
 					</c:if>
 					
-					<c:if test="${resultClass.turn == '0'}">
+					<c:if test="${resultClass.turn == '0'  && sessionScope.session_id == resultClass.writer}">
 						<span class="wte_l"><a href="javascript:goInsertRes()" class="pre_r">결과등록</a></span>
 					</c:if>
 					
