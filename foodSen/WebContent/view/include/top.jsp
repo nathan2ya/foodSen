@@ -157,15 +157,9 @@
 			<c:when test="${sessionScope.session_id ne null}">
 				<ul>
 					<li class="bn f12">
-						<span class="orange">${sessionScope.session_resultClass.member_name}</span>님 환영합니다.
+						<span class="orange">${sessionScope.session_memberName}</span>님 환영합니다.
 					</li>
 					
-					<%-- 
-					<c:if test="${loginUser.position ne '01' && loginUser.position ne '02' && loginUser.position ne '99' }">
-						<li class="bn"><a href="javascript:openApprove()"><img src="images/header/common/btn_join.gif" alt="회원등록" /></a></li>
-					</c:if>
-				   --%>
-					  
 					<li class="bn"><a href="/foodSen/main.do">HOME</a></li>
 					<li><a href="#">SITEMAP</a></li>
 					<li class="bn"> <a href="/foodSen/logoutPro.do"><img src="./images/header/common/btn_logout.gif" alt="로그아웃" /></a></li>

@@ -55,7 +55,7 @@ public class TrainingEventView {
 	
 	
 	
-	//연수행사 뷰페이지
+	//연수행사(원글) 뷰페이지
 	@RequestMapping("/trainingEventView.do")
 	public String inspectionResultView(HttpServletRequest request1, HttpSession session) throws SQLException{
 		
@@ -110,13 +110,19 @@ public class TrainingEventView {
 	}
 	
 	
+	
+	//이곳에 정의한다.
+	////연수행사(답글) 뷰페이지
+	
+	
+	
 	//연수행사 첨부파일 다운로드
 	@RequestMapping(value = "/trainingEvent_FileDownload.do")
 	public void downloadFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String uploadPath = file_path;
 		String requestedFile = request.getParameter("attach_name");
-		//String attach_path = request.getParameter("attach_path"); //파일과 모든 경로를 포함한 변수(향후 쓰일 수 있음)
+		//String attach_path = request.getParameter("attach_path"); //파일과 모든 경로를 포함한 변수(향후 쓰일 수 있어 주석처리함)
 
 		File uFile = new File(uploadPath, requestedFile); //경로,파일명으로 파일객체 생성
 		int fSize = (int) uFile.length();

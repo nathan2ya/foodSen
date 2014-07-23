@@ -163,7 +163,8 @@
 							<c:forEach var="list" items="${list}">
 								
 								
-								<c:url var="url" value="/trainingEventView.do"> 
+								<!-- 일반글 URI -->
+								<c:url var="newUrl" value="/trainingEventView.do"> 
 									<c:param name="seq" value="${list.seq}"/>
 									<c:param name="currentPage" value="${currentPage}"/>
 									<c:param name="searchingNow" value="${searchingNow}"/>
@@ -172,6 +173,20 @@
 										<c:param name="userinput" value="${userinput}"/>
 									</c:if>
 								</c:url>
+								<!-- .//일반글 URI -->
+								
+								
+								<!-- 답글(결과) URI -->
+								<c:url var="repUrl" value="/trainingEventView.do"> 
+									<c:param name="seq" value="${list.seq}"/>
+									<c:param name="currentPage" value="${currentPage}"/>
+									<c:param name="searchingNow" value="${searchingNow}"/>
+									<c:if test="${searchingNow == 1}">
+										<c:param name="searchType" value="${searchType}"/>
+										<c:param name="userinput" value="${userinput}"/>
+									</c:if>
+								</c:url>
+								<!-- .//답글(결과) URI -->
 								
 								
 								<tr>
@@ -184,37 +199,30 @@
 									<!-- 일반글과 댓글을 구분함 -->
 									<td class="tl">
 									
-										<c:if test="${list.seq eq list.up_seq }">
-											<a href=${url}>${list.title}</a>
+										<c:if test="${list.seq eq list.up_seq}">
+											<a href=${newUrl}>${list.title}</a>
 										</c:if>
 										
-										<c:if test="${list.seq ne list.up_seq }">
+										<c:if test="${list.seq ne list.up_seq}">
 											&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/sub/btn/btn_re.gif" alt="결과" />
-											<a href=${url}>${list.title}</a>
+											<a href=${repUrl}>${list.title}</a>
 										</c:if>
 										
 									</td>
 									<!-- .//일반글과 댓글을 구분함 -->
 									
-									
-									
 									<td>
-										${list.str_date } ~<br/>
-										${list.end_date }
+										${list.str_date} ~<br/>
+										${list.end_date}
 									</td>
-									
 									<td>
 										<c:if test="${list.attach_name ne null}">
 											<img src="./images/sub/btn/btn_down.gif" alt="pdf" />
 										</c:if>
 									</td>
-									
 									<td>${list.writer }</td>
-									
 									<td><fmt:formatDate value="${list.reg_date}" pattern="yyyy-MM-dd"/></td>
-									
 									<td>${list.hits}</td>
-									
 								</tr>
 							</c:forEach>
 						</c:if>
