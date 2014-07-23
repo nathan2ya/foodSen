@@ -148,9 +148,9 @@ public class TrainingEventView {
 			response.setContentType("application/x-msdownload");
 			PrintWriter printwriter = response.getWriter();
 			printwriter.println("<html>");
-			printwriter.println("<br><br><br><h2>Could not get file name:<br>" + requestedFile + "</h2>");
+			printwriter.println("<br><br><br><h2>다음 파일을 찾을 수 없습니다. </h2><br> 파일명 : " + requestedFile);
 			printwriter
-			.println("<br><br><br><center><h3><a href='javascript: history.go(-1)'>Back</a></h3></center>");
+			.println("<br><br><br><center><h3>이전페이지로 돌아가시려면 <a href='javascript: history.go(-1)'>여기</a>를 클릭하세요.</h3></center>");
 			printwriter.println("<br><br><br>&copy; webAccess");
 			printwriter.println("</html>");
 			printwriter.flush();
