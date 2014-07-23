@@ -159,10 +159,7 @@ public class TrainingEventList {
 	
 	
 	
-	
-	
 	/*
-	
 	//연수행사 (검색글) 리스트
 	@RequestMapping("/inspectionResultSearch.do")
 	public String inspectionResultSearchList(HttpServletRequest request, HttpServletResponse response) throws Exception{

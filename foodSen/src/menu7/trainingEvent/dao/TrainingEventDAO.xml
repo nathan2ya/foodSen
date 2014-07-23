@@ -90,6 +90,27 @@
 		where seq = #seq#
 	</update>
 	
+	<update id="updateImg1" parameterClass="trainingEventDTO">
+		UPDATE TB_07_TE
+		SET
+			img1 = #img1#
+		where seq = #seq#
+	</update>
+	
+	<update id="updateImg2" parameterClass="trainingEventDTO">
+		UPDATE TB_07_TE
+		SET
+			img2 = #img2#
+		where seq = #seq#
+	</update>
+	
+	<update id="updateImg3" parameterClass="trainingEventDTO">
+		UPDATE TB_07_TE
+		SET
+			img3 = #img3#
+		where seq = #seq#
+	</update>
+	
 	
 	
 	

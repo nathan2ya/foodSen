@@ -41,6 +41,9 @@ public class TrainingEventCreate {
 	//업로드 파일 경로
 	String file_path = Constants.COMMON_FILE_PATH + Constants.MENU7_TRAININGEVENT_FILE_PATH;
 	
+	//업로드 이미지 파일 경로
+	private String image_path = Constants.MENU7_TRAININGEVENT_IMAGE_PATH;
+	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
 	public static Reader reader;
@@ -246,9 +249,96 @@ public class TrainingEventCreate {
 		
 		
 		
+		//이미지 첨부 시작
 		
-		
-		
+			//1번 이미지
+			if(request.getFile("img1") != null){ // 해당 변수가 존재하면
+				
+				MultipartFile file1 = request.getFile("img1"); // 업로드된 원본
+				String orgName1 = file1.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
+				
+				if(orgName1 != ""){ //이미지 파일을 첨부했을 경우
+					
+					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
+					String fileName = "img_trainingEvent_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
+					String fileExt = orgName1.substring(orgName1.lastIndexOf('.'));//서버저장 확장자
+					
+					File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
+					file1.transferTo(save);  // 복사본 생성
+					
+					//이미지파일 상대경로 제작
+					String temp = image_path.replace("\\", "/");
+					//상대경로 path
+					String path = temp+fileName+fileExt; // 상대경로+파일명+확장자
+					
+					paramClass.setSeq(seq); //최대 시퀀스넘버
+					paramClass.setImg1(path); // 이미지경로
+					
+					//파일 정보 업데이트.
+					sqlMapper.update("TrainingEvent.updateImg1", paramClass);
+				}
+			}
+			//.1번 이미지 종료
+			
+			//2번 이미지
+			if(request.getFile("img2") != null){ // 해당 변수가 존재하면
+				
+				MultipartFile file2 = request.getFile("img2"); // 업로드된 원본
+				String orgName2 = file2.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
+				
+				if(orgName2 != ""){ //이미지 파일을 첨부했을 경우
+					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
+					String fileName = "img_trainingEvent_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
+					String fileExt = orgName2.substring(orgName2.lastIndexOf('.'));//서버저장 확장자
+					
+					File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
+					file2.transferTo(save);  // 복사본 생성
+					
+					//이미지파일 상대경로 제작
+					String temp = image_path.replace("\\", "/");
+					//상대경로 path
+					String path = temp+fileName+fileExt; // 상대경로+파일명+확장자
+					
+					paramClass.setSeq(seq); //최대 시퀀스넘버
+					paramClass.setImg2(path); // 이미지경로
+					
+					//파일 정보 업데이트.
+					sqlMapper.update("TrainingEvent.updateImg2", paramClass);
+				}
+			}
+			//.2번 이미지 종료
+			
+			
+			//3번 이미지
+			if(request.getFile("img3") != null){ // 해당 변수가 존재하면
+				
+				MultipartFile file3 = request.getFile("img3"); // 업로드된 원본
+				String orgName3 = file3.getOriginalFilename(); // 사용자가 업로드한 실제 파일 이름
+				
+				if(orgName3 != ""){ //이미지 파일을 첨부했을 경우
+				
+					String randNum = Integer.toString((int)(Math.random() * 99999));//랜덤번호
+					String fileName = "img_trainingEvent_"+randNum;//서버저장 파일명(img_improvementCase_랜덤번호)
+					String fileExt = orgName3.substring(orgName3.lastIndexOf('.'));//서버저장 확장자
+					
+					File save = new File(file_path+fileName+fileExt); //복사대상 생성 (경로+파일명+확장자)
+					file3.transferTo(save);  // 복사본 생성
+					
+					//이미지파일 상대경로 제작
+					String temp = image_path.replace("\\", "/");
+					//상대경로 path
+					String path = temp+fileName+fileExt; // 상대경로+파일명+확장자
+					
+					paramClass.setSeq(seq); //최대 시퀀스넘버
+					paramClass.setImg3(path); // 이미지경로
+					
+					//파일 정보 업데이트.
+					sqlMapper.update("TrainingEvent.updateImg3", paramClass);
+				}
+			}
+			//.3번 이미지 종료
+
+		//.이미지 첨부 종료
 		
 		
 		return "redirect://trainingEventView.do?seq="+seq+"&currentPage="+currentPage+"&searchingNow="+searchingNow; //호출한 뷰로 리다이렉트

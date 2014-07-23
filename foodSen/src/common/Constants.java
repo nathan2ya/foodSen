@@ -17,6 +17,7 @@ public class Constants
     public static final String MENU6_APPLICATION_FILE_PATH = "menu6\\application\\"; //학교급식인력풀(구인)
     
     //menu7//
-    public static final String MENU7_TRAININGEVENT_FILE_PATH = "menu7\\trainingEvent\\"; //연수행사(달력 스케줄)
+    public static final String MENU7_TRAININGEVENT_FILE_PATH = "menu7\\trainingEvent\\"; //연수행사(달력 스케줄) 파일 경로_새글,답글
+    public static final String MENU7_TRAININGEVENT_IMAGE_PATH = "\\foodSen\\Upload\\menu7\\trainingEvent\\"; //연수행사(달력 스케줄) 이미지 경로_답글
 }
 
