@@ -47,7 +47,7 @@
 	<!-- select -->
 	<select id="selectAll" resultMap="trainingEventRes" parameterClass="int">
 		select * from TB_07_TE
-		order by seq desc
+		order by up_seq desc, gubun asc
 	</select>
 	
 	<select id="selectLastNum" resultClass="trainingEventDTO" parameterClass="int">
