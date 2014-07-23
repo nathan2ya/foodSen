@@ -111,9 +111,10 @@ public class TrainingEventView {
 	
 	
 	
-	//이곳에 정의한다.
 	////연수행사(답글) 뷰페이지
-	
+	/*
+		@ create method here @
+	*/
 	
 	
 	//연수행사 첨부파일 다운로드
