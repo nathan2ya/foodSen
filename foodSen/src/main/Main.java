@@ -1,6 +1,7 @@
 package main;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Reader;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +37,13 @@ public class Main {
 	//main.do
 	@RequestMapping("/main.do")
 	public String mainIndex(HttpServletRequest request1, HttpServletResponse response1, HttpSession session) throws Exception{
+		
+		/*
+		 * java alert test
+		PrintWriter out = response1.getWriter();
+   		out.println("<script>alert('test');</script>");
+    	out.flush();
+		 */
 		
 		return "/view/main/main.jsp";
 	}
