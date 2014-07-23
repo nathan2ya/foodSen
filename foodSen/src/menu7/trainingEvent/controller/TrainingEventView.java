@@ -113,7 +113,7 @@ public class TrainingEventView {
 	
 	////연수행사(답글) 뷰페이지
 	/*
-		@ create method here @
+		@ create method here @ will be!
 	*/
 	
 	
