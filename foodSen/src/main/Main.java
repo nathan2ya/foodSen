@@ -47,4 +47,5 @@ public class Main {
 		
 		return "/view/main/main.jsp";
 	}
+	
 }
