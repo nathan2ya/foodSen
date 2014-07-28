@@ -57,7 +57,7 @@ public class TrainingEventView {
 	
 	//연수행사(원글) 뷰페이지
 	@RequestMapping("/trainingEventView.do")
-	public String inspectionResultView(HttpServletRequest request1, HttpSession session) throws SQLException{
+	public String trainingEventView(HttpServletRequest request1, HttpSession session) throws SQLException{
 		
 		int seq = Integer.parseInt(request1.getParameter("seq"));
 		
@@ -111,13 +111,74 @@ public class TrainingEventView {
 	
 	
 	
-	////연수행사(답글) 뷰페이지
-	/*
-		@ create method here @ will be!
-	*/
+	//연수행사(답글) 뷰페이지
+	@RequestMapping("/trainingEventRepView.do")
+	public String trainingEventRepView(HttpServletRequest request1, HttpSession session) throws SQLException{
+		
+		
+		//-------------------------------------------------------------------------------------------------------------------//
+		/*seq, currentPage, searchingNow (+ searchType, userinput) 의 변수값을 초기화 한다.*/
+		
+		
+		int seq = Integer.parseInt(request1.getParameter("seq"));
+		if(null == request1.getParameter("currentPage")){
+			currentPage = 1;
+		}else{
+			currentPage = Integer.parseInt(request1.getParameter("currentPage"));
+		}
+		searchingNow = Integer.parseInt(request1.getParameter("searchingNow"));
+		
+		//검색일 경우 존재하는 변수 초기화
+		if(searchingNow==1){
+			searchType = request1.getParameter("searchType");
+			userinput = request1.getParameter("userinput");
+			
+			//뷰로 아래의 변수 3개를 보내는 이유는
+			//목록을 클릭했을 때 다시 검색중인 리스트로 돌아가기 위함이다. +위의 currentPage와 함께!
+			request1.setAttribute("searchType", searchType);
+			request1.setAttribute("userinput", userinput);
+			request1.setAttribute("searchingNow", 1);
+		}else{
+			
+			//검색중이 아닌경우에는 아래의 변수값이 존재하지 않음을 의미하는 0을 초기화 시켜서 해당 jsp 로 보낸다.
+			request1.setAttribute("searchType", 0);
+			request1.setAttribute("userinput", 0);
+			request1.setAttribute("searchingNow", 0);
+		}
+		//.-------------------------------------------------------------------------------------------------------------------//
+		
+		
+		
+		
+		//-------------------------------------------------------------------------------------------------------------------//
+		/*조회수 +1 하기*/
+		
+		//조회수 +1 시킬 레코드를 불러온다.
+		resultClass = (TrainingEventDTO)sqlMapper.queryForObject("TrainingEvent.selectTrainingEventOne", seq);
+		
+		//뷰페이지의 조회수를 +1 업데이트
+		paramClass.setSeq(seq);
+		paramClass.setHits(resultClass.getHits()+1);
+		sqlMapper.update("TrainingEvent.updateHits", paramClass);
+		//.-------------------------------------------------------------------------------------------------------------------//
+		
+		
+		
+		
+		
+		//뷰페이지에 보여질 레코드 1개를 get
+		resultClass = (TrainingEventDTO)sqlMapper.queryForObject("TrainingEvent.selectTrainingEventOne", seq);
+		
+		request1.setAttribute("seq", seq);
+		request1.setAttribute("currentPage", currentPage);
+		request1.setAttribute("searchingNow", searchingNow);
+		request1.setAttribute("resultClass", resultClass); //레코드1개
+		
+		return "/view/menu7/trainingEvent/trainingEventRepView.jsp";
+	}
 	
 	
-	//연수행사 첨부파일 다운로드
+	//연수행사 첨부파일 다운로드 (새글+답글 모두 이 uri를 이용함)
 	@RequestMapping(value = "/trainingEvent_FileDownload.do")
 	public void downloadFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		

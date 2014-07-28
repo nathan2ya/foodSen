@@ -177,7 +177,7 @@
 								
 								
 								<!-- 답글(결과) URI -->
-								<c:url var="repUrl" value="/trainingEventView.do"> 
+								<c:url var="repUrl" value="/trainingEventRepView.do"> 
 									<c:param name="seq" value="${list.seq}"/>
 									<c:param name="currentPage" value="${currentPage}"/>
 									<c:param name="searchingNow" value="${searchingNow}"/>
