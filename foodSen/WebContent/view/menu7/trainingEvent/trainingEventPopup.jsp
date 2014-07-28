@@ -11,8 +11,7 @@
 <link href="./css/base.css" rel="stylesheet" type="text/css" />
 <link href="./css/common.css" rel="stylesheet" type="text/css" />
 <body>
-	<script type="text/javascript"
-		src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript">
 
 	$(document).ready(function(){

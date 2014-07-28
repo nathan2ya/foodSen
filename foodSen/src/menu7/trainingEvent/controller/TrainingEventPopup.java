@@ -63,7 +63,6 @@ public class TrainingEventPopup {
 		
 		System.out.println("Popup에서 호출 // 이미지개수 : "+cnt);
 		
-		
 		request.setAttribute("cnt", cnt); // 전체,검색글을 판단함
 		request.setAttribute("resultClass", resultClass); //이미지경로 정보
 		
