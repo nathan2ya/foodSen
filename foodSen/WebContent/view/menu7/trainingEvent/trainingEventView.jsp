@@ -24,7 +24,7 @@
 		var pw = "${resultClass.pw}"; // 뷰페이지 현재페이지
 		
 		//url
-		url="/foodSen/inspectionResultDeleteFrom.do?seq="+seq+"&pw="+pw;
+		url="/foodSen/trainingEventDeleteForm.do?seq="+seq+"&pw="+pw;
 		// 새로운 윈도우를 엽니다.
    		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=220");
 	}

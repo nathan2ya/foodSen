@@ -14,15 +14,6 @@
 
 
 <script type="text/javascript">
-	function goDelete(){
-		var seq = "${seq}"; // 뷰페이지 시퀀스넘버
-		var pw = "${resultClass.pw}"; // 뷰페이지 현재페이지
-		
-		//url
-		url="/foodSen/improvementCaseDeleteForm.do?seq="+seq+"&pw="+pw;
-		// 새로운 윈도우를 엽니다.
-   		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=220");
-	}
 	
 	function goEdit(){
 		var seq = "${seq}"; // 뷰페이지 시퀀스넘버
@@ -30,6 +21,16 @@
 		var searchingNow = "${searchingNow}"; // 뷰페이지 검색중인 여부
 		
 		location.href='/foodSen/improvementCaseEditFrom.do?seq='+seq+'&currentPage='+currentPage+'&searchingNow='+searchingNow;
+	}
+	
+	function goDelete(){
+		var seq = "${seq}"; // 뷰페이지 시퀀스넘버
+		var pw = "${resultClass.pw}"; // 뷰페이지 현재페이지
+		
+		//url
+		url="/foodSen/trainingEventRepDeleteForm.do?seq="+seq+"&pw="+pw;
+		// 새로운 윈도우를 엽니다.
+   		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=500,height=220");
 	}
 	
 	$(document).ready(function(){
