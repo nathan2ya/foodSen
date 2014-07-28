@@ -260,7 +260,7 @@
 				
 				<!-- 검색 공간 -->
 				<div class="search_box">
-					<form name="search" action="/foodSen/applicationSearch.do" method="post">
+					<form name="search" action="/foodSen/trainingEventSearch.do" method="post">
 						<div style="display: inline;">
 							<select id="searchType" name="searchType">
 								<option value="title">제목</option>

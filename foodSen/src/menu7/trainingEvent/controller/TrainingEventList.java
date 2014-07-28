@@ -159,10 +159,9 @@ public class TrainingEventList {
 	
 	
 	
-	/*
 	//연수행사 (검색글) 리스트
-	@RequestMapping("/inspectionResultSearch.do")
-	public String inspectionResultSearchList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	@RequestMapping("/trainingEventSearch.do")
+	public String trainingEventSearchList(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		// 전체글, 검색글 판단값.
 		searchingNow = 1; //0 == 전체글//1 == 검색글//
@@ -177,10 +176,10 @@ public class TrainingEventList {
 		//검색종류&검색어를 만족하는 레코드 검색
 		if(searchType.equals("title")){
 			//제목 검색
-			list = sqlMapper.queryForList("InspectionResult.selectWithTitle", userinput);
+			list = sqlMapper.queryForList("TrainingEvent.selectWithTitle", userinput);
 		}else if(searchType.equals("writer")){
 			//작성자 검색
-			list = sqlMapper.queryForList("InspectionResult.selectWithWriter", userinput);
+			list = sqlMapper.queryForList("TrainingEvent.selectWithWriter", userinput);
 		}
 		
 		
@@ -188,7 +187,7 @@ public class TrainingEventList {
 		//페이지처리
 		blockCount = 10;// 한 페이지의 게시물의 수
 		blockPage = 5;// 한 화면에 보여줄 페이지 수
-		serviceName = "inspectionResultSearch";// 호출 URI 정의
+		serviceName = "trainingEventSearch";// 호출 URI 정의
 		totalCount = list.size(); // 전체 글 갯수
 		
 		//currentPage 초기화
@@ -222,17 +221,13 @@ public class TrainingEventList {
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pagingHtml", pagingHtml);
 		request.setAttribute("list", list);
-		
 		request.setAttribute("searchType", searchType);
 		request.setAttribute("userinput", userinput);
-		
 		request.setAttribute("tempInput", tempInput);
 		request.setAttribute("totalCount", totalCount);
-		
 		request.setAttribute("searchingNow", searchingNow);
 		
-		return  "/view/menu2/inspectionResultList.jsp";
+		return  "/view/menu7/trainingEvent/trainingEventList.jsp";
 	}
 	
-	*/
 }

@@ -62,6 +62,18 @@
 		select * from TB_07_TE
 		where seq = #seq#
 	</select>
+	
+	<select id="selectWithTitle" resultMap="trainingEventRes" parameterClass="java.lang.String">
+		select * from TB_07_TE
+		where title like  '%'||#userinput#||'%'
+		order by up_seq desc, gubun asc
+	</select>
+	
+	<select id="selectWithWriter" resultMap="trainingEventRes" parameterClass="java.lang.String">
+		select * from TB_07_TE
+		where writer like  '%'||#userinput#||'%'
+		order by up_seq desc, gubun asc
+	</select>
 		
 	
 	

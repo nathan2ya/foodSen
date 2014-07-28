@@ -204,7 +204,7 @@
 			
 			<!-- 검색 공간 -->
 			<div class="search_box">
-		        <form name="search" action="/foodSen/inspectionResultSearch.do" method="post">
+		        <form name="search" action="/foodSen/trainingEventSearch.do" method="post">
 		          <select name="searchType">
 		            <option value="title">제목</option>
 		            <option value="writer">등록자</option>
