@@ -16,6 +16,7 @@
 
 	$(document).ready(function(){
 		
+		//이미지 시작지점을 바꿈
 		var cnt=$('#cnt').val();
 		
 		$('#prev').click(function(){
