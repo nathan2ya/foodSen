@@ -127,6 +127,10 @@
 	
 	
 	<!-- delete -->
+	<delete id="deleteTrainingEvent" parameterClass="int">
+		delete from TB_07_TE
+		where seq = #seq#
+	</delete>
 	
 	
 	
