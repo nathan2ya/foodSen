@@ -83,7 +83,7 @@ public class TrainingEventList {
 		//페이지
 		blockCount = 10;// 한 페이지의 게시물의 수
 		blockPage = 5;// 한 화면에 보여줄 페이지 수
-		serviceName = "inspectionResultList";// 호출 URI 정의
+		serviceName = "TrainingEventList";// 호출 URI 정의
 		totalCount = list.size(); // 전체 글 갯수
 		//currentPage 초기화
 		if(null == request.getParameter("currentPage")){
