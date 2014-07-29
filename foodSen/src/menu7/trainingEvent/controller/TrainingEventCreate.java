@@ -87,7 +87,7 @@ public class TrainingEventCreate {
 		paramClass.setEnd_date(end_date);
 		paramClass.setDescription(description);
 		paramClass.setPw(pw);
-		paramClass.setHits(1);
+		paramClass.setHits(0);
 		paramClass.setWriter(session_id);
 		paramClass.setReg_name(session_id);
 		paramClass.setReg_date(today.getTime());

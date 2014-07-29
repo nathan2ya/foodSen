@@ -47,7 +47,7 @@ function goCreate(){
 				<input type="button" id="button" name="button" value="글 삭제 하기" onClick="goCreate();" />
 			</td>
 		</tr>
-	</table>	
+	</table>
 	
 </form>
 <!-- .//삭제를위한 폼 -->
