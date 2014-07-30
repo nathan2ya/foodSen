@@ -71,11 +71,11 @@ public class PagingAction {
 		if (endPage > totalPage) {
 			endPage = totalPage;
 		}
-
+		
 		
 		//처음으로(항상 노출 시킨다.)
 		pagingHtml = new StringBuffer();
-		pagingHtml.append("<a href=" + serviceName + ".do?currentPage=1><img src='./images/sub/btn/pre_01.gif'  alt='처음으로' /></a>");
+		pagingHtml.append("<a href=" + serviceName + ".do?currentPage=1><img src='./images/sub/btn/pre_01.gif' alt='처음으로' /></a>");
 		
 		
 		// 이전 block 페이지(최초 구역을 초과할 경우에만 노출)
