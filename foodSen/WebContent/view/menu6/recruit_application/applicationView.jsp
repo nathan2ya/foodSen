@@ -276,9 +276,7 @@
 							<th>
 								내용<br/>(2000자 이내)
 							</th>
-							<td id="description" colspan="5" class="tl">
-								<pre>${resultClass.description}</pre>
-							</td>
+							<td id="description" colspan="5" class="tl h150"><pre>${resultClass.description}</pre></td>
 						</tr>
 						<!-- .//6번째줄 -->
 						
