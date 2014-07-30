@@ -95,17 +95,34 @@ public class TrainingEventCreate {
 		paramClass.setUdt_date(today.getTime());
 		paramClass.setTurn("0"); //0은 답글없음
 		
+		
 		Integer count = (Integer) sqlMapper.queryForObject("TrainingEvent.selectCount");
 		if(count==0){
 			paramClass.setUp_seq(1);
+			
+			//DB에 insert 하기 (글 등록)
+			sqlMapper.insert("TrainingEvent.insertTrainingEvent", paramClass);
+			
+			
 		}else{
+			paramClass.setUp_seq(0); // 임시 번호 insert
+			
+			//DB에 insert 하기 (글 등록)
+			sqlMapper.insert("TrainingEvent.insertTrainingEvent", paramClass);
+			
+			
 			resultClass = (TrainingEventDTO) sqlMapper.queryForObject("TrainingEvent.selectLastNum");
 			seq = (int)(resultClass.getSeq());
-			paramClass.setUp_seq(seq+1); // 앞으로 만들어질 시퀀스넘버라 +1 함
+			
+			
+			System.out.println("여기서 seq 값(insert될) : "+seq);
+			
+			paramClass.setSeq(seq);
+			paramClass.setUp_seq(seq); // 최대 시퀀스넘버로 up_seq값을 update함
+			
+			sqlMapper.update("TrainingEvent.updateUp_seq", paramClass);
 		}
 		
-		//DB에 insert 하기 (글 등록)
-		sqlMapper.insert("TrainingEvent.insertTrainingEvent", paramClass);
 		
 		
 		//최대시퀀스넘버 get

@@ -110,11 +110,10 @@ public class TrainingEventDelete {
 		request.setAttribute("seq", seq);
 		request.setAttribute("pw", pw);
 		
-		return "/view/menu7/trainingEvent/trainingEventRepDelete.jsp"; // 리스트로 리다이렉트
+		return "/view/menu7/trainingEvent/trainingEventRepDelete.jsp";
 	}
 	
 	
-	/*
 	//연수행사(답글) 삭제
 	@RequestMapping("/trainingEventRepDelete.do")
 	public String trainingEventRepDelete(HttpServletRequest request) throws SQLException{
@@ -124,7 +123,7 @@ public class TrainingEventDelete {
 		
 		
 		//파일삭제를 위해 생성 //파일삭제시 기존 업로드된파일의 경로를 얻기위함
-		resultClass = (TrainingEventDTO)sqlMapper.queryForObject("ImprovementCase.selectImprovementCaseOne", seq);
+		resultClass = (TrainingEventDTO)sqlMapper.queryForObject("TrainingEvent.selectTrainingEventOne", seq);
 		
 		
 		//파일삭제
@@ -160,12 +159,11 @@ public class TrainingEventDelete {
 			
 			
 		//레코드 삭제
-		sqlMapper.delete("ImprovementCase.deleteImprovementCase", seq);
+		sqlMapper.delete("TrainingEvent.deleteTrainingEvent", seq);
 		
 		
-		return "redirect:/improvementCaseList.do"; // 리스트로 리다이렉트
+		return "redirect:/TrainingEventList.do"; // 리스트로 리다이렉트
 	}
-	*/
 	
 	
 }

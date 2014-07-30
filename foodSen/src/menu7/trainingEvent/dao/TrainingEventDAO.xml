@@ -123,6 +123,15 @@
 		where seq = #seq#
 	</update>
 	
+	<update id="updateUp_seq" parameterClass="trainingEventDTO">
+		UPDATE TB_07_TE
+		SET
+			up_seq = #up_seq#
+		where seq = #seq#
+	</update>
+	
+	
+	
 	
 	
 	
