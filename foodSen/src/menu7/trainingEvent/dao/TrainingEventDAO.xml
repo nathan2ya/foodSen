@@ -32,6 +32,7 @@
 	
 	
 	
+	
 	<!-- insert -->
 	<insert id="insertTrainingEvent" parameterClass="trainingEventDTO">
 		insert into TB_07_TE
