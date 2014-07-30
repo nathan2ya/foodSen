@@ -115,9 +115,7 @@ public class TrainingEventCreate {
 			seq = (int)(resultClass.getSeq());
 			
 			
-			System.out.println("여기서 seq 값(insert될) : "+seq);
-			
-			paramClass.setSeq(seq);
+			paramClass.setSeq(seq); // where?
 			paramClass.setUp_seq(seq); // 최대 시퀀스넘버로 up_seq값을 update함
 			
 			sqlMapper.update("TrainingEvent.updateUp_seq", paramClass);
@@ -213,7 +211,7 @@ public class TrainingEventCreate {
 		paramClass.setEnd_date(end_date);
 		paramClass.setDescription(description);
 		paramClass.setPw(pw);
-		paramClass.setHits(1);
+		paramClass.setHits(0);
 		paramClass.setWriter(session_id);
 		paramClass.setReg_name(session_id);
 		paramClass.setReg_date(today.getTime());
@@ -358,7 +356,7 @@ public class TrainingEventCreate {
 		//.이미지 첨부 종료
 		
 		
-		return "redirect://trainingEventView.do?seq="+seq+"&currentPage="+currentPage+"&searchingNow="+searchingNow; //호출한 뷰로 리다이렉트
+		return "redirect://trainingEventRepView.do?seq="+seq+"&currentPage="+currentPage+"&searchingNow="+searchingNow; //호출한 뷰로 리다이렉트
 	}
 		
 		
