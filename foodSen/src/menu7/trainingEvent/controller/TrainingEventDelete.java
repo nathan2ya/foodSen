@@ -125,6 +125,10 @@ public class TrainingEventDelete {
 		//파일삭제를 위해 생성 //파일삭제시 기존 업로드된파일의 경로를 얻기위함
 		resultClass = (TrainingEventDTO)sqlMapper.queryForObject("TrainingEvent.selectTrainingEventOne", seq);
 		
+		//부모의 turn 값을 다시 0으로 update 시킨다.
+		int up_seq = resultClass.getUp_seq(); // 이 답글의 up_seq 는 부모의 seq와 같으므로 얻었다.
+		sqlMapper.update("TrainingEvent.updateParentTurnDown", up_seq); // 해당 시퀀스 넘버의 레코드의 turn 값을 0으로 업데이트 한다.
+		
 		
 		//파일삭제
 			if(resultClass.getAttach_path()!=null){
@@ -132,8 +136,8 @@ public class TrainingEventDelete {
 				deleteFile.delete();
 			}
 		//.파일삭제 완료
-			
-			
+		
+		
 		//이미지 삭제
 			if(resultClass.getImg1() != null){
 				String imgName = resultClass.getImg1().substring(38); //38 이전은 상대경로
@@ -158,6 +162,7 @@ public class TrainingEventDelete {
 		//.이미지삭제 종료
 			
 			
+		
 		//레코드 삭제
 		sqlMapper.delete("TrainingEvent.deleteTrainingEvent", seq);
 		

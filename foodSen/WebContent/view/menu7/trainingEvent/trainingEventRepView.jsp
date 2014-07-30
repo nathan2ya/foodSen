@@ -20,7 +20,7 @@
 		var currentPage = "${currentPage}"; // 뷰페이지 현재페이지
 		var searchingNow = "${searchingNow}"; // 뷰페이지 검색중인 여부
 		
-		location.href='/foodSen/improvementCaseEditFrom.do?seq='+seq+'&currentPage='+currentPage+'&searchingNow='+searchingNow;
+		location.href='/foodSen/trainingEventRepEditFrom.do?seq='+seq+'&currentPage='+currentPage+'&searchingNow='+searchingNow;
 	}
 	
 	function goDelete(){

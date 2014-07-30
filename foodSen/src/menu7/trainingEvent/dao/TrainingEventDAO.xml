@@ -103,6 +103,17 @@
 		where seq = #seq#
 	</update>
 	
+	<update id="updateParentTurnDown" parameterClass="int">
+		UPDATE TB_07_TE
+		SET
+			turn = 0
+		where seq = #up_seq#
+	</update>
+	
+	
+	
+	
+	
 	<update id="updateImg1" parameterClass="trainingEventDTO">
 		UPDATE TB_07_TE
 		SET
