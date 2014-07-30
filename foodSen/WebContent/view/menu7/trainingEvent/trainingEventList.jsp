@@ -23,11 +23,6 @@
 	}
 	
 	function goSearch(){
-		if(validateSQL(search.searchString.value) > -1){
-			alert("특수문자는 입력할 수 없습니다.");
-			search.searchString.focus();
-			return;
-		}
 		search.submit();
 	}
 	
@@ -240,7 +235,7 @@
 				
 				
 				
-				<!-- 목록 . 등록 버튼 -->
+				<!-- 목록 . 등록 버튼 -->	
 				<span class="bbs_btn"> 
 					<span class="wte_l">
 						<a href="/foodSen/TrainingEventList.do" class="wte_r">목록</a>
