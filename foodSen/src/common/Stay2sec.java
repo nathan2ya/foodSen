@@ -3,7 +3,6 @@ package common;
 
 import java.io.IOException;
 import java.io.Reader;
-
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
@@ -17,7 +16,7 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 public class Stay2sec {
 	
 	private String service; // 호출측 uri
-	private String stay2sec_path; // 리턴경로
+	private String stay2sec_path; // return path
 	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
@@ -39,7 +38,11 @@ public class Stay2sec {
 		//호출 uri 초기화
 		service = request.getParameter("service");
 		
-		//호출측에 따른 뷰페이지 정의
+		
+		/*
+		 * 호출측의 페이지 마다 리턴경로가 다름.
+		 * jsp측 리턴경로는 해당메뉴의 list 로 정의됨.
+		*/
 		if(service.equals("inspectionResult")){
 			stay2sec_path = "/view/menu2/stay2sec.jsp";
 		}
@@ -59,7 +62,6 @@ public class Stay2sec {
 		
 		return stay2sec_path;
 	}
-	
 }
 
 
