@@ -38,7 +38,7 @@
 			(TB_05_RECRUIT_seq.NEXTVAL, #title#, #pw#, #school_name#, #school_type#, #loc_seq#, #job#, #gubun#, #email#, #phone#, #description#, #hits#, #writer#, #reg_name#, #reg_date#, #udt_name#, #udt_date#, #end_yn#)
 	</insert>
 	
-	
+
 	
 	
 	<!-- select -->
@@ -76,8 +76,9 @@
 		where seq = #seq#
 	</select>
 	
-		
 
+	
+	
 	<!-- update -->
 	<update id="updateFile" parameterClass="recruitDTO">
 		UPDATE TB_05_RECRUIT
@@ -106,7 +107,7 @@
 		where seq = #seq#
 	</update>
 	
-	
+
 	
 	
 	<!-- delete -->
@@ -116,4 +117,6 @@
 	</delete>
 	
 
+	
+	
 </sqlMap>

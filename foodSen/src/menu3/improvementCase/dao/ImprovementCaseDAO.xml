@@ -59,6 +59,7 @@
 			(TB_03_IC_seq.NEXTVAL, #title#, #description#, #pw#, #hits#, #wirte#, #reg_name#, #reg_date#, #udt_name#, #udt_date#)
 	</insert>
 	
+
 	
 	
 	<!-- select -->
@@ -86,11 +87,9 @@
 		where seq = #seq#
 	</select>
 	
-	
-	
-	
-		
 
+	
+	
 	<!-- update -->
 	<update id="updateFile" parameterClass="improvementCaseDTO">
 		UPDATE TB_03_IC
@@ -116,12 +115,10 @@
 		where seq = #seq#
 	</update>
 	
+
 	
 	
-	
-	
-	
-	<!-- image -->
+	<!-- update image -->
 	<update id="updateImg1" parameterClass="improvementCaseDTO">
 		UPDATE TB_03_IC
 		SET
@@ -164,9 +161,7 @@
 		where seq = #seq#
 	</update>
 	
-	
-	
-	
+
 	
 	
 	<!-- delete -->
@@ -175,6 +170,7 @@
 		where seq = #seq#
 	</delete>
 	
-	
 
+	
+	
 </sqlMap>

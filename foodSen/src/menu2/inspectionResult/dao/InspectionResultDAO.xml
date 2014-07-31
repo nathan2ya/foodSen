@@ -21,6 +21,8 @@
 		<result property="udt_date" column="udt_date" />
 	</resultMap>
 	
+
+	
 	
 	<!-- insert -->
 	<insert id="insertInspectionResult" parameterClass="inspectionResultDTO">
@@ -30,6 +32,7 @@
 			(TB_02_IR_seq.NEXTVAL, #title#, #description#, #pw#, #hits#, #wirte#, #reg_name#, #reg_date#, #udt_name#, #udt_date#)
 	</insert>
 	
+
 	
 	
 	<!-- select -->
@@ -57,9 +60,9 @@
 		where seq = #seq#
 	</select>
 	
-		
 
-
+	
+	
 	<!-- update -->
 	<update id="updateFile" parameterClass="inspectionResultDTO">
 		UPDATE TB_02_IR
@@ -85,7 +88,7 @@
 		where seq = #seq#
 	</update>
 	
-	
+
 	
 	
 	<!-- delete -->
@@ -95,4 +98,6 @@
 	</delete>
 	
 
+	
+	
 </sqlMap>

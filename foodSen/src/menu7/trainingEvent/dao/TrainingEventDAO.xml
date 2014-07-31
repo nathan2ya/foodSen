@@ -28,10 +28,7 @@
 		<result property="udt_date" column="udt_date" />
 		<result property="turn" column="turn" />
 	</resultMap>
-	
-	
-	
-	
+
 	
 	<!-- insert -->
 	<insert id="insertTrainingEvent" parameterClass="trainingEventDTO">
@@ -41,8 +38,7 @@
 			(TB_07_TE_seq.NEXTVAL, #title#, #gubun#, #str_date#, #end_date#, #description#, #up_seq#, #pw#, #hits#, #writer#, #reg_name#, #reg_date#, #udt_name#, #udt_date#, #turn#)
 	</insert>
 
-	
-	
+
 	
 	
 	<!-- select -->
@@ -90,10 +86,7 @@
 						   and SUBSTR(REPLACE(END_DATE,'-',''),0,6)
 	</select>
 
-	
-	
-	
-	
+
 	
 	
 	<!-- update -->
@@ -125,11 +118,6 @@
 			turn = 0
 		where seq = #up_seq#
 	</update>
-	
-	
-	
-	
-	
 	
 	<update id="updateImg1" parameterClass="trainingEventDTO">
 		UPDATE TB_07_TE
@@ -170,9 +158,7 @@
 		where seq = #seq#
 	</update>
 	
-	
-	
-	
+
 	
 	
 	<!-- delete -->
@@ -181,8 +167,7 @@
 		where seq = #seq#
 	</delete>
 	
-	
-	
-	
 
+	
+	
 </sqlMap>

@@ -6,8 +6,6 @@
 	<typeAlias alias="applicationDTO" type="menu6.application.dto.ApplicationDTO" />
 	
 	<!-- 리절트 맵 정의 -->
-	
-	 
 	<resultMap id="applicationRes" class="applicationDTO">
 		<result property="seq" column="seq" />
 		<result property="title" column="title" />
@@ -40,7 +38,7 @@
 			(TB_05_APPLICATION_seq.NEXTVAL, #title#, #pw#, #loc_seq#, #sex#, #job#, #gubun#, #email#, #phone#, #description#, #hits#, #writer#, #reg_name#, #reg_date#, #udt_name#, #udt_date#, #age#, #end_yn#)
 	</insert>
 	
-	
+
 	
 	
 	<!-- select -->
@@ -58,7 +56,6 @@
 		where seq = #seq#
 	</select>
 	
-	
 	<select id="selectWithJob" resultMap="applicationRes" parameterClass="java.lang.String">
 		select * from TB_05_APPLICATION
 		where job = #subValue#
@@ -74,10 +71,9 @@
 		where loc_seq = #subValue#
 	</select>
 	
-	
-	
-		
 
+	
+	
 	<!-- update -->
 	<update id="updateFile" parameterClass="applicationDTO">
 		UPDATE TB_05_APPLICATION
@@ -106,7 +102,7 @@
 		where seq = #seq#
 	</update>
 	
-	
+
 	
 	
 	<!-- delete -->
@@ -115,6 +111,7 @@
 		where seq = #seq#
 	</delete>
 	
-	
 
+	
+	
 </sqlMap>
