@@ -1,9 +1,15 @@
 package common;
 
+/*
+ * 작성자 : 류재욱
+ * 설  명 : foodSen 프로젝트에서 공통으로 쓰는 상수 정의
+ * 이  유 : 향후 프로젝트 경로 변경시 이 페이지만 수정하면 되도록 하기 위함.
+*/
+
 public class Constants
 {
-    public static final String COMMON_FILE_PATH = "E:\\git project\\foodSen\\foodSen\\WebContent\\Upload\\"; //서버 파일 절대 경로
-    
+	//foodSen 프로젝트의 모든 업로드 파일 절대경로 정의
+    public static final String COMMON_FILE_PATH = "E:\\git project\\foodSen\\foodSen\\WebContent\\Upload\\";
     
     //menu2//
     public static final String MENU2_INSPECTIONRESULT_FILE_PATH = "menu2\\inspectionResult\\"; //위생.안전성검사결과 파일 경로

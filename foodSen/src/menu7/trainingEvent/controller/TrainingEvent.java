@@ -75,7 +75,7 @@ public class TrainingEvent {
 	//이전 달력 리스트//다음 달력 리스트
 	@RequestMapping("/trainingEventMonth.do")
 	public void trainingEventMonth(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException{
-		
+		response.setCharacterEncoding("utf-8");
 		PrintWriter write = response.getWriter();
 		
 		String year = request.getParameter("year");
@@ -89,7 +89,6 @@ public class TrainingEvent {
 		System.out.println("currentTime : "+currentTime);
 		
 		
-		
 		Integer count = (Integer) sqlMapper.queryForObject("TrainingEvent.trainingEventCount", currentTime);
 		list = sqlMapper.queryForList("TrainingEvent.selectTrainingEvent", currentTime);
 		
@@ -99,20 +98,12 @@ public class TrainingEvent {
 		
 		System.out.println("map : "+map);
 		
-		
-		
+
 		JSONObject json = new JSONObject();
-		System.out.println("json 객체 생성 : "+json);
-		
-		
 		json = JSONObject.fromObject(map);
-		
-		System.out.println("json toString 한것 : "+json.toString());
-		System.out.println("json : "+json);
-		
+
 		write.print(json);
 		write.close();
-		
 		
 	}
 	
