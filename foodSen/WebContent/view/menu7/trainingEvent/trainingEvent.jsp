@@ -9,6 +9,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
 
+
 	var Current_Date = new Date();
 	var Year = Current_Date.getFullYear();
 	var Month = Current_Date.getMonth();
@@ -24,29 +25,26 @@
 		this.name = name;
 		this.year = year;
 	}
-
-
-/* 
-	var holyday = Array (
-		new memorialDay("0101", "신정","0"),
-		new memorialDay("0130", "","2014"),
-		new memorialDay("0131", "설날","2014"),
-		new memorialDay("0201", "","2014"),
-		new memorialDay("0301", "삼일절","0"),
-		new memorialDay("0505", "어린이날","0"),
-		new memorialDay("0506", "석가탄신일","2014"),
-		new memorialDay("0606", "현충일","0"),
-		new memorialDay("0815", "광복절","0"),
-		new memorialDay("0907", "","2014"),
-		new memorialDay("0908", "추석","2014"),
-		new memorialDay("0909", "","2014"),
-		new memorialDay("1003", "개천절","0"),
-		new memorialDay("1009", "한글날","2014"),
-		new memorialDay("1225", "성탄절","0")
-	); 
-*/
 	
-	
+	/* var holyday = Array (
+			new memorialDay("0101", "신정","0"),
+			new memorialDay("0130", "","2014"),
+			new memorialDay("0131", "설날","2014"),
+			new memorialDay("0201", "","2014"),
+			new memorialDay("0301", "삼일절","0"),
+			new memorialDay("0505", "어린이날","0"),
+			new memorialDay("0506", "석가탄신일","2014"),
+			new memorialDay("0606", "현충일","0"),
+			new memorialDay("0815", "광복절","0"),
+			new memorialDay("0907", "","2014"),
+			new memorialDay("0908", "추석","2014"),
+			new memorialDay("0909", "","2014"),
+			new memorialDay("1003", "개천절","0"),
+			new memorialDay("1009", "한글날","2014"),
+			new memorialDay("1225", "성탄절","0")
+			); */
+		
+		
 	$(document).ready(function(){
 		var cnt = $("#count").val();
 		
@@ -69,8 +67,8 @@
 		Make_Calender(Year, Month);
 		EventView(arr, sarr);
 	});
-
-
+	
+	
 	//arr  =  2차원 배열로 arr[][0]에는 행사 시작일, arr[][1]에는 행사 종료일이 들어간다.
 	//sarr =  2차원 배열로 sarr[][0]에는 해당 행사의 seq, sarr[][1]에는 해당 행사의 제목이 들어간다.
 	//순차적으로 날짜를 편집 하고 달력을 그릴때 포함된 <div>태그 안에 이벤트 정보를 넣어준다.
@@ -155,7 +153,7 @@
 				} else if(check==2){
 					cnt++;
 					check=3;
-					ev+='<a href="trainingEventList.do"><img src="./images/sub/notice/btn_add.gif" alt="더보기" /></a>';
+					ev+='<a href="/foodSen/TrainingEventList.do"><img src="./images/sub/notice/btn_add.gif" alt="더보기" /></a>';
 				} else{
 					
 				}
@@ -195,7 +193,6 @@
 	}
 	
 	function getMonthEvent(){
-		
 		$.ajax({
 			type: 'post',
 			url: 'trainingEventMonth.do',
@@ -218,7 +215,6 @@
 		        //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		      }
 		});
-		
 	}
 	
 	function nextMonth(){ //다음 달로 넘어가는 기능
@@ -270,59 +266,60 @@
 		msg += '<tbody><tr><th><span class="c_ff2d2d">일</span></th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th><span class="c_6391c5">토</span></th></tr>';
 		
 		var Day_Counter = 1;
-		var Loop_Counter = 1;
-		for (var j = 1; j <= Rows; j++) {
-		   msg += '<tr>';
-		   for (var i = 1; i < 8; i++) {
-			   var day = new Date(Year,Month,Day_Counter).getDay();
-			   //alert(Year+"년"+Month+"월"+Day_Counter+"일"+day);
-			   if ((Loop_Counter >= First_Day) && (Day_Counter <= Days_in_Month[Month])) {
-				   var mon = Month+1;
-				   var flag = false;
-				   var holy = "";
-				   if(mon < 10){
-					   mon = "0"+mon;
-				   }
-				   var hday = Day_Counter;
-				   if(hday<10){
-					   hday = "0"+hday;
-				   }
-				   
-				   /* for(var x=0;x<holyday.length;x++){
-					   var instant = mon+""+hday;
-					   
-					   if(instant == holyday[x].mday && (holyday[x].year=="0"|| holyday[x].year==Year)){
-						   holy = Day_Counter+"  "+holyday[x].name;
-						   flag = true;
+		   var Loop_Counter = 1;
+		   for (var j = 1; j <= Rows; j++) {
+			   msg += '<tr>';
+			   for (var i = 1; i < 8; i++) {
+				   var day = new Date(Year,Month,Day_Counter).getDay();
+				   //alert(Year+"년"+Month+"월"+Day_Counter+"일"+day);
+				   if ((Loop_Counter >= First_Day) && (Day_Counter <= Days_in_Month[Month])) {
+					   var mon = Month+1;
+					   var flag = false;
+					   var holy = "";
+					   if(mon < 10){
+						   mon = "0"+mon;
 					   }
-				   } */
-				   
-				   
-				   if(flag == false){
-					   if(day ==0){
-							msg += "<td><span class='c_ff2d2d'>"+Day_Counter + "</span><div id='event"+Day_Counter+"'></div></td>";
-					   }else if(day == 6){
-						   msg += "<td><span class='c_6391c5'>"+Day_Counter + "</span><div id='event"+Day_Counter+"'></div></td>";
+					   var hday = Day_Counter;
+					   if(hday<10){
+						   hday = "0"+hday;
+					   }
+					   
+					   /* for(var x=0;x<holyday.length;x++){
+						   var instant = mon+""+hday;
+						   
+						   if(instant == holyday[x].mday && (holyday[x].year=="0"|| holyday[x].year==Year)){
+							   holy = Day_Counter+"  "+holyday[x].name;
+							   flag = true;
+						   }
+					   } */
+					   
+					   
+					   if(flag == false){
+						   if(day ==0){
+								msg += "<td><span class='c_ff2d2d'>"+Day_Counter + "</span><div id='event"+Day_Counter+"'></div></td>";
+						   }else if(day == 6){
+							   msg += "<td><span class='c_6391c5'>"+Day_Counter + "</span><div id='event"+Day_Counter+"'></div></td>";
+						   }else{
+							   msg += "<td>"+Day_Counter + "<div id='event"+Day_Counter+"'></div></td>";
+						   }
+						   
 					   }else{
-						   msg += "<td>"+Day_Counter + "<div id='event"+Day_Counter+"'></div></td>";
+						   msg += "<td><span class='c_ff2d2d'>"+holy + "</span><div id='event"+Day_Counter+"'></div></td>";
 					   }
-					   
-				   }else{
-					   msg += "<td><span class='c_ff2d2d'>"+holy + "</span><div id='event"+Day_Counter+"'></div></td>";
-				   }
-					Day_Counter++;    
-				}else {
-					msg += '<td></td>';
+						Day_Counter++;    
+					}else {
+						msg += '<td></td>';
+					}
+					Loop_Counter++;
 				}
-				Loop_Counter++;
+			   msg += '</tr>';
 			}
-		   msg += '</tr>';
+		   msg += '</tbody></table>';
+		   $("#month").html(msg);
 		}
-	   msg += '</tbody></table>';
-	   $("#month").html(msg);
-	}
 	
 </script>
+
 </head>
 
 
@@ -358,7 +355,7 @@
 				
 				<div>
 				
-					<form action="trainingEventView.do" method="post" id="view" name="view">
+					<form action="/foodSen/trainingEventView.do" method="post" id="view" name="view">
 						<input type="hidden" name="seq" id="seq"/>
 					</form>
 					
@@ -375,8 +372,6 @@
 				<!-- 달력영역 -->
 				<div id="month"></div>
 				<!-- .//달력영역 -->
-				
-				
          
         		<p class="pt40"></p>
          		 

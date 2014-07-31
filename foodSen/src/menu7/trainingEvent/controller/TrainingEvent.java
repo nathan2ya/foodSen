@@ -34,6 +34,8 @@ import common.PagingAction;
 @Controller
 public class TrainingEvent {
 	
+	private List<TrainingEventDTO> list = new ArrayList<TrainingEventDTO>();
+	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
 	public static Reader reader;
@@ -52,6 +54,16 @@ public class TrainingEvent {
 	//연수행사 달력 리스트
 	@RequestMapping("/TrainingEvent.do")
 	public String TrainingEvent(HttpServletRequest request) throws SQLException{
+		
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+		String currentTime = sdf.format(cal.getTime());
+		
+		Integer count = (Integer) sqlMapper.queryForObject("TrainingEvent.trainingEventCount", currentTime);
+		list = sqlMapper.queryForList("TrainingEvent.selectTrainingEvent", currentTime);
+		
+		request.setAttribute("count", count);
+		request.setAttribute("list", list);
 		
 		return "/view/menu7/trainingEvent/trainingEvent.jsp";
 	}

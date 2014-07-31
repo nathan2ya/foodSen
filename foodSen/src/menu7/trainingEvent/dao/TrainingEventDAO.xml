@@ -75,11 +75,27 @@
 		where writer like  '%'||#userinput#||'%'
 		order by up_seq desc, gubun asc
 	</select>
-		
 	
-	
-		
+	<select id="trainingEventCount" resultClass ="int"  parameterClass="java.lang.String">
+		SELECT count(*) FROM TB_07_TE
+		WHERE gubun='0'and 
+			#currentTime# BETWEEN SUBSTR(REPLACE(STR_DATE,'-',''),0,6) 
+						   and SUBSTR(REPLACE(END_DATE,'-',''),0,6)
+	</select>
 
+	<select id="selectTrainingEvent" resultMap="trainingEventRes" parameterClass="java.lang.String">
+		select * from TB_07_TE
+		where gubun='0' and
+				#currentTime# BETWEEN SUBSTR(REPLACE(STR_DATE,'-',''),0,6) 
+						   and SUBSTR(REPLACE(END_DATE,'-',''),0,6)
+	</select>
+
+	
+	
+	
+	
+	
+	
 	<!-- update -->
 	<update id="updateFile" parameterClass="trainingEventDTO">
 		UPDATE TB_07_TE
@@ -109,6 +125,7 @@
 			turn = 0
 		where seq = #up_seq#
 	</update>
+	
 	
 	
 	

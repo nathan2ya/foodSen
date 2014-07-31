@@ -66,7 +66,25 @@ public class TrainingEventView {
 		}else{
 			currentPage = Integer.parseInt(request1.getParameter("currentPage"));
 		}
-		searchingNow = Integer.parseInt(request1.getParameter("searchingNow"));
+		
+		
+		/*
+		searchingNow
+		달력 리스트에서 view로 진입할 경우 0
+		전체글 리스트에서 view로 진입할 경우 0
+		검색중인 리스트에서 view로 진입 할 경우 1
+		
+		이 변수는 view 에서 목록을 클릭했을 때 
+		다시 이전 리스트를 기억하기 위해 정의된 변수이다.
+		*/
+		
+		//이 값이 null로 들어오는 경우는 달력리스트에서 진입했을 때만 해당. (현재 달력리스트에서는 seq만 보냄)
+		if(null == request1.getParameter("searchingNow")){ 
+			searchingNow = 0;
+		}else{
+			searchingNow = Integer.parseInt(request1.getParameter("searchingNow"));
+		}
+		
 		
 		//검색일 경우 존재하는 변수 초기화
 		if(searchingNow==1){
