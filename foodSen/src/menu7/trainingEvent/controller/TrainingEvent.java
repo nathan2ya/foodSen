@@ -2,19 +2,23 @@ package menu7.trainingEvent.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import menu7.trainingEvent.dto.TrainingEventDTO;
+import net.sf.json.JSONObject;
 
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
@@ -68,5 +72,48 @@ public class TrainingEvent {
 		return "/view/menu7/trainingEvent/trainingEvent.jsp";
 	}
 	
+	//이전 달력 리스트//다음 달력 리스트
+	@RequestMapping("/trainingEventMonth.do")
+	public void trainingEventMonth(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException{
+		
+		PrintWriter write = response.getWriter();
+		
+		String year = request.getParameter("year");
+		String month =  request.getParameter("month");
+		
+		if(Integer.parseInt(month) <10){
+			month = "0"+month;
+		}
+		
+		String currentTime = year+month;
+		System.out.println("currentTime : "+currentTime);
+		
+		
+		
+		Integer count = (Integer) sqlMapper.queryForObject("TrainingEvent.trainingEventCount", currentTime);
+		list = sqlMapper.queryForList("TrainingEvent.selectTrainingEvent", currentTime);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("count", count);
+		map.put("list", list);
+		
+		System.out.println("map : "+map);
+		
+		
+		
+		JSONObject json = new JSONObject();
+		System.out.println("json 객체 생성 : "+json);
+		
+		
+		json = JSONObject.fromObject(map);
+		
+		System.out.println("json toString 한것 : "+json.toString());
+		System.out.println("json : "+json);
+		
+		write.print(json);
+		write.close();
+		
+		
+	}
 	
 }

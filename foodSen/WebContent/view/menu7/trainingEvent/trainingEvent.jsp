@@ -195,7 +195,7 @@
 	function getMonthEvent(){
 		$.ajax({
 			type: 'post',
-			url: 'trainingEventMonth.do',
+			url: '/foodSen/trainingEventMonth.do',
 			dataType:"json",
 			contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
 			data: {
