@@ -3,9 +3,7 @@ package header.member.controller;
 import header.member.dto.MemberDTO;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
@@ -14,13 +12,19 @@ import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 회원가입 클래스.
+ * 			1. 회원정보 isnert메소드
+ * 			2. insert 도중 호출되는 아이디중복체크 메소드
+*/
 
 @Controller
 public class MemberCreate {
-	//회원가입 아이디,이메일 중복확인 List
-	private List<MemberDTO> list = new ArrayList<MemberDTO>();
-	private String viewPath; //최종 뷰 경로
-	private int notFound; //id중복 유무를 판단하는 논리값 // 0 미중복, 1 중복
+	
+	//아이디중복체크
+	private String viewPath; //return경로
+	private int notFound; //ID중복여부를 판단하는 논리값
 	
 	//회원가입 insert DTO
 	private MemberDTO paramClass = new MemberDTO();
@@ -38,18 +42,19 @@ public class MemberCreate {
 	}
 	//.DB커넥트 생성자 버전 끝
 	
+	//-----------------------------------------------------------------------------------------------------------------------------------------//
 	
-	
-	//회원가입 폼
+	//회원가입 form
 	@RequestMapping("/memberCreateFrom.do")
 	public String memberCreateFrom() throws Exception{
 		return "/view/member/memberCreate.jsp";
 	}
 	
-	
-	//회원가입 db insert
+	//회원가입 DB insert
 	@RequestMapping("/memberCreate.do")
 	public String memberCreate(HttpServletRequest request) throws Exception{
+		
+		//인코딩정의
 		request.setCharacterEncoding("euc-kr");
 		
 		//사용자가 입력한 정보
@@ -63,7 +68,6 @@ public class MemberCreate {
 		String phone = request.getParameter("phone");
 		Calendar today = Calendar.getInstance(); //날짜
 
-		
 		//사용자 정보 DB insert
 		paramClass.setUser_id(user_id);
 		paramClass.setUser_pw(user_pw);
@@ -76,56 +80,60 @@ public class MemberCreate {
 		paramClass.setApprove_yn("n");
 		paramClass.setSchool_type(school_type);
 		paramClass.setReg_date(today.getTime());
-		
 		sqlMapper.insert("Member.insertMember",paramClass);
 		
 		return "redirect:/main.do";
 	}
 	
+	//-----------------------------------------------------------------------------------------------------------------------------------------//
 	
-	
-	
-	
-	//아이디중복체크 폼
+	//아이디중복체크 form
 	@RequestMapping("/checkUser_idFrom.do")
 	public String checkUser_idFrom(HttpServletRequest request) throws Exception{
+		
 		//사용자가 입력한 정보
 		String user_id = request.getParameter("user_id");
 		
-		//최초 진입시 2
-		if(null == request.getParameter("notFound")){
+		/*
+		 * 아이디중복체크 폼으로 가기전 notFound 의 변수를 정의한다.
+		 * notFound 변수정의
+		 *  0 : 중복아님
+		 *  1 : 중복
+		 *  2 : 최초진입
+		*/
+		if(null == request.getParameter("notFound")){ //notFound 변수 값이 없을 경우 : 최초 진입시
 			notFound = 2;
-		//중복이 아닐경우 0, 중복일 경우 1 로 정의됨.
-		}else{
+		}else{ //중복아님 0, 중복 1 로 초기화.
 			notFound = Integer.parseInt(request.getParameter("notFound"));
 		}
+		//.notFound 정의 종료
 		
 		request.setAttribute("user_id", user_id);
 		request.setAttribute("notFound", notFound);
-		
 		return "/view/member/checkUser_idFrom.jsp";
 	}
 	
-	
-	//아이디중복체크
+	//아이디중복체크 실행
 	@RequestMapping("/checkUser_id.do")
 	public String checkUser_id(HttpServletRequest request) throws Exception{
+		
 		//사용자가 입력한 정보
 		String user_id = request.getParameter("user_id");
 		
+		/*
+		 * 아이디중복체크 폼으로 가기전 notFound 의 변수를 정의한다.
+		 *  1 : 중복
+		 *  2 : 최초진입
+		*/
+		Integer count = (Integer) sqlMapper.queryForObject("Member.selectUser_id", user_id); //해당 아이디가 있는지 없는지 판단
 		
-		//해당 아이디가 있는지 없는지 판단
-		Integer count = (Integer) sqlMapper.queryForObject("Member.selectUser_id", user_id);
-		
-		if(count == 0){ //id중복이 아닌 경우
-			viewPath = "redirect:/checkUser_idFrom.do?user_id="+user_id+"&notFound=0";
-		}else{ //id중복인 경우
-			viewPath = "redirect:/checkUser_idFrom.do?user_id="+user_id+"&notFound=1";
+		if(count == 0){ //사용자가 입력한 정보와 같은 레코드가 없음, 중복안됨
+			viewPath = "redirect:/checkUser_idFrom.do?user_id="+user_id+"&notFound=0"; //notFound 0으로 초기화
+		}else{ //사용자가 입력한 정보와 같은 레코드가 있음, 중복됨
+			viewPath = "redirect:/checkUser_idFrom.do?user_id="+user_id+"&notFound=1"; //notFound 1로 초기화
 		}
 		
 		return viewPath;
 	}
 	
-	
-	
-}
+} //end of class

@@ -1,6 +1,5 @@
 package common;
 
-
 import java.io.IOException;
 import java.io.Reader;
 import javax.servlet.http.HttpServletRequest;
@@ -11,12 +10,18 @@ import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: foodSen 프로젝트에서 2초대기 페이지로 return 하는 클래스.
+ * 용  도: foodSen 프로젝트에서 DB실행 및 완료 보다 페이지이동이 더 빠른 경우 2초간 대기시키기 위함.
+*/
 
 @Controller
 public class Stay2sec {
 	
+	//호출측과 리턴경로 정의
 	private String service; // 호출측 uri
-	private String stay2sec_path; // return path
+	private String stay2sec_path; // return 경로
 	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
@@ -31,13 +36,13 @@ public class Stay2sec {
 	}
 	//.DB커넥트 생성자 버전 끝
 	
-	//삭제대기 리다이렉트2초
+	
+	//리다이렉트2초 페이지
 	@RequestMapping("/goStay2sec.do")
 	public String goImprovementCaseList(HttpServletRequest request){
 		
 		//호출 uri 초기화
 		service = request.getParameter("service");
-		
 		
 		/*
 		 * 호출측의 페이지 마다 리턴경로가 다름.

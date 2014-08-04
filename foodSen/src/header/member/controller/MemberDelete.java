@@ -1,46 +1,29 @@
 package header.member.controller;
 
 import header.member.dto.MemberDTO;
-
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-
-
-
-
-
-
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 회원탈퇴 클래스
+ * 			1. 회원정보 delete메소드
+ * 			2. delete 전 회원정보(비밀번호) 재확인
+*/
 
 @Controller
 public class MemberDelete {
 	
-	private MemberDTO resultClass = new MemberDTO(); // 회원탈퇴 폼 DTO
-	private MemberDTO paramClass = new MemberDTO(); // 로그인 비밀번호 확인 DTO
-	
-	private String viewPath; // 리턴 뷰 경로
+	//회원탈퇴 delete DTO
+	private MemberDTO resultClass = new MemberDTO(); // 회원탈퇴 form DTO
 	
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
@@ -54,27 +37,27 @@ public class MemberDelete {
 		reader.close();
 	}
 	//.DB커넥트 생성자 버전 끝
+
+	//-----------------------------------------------------------------------------------------------------------------------------------------//
 	
-	
-	
-	//회원탈퇴 폼
+	//회원탈퇴 form
 	@RequestMapping("/memberDeleteFrom.do")
 	public String memberDeleteFrom(HttpServletRequest request, HttpSession session) throws Exception{
+		
+		//인코딩정의
 		request.setCharacterEncoding("euc-kr");
 		
-		//현재세션
+		//현재세션 (현재 로그인된 사용자가 회원탈퇴를 요청)
 		String session_id = (String) session.getAttribute("session_id");
 		
-		//해당세션의 레코드 정보
-		resultClass = (MemberDTO)sqlMapper.queryForObject("Member.selectMemberOne", session_id);
+		//현재 로그인된 사용자의 레코드를 저장(비밀번호 재확인을 위함)
+		resultClass = (MemberDTO)sqlMapper.queryForObject("Member.selectMemberOne", session_id); //해당세션의 레코드 get
 		
 		request.setAttribute("resultClass", resultClass);
-		
 		return "/view/member/memberDelete.jsp";
 	}
 	
-	
-	//회원탈퇴 실행
+	//회원탈퇴 DB delete
 	@RequestMapping("memberDelete.do")
 	public String memberDelete(HttpSession session) throws Exception{
 		
@@ -84,9 +67,10 @@ public class MemberDelete {
 		//해당 레코드 delete
 		sqlMapper.delete("Member.deleteMember", session_id);
 		
-		//세션제거
+		//세션제거 (회원정보상실, 로그아웃을 위한 세션제거)
 		session.invalidate();
 		
 		return "redirect:/main.do";
 	}
-}
+	
+} //end of class

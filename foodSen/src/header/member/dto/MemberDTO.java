@@ -9,13 +9,13 @@ public class MemberDTO {
 	private String member_name; //회원 이름
 	private String school_name; //학교명
 	private String position; //직종
-	private String sen_email;
-	private String phone;
-	private String admin_yn;
-	private String admin_pw;
-	private String approve_yn;
-	private String school_type;
-	private Date reg_date;
+	private String sen_email; //이메일
+	private String phone; //폰번호
+	private String admin_yn; //관리자여부
+	private String admin_pw; //관리자비밀번호
+	private String approve_yn; //접근권한 여부
+	private String school_type; //학교종류
+	private Date reg_date; //등록날짜
 	
 	public String getUser_id() {
 		return user_id;
