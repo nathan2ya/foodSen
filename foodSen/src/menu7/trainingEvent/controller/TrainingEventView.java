@@ -8,12 +8,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import menu7.trainingEvent.dto.TrainingEventDTO;
+
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -36,6 +39,7 @@ public class TrainingEventView {
 	private int searchingNow; // 전체글, 검색글을 판단하여 각종 논리성을 판가르는 논리값
 	private String searchType;
 	private String userinput;
+	private int canWrite; // 결과등록을 할 수 있는지 없는지 판단하는 논리값
 	
 	//파일다운로드 관련
 	private String file_path = Constants.COMMON_FILE_PATH + Constants.MENU7_TRAININGEVENT_FILE_PATH;
@@ -118,12 +122,40 @@ public class TrainingEventView {
 		resultClass = (TrainingEventDTO)sqlMapper.queryForObject("TrainingEvent.selectTrainingEventOne", seq);
 		
 		
-		request1.setAttribute("seq", seq);
-		request1.setAttribute("currentPage", currentPage);
-		request1.setAttribute("searchingNow", searchingNow);
-		request1.setAttribute("resultClass", resultClass); //레코드1개
 		
 		
+		
+		/*
+		 * 1. 결과등록(답글)은 행사종료일이거나 그 이상되어야만 가능함을 판단하는 변수
+		 * 2. 글의 삭제를 판단하는 변수
+		 * 3. 0은 등록불가 및 삭제불가, 1은 등록가능 및 삭제가능
+		 * str_date - 행사시작날짜
+		 * end_date - 행사종료날짜
+		 * current_date - 현재날짜
+		*/
+		
+		//행사 시작 날짜(str_date)
+		int str_date = Integer.parseInt(resultClass.getStr_date().replace("-", ""));
+		//행사 종료 날짜(end_date)
+		int end_date = Integer.parseInt(resultClass.getEnd_date().replace("-", ""));
+		//현재 날짜(current_date)
+		Calendar today = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		int current_date = Integer.parseInt(sdf.format(today.getTime()));
+		
+				// 행사가 시작했고,		종료되기 전이면
+		if(current_date >= str_date && current_date <= end_date){
+			canWrite = 0; // 0은 등록불가 or 삭제불가
+		}else{
+			canWrite = 1; // 1은 등록가능 or 삭제가능
+		}
+		
+		
+		request1.setAttribute("seq", seq); //뷰의 시퀀스넘버
+		request1.setAttribute("currentPage", currentPage); //현재페이지
+		request1.setAttribute("searchingNow", searchingNow); //전체글 or 검색글 논리변수
+		request1.setAttribute("canWrite", canWrite); //결과등록(답글) 입력 권한 논리변수
+		request1.setAttribute("resultClass", resultClass); //뷰에 출력될 레코드1개 참조변수
 		return "/view/menu7/trainingEvent/trainingEventView.jsp";
 	}
 	

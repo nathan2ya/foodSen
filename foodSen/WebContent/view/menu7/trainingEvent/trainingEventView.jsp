@@ -20,6 +20,13 @@
 	}
 	
 	function goDelete(){
+		
+		var canWrite = "${canWrite}";
+		if(canWrite==0){
+			alert("행사기간에 글의 삭제는 불가능합니다.");
+			return;
+		}
+		
 		var seq = "${seq}"; // 뷰페이지 시퀀스넘버
 		var pw = "${resultClass.pw}"; // 뷰페이지 현재페이지
 		
@@ -30,12 +37,18 @@
 	}
 	
 	function goInsertRes(){
+		
+		var canWrite = "${canWrite}";
+		if(canWrite==0){
+			alert("결과등록은 행사일이 종료되어야 작성가능합니다.");
+			return;
+		}
+		
 		var seq = "${seq}"; // 뷰페이지 시퀀스넘버
 		var currentPage = "${currentPage}"; // 뷰페이지 현재페이지
 		var searchingNow = "${searchingNow}"; // 뷰페이지 검색중인 여부
 		
 		location.href='/foodSen/trainingEventResCreateFrom.do?seq='+seq+'&currentPage='+currentPage+'&searchingNow='+searchingNow;
-		
 	}
 	
 	//내용 부분 오토링크

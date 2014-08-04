@@ -3,12 +3,12 @@ package header.member.dto;
 import java.util.Date;
 
 public class MemberDTO {
-	private String user_id;
-	private String user_pw;
-	private int member_seq;
-	private String member_name;
-	private String school_name;
-	private String position;
+	private String user_id; //사용자 아이디
+	private String user_pw; //사용자 비밀번호
+	private int member_seq; //회원 테이블의 시퀀스
+	private String member_name; //회원 이름
+	private String school_name; //학교명
+	private String position; //직종
 	private String sen_email;
 	private String phone;
 	private String admin_yn;
