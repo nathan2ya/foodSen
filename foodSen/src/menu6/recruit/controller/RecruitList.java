@@ -1,36 +1,20 @@
 package menu6.recruit.controller;
 
-
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import menu6.recruit.dto.RecruitDTO;
-
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
-
 import common.PagingAction;
-
 
 @Controller
 public class RecruitList {
@@ -41,9 +25,8 @@ public class RecruitList {
 	//검색중
 	private String userInput;
 	private int searchingNow; // 전체글, 검색글을 판단하여 각종 논리성을 판가르는 논리값
-	
-	private String subType;
-	private String subValue;
+	private String subType; //검색종류
+	private String subValue; //검색어
 	
 	//페이지
 	private int totalCount;// 총 게시물의 수
@@ -76,13 +59,15 @@ public class RecruitList {
 		
 		// 전체글, 검색글 판단값.
 		searchingNow = 0; //0 == 전체글//1 == 검색글//
-				
 		
 		list = sqlMapper.queryForList("Recruit.selectAll"); //전체글
 		int numberCount = list.size(); // 전체 레코드 개수
 		
-		
-		//페이지
+		/*
+		 * PagingAction 클래스를 이용하여 페이지정의
+		 * 현재게시판의 페이지단위나 레코드개수를 정의하여 파라미터로 호출
+		*/
+		//PagingAction 파라미터 정의
 		blockCount = 10;// 한 페이지의 게시물의 수
 		blockPage = 5;// 한 화면에 보여줄 페이지 수
 		serviceName = "recruitList";// 호출 URI 정의
@@ -121,9 +106,6 @@ public class RecruitList {
 		
 		//.페이지 종료
 		
-		
-		
-		
 		//제목 15글자 단위로 개행
 		String first;
 		//String second;
@@ -133,32 +115,24 @@ public class RecruitList {
 			if(list.get(i).getTitle().length() > 18){ //제목이 18글자 이상이면
 				//0~19 잘라내기//18로 수정함
 				first = list.get(i).getTitle().substring(0, 18);
-				
-				resultSubject = first + "..."; //"<br/>" + second;
+				resultSubject = first + "..."; 
 				list.get(i).setTitle(resultSubject);
 			}
 			
 		}
 		//.제목 15글자 단위로 개행 종료
-				
-		
 		
 		//가변 시퀀스 넘버
 		int number = numberCount-(page.getCurrentPage()-1)*blockCount;
 		//.가변 시퀀스 넘버 종료
-		
 		
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pagingHtml", pagingHtml);
 		request.setAttribute("list", list);
 		request.setAttribute("number", number); //글넘버 - 가변으로 선정되는 게시글의 숫자
 		request.setAttribute("searchingNow", searchingNow); // 전체,검색글을 판단함
-		
 		return "/view/menu6/recruit_application/recruitList.jsp";
 	}
-	
-	
-	
 	
 	//학교급식인력풀(구인) (검색글) 리스트
 	@RequestMapping("/recruitSearch.do")
@@ -196,9 +170,12 @@ public class RecruitList {
 		}
 		//.검색 타입에 따라 다른 추가입력 셀렉트
 		
-		
 			
-		//페이지처리
+		/*
+		 * PagingAction 클래스를 이용하여 페이지정의
+		 * 현재게시판의 페이지단위나 레코드개수를 정의하여 파라미터로 호출
+		*/
+		//PagingAction 파라미터 정의
 		blockCount = 10;// 한 페이지의 게시물의 수
 		blockPage = 5;// 한 화면에 보여줄 페이지 수
 		serviceName = "recruitSearch";// 호출 URI 정의
@@ -224,11 +201,9 @@ public class RecruitList {
 		list = list.subList(page.getStartCount(), lastCount);
 		//.페이지처리 종료
 		
-		
 		//리스트 글번호 가변 계산
 		int number=totalCount-(page.getCurrentPage()-1)*blockCount;
 				
-		
 		request.setAttribute("number", number);	
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pagingHtml", pagingHtml);
@@ -236,9 +211,7 @@ public class RecruitList {
 		request.setAttribute("searchType", searchType);
 		request.setAttribute("totalCount", totalCount);
 		request.setAttribute("searchingNow", searchingNow);
-		
 		return "/view/menu6/recruit_application/recruitList.jsp";
 	}
 	
-	
-}
+} //end of class

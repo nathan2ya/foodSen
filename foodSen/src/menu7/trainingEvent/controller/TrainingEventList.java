@@ -66,7 +66,6 @@ public class TrainingEventList {
 	//.DB커넥트 생성자 버전 끝
 	
 	
-	
 	//연수행사 (전체글) 리스트
 	@RequestMapping("/TrainingEventList.do")
 	public String TrainingEventList(HttpServletRequest request) throws SQLException{
@@ -77,10 +76,11 @@ public class TrainingEventList {
 		list = sqlMapper.queryForList("TrainingEvent.selectAll"); //전체글
 		int numberCount = list.size(); // 전체 레코드 개수
 		
-		
-		
-		
-		//페이지
+		/*
+		 * PagingAction 클래스를 이용하여 페이지정의
+		 * 현재게시판의 페이지단위나 레코드개수를 정의하여 파라미터로 호출
+		*/
+		//PagingAction 파라미터 정의
 		blockCount = 10;// 한 페이지의 게시물의 수
 		blockPage = 5;// 한 화면에 보여줄 페이지 수
 		serviceName = "TrainingEventList";// 호출 URI 정의
@@ -92,6 +92,7 @@ public class TrainingEventList {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
+		//객체생성 및 결과반환(형변환)
 		page = new PagingAction(serviceName, currentPage, totalCount, blockCount, blockPage); // pagingAction 객체 생성.
 		pagingHtml = page.getPagingHtml().toString(); // 페이지 HTML 생성.
 
@@ -100,7 +101,6 @@ public class TrainingEventList {
 		// 현재 페이지의 마지막 글의 번호가 전체의 마지막 글 번호보다 작으면 lastCount를 +1 번호로 설정.
 		if (page.getEndCount() < totalCount)
 			lastCount = page.getEndCount() + 1;
-		
 		
 		// 전체 리스트에서 현재 페이지만큼의 리스트만 가져온다.
 		list = list.subList(page.getStartCount(), lastCount);
@@ -120,8 +120,6 @@ public class TrainingEventList {
 		//.페이지 종료
 		
 		
-		
-		
 		//제목 15글자 단위로 개행
 		String first;
 		//String second;
@@ -129,31 +127,22 @@ public class TrainingEventList {
 		
 		for(int i=0; i<list.size(); i++){
 			if(list.get(i).getTitle().length() > 18){ //제목이 18글자 이상이면
-				//0~19 잘라내기//18로 수정함
-				first = list.get(i).getTitle().substring(0, 18);
+				first = list.get(i).getTitle().substring(0, 18); //잘라내기
 				
-				resultSubject = first + "..."; //"<br/>" + second;
+				resultSubject = first + "..."; 
 				list.get(i).setTitle(resultSubject);
 			}
-			
 		}
 		//.제목 15글자 단위로 개행 종료
 				
-				
-		
-		
 		//가변 시퀀스 넘버
 		int number = numberCount-(page.getCurrentPage()-1)*blockCount;
-		//.가변 시퀀스 넘버 종료
-		
-		
 		
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pagingHtml", pagingHtml);
 		request.setAttribute("list", list);
 		request.setAttribute("number", number); //글넘버 - 가변으로 선정되는 게시글의 숫자
 		request.setAttribute("searchingNow", searchingNow); // 전체,검색글을 판단함
-		
 		return "/view/menu7/trainingEvent/trainingEventList.jsp";
 	}
 	
@@ -182,9 +171,11 @@ public class TrainingEventList {
 			list = sqlMapper.queryForList("TrainingEvent.selectWithWriter", userinput);
 		}
 		
-		
-			
-		//페이지처리
+		/*
+		 * PagingAction 클래스를 이용하여 페이지정의
+		 * 현재게시판의 페이지단위나 레코드개수를 정의하여 파라미터로 호출
+		*/
+		//PagingAction 파라미터 정의
 		blockCount = 10;// 한 페이지의 게시물의 수
 		blockPage = 5;// 한 화면에 보여줄 페이지 수
 		serviceName = "trainingEventSearch";// 호출 URI 정의
@@ -201,11 +192,9 @@ public class TrainingEventList {
 
 		int lastCount = totalCount; // 마지막 레코드 = 개수
 		
-		
 		// 현재 페이지의 마지막 글의 번호가 전체의 마지막 글 번호보다 작으면 lastCount를 +1 번호로 설정.
 		if (page.getEndCount() < totalCount)
 			lastCount = page.getEndCount() + 1;
-		
 		
 		// 전체 리스트에서 현재 페이지만큼의 리스트만 가져온다.
 		list = list.subList(page.getStartCount(), lastCount);
@@ -215,8 +204,6 @@ public class TrainingEventList {
 		//리스트 글번호 가변 계산
 		int number=totalCount-(page.getCurrentPage()-1)*blockCount;
 				
-		
-		
 		request.setAttribute("number", number);	
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pagingHtml", pagingHtml);
@@ -226,8 +213,7 @@ public class TrainingEventList {
 		request.setAttribute("tempInput", tempInput);
 		request.setAttribute("totalCount", totalCount);
 		request.setAttribute("searchingNow", searchingNow);
-		
 		return  "/view/menu7/trainingEvent/trainingEventList.jsp";
 	}
 	
-}
+} //end of class

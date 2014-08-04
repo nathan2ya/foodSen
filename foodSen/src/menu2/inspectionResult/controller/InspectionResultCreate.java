@@ -1,38 +1,34 @@
 package menu2.inspectionResult.controller;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Calendar;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import menu2.inspectionResult.dto.InspectionResultDTO;
-
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-
-
-
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
-
 import common.Constants;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 위생.안전성검사결과 insert 클래스
+ * 용  도: 위생.안전성검사결과 게시글 등록을 위함.
+*/
 
 @Controller
 public class InspectionResultCreate {
 	
-	//insert
+	//위생.안전성검사결과 insert
 	private InspectionResultDTO paramClass = new InspectionResultDTO();
 	private InspectionResultDTO resultClass = new InspectionResultDTO();
 	
@@ -55,16 +51,15 @@ public class InspectionResultCreate {
 	}
 	//.DB커넥트 생성자 버전 끝
 	
+	//-----------------------------------------------------------------------------------------------------------------------------------------//
 	
-	//위생.안전 검사결과 입력폼
+	//위생.안전 검사결과 등록 form
 	@RequestMapping("/inspectionResultCreateFrom.do")
 	public String inspectionResultCreateFrom(){
 		return "/view/menu2/inspectionResultCreate.jsp";
 	}
 	
-	
-	
-	//위생.안전 검사결과 입력
+	//위생.안전 검사결과 등록 DB insert
 	@RequestMapping(value="/inspectionResultCreate.do", method=RequestMethod.POST)
 	public String inspectionResultCreate(MultipartHttpServletRequest request, HttpServletRequest request1, HttpServletResponse response1, HttpSession session) throws Exception{
 		request.setCharacterEncoding("euc-kr");
@@ -92,12 +87,9 @@ public class InspectionResultCreate {
 		//DB에 insert 하기 (글 등록)
 		sqlMapper.insert("InspectionResult.insertInspectionResult", paramClass);
 		
-		
-		//최대시퀀스넘버 get
+		//최대시퀀스넘버 get //방금 insert한 레코드에 다음 실행될 파일경로, 파일이름을 해당 시퀀스넘버에 update 하기 위함.
 		resultClass = (InspectionResultDTO) sqlMapper.queryForObject("InspectionResult.selectLastNum");
 		seq = (int)(resultClass.getSeq());
-		
-		
 		
 		//파일첨부
 		MultipartFile file = request.getFile("filename"); // 업로드된 원본
@@ -130,4 +122,4 @@ public class InspectionResultCreate {
 		return "redirect:/inspectionResultList.do"; //리스트로 리다이렉트
 	}
 	
-}
+} //end of class
