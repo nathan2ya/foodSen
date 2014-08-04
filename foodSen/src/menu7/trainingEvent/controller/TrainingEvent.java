@@ -86,8 +86,6 @@ public class TrainingEvent {
 		}
 		
 		String currentTime = year+month;
-		System.out.println("currentTime : "+currentTime);
-		
 		
 		Integer count = (Integer) sqlMapper.queryForObject("TrainingEvent.trainingEventCount", currentTime);
 		list = sqlMapper.queryForList("TrainingEvent.selectTrainingEvent", currentTime);
@@ -95,8 +93,6 @@ public class TrainingEvent {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("count", count);
 		map.put("list", list);
-		
-		System.out.println("map : "+map);
 		
 
 		JSONObject json = new JSONObject();
