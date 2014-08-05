@@ -30,6 +30,11 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 import common.Constants;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 학교급식인력풀(구직) view 클래스
+ * 용  도: 학교급식인력풀(구직) 게시글 뷰를 위함.
+*/
 
 @Controller
 public class ApplicationView {

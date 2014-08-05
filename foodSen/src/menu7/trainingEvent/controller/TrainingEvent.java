@@ -34,6 +34,11 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 import common.PagingAction;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 연수행사 리스트1 클래스
+ * 용  도: 연수행사 달력에 노출되는 일정을 출력하기 위함.
+*/
 
 @Controller
 public class TrainingEvent {

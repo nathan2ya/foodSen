@@ -31,6 +31,11 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 import common.PagingAction;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 연수행사 리스트2 클래스
+ * 용  도: 연수행사 게시글 리스트 출력을 위함.
+*/
 
 @Controller
 public class TrainingEventList {

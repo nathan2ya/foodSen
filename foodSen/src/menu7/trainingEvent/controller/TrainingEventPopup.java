@@ -12,6 +12,11 @@ import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 연수행사 popup 클래스
+ * 용  도: 연수행사 게시글 삭제시 팝업을 컨트롤하기 위함.
+*/
 
 @Controller
 public class TrainingEventPopup {

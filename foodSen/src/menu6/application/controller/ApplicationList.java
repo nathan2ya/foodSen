@@ -31,6 +31,11 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 import common.PagingAction;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 학교급식인력풀(구직) list 클래스
+ * 용  도: 학교급식인력풀(구직) 게시글 리스트 출력을 위함.
+*/
 
 @Controller
 public class ApplicationList {

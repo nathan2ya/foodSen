@@ -19,6 +19,11 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 import common.Constants;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 급식시설 개선사례 insert 클래스
+ * 용  도: 급식시설 개선사례 게시글 등록을 위함.
+*/
 
 @Controller
 public class ImprovementCaseCreate {

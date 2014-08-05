@@ -28,6 +28,11 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 import common.Constants;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 연수행사 view 클래스
+ * 용  도: 연수행사 게시글 뷰를 위함.
+*/
 
 @Controller
 public class TrainingEventView {

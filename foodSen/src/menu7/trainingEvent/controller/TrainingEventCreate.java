@@ -27,6 +27,11 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 import common.Constants;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 연수행사 insert 클래스
+ * 용  도: 연수행사 게시글 등록을 위함.
+*/
 
 @Controller
 public class TrainingEventCreate {
