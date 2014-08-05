@@ -129,6 +129,7 @@ public class TrainingEventView {
 		
 		
 		/*
+		 * 행사도중에는 삭제불가능 하도록 하는 판단함수
 		 * 1. 결과등록(답글)은 행사종료일이거나 그 이상되어야만 가능함을 판단하는 변수
 		 * 2. 글의 삭제를 판단하는 변수
 		 * 3. 0은 등록불가 및 삭제불가, 1은 등록가능 및 삭제가능
@@ -153,7 +154,18 @@ public class TrainingEventView {
 			canWrite = 1; // 1은 등록가능 or 삭제가능
 		}
 		
+		
+		
+		//현재날짜를 String으로 받음
+		//행사가 종료될경우 글을 수정할 수 없게 하기 위하여, 현재시간을 String Type으로 jsp 로 보내어, end_date 값과 판단한다.
+		Calendar today1 = Calendar.getInstance();
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		String current_date1 = sdf1.format(today1.getTime());
+		
+		
+		
 		request1.setAttribute("current_date", current_date);
+		request1.setAttribute("current_date1", current_date1); //수정논리(기능추가)
 		request1.setAttribute("seq", seq); //뷰의 시퀀스넘버
 		request1.setAttribute("currentPage", currentPage); //현재페이지
 		request1.setAttribute("searchingNow", searchingNow); //전체글 or 검색글 논리변수

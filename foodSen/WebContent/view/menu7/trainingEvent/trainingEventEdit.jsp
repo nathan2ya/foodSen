@@ -65,16 +65,18 @@
 			return;
 		}
 		
-		if(oriStr_date < currentTime){ //행사가 시작되었다면
-			if(trainingEventEditForm.str_date.value < oriStr_date || trainingEventEditForm.str_date.value > currentTime){
+		if(oriStr_date <= currentTime){ //행사가 시작되었다면
+			if(!(oriStr_date <= trainingEventEditForm.str_date.value) || !(trainingEventEditForm.str_date.value >= currentTime)){
 				alert("수정시 시작날짜는 기존에등록된 날짜 ~ 오늘날짜까지 가능합니다.");
+				trainingEventEditForm.str_date.focus();
 				return;
 			}
 		}
 		
-		if(oriStr_date < currentTime){ //행사가 시작되었다면
+		if(oriStr_date <= currentTime){ //행사가 시작되었다면
 			if(trainingEventEditForm.str_date.value > currentTime){
 				alert("수정시 시작날짜는 오늘날짜까지 가능합니다.");
+				trainingEventEditForm.str_date.focus();
 				return;
 			}
 		}
