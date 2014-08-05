@@ -46,6 +46,7 @@
 		var oriPassword = "${resultClass.pw}";
 		var currentTime ="${currentTime}";
 		var oriStr_date = "${resultClass.str_date}";
+		var oriEnd_date = "${resultClass.end_date}";
 		
 		if(!trainingEventEditForm.pw.value){
 			alert("수정을 하시려면 비밀번호를 입력하세요.");
@@ -64,18 +65,22 @@
 			return;
 		}
 		
-		if(trainingEventEditForm.str_date.value < oriStr_date || trainingEventEditForm.str_date.value > currentTime){
-			alert("수정시 시작날짜는 기존에등록된 날짜 ~ 오늘날짜까지 가능합니다.");
-			return;
+		if(oriStr_date < currentTime){ //행사가 시작되었다면
+			if(trainingEventEditForm.str_date.value < oriStr_date || trainingEventEditForm.str_date.value > currentTime){
+				alert("수정시 시작날짜는 기존에등록된 날짜 ~ 오늘날짜까지 가능합니다.");
+				return;
+			}
 		}
 		
-		if(trainingEventEditForm.str_date.value > currentTime){
-			alert("수정시 시작날짜는 오늘날짜까지 가능합니다.");
-			return;
+		if(oriStr_date < currentTime){ //행사가 시작되었다면
+			if(trainingEventEditForm.str_date.value > currentTime){
+				alert("수정시 시작날짜는 오늘날짜까지 가능합니다.");
+				return;
+			}
 		}
 		
-		if(trainingEventEditForm.end_date.value < currentTime){
-			alert("수정시 종료날짜는 오늘날짜 이상이여야 합니다.");
+		if(trainingEventEditForm.end_date.value < oriEnd_date){
+			alert("수정시 종료날짜는 기존종료날짜 미만으로 선택할 수 없습니다.");
 			return;
 		}
 		
