@@ -57,6 +57,11 @@
 			return;
 		}
 		
+		if(trainingEventEditForm.str_date.value > trainingEventEditForm.end_date.value){
+			alert("행사종료일은 행사시작일보다 미래여야 합니다.");
+			return;
+		}
+		
 		if(getStrByte(trainingEventEditForm.description.value) > 1200){
 			alert("내용은 2000자까지만 입력할 수 있습니다.");
 			trainingEventEditForm.description.value = trainingEventEditForm.description.value.cut(1200);
@@ -69,8 +74,6 @@
 			trainingEventEditForm.description.focus();
 			return;
 		}
-		
-		
 		
 		
 		var thumbext = document.getElementById("filename").value;
