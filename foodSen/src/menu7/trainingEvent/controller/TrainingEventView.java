@@ -128,8 +128,6 @@ public class TrainingEventView {
 		
 		
 		
-		
-		
 		/*
 		 * 1. 결과등록(답글)은 행사종료일이거나 그 이상되어야만 가능함을 판단하는 변수
 		 * 2. 글의 삭제를 판단하는 변수
@@ -155,7 +153,7 @@ public class TrainingEventView {
 			canWrite = 1; // 1은 등록가능 or 삭제가능
 		}
 		
-		
+		request1.setAttribute("current_date", current_date);
 		request1.setAttribute("seq", seq); //뷰의 시퀀스넘버
 		request1.setAttribute("currentPage", currentPage); //현재페이지
 		request1.setAttribute("searchingNow", searchingNow); //전체글 or 검색글 논리변수

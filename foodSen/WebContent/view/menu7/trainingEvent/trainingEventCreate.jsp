@@ -63,6 +63,11 @@
 			return;
 		}
 		
+		if(trainingEventCreateFrom.str_date.value < currentTime){
+			alert("행사시작일은 현재일 이상이여야 합니다.");	
+			return;
+		}
+		
 		if(trainingEventCreateFrom.str_date.value > trainingEventCreateFrom.end_date.value){
 			alert("행사종료일은 행사시작일보다 미래여야 합니다.");
 			return;
@@ -105,6 +110,15 @@
 
 		thumbext = thumbext.slice(thumbext.indexOf(".") + 1).toLowerCase();
 		
+
+		if(!(thumbext=="" || thumbext=="jpg" || thumbext=="avi" || thumbext=="doc" || thumbext=="hwp" || thumbext=="pptx"
+			|| thumbext=="gif")){ 
+			alert('다음 확장자만 첨부할 수 있습니다. \n jpg, gif, doc, hwp, pptx, avi');
+			return;
+		}
+		
+		
+		/* 
 		if(thumbext=="mp4" || thumbext=="avi" || thumbext=="mkv" || thumbext=="ts" || thumbext=="gom"
 			|| thumbext=="svi" || thumbext=="divx" || thumbext=="sax" || thumbext=="asf" || thumbext=="wmx"
 			|| thumbext=="wmv" || thumbext=="wm" || thumbext=="wmp" || thumbext=="mpg" || thumbext=="mpe"
@@ -116,7 +130,7 @@
 			alert('동영상은 첨부할 수 없습니다.');
 			return;
 		}
-		
+		 */
 		var upfiles=document.getElementById("filename").value;
 		
 		//match 는 없으면 null 을 반환함
@@ -125,8 +139,42 @@
 			return;
 		}
 		
-		trainingEventCreateFrom.submit();
 		
+		//파일업로드 30mb제한
+		if(upfiles == null || upfiles == ""){
+			
+		}else{
+			var size = 0;
+			var browser=navigator.appName;
+			
+			if (browser=="Microsoft Internet Explorer")
+			{
+				var oas = new ActiveXObject("Scripting.FileSystemObject");
+				var filepath = document.getElementById('filename').value;
+				var e = oas.getFile(filepath);
+				size = e.size;
+			}
+			else{
+				var node = document.getElementById('filename');
+				size = node.files[0].size;
+			}
+			if(fileCheck(size) == false){
+				 alert("첨부파일 사이즈는 30MB 이내로 등록 가능합니다.");
+				 return;
+			}
+		}
+		
+		/* 파일사이즈 체크 */
+		function fileCheck(fileSize){
+		   //사이즈체크
+		   var maxSize  = 30000000;   //30MB
+		   if(fileSize > maxSize){
+				return false;
+		   }
+		   return true;
+		}
+
+		trainingEventCreateFrom.submit();
 	}
 	
 	
