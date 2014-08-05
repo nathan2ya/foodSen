@@ -172,7 +172,6 @@ public class ImprovementCaseEdit {
 		
 		
 		
-		
 		//1. 파일삭제를 위해 생성 - 파일삭제시 기존 업로드된파일의 경로를 얻기위함
 		//2. 이미지 파일 수정을 위해 생성 - 사용자가 수정시 이미지 업로더를 추가했는지 감소했는지 판단하고 업데이트를 하기 위함
 		resultClass = (ImprovementCaseDTO)sqlMapper.queryForObject("ImprovementCase.selectImprovementCaseOne", seq);
