@@ -24,7 +24,7 @@ public class TrainingEventDTO {
 	private String udt_name;
 	private Date udt_date;
 	private String turn;
-	
+	private int rownum;
 	
 	public int getSeq() {
 		return seq;
@@ -145,6 +145,12 @@ public class TrainingEventDTO {
 	}
 	public void setTurn(String turn) {
 		this.turn = turn;
+	}
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
 	}
 
 }

@@ -41,7 +41,10 @@ import common.PagingAction;
 public class TrainingEventList {
 	
 	//리스트
-	private List<TrainingEventDTO> list = new ArrayList<TrainingEventDTO>();
+	private List<TrainingEventDTO> list = new ArrayList<TrainingEventDTO>(); //일반
+	private List<TrainingEventDTO> list1 = new ArrayList<TrainingEventDTO>(); //정렬된
+	private List<TrainingEventDTO> cntList = new ArrayList<TrainingEventDTO>(); //가변을 위한 새글리스트
+	
 	
 	//검색중
 	private String tempInput;
@@ -79,7 +82,7 @@ public class TrainingEventList {
 		searchingNow = 0; //0 == 전체글//1 == 검색글//
 				
 		list = sqlMapper.queryForList("TrainingEvent.selectAll"); //전체글
-		int numberCount = list.size(); // 전체 레코드 개수
+		//int numberCount = list.size(); // 전체 레코드 개수
 		
 		/*
 		 * PagingAction 클래스를 이용하여 페이지정의
@@ -140,8 +143,47 @@ public class TrainingEventList {
 		}
 		//.제목 16글자 이상 자르기 종료
 				
-		//가변 시퀀스 넘버
-		int number = numberCount-(page.getCurrentPage()-1)*blockCount;
+		
+		System.out.println("현재페이지 : "+page.getCurrentPage());
+		System.out.println("마지막페이지 : "+page.getTotalPage());
+		
+		
+		//새글만 가져옴
+		cntList = sqlMapper.queryForList("TrainingEvent.newList");
+		int numberCount = cntList.size(); // 새글의 레코드 총 개수
+
+		int number; // 가변 시작 글 넘버
+		int cnt=0; // 댓글 카운터변수
+
+		if(page.getCurrentPage()==1){ // 시작페이지 일 경우
+			number=numberCount-(page.getCurrentPage()-1)*blockCount;
+		}else{ // 중간페이지일 경우 or 마지막페이지일 경우 //현재페이지 미만의 답글수를 구해서 기본식에서 + 함.
+			int temp = page.getCurrentPage();
+
+			for(int i=temp-1; i>0; i--){ // 현재페이지 이전 답글을 체크하기 위해 -1함
+				int temp1 = i*blockCount-blockCount; //지금페이지에서 시작 인덱스 값
+				int temp2 = i*blockCount; //지금페이지에서 마지막 인덱스 값
+
+				list1 = sqlMapper.queryForList("TrainingEvent.selectAllrownum"); //정렬된 리스트
+				list1 = list1.subList(temp1, temp2); // 지금페이지를 시작,마지막 값으로 자름
+
+				for(int j=0; j<list1.size(); j++){
+					//답글인것만 = 1
+					if(Integer.parseInt(list1.get(j).getGubun()) == 1){
+						cnt++;//지금페이지의 답글 개수를 누적시킴
+					}
+				}
+			}
+			//기존 계산식에서 -> 최종적으로 현재페이지 이전의 모든페이지의 답글을 더함.
+			//그러면 이전페이지의 답글개수를 뺀 수부터 가변으로 넘버를 감소시키기 시작함.
+			number=(numberCount-(page.getCurrentPage()-1)*blockCount)+cnt;
+		}
+		
+		/*
+		 * 가변 시퀀스 넘버(새글답글전체)
+		 * 향후 사용가능성이 있어 주석처리.
+		*/
+		//int number = numberCount-(page.getCurrentPage()-1)*blockCount;
 		
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pagingHtml", pagingHtml);

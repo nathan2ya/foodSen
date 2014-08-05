@@ -186,8 +186,14 @@
 								
 								<tr>
 									<td align="center">
-										<c:out value="${number}" />
-										<c:set var="number" value="${number-1}"/>
+										<c:if test="${list.gubun == 0}">
+											<c:out value="${number}" />
+											<c:set var="number" value="${number-1}"/>
+										</c:if>
+					
+										<c:if test="${list.gubun != 0}">
+											&nbsp;
+										</c:if>
 									</td>
 									
 									
