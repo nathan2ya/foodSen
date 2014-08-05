@@ -16,14 +16,11 @@
 		var currentPage = "${currentPage}"; // 뷰페이지 현재페이지
 		var searchingNow = "${searchingNow}"; // 뷰페이지 검색중인 여부
 		var turn = "${resultClass.turn}"; //자식 소유 여부
-		var current_date = "${current_date}"; //현재시간
-		var end_date = "${resultClass.end_date}";
 		
 		if(turn==1){
 			alert("결과가 등록되면 수정이 불가능합니다.");
 			return;
 		}
-		
 		location.href='/foodSen/trainingEventEditFrom.do?seq='+seq+'&currentPage='+currentPage+'&searchingNow='+searchingNow;
 	}
 	
