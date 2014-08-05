@@ -282,6 +282,7 @@
 								</th>
 								<td colspan="5" class="tl">
 									<textarea id="description" name="description" rows="12" cols="*" class="area">${resultClass.description}</textarea>
+									<div>※ ' , " , < . > 문자는 사용 할 수 없습니다.</div>
 								</td>
 							</tr>
 							<tr>

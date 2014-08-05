@@ -81,8 +81,8 @@ public class TrainingEventEdit {
 		String currentTime = sdf.format(cal.getTime());
 		//.현재날짜
 		
-		request.setAttribute("seq", seq);
 		request.setAttribute("currentTime", currentTime);
+		request.setAttribute("seq", seq);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("searchingNow", searchingNow);
 		request.setAttribute("resultClass", resultClass);

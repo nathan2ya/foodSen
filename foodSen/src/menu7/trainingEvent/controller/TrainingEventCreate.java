@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,7 +66,15 @@ public class TrainingEventCreate {
 	
 	//연수행사 새글 입력폼
 	@RequestMapping("/trainingEventCreateFrom.do")
-	public String trainingEventCreateFrom(){
+	public String trainingEventCreateFrom(HttpServletRequest request){
+		
+		//현재날짜
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String currentTime = sdf.format(cal.getTime());
+		//.현재날짜
+		
+		request.setAttribute("currentTime", currentTime);
 		return "/view/menu7/trainingEvent/trainingEventCreate.jsp";
 	}
 	

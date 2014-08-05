@@ -43,6 +43,8 @@
 
 	function goCreate(){
 		
+		var currentTime = "${currentTime}";
+		
 		if(!trainingEventCreateFrom.title.value){
 			alert("제목을 입력하세요.");
 			trainingEventCreateFrom.title.focus();
@@ -124,6 +126,7 @@
 		}
 		
 		trainingEventCreateFrom.submit();
+		
 	}
 	
 	
@@ -256,6 +259,7 @@
 								</th>
 								<td colspan="5" class="tl">
 									<textarea id="description" name="description" rows="12" cols="*" class="area"></textarea>
+									<div>※ ' , " , < . > 문자는 사용 할 수 없습니다.</div>
 								</td>
 							</tr>
 							<tr>
