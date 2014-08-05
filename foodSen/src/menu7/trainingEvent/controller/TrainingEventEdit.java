@@ -75,7 +75,14 @@ public class TrainingEventEdit {
 		
 		resultClass = (TrainingEventDTO)sqlMapper.queryForObject("TrainingEvent.selectTrainingEventOne", seq);
 		
+		//현재날짜
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String currentTime = sdf.format(cal.getTime());
+		//.현재날짜
+		
 		request.setAttribute("seq", seq);
+		request.setAttribute("currentTime", currentTime);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("searchingNow", searchingNow);
 		request.setAttribute("resultClass", resultClass);

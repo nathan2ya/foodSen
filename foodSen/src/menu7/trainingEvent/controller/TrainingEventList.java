@@ -125,20 +125,20 @@ public class TrainingEventList {
 		//.페이지 종료
 		
 		
-		//제목 15글자 단위로 개행
+		//제목 16글자 이상 자르기
 		String first;
 		//String second;
 		String resultSubject;
 		
 		for(int i=0; i<list.size(); i++){
-			if(list.get(i).getTitle().length() > 18){ //제목이 18글자 이상이면
-				first = list.get(i).getTitle().substring(0, 18); //잘라내기
+			if(list.get(i).getTitle().length() > 16){ //제목이 18글자 이상이면
+				first = list.get(i).getTitle().substring(0, 16); //잘라내기
 				
 				resultSubject = first + "..."; 
 				list.get(i).setTitle(resultSubject);
 			}
 		}
-		//.제목 15글자 단위로 개행 종료
+		//.제목 16글자 이상 자르기 종료
 				
 		//가변 시퀀스 넘버
 		int number = numberCount-(page.getCurrentPage()-1)*blockCount;

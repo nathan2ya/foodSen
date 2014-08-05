@@ -20,10 +20,15 @@
 	}
 	
 	function goDelete(){
-		
+		var turn = "${resultClass.turn}";
 		var canWrite = "${canWrite}";
+		
 		if(canWrite==0){
 			alert("행사기간에 글의 삭제는 불가능합니다.");
+			return;
+		}
+		if(turn==1){
+			alert("결과가 등록되면 삭제가 불가능합니다.");
 			return;
 		}
 		

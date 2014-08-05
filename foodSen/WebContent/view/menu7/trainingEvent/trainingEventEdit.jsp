@@ -44,6 +44,7 @@
 
 	function goCreate(){
 		var oriPassword = "${resultClass.pw}";
+		var currentTime ="${currentTime}";
 		
 		if(!trainingEventEditForm.pw.value){
 			alert("수정을 하시려면 비밀번호를 입력하세요.");
@@ -56,9 +57,14 @@
 			trainingEventEditForm.pw.focus();
 			return;
 		}
-		
+		          
 		if(trainingEventEditForm.str_date.value > trainingEventEditForm.end_date.value){
 			alert("행사종료일은 행사시작일보다 미래여야 합니다.");
+			return;
+		}
+		
+		if(trainingEventEditForm.str_date.value > currentTime){
+			alert("수정시 시작날짜는 오늘날짜까지 가능합니다.");
 			return;
 		}
 		
