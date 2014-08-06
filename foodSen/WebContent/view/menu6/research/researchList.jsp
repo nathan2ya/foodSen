@@ -99,7 +99,7 @@
 					<caption>설문조사</caption>
 					<colgroup>
 						<col width="8%"/>
-			            <col width="*%"/>
+			            <col width="45%"/>
 			            <col width="15%"/>
 			            <col width="15%"/>
 			            <col width="10%"/>
@@ -124,178 +124,37 @@
 						
 						<c:if test="${list != null}">
 							
-							
 							<c:forEach var="list" items="${list}">
 							
-								<!-- 뷰페이지로 보낼 프로퍼티 -->
-								<c:url var="url" value="/recruitView.do"> 
-									<c:param name="seq" value="${list.seq}"/>
+								<c:url var="url" value="/researchView.do"> 
+									<c:param name="seq" value="${list.sur_seq}"/>
 									<c:param name="currentPage" value="${currentPage}"/>
 									<c:param name="searchingNow" value="${searchingNow}"/>
-									
-									<!-- 검색중일 경우 아래의 uri를 추가로 정의해서 뷰 페이지로 보냄 -->
 									<c:if test="${searchingNow == 1}">
-										<!-- 타입정의 -->
 										<c:param name="searchType" value="${searchType}"/>
-										<!-- .//타입정의 -->
-										
-										<!-- 서브타입정의 -->
-										<c:if test="${searchType eq 'job'}">
-											<c:param name="job" value="${job}"/>
-										</c:if>
-										<c:if test="${searchType eq 'gubun'}">
-											<c:param name="gubun" value="${gubun}"/>
-										</c:if>
-										<c:if test="${searchType eq 'loc_seq'}">
-											<c:param name="loc_seq" value="${loc_seq}"/>
-										</c:if>
-										<c:if test="${searchType eq 'school_type'}">
-											<c:param name="school_type" value="${school_type}"/>
-										</c:if>
-										<!-- .//서브타입정의 -->
+										<c:param name="userinput" value="${userinput}"/>
 									</c:if>
-									<!-- .//검색중일 경우 아래의 uri를 추가로 정의해서 뷰 페이지로 보냄 -->
-									
 								</c:url>
-								<!-- .//뷰페이지로 보낼 프로퍼티 -->
-								 
-								 
+								
 								<tr>
 									<td align="center">
 										<c:out value="${number}" />
 										<c:set var="number" value="${number-1}"/>
 									</td>
 									<td align="left">
-										<a href=${url}>${list.title}</a>
+										<a href=${url}>${list.sur_title}</a>
 									</td>
-									<td align="left">
-										<c:if test="${list.job == 01}">
-											영양교사
+									<td align="center">${list.sur_sat_date}</td>
+									<td align="center">${list.sur_end_date}</td>
+									<td align="center">
+										<c:if test="${list.sur_end_date < currentTime}">
+											완료
 										</c:if>
-										<c:if test="${list.job == 02}">
-											영양사
-										</c:if>
-										<c:if test="${list.job == 03}">
-											조리사
-										</c:if>
-										<c:if test="${list.job == 04}">
-											조리원
-										</c:if>
-										<c:if test="${list.job == 05}">
-											배식도우미
+										<c:if test="${list.sur_end_date > currentTime}">
+											진행중
 										</c:if>
 									</td>
-									<td align="left">
-										<c:if test="${list.gubun == 01}">
-											전일제
-										</c:if>
-										<c:if test="${list.gubun == 02}">
-											시간제
-										</c:if>
-									</td>
-									<td align="left">
-										<c:if test="${list.loc_seq == 01}">
-											강남구
-										</c:if>
-										<c:if test="${list.loc_seq == 02}">
-											강동구
-										</c:if>
-										<c:if test="${list.loc_seq == 03}">
-											강북구
-										</c:if>
-										<c:if test="${list.loc_seq == 04}">
-											강서구
-										</c:if>
-										<c:if test="${list.loc_seq == 05}">
-											관악구
-										</c:if>
-										<c:if test="${list.loc_seq == 06}">
-											광진구
-										</c:if>
-										<c:if test="${list.loc_seq == 07}">
-											구로구
-										</c:if>
-										<c:if test="${list.loc_seq == 08}">
-											금천구
-										</c:if>
-										<c:if test="${list.loc_seq == 09}">
-											노원구
-										</c:if>
-										<c:if test="${list.loc_seq == 10}">
-											도봉구
-										</c:if>
-										<c:if test="${list.loc_seq == 11}">
-											동대문구
-										</c:if>
-										<c:if test="${list.loc_seq == 12}">
-											동작구
-										</c:if>
-										<c:if test="${list.loc_seq == 13}">
-											마포구
-										</c:if>
-										<c:if test="${list.loc_seq == 14}">
-											서대문구
-										</c:if>
-										<c:if test="${list.loc_seq == 15}">
-											서초구
-										</c:if>
-										<c:if test="${list.loc_seq == 16}">
-											성동구
-										</c:if>
-										<c:if test="${list.loc_seq == 17}">
-											성북구
-										</c:if>
-										<c:if test="${list.loc_seq == 18}">
-											송파구
-										</c:if>
-										<c:if test="${list.loc_seq == 19}">
-											양천구
-										</c:if>
-										<c:if test="${list.loc_seq == 20}">
-											영등포구
-										</c:if>
-										<c:if test="${list.loc_seq == 21}">
-											강남구
-										</c:if>
-										<c:if test="${list.loc_seq == 22}">
-											용산구
-										</c:if>
-										<c:if test="${list.loc_seq == 23}">
-											종로구
-										</c:if>
-										<c:if test="${list.loc_seq == 24}">
-											중구
-										</c:if>
-										<c:if test="${list.loc_seq == 25}">
-											중랑구
-										</c:if>
-									</td>
-									<td align="left">
-										${list.end_yn}
-									</td>
-									<td align="left">
-										<c:if test="${list.school_type == 1}">
-											${list.school_name}초
-										</c:if>
-										<c:if test="${list.school_type == 2}">
-											${list.school_name}중
-										</c:if>
-										<c:if test="${list.school_type == 3}">
-											${list.school_name}고
-										</c:if>
-										<c:if test="${list.school_type == 4}">
-											${list.school_name}특수
-										</c:if>
-										<c:if test="${list.school_type == 5}">
-											${list.school_name}각종
-										</c:if>
-									</td>
-									<td align="left">
-										<fmt:formatDate value="${list.reg_date}"  pattern="YY-MM-dd" />
-									</td>
-									<td align="left">
-										${list.hits}
-									</td>
+									<td align="center">${list.hits}</td>
 								</tr>
 							</c:forEach>
 							
@@ -316,16 +175,16 @@
 				<!-- 목록 . 등록 버튼 -->
 				<span class="bbs_btn"> 
 					<span class="wte_l">
-						<a href="/foodSen/recruitList.do" class="wte_r">목록</a>
+						<a href="/foodSen/researchList.do" class="wte_r">목록</a>
 					</span>
 					
-					<!-- 교직원인 경우만 등록버튼 노출 -->
-					<c:if test="${sessionScope.session_position == 3}">
+					<!-- 관리자인 경우만 등록버튼 노출 -->
+					<c:if test="${sessionScope.session_admin_yn == 'y'}">
 						<span class="per_l">
-							<a href="/foodSen/recruitCreateForm.do" class="pre_r">등록</a>
+							<a href="/foodSen/researchCreateForm.do" class="pre_r">등록</a>
 						</span>
 					</c:if>
-					<!-- .//교직원인 경우만 등록버튼 노출 -->
+					<!-- .//관리자인 경우만 등록버튼 노출 -->
 					
 				</span>
 				<!-- .//목록 등록 버튼 -->
@@ -337,7 +196,7 @@
 			
 			<!-- 검색 공간 -->
 			<div class="search_box">
-		        <form name="search" action="/foodSen/trainingEventSearch.do" method="post">
+		        <form name="search" action="/foodSen/researchSearch.do" method="post">
 		          <select name="searchType">
 		            <option value="title">제목</option>
 		          </select>
