@@ -36,10 +36,42 @@
 	</resultMap>
 	
 	<!-- 설문조사문항 -->
-	
+	<resultMap id="researchRes2" class="researchDTO2">
+		<result property="suri_seq" column="suri_seq" />
+		<result property="surq_seq" column="surq_seq" />
+		<result property="sur_seq" column="sur_seq" />
+		<result property="suri_title1" column="suri_title1" />
+		<result property="suri_title2" column="suri_title2" />
+		<result property="suri_title3" column="suri_title3" />
+		<result property="suri_title4" column="suri_title4" />
+		<result property="suri_title5" column="suri_title5" />
+		<result property="writer" column="writer" />
+		<result property="reg_name" column="reg_name" />
+		<result property="reg_date" column="reg_date" />
+		<result property="udt_name" column="udt_name" />
+		<result property="udt_date" column="udt_date" />
+		<result property="suri_num1" column="suri_num1" />
+		<result property="suri_num2" column="suri_num2" />
+		<result property="suri_num3" column="suri_num3" />
+		<result property="suri_num4" column="suri_num4" />
+		<result property="suri_num5" column="suri_num5" />
+	</resultMap>
 	
 	<!-- 설문조사결과 -->
-
+	<resultMap id="researchRes3" class="researchDTO3">
+		<result property="surr_seq" column="surr_seq" />
+		<result property="suri_seq" column="suri_seq" />
+		<result property="surq_seq" column="surq_seq" />
+		<result property="sur_seq" column="sur_seq" />
+		<result property="suri_num" column="suri_num" />
+		<result property="description" column="description" />
+		<result property="writer" column="writer" />
+		<result property="reg_name" column="reg_name" />
+		<result property="reg_date" column="reg_date" />
+		<result property="udt_name" column="udt_name" />
+		<result property="udt_date" column="udt_date" />
+		<result property="surq_title" column="surq_title" />
+	</resultMap>
 	
 	<!-- insert -->
 	
