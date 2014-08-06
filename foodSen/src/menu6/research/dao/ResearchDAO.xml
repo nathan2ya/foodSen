@@ -1,1 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+
+<sqlMap namespace="Research">
+
+	<typeAlias alias="researchDTO" type="menu6.research.dto.ResearchDTO" />
+	<typeAlias alias="researchDTO1" type="menu6.research.dto.ResearchDTO1" />
+	<typeAlias alias="researchDTO2" type="menu6.research.dto.ResearchDTO2" />
+	<typeAlias alias="researchDTO3" type="menu6.research.dto.ResearchDTO3" />
+	
+	<!-- 설문조사정보 -->
+	<resultMap id="researchRes" class="researchDTO">
+		<result property="sur_seq" column="sur_seq" />
+		<result property="sur_title" column="sur_title" />
+		<result property="que_cnt" column="que_cnt" />
+		<result property="sur_sat_date" column="sur_sat_date" />
+		<result property="sur_end_date" column="sur_end_date" />
+		<result property="hits" column="hits" />
+		<result property="writer" column="writer" />
+		<result property="reg_name" column="reg_name" />
+		<result property="reg_date" column="reg_date" />
+		<result property="udt_name" column="udt_name" />
+		<result property="udt_date" column="udt_date" />
+	</resultMap>
+	
+	<!-- 설문조사문제 -->
+	<resultMap id="researchRes1" class="researchDTO1">
+		<result property="surq_seq" column="surq_seq" />
+		<result property="sur_seq" column="sur_seq" />
+		<result property="surq_title" column="surq_title" />
+		<result property="writer" column="writer" />
+		<result property="reg_name" column="reg_name" />
+		<result property="reg_date" column="reg_date" />
+		<result property="udt_name" column="udt_name" />
+		<result property="udt_date" column="udt_date" />
+	</resultMap>
+	
+	<!-- 설문조사문항 -->
+	
+	
+	<!-- 설문조사결과 -->
+
+	
+	<!-- insert -->
+	
+
+	
+	
+	<!-- select -->
+	
+
+	
+	
+	<!-- update -->
+	
+
+	
+	
+	<!-- delete -->
+	
+
+	
+	
+</sqlMap>
