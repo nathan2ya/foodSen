@@ -2,30 +2,34 @@ package menu6.recruit.dto;
 
 import java.util.Date;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 급식인력풀(구인) DTO
+ * 용  도: 
+*/
+
 public class RecruitDTO {
-	
-    private int seq;
-    private String title;
-    private String pw;
-    private String school_name;
-    private String school_type; // 초/중/고/특수/각종
-    private String loc_seq;
-    private String job; // 영양교사/영양사/조리사/조리원/배식도우미
-    private String gubun; // 전일제/시간제
-    private String email;
-    private String phone;
-    private String description;
-    private String attach_name;
-    private String attach_path;
-    private int hits;
-    private String writer;
-    private String reg_name;
-    private Date reg_date;
-	private String udt_name;
-	private Date udt_date;
-	private String end_yn;
-	private int rownum;
-	
+    private int seq;//시퀀스
+    private String title;//제목
+    private String pw;//비밀번호
+    private String school_name;//학교이름
+    private String school_type;//초/중/고/특수/각종
+    private String loc_seq;//지역
+    private String job;//영양교사/영양사/조리사/조리원/배식도우미
+    private String gubun;//전일제/시간제
+    private String email;//이메일주소
+    private String phone;//폰번호
+    private String description;//내용
+    private String attach_name;//파일이름
+    private String attach_path;//파일경로
+    private int hits;//조회수
+    private String writer;//작성자
+    private String reg_name;//등록자
+    private Date reg_date;//등록일
+	private String udt_name;//수정자
+	private Date udt_date;//수정일
+	private String end_yn;//마감여부
+	private int rownum;//로우넘(정렬)
 	
 	public int getSeq() {
 		return seq;

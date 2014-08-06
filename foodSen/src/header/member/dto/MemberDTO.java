@@ -2,20 +2,26 @@ package header.member.dto;
 
 import java.util.Date;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 회원정보 DTO
+ * 용  도: 
+*/
+
 public class MemberDTO {
-	private String user_id; //사용자 아이디
-	private String user_pw; //사용자 비밀번호
-	private int member_seq; //회원 테이블의 시퀀스
-	private String member_name; //회원 이름
-	private String school_name; //학교명
-	private String position; //직종
-	private String sen_email; //이메일
-	private String phone; //폰번호
-	private String admin_yn; //관리자여부
-	private String admin_pw; //관리자비밀번호
-	private String approve_yn; //접근권한 여부
-	private String school_type; //학교종류
-	private Date reg_date; //등록날짜
+	private String user_id;//사용자 아이디
+	private String user_pw;//사용자 비밀번호
+	private int member_seq;//회원 테이블의 시퀀스
+	private String member_name;//회원 이름
+	private String school_name;//학교명
+	private String position;//직종
+	private String sen_email;//이메일
+	private String phone;//폰번호
+	private String admin_yn;//관리자여부
+	private String admin_pw;//관리자비밀번호
+	private String approve_yn;//접근권한 여부
+	private String school_type;//학교종류
+	private Date reg_date;//등록날짜
 	
 	public String getUser_id() {
 		return user_id;

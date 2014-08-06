@@ -2,20 +2,26 @@ package menu2.inspectionResult.dto;
 
 import java.util.Date;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 위생안전성검사결과 DTO
+ * 용  도: 
+*/
+
 public class InspectionResultDTO {
-	private int seq;
-	private String title;
-	private String attach_name;
-	private String attach_path;
-	private String description;
-	private String pw;
-	private int hits;
-	private String wirte;
-	private String reg_name;
-	private Date reg_date;
-	private String udt_name;
-	private Date udt_date;
-	private int rownum;
+	private int seq;//시퀀스
+	private String title;//제목
+	private String attach_name;//파일이름
+	private String attach_path;//파일경로
+	private String description;//내용
+	private String pw;//비밀번호
+	private int hits;//조회수
+	private String wirte;//작성자
+	private String reg_name;//등록자
+	private Date reg_date;//등록일
+	private String udt_name;//수정자
+	private Date udt_date;//수정일
+	private int rownum;//rownum(정렬)
 	
 	public int getSeq() {
 		return seq;

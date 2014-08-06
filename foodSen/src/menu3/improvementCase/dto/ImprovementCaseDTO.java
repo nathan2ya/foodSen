@@ -2,26 +2,32 @@ package menu3.improvementCase.dto;
 
 import java.util.Date;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 급식시설개선사례 DTO
+ * 용  도: 
+*/
+
 public class ImprovementCaseDTO {
-	private int seq;
-	private String title;
-	private String attach_name;
-	private String attach_path;
-	private String description;
-	private String pw;
-	private String img1;
-	private String img2;
-	private String img3;
-	private String img4;
-	private String img5;
-	private String img6;
-	private int hits;
-	private String wirte;
-	private String reg_name;
-	private Date reg_date;
-	private String udt_name;
-	private Date udt_date;
-	private int rownum;
+	private int seq;//시퀀스
+	private String title;//제목
+	private String attach_name;//파일이름
+	private String attach_path;//파일경로
+	private String description;//내용
+	private String pw;//비밀번호
+	private String img1;//이미지1경로
+	private String img2;//이미지2경로
+	private String img3;//이미지3경로
+	private String img4;//이미지4경로
+	private String img5;//이미지5경로
+	private String img6;//이미지6경로
+	private int hits;//조회수
+	private String wirte;//작성자
+	private String reg_name;//등록자
+	private Date reg_date;//등록일
+	private String udt_name;//수정자
+	private Date udt_date;//수정일
+	private int rownum;//로우넘(정렬)
 	
 	
 	public int getSeq() {

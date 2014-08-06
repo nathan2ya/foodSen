@@ -2,29 +2,34 @@ package menu7.trainingEvent.dto;
 
 import java.util.Date;
 
+/*
+ * 작성자: 류재욱
+ * 설  명: 연수행사(스케줄) DTO
+ * 용  도: 
+*/
+
 public class TrainingEventDTO {
-	
-	private int seq;
-	private String title;
-	private String gubun;
-	private String str_date;
-	private String end_date;
-	private String attach_name;
-	private String attach_path;
-	private String pw;
-	private String img1;
-	private String img2;
-	private String img3;
-	private String description;
-	private int up_seq;
-	private int hits;
-	private String writer;
-	private String reg_name;
-	private Date reg_date;
-	private String udt_name;
-	private Date udt_date;
-	private String turn;
-	private int rownum;
+	private int seq;//시퀀스
+	private String title;//제목
+	private String gubun;//새글0, 답글1
+	private String str_date;//시작일자
+	private String end_date;//종료일자
+	private String attach_name;//파일이름
+	private String attach_path;//파일경로
+	private String pw;//비밀번호
+	private String img1;//이미지1경로
+	private String img2;//이미지2경로
+	private String img3;//이미지3경로
+	private String description;//내용
+	private int up_seq;//부모의시퀀스
+	private int hits;//조회수
+	private String writer;//작성자
+	private String reg_name;//등록자
+	private Date reg_date;//등록일
+	private String udt_name;//수정자
+	private Date udt_date;//수정일
+	private String turn;//답글없음0,답글있음1
+	private int rownum;//로우넘(정렬)
 	
 	public int getSeq() {
 		return seq;
@@ -152,5 +157,4 @@ public class TrainingEventDTO {
 	public void setRownum(int rownum) {
 		this.rownum = rownum;
 	}
-
 }
