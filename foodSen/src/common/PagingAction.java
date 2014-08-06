@@ -87,7 +87,7 @@ public class PagingAction {
 		 * 향후 startCount, endCount 값은 subList에 index value로 사용.
 		*/
 		startCount = (currentPage - 1) * blockCount;
-		endCount = startCount + blockCount - 1;
+		endCount = startCount + blockCount - 1; //blockCount 때문에 -1
 		
 		/*
 		 * 시작페이지, 마지막페이지는 현재페이지에 의해 정의.
