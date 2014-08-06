@@ -21,7 +21,7 @@
 			defaultDate : 0,
 			changeMonth : true,
 			changeYear : true,
-			showMonthAfterYear: true ,
+			showMonthAfterYear: true,
 			yearRange: 'c-10:c+10',
 			dayNamesMin : ['일','월','화','수','목','금','토'],
 			monthNamesShort : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
@@ -33,7 +33,7 @@
 			defaultDate : 0,
 			changeMonth : true,
 			changeYear : true,
-			showMonthAfterYear: true ,
+			showMonthAfterYear: true,
 			yearRange: 'c-10:c+10',
 			dayNamesMin : ['일','월','화','수','목','금','토'],
 			monthNamesShort : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
@@ -79,16 +79,16 @@
 			return;
 		}
 		
-		if(getStrByte(trainingEventCreateFrom.title.value) > 120){
+		if(getStrByte(trainingEventCreateFrom.title.value) > 200){
 			alert("제목은 200자까지만 입력할 수 있습니다.");
-			trainingEventCreateFrom.title.value = trainingEventCreateFrom.title.value.cut(120);
+			trainingEventCreateFrom.title.value = trainingEventCreateFrom.title.value.cut(200);
 			trainingEventCreateFrom.title.focus();
 			return;
 		}
 		
-		if(getStrByte(trainingEventCreateFrom.description.value) > 1200){
+		if(getStrByte(trainingEventCreateFrom.description.value) > 2000){
 			alert("내용은 2000자까지만 입력할 수 있습니다.");
-			trainingEventCreateFrom.description.value = trainingEventCreateFrom.description.value.cut(1200);
+			trainingEventCreateFrom.description.value = trainingEventCreateFrom.description.value.cut(2000);
 			trainingEventCreateFrom.description.focus();
 			return;
 		}
@@ -117,7 +117,6 @@
 			return;
 		}
 		
-		
 		/* 
 		if(thumbext=="mp4" || thumbext=="avi" || thumbext=="mkv" || thumbext=="ts" || thumbext=="gom"
 			|| thumbext=="svi" || thumbext=="divx" || thumbext=="sax" || thumbext=="asf" || thumbext=="wmx"
@@ -139,25 +138,23 @@
 			return;
 		}
 		
-		
 		//파일업로드 30mb제한
-		if(upfiles == null || upfiles == ""){
-			
-		}else{
+		if(!(upfiles == null || upfiles == "")){
 			var size = 0;
-			var browser=navigator.appName;
+			var browser = navigator.appName;
 			
-			if (browser=="Microsoft Internet Explorer")
-			{
+			alert(browser);
+			
+			if (browser=="Microsoft Internet Explorer"){
 				var oas = new ActiveXObject("Scripting.FileSystemObject");
 				var filepath = document.getElementById('filename').value;
 				var e = oas.getFile(filepath);
 				size = e.size;
-			}
-			else{
+			}else{
 				var node = document.getElementById('filename');
 				size = node.files[0].size;
 			}
+			
 			if(fileCheck(size) == false){
 				 alert("첨부파일 사이즈는 30MB 이내로 등록 가능합니다.");
 				 return;

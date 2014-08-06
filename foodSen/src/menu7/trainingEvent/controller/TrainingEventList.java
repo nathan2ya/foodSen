@@ -180,7 +180,7 @@ public class TrainingEventList {
 		}
 		
 		/*
-		 * 가변 시퀀스 넘버(새글답글전체)
+		 * 가변 시퀀스 넘버(새글답글전체 가변넘버뿌리기)
 		 * 향후 사용가능성이 있어 주석처리.
 		*/
 		//int number = numberCount-(page.getCurrentPage()-1)*blockCount;

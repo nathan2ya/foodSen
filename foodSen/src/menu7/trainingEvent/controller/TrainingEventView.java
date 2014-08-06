@@ -162,8 +162,6 @@ public class TrainingEventView {
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
 		String current_date1 = sdf1.format(today1.getTime());
 		
-		
-		
 		request1.setAttribute("current_date", current_date);
 		request1.setAttribute("current_date1", current_date1); //수정논리(기능추가)
 		request1.setAttribute("seq", seq); //뷰의 시퀀스넘버
