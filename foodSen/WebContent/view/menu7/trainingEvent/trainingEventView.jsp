@@ -18,17 +18,20 @@
 		var turn = "${resultClass.turn}"; //자식 소유 여부
 		var current_date1 = "${current_date1}";
 		var end_date = "${resultClass.end_date}";
+		var permit = 0;
+		
 		
 		if(current_date1 > end_date){ // 행사가 종료되었으면
-			alert("행사가 종료되면 글을 수정할 수 없습니다.");
-			return;
+			alert("행사가 종료되면 내용만 수정가능합니다.");
+			permit = 1;
 		}
+		
 		if(turn==1){
 			alert("결과가 등록되면 수정이 불가능합니다.");
 			return;
 		}
 		
-		location.href='/foodSen/trainingEventEditFrom.do?seq='+seq+'&currentPage='+currentPage+'&searchingNow='+searchingNow;
+		location.href='/foodSen/trainingEventEditFrom.do?seq='+seq+'&currentPage='+currentPage+'&searchingNow='+searchingNow+'&permit='+permit;
 	}
 	
 	function goDelete(){
@@ -54,7 +57,6 @@
 	}
 	
 	function goInsertRes(){
-		
 		var canWrite = "${canWrite}";
 		if(canWrite==0){
 			alert("결과등록은 행사일이 종료되어야 작성가능합니다.");

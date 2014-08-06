@@ -47,45 +47,65 @@
 		var currentTime ="${currentTime}";
 		var oriStr_date = "${resultClass.str_date}";
 		var oriEnd_date = "${resultClass.end_date}";
+		var permit = "${permit == 1}";
 		
+		/* 
 		if(!trainingEventEditForm.pw.value){
 			alert("수정을 하시려면 비밀번호를 입력하세요.");
 			trainingEventEditForm.pw.focus();
 			return;
 		}
-		
+		 */
 		if(oriPassword != trainingEventEditForm.pw.value){
 			alert("비밀번호를 다시 확인해주세요.");
 			trainingEventEditForm.pw.focus();
 			return;
 		}
-		          
-		if(trainingEventEditForm.str_date.value > trainingEventEditForm.end_date.value){
-			trainingEventEditForm.end_date.focus();
-			alert("행사종료일은 행사시작일보다 미래여야 합니다.");
-			return;
-		}
-		
-		if(oriStr_date <= currentTime){ //행사가 시작되었다면
-			if(!(oriStr_date <= trainingEventEditForm.str_date.value) || !(trainingEventEditForm.str_date.value >= currentTime)){
-				alert("수정시 시작날짜는 기존에등록된 날짜 ~ 오늘날짜까지 가능합니다.");
-				trainingEventEditForm.str_date.focus();
+		 
+		if(permit != 1){
+			if(trainingEventEditForm.str_date.value > trainingEventEditForm.end_date.value){
+				trainingEventEditForm.end_date.focus();
+				alert("행사종료일은 행사시작일보다 미래여야 합니다.");
 				return;
 			}
 		}
 		
-		if(oriStr_date <= currentTime){ //행사가 시작되었다면
-			if(trainingEventEditForm.str_date.value > currentTime){
-				alert("수정시 시작날짜는 오늘날짜까지 가능합니다.");
-				trainingEventEditForm.str_date.focus();
-				return;
+		if(permit != 1){
+			if(oriStr_date <= currentTime){ //행사가 시작되었다면
+				if(oriStr_date > trainingEventEditForm.str_date.value){
+					alert("수정시 시작날짜는 기존에등록된 날짜 이전으로 선택할 수 없습니다.");
+					trainingEventEditForm.str_date.focus();
+					return;
+				}
 			}
 		}
 		
-		if(trainingEventEditForm.end_date.value < oriEnd_date){
-			alert("수정시 종료날짜는 기존종료날짜 미만으로 선택할 수 없습니다.");
-			trainingEventEditForm.end_date.focus();
-			return;
+		if(permit != 1){
+			if(oriStr_date <= currentTime){ //행사가 시작되었다면
+				if(currentTime < trainingEventEditForm.str_date.value){
+					alert("수정시 시작날짜는 오늘날짜 이후로 선택할 수 없습니다.");
+					trainingEventEditForm.str_date.focus();
+					return;
+				}
+			}
+		}
+		
+		if(permit != 1){
+			if(oriStr_date <= currentTime){ //행사가 시작되었다면
+				if(trainingEventEditForm.str_date.value > currentTime){
+					alert("수정시 시작날짜는 오늘날짜까지 가능합니다.");
+					trainingEventEditForm.str_date.focus();
+					return;
+				}
+			}
+		}
+		
+		if(permit != 1){
+			if(trainingEventEditForm.end_date.value < oriEnd_date){
+				alert("수정시 종료날짜는 기존종료날짜 미만으로 선택할 수 없습니다.");
+				trainingEventEditForm.end_date.focus();
+				return;
+			}
 		}
 		
 		if(getStrByte(trainingEventEditForm.description.value) > 1200){
@@ -96,7 +116,7 @@
 		}
 		
 		if(validateSQL(trainingEventEditForm.description.value) > -1){
-			alert("특수문자는 입력할 수 없습니다.");
+			alert("내용에 특수문자는 입력할 수 없습니다.");
 			trainingEventEditForm.description.focus();
 			return;
 		}
@@ -306,11 +326,21 @@
 							<tr>
 								<th>행사시작일</th>
 								<td class="tl" colspan="2">
-									<input id="str_date" name="str_date" value="${resultClass.str_date}" class="inp" readonly />
+									<c:if test="${permit == 0}">
+										<input id="str_date" name="str_date" value="${resultClass.str_date}" class="inp" readonly />
+									</c:if>
+									<c:if test="${permit == 1}">
+										${resultClass.str_date}
+									</c:if>
 								</td>
 								<th>행사종료일</th>
 								<td class="tl" colspan="2">
-									<input id="end_date" name="end_date" value="${resultClass.end_date}" class="inp" readonly />
+									<c:if test="${permit == 0}">
+										<input id="end_date" name="end_date" value="${resultClass.end_date}" class="inp" readonly />
+									</c:if>
+									<c:if test="${permit == 1}">
+										${resultClass.end_date}
+									</c:if>
 								</td>
 							</tr>
 							<tr>
@@ -337,12 +367,8 @@
 										<br/><b>기존파일없음</b>
 									</c:if>
 									
-								</td>
-								
-								<th>비밀번호</th>
-								<td class="tl">
-									<input type="password" id="pw" name="pw" class="inp" />
-									
+									<!-- 비밀번호 -->
+									<input type="hidden" id="pw" name="pw" value="${resultClass.pw}" class="inp" />
 									
 									<!-- 뷰정보 -->
 									<input type="hidden" id="seq" name="seq" value="${seq}" />

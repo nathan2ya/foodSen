@@ -72,6 +72,7 @@ public class TrainingEventEdit {
 		int seq = Integer.parseInt(request.getParameter("seq"));
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		int searchingNow = Integer.parseInt(request.getParameter("searchingNow"));
+		int permit = Integer.parseInt(request.getParameter("permit"));
 		
 		resultClass = (TrainingEventDTO)sqlMapper.queryForObject("TrainingEvent.selectTrainingEventOne", seq);
 		
@@ -86,6 +87,7 @@ public class TrainingEventEdit {
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("searchingNow", searchingNow);
 		request.setAttribute("resultClass", resultClass);
+		request.setAttribute("permit", permit);
 		
 		return "/view/menu7/trainingEvent/trainingEventEdit.jsp";
 	}
