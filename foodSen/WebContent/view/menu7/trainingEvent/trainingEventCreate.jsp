@@ -53,23 +53,25 @@
 
 		if(!trainingEventCreateFrom.str_date.value){
 			alert("행사시작일을 입력하세요.");
-			createOK.str_date.focus();
+			trainingEventCreateFrom.str_date.focus();
 			return;
 		}
 		
 		if(!trainingEventCreateFrom.end_date.value){
 			alert("행사종료일을 입력하세요.");
-			createOK.end_date.focus();
+			trainingEventCreateFrom.end_date.focus();
 			return;
 		}
 		
 		if(trainingEventCreateFrom.str_date.value < currentTime){
 			alert("행사시작일은 현재일 이상이여야 합니다.");	
+			trainingEventCreateFrom.str_date.focus();
 			return;
 		}
 		
 		if(trainingEventCreateFrom.str_date.value > trainingEventCreateFrom.end_date.value){
 			alert("행사종료일은 행사시작일보다 미래여야 합니다.");
+			trainingEventCreateFrom.end_date.focus();
 			return;
 		}
 		
@@ -95,22 +97,20 @@
 		
 		// 제목 : <아아아아아
 		if(validateSQL(trainingEventCreateFrom.title.value) > -1){
-			alert("특수문자는 입력할 수 없습니다.");
+			alert("제목에 특수문자는 입력할 수 없습니다.");
 			trainingEventCreateFrom.title.focus();
 			return;
 		}
 		
 		if(validateSQL(trainingEventCreateFrom.description.value) > -1){
-			alert("특수문자는 입력할 수 없습니다.");
+			alert("내용에 특수문자는 입력할 수 없습니다.");
 			trainingEventCreateFrom.description.focus();
 			return;
 		}
 		
 		var thumbext = document.getElementById("filename").value;
-
 		thumbext = thumbext.slice(thumbext.indexOf(".") + 1).toLowerCase();
 		
-
 		if(!(thumbext=="" || thumbext=="jpg" || thumbext=="avi" || thumbext=="doc" || thumbext=="hwp" || thumbext=="pptx"
 			|| thumbext=="gif")){ 
 			alert('다음 확장자만 첨부할 수 있습니다. \n jpg, gif, doc, hwp, pptx, avi');

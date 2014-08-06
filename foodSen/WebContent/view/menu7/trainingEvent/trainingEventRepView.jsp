@@ -88,7 +88,7 @@
 		<div class="right_box">
 			
 			<!-- 우측상단 제목 -->
-			<p><img src="./images/sub/factory/title_02.gif" alt="연수행사" /></p>
+			<p><img src="./images/sub/notice/title_02.gif" alt="연수행사" /></p>
 			<!-- .//우측상단 제목 -->
 			
 			

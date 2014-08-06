@@ -61,6 +61,7 @@
 		}
 		          
 		if(trainingEventEditForm.str_date.value > trainingEventEditForm.end_date.value){
+			trainingEventEditForm.end_date.focus();
 			alert("행사종료일은 행사시작일보다 미래여야 합니다.");
 			return;
 		}
@@ -83,6 +84,7 @@
 		
 		if(trainingEventEditForm.end_date.value < oriEnd_date){
 			alert("수정시 종료날짜는 기존종료날짜 미만으로 선택할 수 없습니다.");
+			trainingEventEditForm.end_date.focus();
 			return;
 		}
 		

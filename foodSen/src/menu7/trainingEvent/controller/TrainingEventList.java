@@ -243,13 +243,71 @@ public class TrainingEventList {
 		if (page.getEndCount() < totalCount)
 			lastCount = page.getEndCount() + 1;
 		
-		// 전체 리스트에서 현재 페이지만큼의 리스트만 가져온다.
-		list = list.subList(page.getStartCount(), lastCount);
-		//.페이지처리 종료
+		
+		//새글만 가져옴
+		int x = 0;
+		int numberCount = 0;
+		for(x=0; x<list.size(); x++){
+			if(list.get(x).getGubun().equals("0")){
+				numberCount++;
+			}
+		}
+		//.새글개수파악 종료
+				
+			// 전체 리스트에서 현재 페이지만큼의 리스트만 가져온다.
+			list = list.subList(page.getStartCount(), lastCount);
+			//.페이지처리 종료
+		
+		int number; // 가변 시작 글 넘버
+		int cnt=0; // 댓글 카운터변수
+
+		if(page.getCurrentPage()==1){ // 시작페이지 일 경우
+			number=numberCount-(page.getCurrentPage()-1)*blockCount;
+		}else{ // 중간페이지일 경우 //현재페이지 미만의 답글수를 구해서 기본식에서 + 함.
+			int temp = page.getCurrentPage();
+
+			for(int i=temp-1; i>0; i--){ // 현재페이지 이전 답글을 체크하기 위해 -1함
+				int temp1 = i*blockCount-blockCount; //지금페이지에서 시작 인덱스 값
+				int temp2 = i*blockCount; //지금페이지에서 마지막 인덱스 값
+
+				list1 = sqlMapper.queryForList("TrainingEvent.selectAllrownum"); //정렬된 리스트
+				list1 = list1.subList(temp1, temp2); // 지금페이지를 시작,마지막 값으로 자름
+
+				for(int j=0; j<list1.size(); j++){
+					//답글인것만 = 1
+					if(Integer.parseInt(list1.get(j).getGubun()) == 1){
+						cnt++;//지금페이지의 답글 개수를 누적시킴
+					}
+				}
+			}
+			//기존 계산식에서 -> 최종적으로 현재페이지 이전의 모든페이지의 답글을 더함.
+			//그러면 이전페이지의 답글개수를 뺀 수부터 가변으로 넘버를 감소시키기 시작함.
+			number=(numberCount-(page.getCurrentPage()-1)*blockCount)+cnt;
+		}
+		
+		/*
+		 * 가변 시퀀스 넘버(새글답글전체 가변넘버뿌리기)
+		 * 향후 사용가능성이 있어 주석처리.
+		*/
+		//int number = numberCount-(page.getCurrentPage()-1)*blockCount;
 		
 		
-		//리스트 글번호 가변 계산
-		int number=totalCount-(page.getCurrentPage()-1)*blockCount;
+		
+		//제목 16글자 이상 자르기
+		String first;
+		String resultSubject;
+		
+		for(int i=0; i<list.size(); i++){
+			if(list.get(i).getTitle().length() > 16){ //제목이 16글자 이상이면
+				first = list.get(i).getTitle().substring(0, 16); //잘라내기
+				
+				resultSubject = first + "..."; 
+				list.get(i).setTitle(resultSubject);
+			}
+		}
+		//.제목 16글자 이상 자르기 종료
+				
+				
 				
 		request.setAttribute("number", number);	
 		request.setAttribute("currentPage", currentPage);
