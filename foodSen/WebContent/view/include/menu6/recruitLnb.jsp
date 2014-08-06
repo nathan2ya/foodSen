@@ -7,6 +7,6 @@
 	<li><a href="#"><img src="./images/sub/particiation/sub_stitle_02Off.gif" alt="영양(교)사이야기" /></a></li>
 	<li><a href="#"><img src="./images/sub/particiation/sub_stitle_03Off.gif" alt="조리(원)사이야기" /></a></li>
 	<li><a href="#"><img src="./images/sub/particiation/sub_stitle_04Off.gif" alt="자유게시판" /></a></li>
-	<li><a href="#"><img src="./images/sub/particiation/sub_stitle_05Off.gif" alt="설문조사" /></a></li>
+	<li><a href="/foodSen/researchList.do"><img src="./images/sub/particiation/sub_stitle_05Off.gif" alt="설문조사" /></a></li>
 </ul>
 
