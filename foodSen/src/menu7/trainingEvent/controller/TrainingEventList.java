@@ -243,7 +243,6 @@ public class TrainingEventList {
 		if (page.getEndCount() < totalCount)
 			lastCount = page.getEndCount() + 1;
 		
-		
 		//새글만 가져옴
 		int x = 0;
 		int numberCount = 0;
@@ -253,7 +252,7 @@ public class TrainingEventList {
 			}
 		}
 		//.새글개수파악 종료
-				
+		
 			// 전체 리스트에서 현재 페이지만큼의 리스트만 가져온다.
 			list = list.subList(page.getStartCount(), lastCount);
 			//.페이지처리 종료
@@ -292,7 +291,6 @@ public class TrainingEventList {
 		//int number = numberCount-(page.getCurrentPage()-1)*blockCount;
 		
 		
-		
 		//제목 16글자 이상 자르기
 		String first;
 		String resultSubject;
@@ -306,7 +304,6 @@ public class TrainingEventList {
 			}
 		}
 		//.제목 16글자 이상 자르기 종료
-				
 				
 				
 		request.setAttribute("number", number);	
