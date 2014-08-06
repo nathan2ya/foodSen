@@ -191,6 +191,15 @@
 		where seq = #seq#
 	</update>
 	
+	<update id="updateTrainingEvent1" parameterClass="trainingEventDTO">
+		UPDATE TB_07_TE
+		SET
+			description = #description#,
+			udt_name = #udt_name#,
+			udt_date = #udt_date#
+		where seq = #seq#
+	</update>
+	
 
 	
 	

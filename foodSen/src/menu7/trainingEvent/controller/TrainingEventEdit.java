@@ -104,26 +104,31 @@ public class TrainingEventEdit {
 		int seq = Integer.parseInt(request.getParameter("seq"));
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		int searchingNow = Integer.parseInt(request.getParameter("searchingNow"));
+		String permit = request.getParameter("permit");
 				
 		//사용자가 입력한 값
 		String description = request1.getParameter("description");
-		String str_date = request1.getParameter("str_date");
-		String end_date = request1.getParameter("end_date");
-		
 		Calendar today = Calendar.getInstance();
 		
-
 		//DTO Set()
 		paramClass.setSeq(seq);
-		paramClass.setStr_date(str_date); //시작일
-		paramClass.setEnd_date(end_date); //종료일
 		paramClass.setDescription(description); //수정내용
 		paramClass.setUdt_name(session_id); //수정인
 		paramClass.setUdt_date(today.getTime()); //수정일
 		
 		
-		//DB에 update 하기 (글 수정)
-		sqlMapper.update("TrainingEvent.updateTrainingEvent", paramClass);
+		if(permit.equals("0")){ //시작,종료일이 있을때만
+			String str_date = request1.getParameter("str_date");
+			String end_date = request1.getParameter("end_date");
+			
+			paramClass.setStr_date(str_date); //시작일
+			paramClass.setEnd_date(end_date); //종료일
+			//DB에 update 하기 (글 수정)//시작,종료일이 있을때만
+			sqlMapper.update("TrainingEvent.updateTrainingEvent", paramClass);
+		}
+		
+		//DB에 update 하기 (글 수정)//시작,종료일이 없을때만
+		sqlMapper.update("TrainingEvent.updateTrainingEvent1", paramClass);
 		
 		
 		//파일삭제를 위해 생성 //파일삭제시 기존 업로드된파일의 경로를 얻기위함

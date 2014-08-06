@@ -43,11 +43,11 @@
 	});
 
 	function goCreate(){
-		var oriPassword = "${resultClass.pw}";
+		//var oriPassword = "${resultClass.pw}";
 		var currentTime ="${currentTime}";
 		var oriStr_date = "${resultClass.str_date}";
 		var oriEnd_date = "${resultClass.end_date}";
-		var permit = "${permit == 1}";
+		var permit = "${permit}";
 		
 		/* 
 		if(!trainingEventEditForm.pw.value){
@@ -56,12 +56,15 @@
 			return;
 		}
 		 */
+		/* 
 		if(oriPassword != trainingEventEditForm.pw.value){
 			alert("비밀번호를 다시 확인해주세요.");
 			trainingEventEditForm.pw.focus();
 			return;
 		}
-		 
+		  */
+		  
+		  
 		if(permit != 1){
 			if(trainingEventEditForm.str_date.value > trainingEventEditForm.end_date.value){
 				trainingEventEditForm.end_date.focus();
@@ -374,6 +377,7 @@
 									<input type="hidden" id="seq" name="seq" value="${seq}" />
 									<input type="hidden" id="currentPage" name="currentPage" value="${currentPage}" />
 									<input type="hidden" id="searchingNow" name="searchingNow" value="${searchingNow}" />
+									<input type="hidden" id="permit" name="permit" value="${permit}" />
 									
 									<c:if test="${searchingNow == 1}">
 										<input type="hidden" id="searchType" name="searchType" value="${searchType}" />
