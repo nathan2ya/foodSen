@@ -354,7 +354,7 @@
 							</tr>
 							<tr>
 								<th>Ã·ºÎÆÄÀÏ</th>
-								<td colspan="3" class="tl">
+								<td colspan="5" class="tl">
 									
 									<input type="file" id="filename" name="filename" onkeyup="javascript:onKeyUp();" />
 									
