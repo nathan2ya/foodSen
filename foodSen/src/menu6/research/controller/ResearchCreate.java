@@ -296,77 +296,224 @@ public class ResearchCreate {
 		if(2 <= que_cnt_size){
 			surq_title2 = request.getParameter("surq_title2");
 			paramClass1.setSurq_title(surq_title2);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
+			//사용자가 입력한 값(문항)
+			item12 = request.getParameter("item12");
+			item22 = request.getParameter("item22");
+			item32 = request.getParameter("item32");
+			item42 = request.getParameter("item42");
+			item52 = request.getParameter("item52");
+			
+			paramClass2.setSurq_seq(surq_seq);//1번문제의 시퀀스
+			paramClass2.setSuri_title1(item12);
+			paramClass2.setSuri_title2(item22);
+			paramClass2.setSuri_title3(item32);
+			paramClass2.setSuri_title4(item42);
+			paramClass2.setSuri_title5(item52);
+			paramClass2.setSuri_num1(12);
+			paramClass2.setSuri_num2(22);
+			paramClass2.setSuri_num3(32);
+			paramClass2.setSuri_num4(42);
+			paramClass2.setSuri_num5(52);
+			sqlMapper.insert("Research.insertResearch2", paramClass2);
 		}
 		if(3 <= que_cnt_size){
 			surq_title3 = request.getParameter("surq_title3");
 			paramClass1.setSurq_title(surq_title3);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
+			//사용자가 입력한 값(문항)
+			item13 = request.getParameter("item13");
+			item23 = request.getParameter("item23");
+			item33 = request.getParameter("item33");
+			item43 = request.getParameter("item43");
+			item53 = request.getParameter("item53");
+			
+			paramClass2.setSurq_seq(surq_seq);//1번문제의 시퀀스
+			paramClass2.setSuri_title1(item13);
+			paramClass2.setSuri_title2(item23);
+			paramClass2.setSuri_title3(item33);
+			paramClass2.setSuri_title4(item43);
+			paramClass2.setSuri_title5(item53);
+			paramClass2.setSuri_num1(13);
+			paramClass2.setSuri_num2(23);
+			paramClass2.setSuri_num3(33);
+			paramClass2.setSuri_num4(43);
+			paramClass2.setSuri_num5(53);
+			sqlMapper.insert("Research.insertResearch2", paramClass2);
 		}
 		if(4 <= que_cnt_size){
 			surq_title4 = request.getParameter("surq_title4");
 			paramClass1.setSurq_title(surq_title4);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
+			//사용자가 입력한 값(문항)
+			item14 = request.getParameter("item14");
+			item24 = request.getParameter("item24");
+			item34 = request.getParameter("item34");
+			item44 = request.getParameter("item44");
+			item54 = request.getParameter("item54");
+			
+			paramClass2.setSurq_seq(surq_seq);//1번문제의 시퀀스
+			paramClass2.setSuri_title1(item14);
+			paramClass2.setSuri_title2(item24);
+			paramClass2.setSuri_title3(item34);
+			paramClass2.setSuri_title4(item44);
+			paramClass2.setSuri_title5(item54);
+			paramClass2.setSuri_num1(14);
+			paramClass2.setSuri_num2(24);
+			paramClass2.setSuri_num3(34);
+			paramClass2.setSuri_num4(44);
+			paramClass2.setSuri_num5(54);
+			sqlMapper.insert("Research.insertResearch2", paramClass2);
 		}
 		if(5 <= que_cnt_size){
 			surq_title5 = request.getParameter("surq_title5");
 			paramClass1.setSurq_title(surq_title5);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
 		}
 		if(6 <= que_cnt_size){
 			surq_title6 = request.getParameter("surq_title6");
 			paramClass1.setSurq_title(surq_title6);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
 		}
 		if(7 <= que_cnt_size){
 			surq_title7 = request.getParameter("surq_title7");
 			paramClass1.setSurq_title(surq_title7);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
 		}
 		if(8 <= que_cnt_size){
 			surq_title8 = request.getParameter("surq_title8");
 			paramClass1.setSurq_title(surq_title8);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
 		}
 		if(9 <= que_cnt_size){
 			surq_title9 = request.getParameter("surq_title9");
 			paramClass1.setSurq_title(surq_title9);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
 		}
 		if(10 <= que_cnt_size){
 			surq_title10 = request.getParameter("surq_title10");
 			paramClass1.setSurq_title(surq_title10);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
 		}
 		if(11 <= que_cnt_size){
 			surq_title11 = request.getParameter("surq_title11");
 			paramClass1.setSurq_title(surq_title11);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
 		}
 		if(12 <= que_cnt_size){
 			surq_title12 = request.getParameter("surq_title12");
 			paramClass1.setSurq_title(surq_title12);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
 		}
 		if(13 <= que_cnt_size){
 			surq_title13 = request.getParameter("surq_title13");
 			paramClass1.setSurq_title(surq_title13);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
 		}
 		if(14 <= que_cnt_size){
 			surq_title14 = request.getParameter("surq_title14");
 			paramClass1.setSurq_title(surq_title14);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
 		}
 		if(15 <= que_cnt_size){
 			surq_title15 = request.getParameter("surq_title15");
 			paramClass1.setSurq_title(surq_title15);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
 		}
 		if(16 <= que_cnt_size){
 			surq_title16 = request.getParameter("surq_title16");
 			paramClass1.setSurq_title(surq_title16);
+			//설문조사 문제 insert
 			sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+			//설문조사 문제 최대시퀀스
+			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
 		}
 		
 		
