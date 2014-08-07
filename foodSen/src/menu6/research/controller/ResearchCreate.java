@@ -40,7 +40,7 @@ import common.Constants;
 @Controller
 public class ResearchCreate {
 	
-	//설문조사
+	//설문조사(정보)
 	private ResearchDTO paramClass = new ResearchDTO();//
 	private ResearchDTO resultClass = new ResearchDTO();//
 	
@@ -73,30 +73,67 @@ public class ResearchCreate {
 		
 		//인코딩
 		request.setCharacterEncoding("euc-kr");
+		//날짜
+		Calendar today = Calendar.getInstance();
 		
 		//작성한 사용자(현재 로그인한 세션아이디)
 		String session_id = (String) session.getAttribute("session_id");
 		
-		//사용자가 입력한 값
-		String title = request.getParameter("title");
-		String loc = request.getParameter("loc");
-		String job = request.getParameter("job");
-		String gubun = request.getParameter("gubun");
-		String description = request.getParameter("description");
-		String pw = request.getParameter("pw");
-		Calendar today = Calendar.getInstance();
+		//-----------------------------------------------------------------------------------------------------------------------------------------//
+		
+		/*
+		 * 설문조사 정보 insert
+		 * 설문조사 게시글 데이터
+		 * PK : sur_seq
+		*/
+		//사용자가 입력한 값(정보)
+		String sur_title = request.getParameter("sur_title");
+		String sur_sat_date = request.getParameter("sur_sat_date");
+		String sur_end_date = request.getParameter("sur_end_date");
+		String que_cnt = request.getParameter("que_cnt");
 		
 		//DTO Set()
-		paramClass.setHits(1);
+		paramClass.setSur_title(sur_title);
+		paramClass.setSur_sat_date(sur_sat_date);
+		paramClass.setSur_end_date(sur_end_date);
+		paramClass.setQue_cnt(que_cnt);
+		paramClass.setHits(0);
 		paramClass.setReg_name(session_id);
 		paramClass.setReg_date(today.getTime());
 		paramClass.setUdt_name(session_id);
 		paramClass.setUdt_date(today.getTime());
 		paramClass.setWriter(session_id);
+		sqlMapper.insert("Research.insertResearch", paramClass);
+		
+		//-----------------------------------------------------------------------------------------------------------------------------------------//
+		
+		/*
+		 * 설문조사 문제 insert
+		 * 설문조사 정보에 포함된 문제
+		 * PK : surq_seq
+		 * FK : sur_seq
+		*/
+		//사용자가 입력한 값(문제)
 		
 		
-		//DB에 insert 하기 (글 등록)
-		sqlMapper.insert("Recruit.insertRecruit", paramClass);
+		//DTO set()
+		
+		
+		//-----------------------------------------------------------------------------------------------------------------------------------------//
+		
+		/*
+		 * 설문조사 문항 insert
+		 * 설문조사 정보에 포함된 문제 속 문항
+		 * PK : suri_seq
+		 * FK : sur_seq, surq_seq
+		*/
+		//사용자가 입력한 값(문제)
+		
+		
+		//DTO set()
+		
+		
+		//-----------------------------------------------------------------------------------------------------------------------------------------//
 		
 		return "redirect:/recruitList.do"; //리스트로 리다이렉트
 	}

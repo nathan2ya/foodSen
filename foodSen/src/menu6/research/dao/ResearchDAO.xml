@@ -74,7 +74,12 @@
 	</resultMap>
 	
 	<!-- insert -->
-	
+	<insert id="insertResearch" parameterClass="researchDTO">
+		insert into TB_06_RS
+			(sur_seq, sur_title, que_cnt, sur_sat_date, sur_end_date, hits, writer, reg_name, reg_date, udt_name, udt_date)
+		values
+			(TB_06_RS_seq.NEXTVAL, #sur_title#, #que_cnt#, #sur_sat_date#, #sur_end_date#, #hits#, #writer#, #reg_name#, #reg_date#, #udt_name#, #udt_date#)
+	</insert>
 
 	
 	

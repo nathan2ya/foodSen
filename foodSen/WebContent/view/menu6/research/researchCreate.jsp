@@ -13,32 +13,32 @@
 <script type="text/javascript">
 
 	function goCreate(){
-		if(!createOK.sur_title.value){
+		if(!researchCreateForm.sur_title.value){
 			alert("제목을 입력하세요.");
-			createOK.sur_title.focus();
+			researchCreateForm.sur_title.focus();
 			return;
 		}
 		
-		if(!createOK.sur_sat_date.value){
+		if(!researchCreateForm.sur_sat_date.value){
 			alert("시작날짜를 선택하세요.");
-			createOK.sur_sat_date.focus();
+			researchCreateForm.sur_sat_date.focus();
 			return;
 		}
 		
-		if(!createOK.sur_end_date.value){
+		if(!researchCreateForm.sur_end_date.value){
 			alert("종료날짜를 선택하세요.");
-			createOK.sur_end_date.focus();
+			researchCreateForm.sur_end_date.focus();
 			return;
 		}
 		
-		if(createOK.sur_sat_date.value > createOK.sur_end_date.value){
+		if(researchCreateForm.sur_sat_date.value > researchCreateForm.sur_end_date.value){
 			alert("종료날짜는 시작날짜보다 미래여야 합니다.");
 			return;
 		}
 		
 		var num=document.getElementById("que_cnt").value;
 		
-		for(var i=1;i<=num;i++){
+		for(var i=1; i<=num; i++){
 			var titleTxt=document.getElementById("surq_item"+i);
 			var item1=document.getElementById("item1"+i);
 			var item2=document.getElementById("item2"+i);
@@ -46,6 +46,7 @@
 			var item4=document.getElementById("item4"+i);
 			var item5=document.getElementById("item5"+i);
 			
+			//문제, 문항의 입력이 안되었을때
 			if(titleTxt.value == ""){
 				alert("문제"+i+"번을 입력하세요.");
 				titleTxt.focus();
@@ -82,6 +83,8 @@
 				return;
 			}
 			
+			
+			//문제, 문항의 글자수가 초과되었을때
 			if(getStrByte(titleTxt.value) > 200){
 				alert("문제 제목의 글자수가 초과 되었습니다.");
 				//titleTxt.value = titleTxt.value.cut(120);
@@ -126,23 +129,14 @@
 		
 		}
 		
-		if(getStrByte(createOK.sur_title.value) > 200){
+		if(getStrByte(researchCreateForm.sur_title.value) > 200){
 			alert("제목의 글자수가 초과 되었습니다.");
-			//createOK.sur_title.value = createOK.sur_title.value.cut(120);
-			createOK.sur_title.focus();
+			//researchCreateForm.sur_title.value = researchCreateForm.sur_title.value.cut(120);
+			researchCreateForm.sur_title.focus();
 			return;
 		}
 		
-		/*
-		if(getStrByte(createOK.description.value) > 1200){
-			alert("내용은 2000자까지만 입력할 수 있습니다.");
-			createOK.description.value = createOK.description.value.cut(1200);
-			createOK.description.focus();
-			return;
-		}
-		*/
-		
-		createOK.submit();
+		researchCreateForm.submit();
 	}
 	
 	function getStrByte(str) {
@@ -176,16 +170,6 @@
 			for(var j=cnt;j<17;j++){
 				$('.suri'+(j+1)).hide();
 			}
-			
-			/*
-			for(var k=0; k<17; k++){
-				$('#surq_title'+k).val("");
-			}
-			
-			$('.i').each(function(index, item){
-				$(item).val("");
-			});
-			 */
 		});
 		
 		$('#sur_sat_date').datepicker({
@@ -241,7 +225,7 @@
 			<!-- 게시판영역 -->
 			<div class="tbl_box">
 			
-				<form name="createOK" action="/foodSen/researchCreate.do" method="post">
+				<form name="researchCreateForm" action="/foodSen/researchCreate.do" method="post">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tbl_type01" summary="설문조사">
 						<caption>설문조사</caption>
 						<colgroup>
