@@ -81,12 +81,33 @@
 			(TB_06_RS_seq.NEXTVAL, #sur_title#, #que_cnt#, #sur_sat_date#, #sur_end_date#, #hits#, #writer#, #reg_name#, #reg_date#, #udt_name#, #udt_date#)
 	</insert>
 
+	<insert id="insertResearch1" parameterClass="researchDTO1">
+		insert into TB_06_RSQ
+			(surq_seq, sur_seq, surq_title, writer, reg_name, reg_date, udt_name, udt_date)
+		values
+			(TB_06_RSQ_seq.NEXTVAL, #sur_seq#, #surq_title#, #writer#, #reg_name#, #reg_date#, #udt_name#, #udt_date#)
+	</insert>
+	
+	<insert id="insertResearch2" parameterClass="researchDTO2">
+		insert into TB_06_RSI
+			(suri_seq, surq_seq, sur_seq, suri_title1, suri_title2, suri_title3, suri_title4, suri_title5, writer, reg_name, reg_date, udt_name, udt_date, suri_num1, suri_num2, suri_num3, suri_num4, suri_num5)
+		values
+			(TB_06_RSI_seq.NEXTVAL, #surq_seq#, #sur_seq#, #suri_title1#, #suri_title2#, #suri_title3#, #suri_title4#, #suri_title5#, #writer#, #reg_name#, #reg_date#, #udt_name#, #udt_date#, #suri_num1#, #suri_num2#, #suri_num3#, #suri_num4#, #suri_num5#)
+	</insert>
 	
 	
 	<!-- select -->
 	<select id="selectAll" resultMap="researchRes" parameterClass="int">
 		select * from TB_06_RS
 		order by sur_seq desc
+	</select>
+	
+	<select id="selectLastNum" resultClass="researchDTO" parameterClass="int">
+		SELECT MAX(sur_seq) AS sur_seq FROM TB_06_RS
+	</select>
+	
+	<select id="selectLastNum1" resultClass="researchDTO1" parameterClass="int">
+		SELECT MAX(surq_seq) AS surq_seq FROM TB_06_RSQ
 	</select>
 
 	

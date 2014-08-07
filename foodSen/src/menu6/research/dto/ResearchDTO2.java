@@ -22,11 +22,11 @@ public class ResearchDTO2 {
 	private Date reg_date;//등록일
 	private String udt_name;//수정자
 	private Date udt_date;//수정일
-	private String suri_num1;//문항1
-	private String suri_num2;//문항2
-	private String suri_num3;//문항3
-	private String suri_num4;//문항4
-	private String suri_num5;//문항5
+	private int suri_num1;//문항1
+	private int suri_num2;//문항2
+	private int suri_num3;//문항3
+	private int suri_num4;//문항4
+	private int suri_num5;//문항5
 	
 	public int getSuri_seq() {
 		return suri_seq;
@@ -106,34 +106,34 @@ public class ResearchDTO2 {
 	public void setUdt_date(Date udt_date) {
 		this.udt_date = udt_date;
 	}
-	public String getSuri_num1() {
+	public int getSuri_num1() {
 		return suri_num1;
 	}
-	public void setSuri_num1(String suri_num1) {
+	public void setSuri_num1(int suri_num1) {
 		this.suri_num1 = suri_num1;
 	}
-	public String getSuri_num2() {
+	public int getSuri_num2() {
 		return suri_num2;
 	}
-	public void setSuri_num2(String suri_num2) {
+	public void setSuri_num2(int suri_num2) {
 		this.suri_num2 = suri_num2;
 	}
-	public String getSuri_num3() {
+	public int getSuri_num3() {
 		return suri_num3;
 	}
-	public void setSuri_num3(String suri_num3) {
+	public void setSuri_num3(int suri_num3) {
 		this.suri_num3 = suri_num3;
 	}
-	public String getSuri_num4() {
+	public int getSuri_num4() {
 		return suri_num4;
 	}
-	public void setSuri_num4(String suri_num4) {
+	public void setSuri_num4(int suri_num4) {
 		this.suri_num4 = suri_num4;
 	}
-	public String getSuri_num5() {
+	public int getSuri_num5() {
 		return suri_num5;
 	}
-	public void setSuri_num5(String suri_num5) {
+	public void setSuri_num5(int suri_num5) {
 		this.suri_num5 = suri_num5;
 	}
 }
