@@ -67,7 +67,6 @@ public class ResearchCreate {
 		return "/view/menu6/research/researchCreate.jsp";
 	}
 	
-	/*
 	//설문조사 DB insert
 	@RequestMapping(value="/researchCreate.do", method=RequestMethod.POST)
 	public String researchCreate(HttpServletRequest request, HttpSession session) throws Exception{
@@ -88,30 +87,17 @@ public class ResearchCreate {
 		Calendar today = Calendar.getInstance();
 		
 		//DTO Set()
-		paramClass.setTitle(title);
-		paramClass.setLoc_seq(loc);
-		paramClass.setJob(job);
-		paramClass.setGubun(gubun);
-		paramClass.setDescription(description);
-		paramClass.setPw(pw);
 		paramClass.setHits(1);
 		paramClass.setReg_name(session_id);
 		paramClass.setReg_date(today.getTime());
 		paramClass.setUdt_name(session_id);
 		paramClass.setUdt_date(today.getTime());
-		paramClass.setSchool_name(resultClass1.getSchool_name());
-		paramClass.setSchool_type(resultClass1.getSchool_type());
-		paramClass.setEmail(resultClass1.getSen_email());
-		paramClass.setPhone(resultClass1.getPhone());
 		paramClass.setWriter(session_id);
 		
-		//등록만기 N
-		paramClass.setEnd_yn("N");
 		
 		//DB에 insert 하기 (글 등록)
 		sqlMapper.insert("Recruit.insertRecruit", paramClass);
 		
 		return "redirect:/recruitList.do"; //리스트로 리다이렉트
 	}
-	*/
 } //end of class

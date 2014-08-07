@@ -254,7 +254,7 @@
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_part02Off.gif" alt="영양(교)사이야기" /></a></li>
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_part03Off.gif" alt="조리(원)사이야기" /></a></li>
                 <li class="subMenu"><a href="#"><img src="./images/header/common/sm_part04Off.gif" alt="자유게시판" /></a></li>
-                <li class="last subMenu"><a href="http://food.sen.go.kr/researchList.do"><img src="./images/header/common/sm_part05Off.gif" alt="설문조사" /></a></li>
+                <li class="last subMenu"><a href="/foodSen/researchList.do"><img src="./images/header/common/sm_part05Off.gif" alt="설문조사" /></a></li>
                 <li class="right_bg"></li>
               </ul>
             </div>
