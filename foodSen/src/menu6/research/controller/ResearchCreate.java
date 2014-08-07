@@ -393,6 +393,26 @@ public class ResearchCreate {
 			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
 			int surq_seq = (int)(resultClass1.getSurq_seq());
 			
+			
+			//사용자가 입력한 값(문항)
+			item15 = request.getParameter("item15");
+			item25 = request.getParameter("item25");
+			item35 = request.getParameter("item35");
+			item45 = request.getParameter("item45");
+			item55 = request.getParameter("item55");
+			
+			paramClass2.setSurq_seq(surq_seq);//1번문제의 시퀀스
+			paramClass2.setSuri_title1(item15);
+			paramClass2.setSuri_title2(item25);
+			paramClass2.setSuri_title3(item35);
+			paramClass2.setSuri_title4(item45);
+			paramClass2.setSuri_title5(item55);
+			paramClass2.setSuri_num1(15);
+			paramClass2.setSuri_num2(25);
+			paramClass2.setSuri_num3(35);
+			paramClass2.setSuri_num4(45);
+			paramClass2.setSuri_num5(55);
+			sqlMapper.insert("Research.insertResearch2", paramClass2);
 		}
 		if(6 <= que_cnt_size){
 			surq_title6 = request.getParameter("surq_title6");
@@ -404,6 +424,26 @@ public class ResearchCreate {
 			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
 			int surq_seq = (int)(resultClass1.getSurq_seq());
 			
+			
+			//사용자가 입력한 값(문항)
+			item16 = request.getParameter("item16");
+			item26 = request.getParameter("item26");
+			item36 = request.getParameter("item36");
+			item46 = request.getParameter("item46");
+			item56 = request.getParameter("item56");
+			
+			paramClass2.setSurq_seq(surq_seq);//1번문제의 시퀀스
+			paramClass2.setSuri_title1(item16);
+			paramClass2.setSuri_title2(item26);
+			paramClass2.setSuri_title3(item36);
+			paramClass2.setSuri_title4(item46);
+			paramClass2.setSuri_title5(item56);
+			paramClass2.setSuri_num1(16);
+			paramClass2.setSuri_num2(26);
+			paramClass2.setSuri_num3(36);
+			paramClass2.setSuri_num4(46);
+			paramClass2.setSuri_num5(56);
+			sqlMapper.insert("Research.insertResearch2", paramClass2);
 		}
 		if(7 <= que_cnt_size){
 			surq_title7 = request.getParameter("surq_title7");
@@ -415,6 +455,26 @@ public class ResearchCreate {
 			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
 			int surq_seq = (int)(resultClass1.getSurq_seq());
 			
+
+			//사용자가 입력한 값(문항)
+			item17 = request.getParameter("item17");
+			item27 = request.getParameter("item27");
+			item37 = request.getParameter("item37");
+			item47 = request.getParameter("item47");
+			item57 = request.getParameter("item57");
+			
+			paramClass2.setSurq_seq(surq_seq);//1번문제의 시퀀스
+			paramClass2.setSuri_title1(item17);
+			paramClass2.setSuri_title2(item27);
+			paramClass2.setSuri_title3(item37);
+			paramClass2.setSuri_title4(item47);
+			paramClass2.setSuri_title5(item57);
+			paramClass2.setSuri_num1(17);
+			paramClass2.setSuri_num2(27);
+			paramClass2.setSuri_num3(37);
+			paramClass2.setSuri_num4(47);
+			paramClass2.setSuri_num5(57);
+			sqlMapper.insert("Research.insertResearch2", paramClass2);
 		}
 		if(8 <= que_cnt_size){
 			surq_title8 = request.getParameter("surq_title8");
