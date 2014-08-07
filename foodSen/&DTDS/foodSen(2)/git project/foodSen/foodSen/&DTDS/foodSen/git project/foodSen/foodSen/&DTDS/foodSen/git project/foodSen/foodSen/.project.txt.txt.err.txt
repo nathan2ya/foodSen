@@ -1,0 +1,3 @@
+C:\Program Files (x86)\?쒓뎅?뺣낫?붿쭊?μ썝\KW3C 2.0\onsgmls.exe:E:\git project\foodSen\foodSen\&DTDS\foodSen\git project\foodSen\foodSen\&DTDS\foodSen\git project\foodSen\foodSen\.project.txt.txt:2:0:554664300.435:E: prolog can't be omitted unless CONCUR NO and LINK EXPLICIT NO and either IMPLYDEF ELEMENT YES or IMPLYDEF DOCTYPE YES
+C:\Program Files (x86)\?쒓뎅?뺣낫?붿쭊?μ썝\KW3C 2.0\onsgmls.exe:E:\git project\foodSen\foodSen\&DTDS\foodSen\git project\foodSen\foodSen\&DTDS\foodSen\git project\foodSen\foodSen\.project.txt.txt:2:0:554664300.187:E: no document type declaration; will parse without validation
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<!-- 而⑦듃濡ㅻ윭 ?대끂?뚯씠??紐⑤몢 寃??-->
+	<context:component-scan base-package="*" />
+	
+	<!-- ?뚯씪?낅줈??-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="-1" /> <!-- -1? ?낅줈?쒖쓽 ?ш린 ?쒗븳???놁쓬???섎???-->
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
+	
+</beans>

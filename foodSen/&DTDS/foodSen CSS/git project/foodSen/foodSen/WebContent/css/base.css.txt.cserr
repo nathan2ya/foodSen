@@ -1,0 +1,4 @@
+
+FileName=file:E:\git project\foodSen\foodSen\WebContent\css\base.css
+Line : 3 html|&lt;error.noexistence&gt;속성 overflow-y는 CSS 레벨 2에 존재하지 않지만 [css3]에는 존재합니다 : scroll|scroll
+Line : 42 .h150|&lt;error.noexistence-at-all&gt;속성 word-wrap는 존재하지 않는 속성입니다 : break-word|break-word

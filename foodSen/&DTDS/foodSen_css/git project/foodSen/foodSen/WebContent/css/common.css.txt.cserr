@@ -1,0 +1,23 @@
+
+FileName=file:E:\git project\foodSen\foodSen\WebContent\css\common.css
+Line : 14 #header .topmenu ul li.bn|(잘못 된 값 : background (http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background))|&lt;error.unrecognize&gt;너무 많은 값 또는 값이 인식되지 않습니다 : 0 none
+Line : 142 #footer address|(잘못 된 값 : display (http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-display))|&lt;error.value&gt;inline-block 는 올바른 display 값이 아닙니다 : inline-block
+Line : 148 #footer li.bn|(잘못 된 값 : background (http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background))|&lt;error.unrecognize&gt;너무 많은 값 또는 값이 인식되지 않습니다 : 0 none
+Line : 226 .tbl_reply td .reply_box .btn_box span.bn|(잘못 된 값 : background (http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background))|&lt;error.unrecognize&gt;너무 많은 값 또는 값이 인식되지 않습니다 : 0 none
+Line : 249 .paging li|(잘못 된 값 : display (http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-display))|&lt;error.value&gt;inline-block 는 올바른 display 값이 아닙니다 : inline-block
+Line : 332 .bbs_btn .per_l|(잘못 된 값 : display (http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-display))|&lt;error.value&gt;inline-block 는 올바른 display 값이 아닙니다 : inline-block
+Line : 333 .bbs_btn a.pre_r|(잘못 된 값 : display (http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-display))|&lt;error.value&gt;inline-block 는 올바른 display 값이 아닙니다 : inline-block
+Line : 335 .bbs_btn .wte_l|(잘못 된 값 : display (http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-display))|&lt;error.value&gt;inline-block 는 올바른 display 값이 아닙니다 : inline-block
+Line : 336 .bbs_btn a.wte_r|(잘못 된 값 : display (http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-display))|&lt;error.value&gt;inline-block 는 올바른 display 값이 아닙니다 : inline-block
+Line : 340 .pop_btn .blue_l|(잘못 된 값 : display (http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-display))|&lt;error.value&gt;inline-block 는 올바른 display 값이 아닙니다 : inline-block
+Line : 341 .pop_btn a.blue_r|(잘못 된 값 : display (http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-display))|&lt;error.value&gt;inline-block 는 올바른 display 값이 아닙니다 : inline-block
+Line : 343 .pop_btn .gray_l|(잘못 된 값 : display (http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-display))|&lt;error.value&gt;inline-block 는 올바른 display 값이 아닙니다 : inline-block
+Line : 344 .pop_btn a.gray_r|(잘못 된 값 : display (http://www.w3.org/TR/REC-CSS2/visuren.html#propdef-display))|&lt;error.value&gt;inline-block 는 올바른 display 값이 아닙니다 : inline-block
+Line : 395 .s_txt li ul li|(잘못 된 값 : background (http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background))|&lt;error.unrecognize&gt;너무 많은 값 또는 값이 인식되지 않습니다 : 0 none
+Line : 396 .s_txt li ul li ul li|(잘못 된 값 : background (http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background))|&lt;error.unrecognize&gt;너무 많은 값 또는 값이 인식되지 않습니다 : 0 none
+Line : 401 .s1_txt li ul li|(잘못 된 값 : background (http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background))|&lt;error.unrecognize&gt;너무 많은 값 또는 값이 인식되지 않습니다 : 0 none
+Line : 402 .s1_txt li ul li ul li|(잘못 된 값 : background (http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background))|&lt;error.unrecognize&gt;너무 많은 값 또는 값이 인식되지 않습니다 : 0 none
+Line : 407 .t_txt li ul li|(잘못 된 값 : background (http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background))|&lt;error.unrecognize&gt;너무 많은 값 또는 값이 인식되지 않습니다 : 0 none
+Line : 474 .laws ul li.top|(잘못 된 값 : background (http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background))|&lt;error.unrecognize&gt;너무 많은 값 또는 값이 인식되지 않습니다 : 0 none
+Line : 490 .email_box ul li.top|(잘못 된 값 : background (http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background))|&lt;error.unrecognize&gt;너무 많은 값 또는 값이 인식되지 않습니다 : 0 none
+Line : 536 .top_box li ul li|(잘못 된 값 : background (http://www.w3.org/TR/REC-CSS2/colors.html#propdef-background))|&lt;error.unrecognize&gt;너무 많은 값 또는 값이 인식되지 않습니다 : 0 none
