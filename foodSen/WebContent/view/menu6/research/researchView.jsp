@@ -194,20 +194,19 @@
 								
 								<c:forEach var="i" begin="0" end="${cnt-1}" step="1"> 
 									<div class="research">
-				                     	<p>${i+1}. ${title[i]}</p>
-				                     	<input type="hidden" id="surq_seqItem${i+1}" name="surq_seqItem" class="txt" value="${i+1}">
-				                     	<input type="hidden" id="surq_item${i+1}" name="surq_item" value="${title[i]}">
-				                     	
-					               		<ul>
-											<li><input type="radio" id="suri_num${i+1}" name="i_title1${i+1}" value="① ${i_title1[i]}" />  <label for="suri_num${i+1}">①  ${i_title1[i]} </label></li>
-											<li><input type="radio" id="suri_num${i+1}" name="i_title2${i+1}" value="② ${i_title2[i]}" />  <label for="suri_num${i+1}">②  ${i_title2[i]} </label></li>
-											<li><input type="radio" id="suri_num${i+1}" name="i_title3${i+1}" value="③ ${i_title3[i]}" />  <label for="suri_num${i+1}">③  ${i_title3[i]} </label></li>
-											<li><input type="radio" id="suri_num${i+1}" name="i_title4${i+1}" value="④ ${i_title4[i]}" />  <label for="suri_num${i+1}">④  ${i_title4[i]} </label></li>
-											<li><input type="radio" id="suri_num${i+1}" name="i_title5${i+1}" value="⑤ ${i_title5[i]}" />  <label for="suri_num${i+1}">⑤  ${i_title5[i]} </label></li>
-											<li>선택사유 <input type="text" id="description${i+1}" name="description${i+1}" class="inp" style="width:200px;" /> </li>
-					               		</ul>
+										<p>${i+1}. ${title[i] }</p>
+										<input type="hidden" id="surq_seqItem${i+1 }" name="surq_seqItem" class="txt" value="${i+1 }">
+										<input type="hidden" id="surq_item${i+1 }" name="surq_item" value="${title[i]}">
+										<ul>
+											<li><input type="radio" id="suri_num${i+1 }" name="suri_numItem${i+1 }" value="① ${i_title1[i] }" />  <label for="suri_num${i+1 }">①  ${i_title1[i] } </label></li>
+											<li><input type="radio" id="suri_num${i+1 }" name="suri_numItem${i+1 }" value="② ${i_title2[i] }" />  <label for="suri_num${i+1 }">②  ${i_title2[i] } </label></li>
+											<li><input type="radio" id="suri_num${i+1 }" name="suri_numItem${i+1 }" value="③ ${i_title3[i] }" />  <label for="suri_num${i+1 }">③  ${i_title3[i] } </label></li>
+											<li><input type="radio" id="suri_num${i+1 }" name="suri_numItem${i+1 }" value="④ ${i_title4[i] }" />  <label for="suri_num${i+1 }">④  ${i_title4[i] } </label></li>
+											<li><input type="radio" id="suri_num${i+1 }" name="suri_numItem${i+1 }" value="⑤ ${i_title5[i] }" />  <label for="suri_num${i+1 }">⑤  ${i_title5[i] } </label></li>
+											<li>선택사유 <input type="text" id="descriptionItem${i+1 }" name="descriptionItem" class="inp" style="width:200px;" /> </li>
+										</ul>
 									</div>
-							    </c:forEach> 
+								</c:forEach>  
 								                  
 							</td>
 						</tr>
@@ -257,7 +256,7 @@
 	<input type="hidden" name="url" id="url" value="research">
 </form>
 
-<form name="saveOK" action="researchSave.do" method="post">
+<form name="saveOK" action="/foodSen/researchSave.do" method="post">
 	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq}" />
 	<input type="hidden" id="surq_seqItem" name="surq_seqItem" class="surq_seqItem" />
 	<input type="hidden" id="surq_item" name="surq_item"  class="surq_item"/>

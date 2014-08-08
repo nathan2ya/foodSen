@@ -748,4 +748,35 @@ public class ResearchCreate {
 		
 		return "redirect:/researchList.do"; //리스트로 리다이렉트
 	}
+	
+	//설문조사 결과 DB insert
+	@RequestMapping(value="/researchSave.do")
+	public String researchSave(HttpServletRequest request, HttpSession session) throws Exception{
+		
+		int sur_seq = Integer.parseInt(request.getParameter("sur_seq"));
+		String surq_seqItem = request.getParameter("surq_seqItem");
+		String surq_item = request.getParameter("surq_item");
+		String suri_seqItem = request.getParameter("suri_seqItem");
+		String suri_numItem = request.getParameter("suri_numItem");
+		String descriptionItem = request.getParameter("descriptionItem");
+		
+		System.out.println("sur_seq(글시퀀스) : "+sur_seq);
+		System.out.println("surq_seqItem() : "+surq_seqItem);
+		System.out.println("surq_item(문제모음) : "+surq_item);
+		System.out.println("suri_seqItem(?) : "+suri_seqItem);
+		System.out.println("suri_numItem(선택한 문항모음) : "+suri_numItem);
+		System.out.println("descriptionItem(선택한 사유모음) : "+descriptionItem);
+		
+		/*
+		sur_seq(글시퀀스) : 2
+		surq_seqItem() : 1|2|3|
+		surq_item(문제모음) : 1번문제다|2번문제다|3번문제다|
+		suri_seqItem(?) : undefined|undefined|undefined|
+		suri_numItem(문항모음) : ⑤ 5555|① 1111|② 2222|
+		descriptionItem(선택사유) : 5번을선택했다.|1번을선택했다|그냥선택했다|
+		*/
+		
+		return "";
+	}
+	
 } //end of class

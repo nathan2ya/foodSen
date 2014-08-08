@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class ResearchDTO3 {
 	private int surr_seq;//설문결과번호
-	private int suri_seq;//설문번호
+	private int suri_seq;//문항번호
 	private int surq_seq;//문제번호
-	private int sur_seq;//문항번호
+	private int sur_seq;//정보번호
 	private String suri_num;//선택문항
 	private String description;//선택사유
 	private String writer;//작성자
