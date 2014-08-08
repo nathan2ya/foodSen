@@ -19,7 +19,6 @@ import javax.servlet.http.HttpSession;
 
 import menu6.research.dto.ResearchDTO;
 import menu6.research.dto.ResearchDTO1;
-import menu6.research.dto.ResearchDTO11;
 import menu6.research.dto.ResearchDTO2;
 
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
