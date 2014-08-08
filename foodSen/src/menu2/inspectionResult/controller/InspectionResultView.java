@@ -109,7 +109,6 @@ public class InspectionResultView {
 			request1.setAttribute("searchingNow", 0);
 		}
 		
-		
 		//조회수를 위한 get
 		resultClass = (InspectionResultDTO)sqlMapper.queryForObject("InspectionResult.selectInspectionResultOne", seq);
 		
@@ -118,17 +117,13 @@ public class InspectionResultView {
 		paramClass.setHits(resultClass.getHits()+1);
 		sqlMapper.update("InspectionResult.updateHits", paramClass);
 		
-		
 		//뷰페이지에 보여질 레코드 1개를 get
 		resultClass = (InspectionResultDTO)sqlMapper.queryForObject("InspectionResult.selectInspectionResultOne", seq);
-		
 		
 		request1.setAttribute("seq", seq);
 		request1.setAttribute("currentPage", currentPage);
 		request1.setAttribute("searchingNow", searchingNow);
 		request1.setAttribute("resultClass", resultClass); //레코드1개
-		
-		
 		return "/view/menu2/inspectionResultView.jsp";
 	}
 	
