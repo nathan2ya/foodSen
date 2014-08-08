@@ -1,18 +1,278 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:include page="../../include/top.jsp"/>
 
-설문조사 뷰<br/>
+<script>
+	function goEdit(cnt){
+		if(cnt > 0){
+			alert("설문 결과가 존재하여 설문기간만 수정하실 수 있습니다.");
+		}
+		editOK.submit();
+	}
 
-<br/>1 : ${resultClass}
-<br/>2 : ${resultClass1}
-<br/>3 : ${resultClass2}
+	function goDelete(){
+		if(confirm("게시글을 삭제하시겠습니까?")!=0){
+			deleteOK.submit();
+		}else{
+			return;
+		}
+	}
 
-</body>
-</html>
+	function goSave() {
+		var selectYn = "Y";
+		var lengthMax = "Y";
+		var lengthMaxTxt = "";
+		$('.txt').each(function(index, item){
+			if($('input:radio[name=suri_numItem'+(index+1)+']:checked').val() == "undefined" || $('input:radio[name=suri_numItem'+(index+1)+']:checked').val() == "" || $('input:radio[name=suri_numItem'+(index+1)+']:checked').val() == null)
+			{
+				selectYn = "N";
+			}
+			if(getStrByte($('#descriptionItem'+(index+1)).val()) > 120){
+				lengthMaxTxt = $('#descriptionItem'+(index+1));
+				//$('#descriptionItem'+(index+1)).val($('#descriptionItem'+(index+1)).val().cut(120));
+				$('#descriptionItem'+(index+1)).focus();
+				lengthMax = "N";
+				return;
+			}
+		});
+		
+		if(selectYn == "N"){
+			alert("선택되지 않은 문항이 존재합니다.");
+			return;
+		}
+		if(lengthMax == "N"){
+			alert("선택사유는 100자 까지만 입력할 수 있습니다.");
+			lengthMaxTxt.focus();
+			return;
+		}
+		saveOK.submit();
+		alert("설문이 완료되었습니다.\n참여하여 주셔서 감사합니다.");
+	}
+	
+	function getStrByte(str) {
+		var p, len = 0;
+		for(p=0; p<str.length; p++) {
+			(str.charCodeAt(p) > 255) ? len+=2 : len++; // charCodeAt(문자열) - 문자열을 유니코드값으로 변환하여 255보다 크면 한글.
+		}
+		return len;
+	} // 문자열의 byte수를 구하는 함수 - 한글이라면 글자당 2bytes, 그외에는 1byte로 계산한다.
+	
+	String.prototype.cut = function(len) {
+	    var str = this;
+	    var l = 0;
+	    for (var i=0; i<str.length; i++) {
+	            l += (str.charCodeAt(i) > 255) ? 2 : 1;
+	            if (l > len) return str.substring(0,i);
+	    }
+	    return str;
+	}; // 문자열을 잘라주는 함수 - 원하는 byte수만큼 잘라준다
+	
+	function goReason(sur_seq) {
+		var frm = document.reason;    //팝업에 넘길 부모창의 폼
+	
+		frm.sur_seq.value = sur_seq;  //폼의 값들을 셋팅한다.  
+	
+		//빈페이지로 팝업창을 우선 하나 띄운다.
+		window.open('', 'popup_post', 'width=500, height=450, resizable=yes');
+	
+		//부모창의 타겟을 빈페이지로 띄운 팝업창의 이름으로 한다
+		frm.target = 'popup_post';   
+	
+		//넘길 폼의 action을 팝업에 나타낼 페이지로 한다.
+		frm.action = 'researchReason.do';
+	
+		//팝업으로 넘길 값을 가지고있는 폼을 submit 한다.
+		frm.submit();
+	}
+
+	function goResult(sur_seq) {
+		var frm = document.reason;    //팝업에 넘길 부모창의 폼
+	
+		frm.sur_seq.value = sur_seq;  //폼의 값들을 셋팅한다.  
+	
+		//빈페이지로 팝업창을 우선 하나 띄운다.
+		window.open('', 'popup_post', 'width=550, height=545, resizable=yes');
+	
+		//부모창의 타겟을 빈페이지로 띄운 팝업창의 이름으로 한다
+		frm.target = 'popup_post';   
+	
+		//넘길 폼의 action을 팝업에 나타낼 페이지로 한다.
+		frm.action = 'researchResult.do';
+	
+		//팝업으로 넘길 값을 가지고있는 폼을 submit 한다.
+		frm.submit();
+	}
+
+	$(document).ready(function(){
+		$('#goSave').click(function(){
+			var surq_seqItem = "";
+			var surq_item = "";
+			var suri_seqItem = "";
+			var suri_numItem = "";
+			var descriptionItem = "";
+			
+			$('.txt').each(function(index, item){
+				surq_seqItem += $('#surq_seqItem'+(index+1)).val() + "|";
+				surq_item += $('#surq_item'+(index+1)).val() + "|";
+				suri_seqItem += $('#suri_seqItem'+(index+1)).val() + "|";
+				suri_numItem += $('input:radio[name=suri_numItem'+(index+1)+']:checked').val() + "|";
+				if($('#descriptionItem'+(index+1)).val() != ""){
+					descriptionItem += $('#descriptionItem'+(index+1)).val() + "|";
+				}else{
+					descriptionItem += " |";
+				}
+			});
+			$('.surq_seqItem').val(surq_seqItem);
+			$('.surq_item').val(surq_item);
+			$('.suri_seqItem').val(suri_seqItem);
+			$('.suri_numItem').val(suri_numItem);
+			$('.descriptionItem').val(descriptionItem);
+		});
+	});
+
+</script>
+
+
+<div id="container">
+	<div id="contents">
+	
+		<p><img src="./images/sub/particiation/sub_vimg_01.jpg" alt="건강한 급식 행복한 학교" /></p>
+		
+		<!-- 좌측메뉴 -->
+		<jsp:include page="/view/include/menu6/researchLnb.jsp"/>
+		<!-- .//좌측메뉴 -->
+		
+	
+		<!-- 우측 컨텐츠 -->
+		<div class="right_box">
+			
+			<!-- 우측상단 제목 -->
+			<h3><img src="./images/sub/particiation/title_05.gif" alt="설문조사" /></h3>
+			<!-- .//우측상단 제목 -->
+			
+			
+			<!-- 우측상단 경로 정보 -->
+			<p class="history"><img src="./images/sub/history_home.gif" alt="home" /> 참여마당 <img src="./images/sub/history_arrow.gif" alt="다음" /> <strong>설문조사</strong></p>
+       		<p class="pt30"></p>
+			<!-- .//우측상단 경로 정보 -->
+			
+			<!-- 게시판영역 -->
+			<div class="tbl_box">
+			
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tbl_type01" summary="설문조사">
+				
+				
+		            <caption>설문조사</caption>
+		            <colgroup>
+			            <col width="15%"/>
+			            <col width="20%"/>
+			            <col width="15%"/>
+			            <col width="20%"/>
+			            <col width="15%"/>
+			            <col width="%"/>
+		            </colgroup>
+            
+            
+					<tbody>
+						<tr>
+							<th>제목</th>
+							<td colspan="5" class="tl"><strong>${resultClass.sur_title}</strong></td>
+						</tr>
+						<tr>
+							<th>시작일</th>
+							<td class="tl">${resultClass.sur_sat_date}</td>
+							<th>종료일</th>
+							<td class="tl">${resultClass.sur_end_date}</td>
+							<th>문항수</th>
+							<td class="tl">${resultClass.que_cnt}</td>
+						</tr>
+						<tr>
+							<th>내용</th>
+							<td colspan="5" class="tl">
+								
+								<c:forEach var="i" begin="0" end="${cnt-1}" step="1"> 
+				               	   <div class="research">
+				                     	<p>${i+1}. ${title[i]}</p>
+				                     	<input type="hidden" id="surq_seqItem${i+1}" name="surq_seqItem" class="txt" value="${i+1}">
+				                     	<input type="hidden" id="surq_item${i+1}" name="surq_item" value="${title[i]}">
+				                   	<ul>
+				                      <li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="① ${i_title1[i] }" />  <label for="suri_num${i+1}">①  ${i_title1[i] } </label></li>
+				                      <li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="② ${i_title2[i] }" />  <label for="suri_num${i+1}">②  ${i_title2[i] } </label></li>
+				                      <li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="③ ${i_title3[i] }" />  <label for="suri_num${i+1}">③  ${i_title3[i] } </label></li>
+				                      <li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="④ ${i_title4[i] }" />  <label for="suri_num${i+1}">④  ${i_title4[i] } </label></li>
+				                      <li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="⑤ ${i_title5[i] }" />  <label for="suri_num${i+1}">⑤  ${i_title5[i] } </label></li>
+				                      <li>선택사유 <input type="text" id="descriptionItem${i+1 }" name="descriptionItem" class="inp" style="width:200px;" /> </li>
+				                    </ul>
+									</div>
+							    </c:forEach> 
+								                  
+							</td>
+						</tr>
+					</tbody>
+				</table> 
+
+				<p class="pt40"></p>
+				
+				<!--버튼--> 
+				<span class="bbs_btn"> 
+				
+					<span class="wte_l"><a href="researchList.do" class="wte_r">목록</a></span>
+					<c:if test="${loginUser.admin_yn eq 'Y' }">
+						<span class="wte_l"><a href="javascript:goEdit('${cnt }')" class="wte_r">수정</a></span>
+						<span class="wte_l"><a href="javascript:goDelete()" class="wte_r">삭제</a></span>
+					</c:if>
+					<c:if test="${resultClass.sur_sat_date <= resultClass.nowDate && resultClass.sur_end_date >= resultClass.nowDate }">
+						<span class="per_l"><a href="javascript:goSave()" class="pre_r" id="goSave">저장</a></span>
+					</c:if>
+					<c:if test="${loginUser.admin_yn eq 'Y' }">
+						<span class="wte_l"><a href="javascript:goResult('${resultClass.sur_seq }')" class="wte_r">결과보기</a></span>
+						<span class="wte_l"><a href="javascript:goReason('${resultClass.sur_seq }')" class="wte_r">사유전체보기</a></span>
+					</c:if>
+
+				</span> 
+				<!--.//버튼--> 
+        
+			</div>
+			<!--.//게시판영역 -->
+			
+		</div>
+		<!--.//우측컨텐츠 -->
+    
+		<p class="bottom_bg"></p>
+		
+	</div>
+</div>
+
+
+
+
+<form name="editOK" action="researchEdit.do" method="post">
+	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq }" />
+</form>
+
+<form name="deleteOK" action="researchDelete.do" method="post">
+	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq }" />
+	<input type="hidden" name="url" id="url" value="research">
+</form>
+
+<form name="saveOK" action="researchSave.do" method="post">
+	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq }" />
+	<input type="hidden" id="surq_seqItem" name="surq_seqItem" class="surq_seqItem" />
+	<input type="hidden" id="surq_item" name="surq_item"  class="surq_item"/>
+	<input type="hidden" id="suri_seqItem" name="suri_seqItem" class="suri_seqItem"/>
+	<input type="hidden" id="suri_numItem" name="suri_numItem" class="suri_numItem"/>
+	<input type="hidden" id="descriptionItem" name="descriptionItem" class="descriptionItem"/>
+</form>
+
+<form name="reason" method="post">
+	<input type="hidden" id="sur_seq" name="sur_seq"/>
+</form>
+
+<form name="result" action="researchResult.do" method="post">
+	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq }" />
+</form>
+ 
+<jsp:include page="../../include/footer.jsp"/>

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 import menu6.research.dto.ResearchDTO;
 import menu6.research.dto.ResearchDTO1;
+import menu6.research.dto.ResearchDTO11;
 import menu6.research.dto.ResearchDTO2;
 
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
@@ -42,13 +43,22 @@ public class ResearchView {
 	//설분조사(정보)
 	private ResearchDTO paramClass = new ResearchDTO();
 	private ResearchDTO resultClass = new ResearchDTO();
-	//설분조사(정보)
+	//설분조사(문제)
 	private ResearchDTO1 paramClass1 = new ResearchDTO1();
 	private List<ResearchDTO1> resultClass1 = new ArrayList<ResearchDTO1>();
-	
 	//설분조사(정보)
 	private ResearchDTO2 paramClass2 = new ResearchDTO2();
 	private List<ResearchDTO2> resultClass2 = new ArrayList<ResearchDTO2>();
+	
+	//설문조사 문제 모음
+	private String[] title = new String[16];
+	
+	//설문조사 문항 모음
+	private String[] i_title1 = new String[16];
+	private String[] i_title2 = new String[16];
+	private String[] i_title3 = new String[16];
+	private String[] i_title4 = new String[16];
+	private String[] i_title5 = new String[16];
 
 	//뷰정보
 	private int currentPage;
@@ -118,17 +128,36 @@ public class ResearchView {
 		
 		//설문조사(정보) 레코드get
 		resultClass = (ResearchDTO)sqlMapper.queryForObject("Research.selectResearchOne", sur_seq);
+		int cnt = Integer.parseInt(resultClass.getQue_cnt());
+		
 		//설문조사(문제) 레코드get
 		resultClass1 = sqlMapper.queryForList("Research.selectResearchOne1", sur_seq);
+		for(int i=0; i<resultClass1.size(); i++){
+			title[i] = resultClass1.get(i).getSurq_title();
+		}
+		
 		//설문조사(문항) 레코드get
 		resultClass2 = sqlMapper.queryForList("Research.selectResearchOne2", sur_seq);
-		
+		for(int j=0; j<resultClass2.size(); j++){
+			i_title1[j] = resultClass2.get(j).getSuri_title1();
+			i_title2[j] = resultClass2.get(j).getSuri_title2();
+			i_title3[j] = resultClass2.get(j).getSuri_title3();
+			i_title4[j] = resultClass2.get(j).getSuri_title4();
+			i_title5[j] = resultClass2.get(j).getSuri_title5();
+		}
 		
 		request.setAttribute("sur_seq", sur_seq);
 		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("cnt", cnt); //설문조사 문항개수
 		request.setAttribute("resultClass", resultClass); //설문조사(정보)
 		request.setAttribute("resultClass1", resultClass1); //설문조사(문제)
+		request.setAttribute("title", title); //설문조사(문제배열)
 		request.setAttribute("resultClass2", resultClass2); //설문조사(문항)
+		request.setAttribute("i_title1", i_title1); //설문조사(문항배열)
+		request.setAttribute("i_title2", i_title2); //설문조사(문항배열)
+		request.setAttribute("i_title3", i_title3); //설문조사(문항배열)
+		request.setAttribute("i_title4", i_title4); //설문조사(문항배열)
+		request.setAttribute("i_title5", i_title5); //설문조사(문항배열)
 		return "/view/menu6/research/researchView.jsp";
 	}
 	
