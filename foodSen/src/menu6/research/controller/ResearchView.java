@@ -98,8 +98,6 @@ public class ResearchView {
 		}
 		searchingNow = Integer.parseInt(request.getParameter("searchingNow"));
 		
-		System.out.println(sur_seq);
-		
 		//검색일 경우 존재하는 변수 초기화
 		if(searchingNow==1){
 			searchType = request.getParameter("searchType");

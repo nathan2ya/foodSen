@@ -164,7 +164,6 @@
 			
 				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tbl_type01" summary="설문조사">
 				
-				
 		            <caption>설문조사</caption>
 		            <colgroup>
 			            <col width="15%"/>
@@ -194,18 +193,19 @@
 							<td colspan="5" class="tl">
 								
 								<c:forEach var="i" begin="0" end="${cnt-1}" step="1"> 
-				               	   <div class="research">
+									<div class="research">
 				                     	<p>${i+1}. ${title[i]}</p>
 				                     	<input type="hidden" id="surq_seqItem${i+1}" name="surq_seqItem" class="txt" value="${i+1}">
 				                     	<input type="hidden" id="surq_item${i+1}" name="surq_item" value="${title[i]}">
-				                   	<ul>
-				                      <li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="① ${i_title1[i] }" />  <label for="suri_num${i+1}">①  ${i_title1[i] } </label></li>
-				                      <li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="② ${i_title2[i] }" />  <label for="suri_num${i+1}">②  ${i_title2[i] } </label></li>
-				                      <li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="③ ${i_title3[i] }" />  <label for="suri_num${i+1}">③  ${i_title3[i] } </label></li>
-				                      <li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="④ ${i_title4[i] }" />  <label for="suri_num${i+1}">④  ${i_title4[i] } </label></li>
-				                      <li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="⑤ ${i_title5[i] }" />  <label for="suri_num${i+1}">⑤  ${i_title5[i] } </label></li>
-				                      <li>선택사유 <input type="text" id="descriptionItem${i+1 }" name="descriptionItem" class="inp" style="width:200px;" /> </li>
-				                    </ul>
+				                     	
+					               		<ul>
+											<li><input type="radio" id="suri_num${i+1}" name="i_title1${i+1}" value="① ${i_title1[i]}" />  <label for="suri_num${i+1}">①  ${i_title1[i]} </label></li>
+											<li><input type="radio" id="suri_num${i+1}" name="i_title2${i+1}" value="② ${i_title2[i]}" />  <label for="suri_num${i+1}">②  ${i_title2[i]} </label></li>
+											<li><input type="radio" id="suri_num${i+1}" name="i_title3${i+1}" value="③ ${i_title3[i]}" />  <label for="suri_num${i+1}">③  ${i_title3[i]} </label></li>
+											<li><input type="radio" id="suri_num${i+1}" name="i_title4${i+1}" value="④ ${i_title4[i]}" />  <label for="suri_num${i+1}">④  ${i_title4[i]} </label></li>
+											<li><input type="radio" id="suri_num${i+1}" name="i_title5${i+1}" value="⑤ ${i_title5[i]}" />  <label for="suri_num${i+1}">⑤  ${i_title5[i]} </label></li>
+											<li>선택사유 <input type="text" id="description${i+1}" name="description${i+1}" class="inp" style="width:200px;" /> </li>
+					               		</ul>
 									</div>
 							    </c:forEach> 
 								                  
@@ -220,14 +220,13 @@
 				<span class="bbs_btn"> 
 				
 					<span class="wte_l"><a href="researchList.do" class="wte_r">목록</a></span>
-					<c:if test="${loginUser.admin_yn eq 'Y' }">
-						<span class="wte_l"><a href="javascript:goEdit('${cnt }')" class="wte_r">수정</a></span>
+					<c:if test="${sessionScope.session_admin_yn == 'y'}">
+						<span class="wte_l"><a href="javascript:goEdit('${resCnt}')" class="wte_r">수정</a></span>
 						<span class="wte_l"><a href="javascript:goDelete()" class="wte_r">삭제</a></span>
 					</c:if>
-					<c:if test="${resultClass.sur_sat_date <= resultClass.nowDate && resultClass.sur_end_date >= resultClass.nowDate }">
-						<span class="per_l"><a href="javascript:goSave()" class="pre_r" id="goSave">저장</a></span>
-					</c:if>
-					<c:if test="${loginUser.admin_yn eq 'Y' }">
+					<span class="per_l"><a href="javascript:goSave()" class="pre_r" id="goSave">저장</a></span>
+					
+					<c:if test="${sessionScope.session_admin_yn == 'y'}">
 						<span class="wte_l"><a href="javascript:goResult('${resultClass.sur_seq }')" class="wte_r">결과보기</a></span>
 						<span class="wte_l"><a href="javascript:goReason('${resultClass.sur_seq }')" class="wte_r">사유전체보기</a></span>
 					</c:if>
@@ -250,16 +249,16 @@
 
 
 <form name="editOK" action="researchEdit.do" method="post">
-	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq }" />
+	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq}" />
 </form>
 
 <form name="deleteOK" action="researchDelete.do" method="post">
-	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq }" />
+	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq}" />
 	<input type="hidden" name="url" id="url" value="research">
 </form>
 
 <form name="saveOK" action="researchSave.do" method="post">
-	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq }" />
+	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq}" />
 	<input type="hidden" id="surq_seqItem" name="surq_seqItem" class="surq_seqItem" />
 	<input type="hidden" id="surq_item" name="surq_item"  class="surq_item"/>
 	<input type="hidden" id="suri_seqItem" name="suri_seqItem" class="suri_seqItem"/>
@@ -272,7 +271,7 @@
 </form>
 
 <form name="result" action="researchResult.do" method="post">
-	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq }" />
+	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq}" />
 </form>
  
 <jsp:include page="../../include/footer.jsp"/>
