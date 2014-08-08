@@ -127,7 +127,7 @@
 							<c:forEach var="list" items="${list}">
 							
 								<c:url var="url" value="/researchView.do"> 
-									<c:param name="seq" value="${list.sur_seq}"/>
+									<c:param name="sur_seq" value="${list.sur_seq}"/>
 									<c:param name="currentPage" value="${currentPage}"/>
 									<c:param name="searchingNow" value="${searchingNow}"/>
 									<c:if test="${searchingNow == 1}">
@@ -142,7 +142,7 @@
 										<c:set var="number" value="${number-1}"/>
 									</td>
 									<td align="left">
-										<a href=${url}>${list.sur_title}</a>
+										<a href="${url}">${list.sur_title}</a>
 									</td>
 									<td align="center">${list.sur_sat_date}</td>
 									<td align="center">${list.sur_end_date}</td>

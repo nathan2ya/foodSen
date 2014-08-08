@@ -8,5 +8,11 @@
 </head>
 <body>
 
+¼³¹®Á¶»ç ºä<br/>
+
+<br/>1 : ${resultClass}
+<br/>2 : ${resultClass1}
+<br/>3 : ${resultClass2}
+
 </body>
 </html>

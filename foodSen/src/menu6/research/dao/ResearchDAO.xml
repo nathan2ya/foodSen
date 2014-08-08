@@ -96,6 +96,8 @@
 	</insert>
 	
 	
+	
+	
 	<!-- select -->
 	<select id="selectAll" resultMap="researchRes" parameterClass="int">
 		select * from TB_06_RS
@@ -109,17 +111,39 @@
 	<select id="selectLastNum1" resultClass="researchDTO1" parameterClass="int">
 		SELECT MAX(surq_seq) AS surq_seq FROM TB_06_RSQ
 	</select>
+	
+	
+	<select id="selectResearchOne" resultMap="researchRes" parameterClass="int">
+		select * from TB_06_RS
+		where sur_seq = #sur_seq#
+	</select>
 
+	<select id="selectResearchOne1" resultMap="researchRes1" parameterClass="int">
+		select * from TB_06_RSQ
+		where sur_seq = #sur_seq#
+	</select>
+	
+	<select id="selectResearchOne2" resultMap="researchRes2" parameterClass="int">
+		select * from TB_06_RSI
+		where sur_seq = #sur_seq#
+	</select>
+	
+	
 	
 	
 	<!-- update -->
-	
+	<update id="updateHits" parameterClass="researchDTO">
+		UPDATE TB_06_RS
+		SET
+			hits = #hits#
+		where sur_seq = #sur_seq#
+	</update>
 
 	
 	
 	<!-- delete -->
 	
-
+	
 	
 	
 </sqlMap>
