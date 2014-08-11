@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	수정폼입니다. 진입테스트<br/>
+	${sur_seq}<br/>
+	${permit}<br/>
 </body>
 </html>

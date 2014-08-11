@@ -6,6 +6,7 @@
 <jsp:include page="../../include/top.jsp"/>
 
 <script>
+	//수정
 	function goEdit(cnt){
 		var sur_seq = "${resultClass.sur_seq}"; //이글의 시퀀스(정보)
 		var res_cnt = "${res_cnt}"; //이글의 결과등록개수
@@ -16,9 +17,10 @@
 			permit = 1;
 		}
 		
-		location.href = '/foodSen/researchEdit.do?sur_seq='+sur_seq+'&permit='+permit;
+		location.href = '/foodSen/researchEditForm.do?sur_seq='+sur_seq+'&permit='+permit;
 	}
-
+	
+	//삭제
 	function goDelete(){
 		var current_date = "${current_date}"; //오늘날짜
 		var sur_sat_date = "${resultClass.sur_sat_date}"; //설문시작일
