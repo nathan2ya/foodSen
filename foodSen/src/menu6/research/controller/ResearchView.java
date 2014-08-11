@@ -12,13 +12,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import menu6.research.dto.ResearchDTO;
 import menu6.research.dto.ResearchDTO1;
 import menu6.research.dto.ResearchDTO2;
 import menu6.research.dto.ResearchDTO3;
+
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -27,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
@@ -45,17 +49,27 @@ public class ResearchView {
 	private List<ResearchDTO2> resultClass2 = new ArrayList<ResearchDTO2>();
 	//설문조사(결과)
 	private ResearchDTO3 paramClass3 = new ResearchDTO3();
-	private List<ResearchDTO3> resultClass3 = new ArrayList<ResearchDTO3>();
+	private ResearchDTO resultClass3 = new ResearchDTO();
 	
 	//설문조사 문제 모음
+	private int[] resultClass1_seq = new int[16];//문제의시퀀스 모음
 	private String[] title = new String[16];
 	
 	//설문조사 문항 모음
+	private int[] resultClass2_seq = new int[16];//문항의시퀀스 모음
 	private String[] i_title1 = new String[16];
 	private String[] i_title2 = new String[16];
 	private String[] i_title3 = new String[16];
 	private String[] i_title4 = new String[16];
 	private String[] i_title5 = new String[16];
+	
+	//설문조사 결과 선택개수
+	private int cnt1;
+	private int cnt2;
+	private int cnt3;
+	private int cnt4;
+	private int cnt5;
+	
 
 	//뷰정보
 	private int currentPage;
@@ -169,18 +183,50 @@ public class ResearchView {
 		//설문조사(문제) 레코드get
 		resultClass1 = sqlMapper.queryForList("Research.selectResearchOne1", sur_seq);
 		for(int i=0; i<resultClass1.size(); i++){
-			title[i] = resultClass1.get(i).getSurq_title();
+			resultClass1_seq[i] = resultClass1.get(i).getSurq_seq(); //문제의시퀀스 모음
+			title[i] = resultClass1.get(i).getSurq_title(); //문제모음
 		}
 		
 		//설문조사(문항) 레코드get
 		resultClass2 = sqlMapper.queryForList("Research.selectResearchOne2", sur_seq);
 		for(int j=0; j<resultClass2.size(); j++){
-			i_title1[j] = resultClass2.get(j).getSuri_title1();
-			i_title2[j] = resultClass2.get(j).getSuri_title2();
-			i_title3[j] = resultClass2.get(j).getSuri_title3();
-			i_title4[j] = resultClass2.get(j).getSuri_title4();
-			i_title5[j] = resultClass2.get(j).getSuri_title5();
+			resultClass2_seq[j] = resultClass2.get(j).getSuri_seq(); //문항의시퀀스 모음
+			i_title1[j] = resultClass2.get(j).getSuri_title1();//문항1모음
+			i_title2[j] = resultClass2.get(j).getSuri_title2();//문항2모음
+			i_title3[j] = resultClass2.get(j).getSuri_title3();//문항3모음
+			i_title4[j] = resultClass2.get(j).getSuri_title4();//문항4모음
+			i_title5[j] = resultClass2.get(j).getSuri_title5();//문항5모음
 		}
+		
+		//설문조사(결과) 레코드get
+		
+		/*
+		 * 몇번글, 몇번문제에 몇번문항을 선택했는지 결과산출
+		*/
+		//공통사항
+		paramClass3.setSur_seq(sur_seq); //몇번글
+		
+		for(int k=0; k<resultClass2.size(); k++){
+			paramClass3.setSurq_seq(resultClass1_seq[k]);
+			paramClass3.setSuri_seq(resultClass2_seq[k]);
+			paramClass3 = (ResearchDTO3)sqlMapper.queryForObject("Research.selectResearchOne33", paramClass3);
+			
+			String chosen = paramClass3.getSuri_num().substring(0, 1);
+			System.out.println("선택한문제번호 : "+chosen);
+			
+			if(chosen.equals("①")) cnt1++;
+			if(chosen.equals("②")) cnt2++;
+			if(chosen.equals("③")) cnt3++;
+			if(chosen.equals("④")) cnt4++;
+			if(chosen.equals("⑤")) cnt5++;
+		}
+		
+		System.out.println("총선택된값");
+		System.out.println("1번 : "+cnt1);
+		System.out.println("2번 : "+cnt2);
+		System.out.println("3번 : "+cnt3);
+		System.out.println("4번 : "+cnt4);
+		System.out.println("5번 : "+cnt5);
 		
 		request.setAttribute("sur_seq", sur_seq);
 		request.setAttribute("resultClass", resultClass);//설문조사(정보)레코드
@@ -188,11 +234,11 @@ public class ResearchView {
 		request.setAttribute("resultClass1", resultClass1);//설문조사(문제)레코드
 		request.setAttribute("title", title); //설문조사(문제배열)
 		request.setAttribute("resultClass2", resultClass2); //설문조사(문항)
-		request.setAttribute("i_title1", i_title1); //설문조사(문항배열)
-		request.setAttribute("i_title2", i_title2); //설문조사(문항배열)
-		request.setAttribute("i_title3", i_title3); //설문조사(문항배열)
-		request.setAttribute("i_title4", i_title4); //설문조사(문항배열)
-		request.setAttribute("i_title5", i_title5); //설문조사(문항배열)
+		request.setAttribute("i_title1", i_title1); //설문조사(문항1배열)
+		request.setAttribute("i_title2", i_title2); //설문조사(문항2배열)
+		request.setAttribute("i_title3", i_title3); //설문조사(문항3배열)
+		request.setAttribute("i_title4", i_title4); //설문조사(문항4배열)
+		request.setAttribute("i_title5", i_title5); //설문조사(문항5배열)
 		request.setAttribute("resultClass3", resultClass3);//설문조사(문항)레코드
 		return "/view/menu6/research/researchPopup.jsp";
 	}

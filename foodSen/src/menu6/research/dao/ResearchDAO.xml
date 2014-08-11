@@ -5,8 +5,6 @@
 
 	<typeAlias alias="researchDTO" type="menu6.research.dto.ResearchDTO" />
 	<typeAlias alias="researchDTO1" type="menu6.research.dto.ResearchDTO1" />
-	<typeAlias alias="researchDTO11" type="menu6.research.dto.ResearchDTO11" />
-	
 	<typeAlias alias="researchDTO2" type="menu6.research.dto.ResearchDTO2" />
 	<typeAlias alias="researchDTO3" type="menu6.research.dto.ResearchDTO3" />
 	
@@ -75,6 +73,7 @@
 		<result property="surq_title" column="surq_title" />
 	</resultMap>
 	
+	
 	<!-- insert -->
 	<insert id="insertResearch" parameterClass="researchDTO">
 		insert into TB_06_RS
@@ -142,6 +141,11 @@
 		select * from TB_06_RSR
 		where sur_seq = #sur_seq#
 		order by surr_seq asc
+	</select>
+	
+	<select id="selectResearchOne33" resultMap="researchRes3" parameterClass="researchDTO3">
+		select * from TB_06_RSR
+		where sur_seq = #sur_seq# and surq_seq = #surq_seq# and suri_seq = #suri_seq#
 	</select>
 	
 	
