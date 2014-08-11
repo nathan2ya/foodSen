@@ -26,7 +26,7 @@
 		var sur_sat_date = "${resultClass.sur_sat_date}"; //설문시작일
 		var sur_end_date = "${resultClass.sur_end_date}"; //설문종료일
 		
-		if(current_date < sur_sat_date || sur_end_date <= current_date){ //시작하지않았거나, 끝났을경우
+		if(current_date < sur_sat_date || sur_end_date < current_date){ //시작하지않았거나, 끝났을경우
 			if(confirm("게시글을 삭제하시겠습니까?")!=0){
 				deleteOK.submit();
 			}else{
