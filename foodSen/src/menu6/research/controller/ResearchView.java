@@ -168,9 +168,6 @@ public class ResearchView {
 		
 		//설문조사(문제) 레코드get
 		resultClass1 = sqlMapper.queryForList("Research.selectResearchOne1", sur_seq);
-		
-		//설문조사(문제) 레코드get
-		resultClass1 = sqlMapper.queryForList("Research.selectResearchOne1", sur_seq);
 		for(int i=0; i<resultClass1.size(); i++){
 			title[i] = resultClass1.get(i).getSurq_title();
 		}
@@ -184,7 +181,6 @@ public class ResearchView {
 			i_title4[j] = resultClass2.get(j).getSuri_title4();
 			i_title5[j] = resultClass2.get(j).getSuri_title5();
 		}
-		
 		
 		request.setAttribute("sur_seq", sur_seq);
 		request.setAttribute("resultClass", resultClass);//설문조사(정보)레코드
