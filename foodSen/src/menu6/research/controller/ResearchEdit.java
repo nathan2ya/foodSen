@@ -57,8 +57,6 @@ public class ResearchEdit {
 		int sur_seq = Integer.parseInt(request.getParameter("sur_seq"));
 		String permit = request.getParameter("permit");
 		
-		System.out.println(sur_seq);
-		System.out.println(permit);
 		
 		request.setAttribute("sur_seq", sur_seq);
 		request.setAttribute("permit", permit);
