@@ -28,7 +28,7 @@
 		//url
 		url = '/foodSen/researchResult.do?sur_seq='+sur_seq;
 		// 새로운 윈도우를 엽니다.
-		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=550,height=545");
+		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=545");
 	}
 	
 

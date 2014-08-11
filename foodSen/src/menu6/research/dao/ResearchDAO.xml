@@ -106,7 +106,6 @@
 	
 	
 	
-	
 	<!-- select -->
 	<select id="selectAll" resultMap="researchRes" parameterClass="int">
 		select * from TB_06_RS
@@ -139,6 +138,11 @@
 		order by suri_seq asc
 	</select>
 	
+	<select id="selectResearchOne3" resultMap="researchRes3" parameterClass="int">
+		select * from TB_06_RSR
+		where sur_seq = #sur_seq#
+		order by surr_seq asc
+	</select>
 	
 	
 	
