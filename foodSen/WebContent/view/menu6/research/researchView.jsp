@@ -11,6 +11,13 @@
 		var sur_seq = "${resultClass.sur_seq}"; //이글의 시퀀스(정보)
 		var res_cnt = "${res_cnt}"; //이글의 결과등록개수
 		var permit = 0; //0이면 내용수정가능, 1이면 내용수정불가
+		var current_date = "${current_date}"; //오늘날짜
+		var sur_end_date = "${resultClass.sur_end_date}"; //설문종료일
+		
+		if(sur_end_date < current_date){
+			alert("설문조사가 종료되면 수정이 불가능합니다.");
+			return;
+		}
 		
 		if(res_cnt > 0){
 			alert("설문 결과가 존재하여 설문기간만 수정하실 수 있습니다.");
