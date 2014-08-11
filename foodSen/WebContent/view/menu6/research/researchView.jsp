@@ -241,5 +241,13 @@
 	</div>
 </div>
 
+<form name="saveOK" action="/foodSen/researchSave.do" method="post">
+	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq}" />
+	<input type="hidden" id="surq_seqItem" name="surq_seqItem" class="surq_seqItem" />
+	<input type="hidden" id="surq_item" name="surq_item"  class="surq_item"/>
+	<input type="hidden" id="suri_seqItem" name="suri_seqItem" class="suri_seqItem"/>
+	<input type="hidden" id="suri_numItem" name="suri_numItem" class="suri_numItem"/>
+	<input type="hidden" id="descriptionItem" name="descriptionItem" class="descriptionItem"/>
+</form>
 
 <jsp:include page="../../include/footer.jsp"/>

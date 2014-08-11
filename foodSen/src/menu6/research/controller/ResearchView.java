@@ -212,10 +212,10 @@ public class ResearchView {
 		//모든배열값 초기화
 		for(int k=0; k<resultClass2.size(); k++){
 			res_cnt_arr[k][0]=0;
-			res_cnt_arr[k][0]=0;
-			res_cnt_arr[k][0]=0;
-			res_cnt_arr[k][0]=0;
-			res_cnt_arr[k][0]=0;
+			res_cnt_arr[k][1]=0;
+			res_cnt_arr[k][2]=0;
+			res_cnt_arr[k][3]=0;
+			res_cnt_arr[k][4]=0;
 		}
 		//매번 팝업을 클릭할때마다 새롭게 카운트
 		for(int k=0; k<resultClass2.size(); k++){
