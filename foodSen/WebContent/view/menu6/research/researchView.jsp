@@ -67,6 +67,20 @@
 	
 
 	function goSave() {
+		var current_date = "${current_date}"; //오늘날짜
+		var sur_sat_date = "${resultClass.sur_sat_date}"; //설문시작일
+		var sur_end_date = "${resultClass.sur_end_date}"; //설문종료일
+		
+		if(current_date < sur_sat_date){//설문조사 시작전일때
+			alert("설문조사는 기간이 아닙니다.");
+			return;
+		}
+		if(sur_end_date < current_date){//설문조사 종료되었을때
+			alert("설문조사가 종료되었습니다.");
+			return;
+		}
+		
+		
 		var selectYn = "Y";
 		var lengthMax = "Y";
 		var lengthMaxTxt = "";
