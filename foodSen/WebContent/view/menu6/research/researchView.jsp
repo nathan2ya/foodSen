@@ -220,7 +220,10 @@
 						<span class="wte_l"><a href="javascript:goEdit('${resCnt}')" class="wte_r">수정</a></span>
 						<span class="wte_l"><a href="javascript:goDelete()" class="wte_r">삭제</a></span>
 					</c:if>
-					<span class="per_l"><a href="javascript:goSave()" class="pre_r" id="goSave">저장</a></span>
+					
+					<c:if test="${sessionScope.session_admin_yn != 'y'}">
+						<span class="per_l"><a href="javascript:goSave()" class="pre_r" id="goSave">저장</a></span>
+					</c:if>
 					
 					<c:if test="${sessionScope.session_admin_yn == 'y'}">
 						<span class="wte_l"><a href="javascript:goResultView()" class="wte_r">설문결과</a></span>

@@ -50,6 +50,7 @@ public class ResearchView {
 	//설문조사(결과)
 	private ResearchDTO3 paramClass3 = new ResearchDTO3();
 	private ResearchDTO resultClass3 = new ResearchDTO();
+	private List<ResearchDTO3> resultClass33 = new ArrayList<ResearchDTO3>();
 	
 	//설문조사 문제 모음
 	private int[] resultClass1_seq = new int[16];//문제의시퀀스 모음
@@ -65,6 +66,9 @@ public class ResearchView {
 	
 	//설문조사 결과 배열
 	private int[][] res_cnt_arr = new int[16][5];
+	
+	//설문조사 번호만 잘라낸 결과
+	private String chosen;
 	
 	//설문조사 결과 선택개수
 	private int cnt1;
@@ -217,28 +221,22 @@ public class ResearchView {
 			res_cnt_arr[k][3]=0;
 			res_cnt_arr[k][4]=0;
 		}
-		//매번 팝업을 클릭할때마다 새롭게 카운트
-		for(int k=0; k<resultClass2.size(); k++){
-			paramClass3.setSurq_seq(resultClass1_seq[k]);
-			paramClass3.setSuri_seq(resultClass2_seq[k]);
-			paramClass3 = (ResearchDTO3)sqlMapper.queryForObject("Research.selectResearchOne33", paramClass3);
-			
-			String chosen = paramClass3.getSuri_num().substring(0, 1);
-			if(chosen.equals("①")) res_cnt_arr[k][0]++;
-			if(chosen.equals("②")) res_cnt_arr[k][1]++;
-			if(chosen.equals("③")) res_cnt_arr[k][2]++;
-			if(chosen.equals("④")) res_cnt_arr[k][3]++;
-			if(chosen.equals("⑤")) res_cnt_arr[k][4]++;
-			
-			System.out.println("---------------------------------------");
-			System.out.println(k+"번문제");
-			System.out.println("1번문항 선택개수 : "+res_cnt_arr[k][0]);
-			System.out.println("2번문항 선택개수 : "+res_cnt_arr[k][1]);
-			System.out.println("3번문항 선택개수 : "+res_cnt_arr[k][2]);
-			System.out.println("4번문항 선택개수 : "+res_cnt_arr[k][3]);
-			System.out.println("5번문항 선택개수 : "+res_cnt_arr[k][4]);
-		}
 		
+		//매번 팝업을 클릭할때마다 새롭게 카운트
+		for(int k=0; k<cnt; k++){
+			paramClass3.setSurq_seq(resultClass1_seq[k]);//문제의시퀀스
+			paramClass3.setSuri_seq(resultClass2_seq[k]);//문항의시퀀스
+			resultClass33 = sqlMapper.queryForList("Research.selectResearchOne33", paramClass3);//문제and문항 레코드get
+			
+			for(int z=0; z<resultClass33.size(); z++){//문제and문항 레코드의 답이 1일경우 0번, 2일경우 1번, 3일경우 2번, 4일경우 3번, 5일경우 4번 _ 값을 누적시킴
+				chosen = resultClass33.get(z).getSuri_num().substring(0, 1);
+				if(chosen.equals("①")) res_cnt_arr[k][0]++;
+				if(chosen.equals("②")) res_cnt_arr[k][1]++;
+				if(chosen.equals("③")) res_cnt_arr[k][2]++;
+				if(chosen.equals("④")) res_cnt_arr[k][3]++;
+				if(chosen.equals("⑤")) res_cnt_arr[k][4]++;
+			}
+		}
 		
 		request.setAttribute("sur_seq", sur_seq);
 		request.setAttribute("resultClass", resultClass);//설문조사(정보)레코드
