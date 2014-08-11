@@ -7,14 +7,14 @@ public class ResearchDTO3 {
 	private int suri_seq;//문항번호
 	private int surq_seq;//문제번호
 	private int sur_seq;//정보번호
-	private String suri_num;//선택문항
+	private String suri_num;//선택문항 1개
 	private String description;//선택사유
 	private String writer;//작성자
 	private String reg_name;//등록자
 	private Date reg_date;//등록일
 	private String udt_name;//수정자
 	private Date udt_date;//수정일
-	private String surq_title;//문제
+	private String surq_title;//문제 1개
 	
 	public int getSurr_seq() {
 		return surr_seq;

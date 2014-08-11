@@ -1,27 +1,27 @@
 package menu6.research.controller;
 
-import header.member.dto.MemberDTO;
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.StringTokenizer;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import menu2.inspectionResult.dto.InspectionResultDTO;
+
 import menu6.research.dto.ResearchDTO;
 import menu6.research.dto.ResearchDTO1;
 import menu6.research.dto.ResearchDTO2;
+import menu6.research.dto.ResearchDTO3;
+
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
-import common.Constants;
 
 /*
  * 작성자: 류재욱
@@ -40,6 +40,18 @@ public class ResearchCreate {
 	private ResearchDTO1 resultClass1 = new ResearchDTO1(); //설문조사 문자(최대시퀀스 get)
 	
 	private ResearchDTO2 paramClass2 = new ResearchDTO2();//설문조사 문항
+	
+	private ResearchDTO3 paramClass3 = new ResearchDTO3();//설문조사 결과
+	
+	//설문조사 결과 문제 분할 모음
+	private String[] title = new String[16];
+	
+	//설문조사 결과 문항 분할 모음
+	private String[] i_title = new String[16];
+	
+	//설문조사 결과 사유 분할 모음
+	private String[] description = new String[16];
+	
 	
 	//최대시퀀스넘버
 	private int seq;//설문조사 정보
@@ -180,7 +192,7 @@ public class ResearchCreate {
 		return "/view/menu6/research/researchCreate.jsp";
 	}
 	
-	//설문조사 DB insert
+	//설문조사(정보+문제+문항) DB insert
 	@RequestMapping(value="/researchCreate.do", method=RequestMethod.POST)
 	public String researchCreate(HttpServletRequest request, HttpSession session) throws Exception{
 		
@@ -749,32 +761,110 @@ public class ResearchCreate {
 		return "redirect:/researchList.do"; //리스트로 리다이렉트
 	}
 	
-	//설문조사 결과 DB insert
+	//설문조사(결과) DB insert
 	@RequestMapping(value="/researchSave.do")
 	public String researchSave(HttpServletRequest request, HttpSession session) throws Exception{
 		
 		int sur_seq = Integer.parseInt(request.getParameter("sur_seq"));
 		String surq_seqItem = request.getParameter("surq_seqItem");
 		String surq_item = request.getParameter("surq_item");
-		String suri_seqItem = request.getParameter("suri_seqItem");
+		//String suri_seqItem = request.getParameter("suri_seqItem");
 		String suri_numItem = request.getParameter("suri_numItem");
 		String descriptionItem = request.getParameter("descriptionItem");
 		
-		System.out.println("sur_seq(글시퀀스) : "+sur_seq);
-		System.out.println("surq_seqItem() : "+surq_seqItem);
-		System.out.println("surq_item(문제모음) : "+surq_item);
-		System.out.println("suri_seqItem(?) : "+suri_seqItem);
-		System.out.println("suri_numItem(선택한 문항모음) : "+suri_numItem);
-		System.out.println("descriptionItem(선택한 사유모음) : "+descriptionItem);
+		/*
+		System.out.println("sur_seq(글시퀀스) : "+sur_seq); //sur_seq(글시퀀스) : 2
+		System.out.println("surq_seqItem() : "+surq_seqItem); //surq_seqItem() : 1|2|3|
+		System.out.println("surq_item(문제모음) : "+surq_item); //surq_item(문제모음) : 1번문제다|2번문제다|3번문제다|
+		//System.out.println("suri_seqItem(?) : "+suri_seqItem); //suri_seqItem(?) : undefined|undefined|undefined|
+		System.out.println("suri_numItem(선택한 문항모음) : "+suri_numItem); //suri_numItem(선택한 문항모음) : ⑤ 5555|① 1111|② 2222|
+		System.out.println("descriptionItem(선택한 사유모음) : "+descriptionItem); //descriptionItem(선택한 사유모음) : 5번을선택했다.|1번을선택했다|그냥선택했다|
+		*/
+		
 		
 		/*
-		sur_seq(글시퀀스) : 2
-		surq_seqItem() : 1|2|3|
-		surq_item(문제모음) : 1번문제다|2번문제다|3번문제다|
-		suri_seqItem(?) : undefined|undefined|undefined|
-		suri_numItem(문항모음) : ⑤ 5555|① 1111|② 2222|
-		descriptionItem(선택사유) : 5번을선택했다.|1번을선택했다|그냥선택했다|
+		 * 모아서 온 레코드를 분할시킴
+		 * 0. 문제 시퀀스 분할
+		 * 1. 문항 시퀀스 분할
+		 * 2. 문제 분할
+		 * 3. 문항 분할
+		 * 4. 사유 분할
+		 * 분할 시킨 뒤 문제0번index, 문항0번index, 사유0번index 를 함께 insert, 
+		 * 					1번index,     1번index,     1번index 를 함께 insert ... 이하 동일 최대16
 		*/
+		
+		//0. 문제 시퀀스 분할
+		
+		//.문제 시퀀스 분할 종료
+		
+		//1. 문항 시퀀스 분할
+		
+		//.문항 시퀀스 분할 종료
+		
+		//2. 문제분할
+		StringTokenizer st = new StringTokenizer(surq_item, "|"); // 기호 | 단위로 끊음
+		int i = 0;
+		while(st.hasMoreTokens()){
+			 title[i] = st.nextToken(); //title 배열에 문제를 각각 저장
+			 i++;
+		}
+		//.문제분할 종료
+		
+		
+		//3. 문항분할
+		StringTokenizer st1 = new StringTokenizer(suri_numItem, "|");
+		int j = 0;
+		while(st1.hasMoreTokens()){
+			i_title[j] = st1.nextToken(); //title 배열에 문제를 각각 저장
+			j++;
+		}
+		//.문항분할 종료
+		
+		
+		//4. 사유분할
+		StringTokenizer st2 = new StringTokenizer(descriptionItem, "|");
+		int k = 0;
+		while(st2.hasMoreTokens()){
+			description[k] = st2.nextToken(); //title 배열에 문제를 각각 저장
+			k++;
+		}
+		//.사유분할 종료
+		//.모든 레코드 분할 종료
+		
+		/*
+		 * 분할시킨 레코드 각각 insert 시작(최대16번)
+		*/
+		
+		//설문조사문항 개수
+		resultClass = (ResearchDTO)sqlMapper.queryForObject("Research.selectResearchOne", sur_seq);
+		int que_cnt = Integer.parseInt(resultClass.getQue_cnt()); //문항의 개수
+		//.설문조사문항 개수
+		
+		
+		//16개 공통
+		paramClass3.setSur_seq(sur_seq);
+		
+		
+		//1번문제의 선택문항, 선택사유 레코드
+		   //
+		if(1 <= que_cnt){
+			
+			
+			
+			
+			 int suri_seq;//문항번호
+			 int surq_seq;//문제번호
+			 String suri_num;//선택문항 1개
+			 String description;//선택사유
+			 String writer;//작성자
+			 String reg_name;//등록자
+			 Date reg_date;//등록일
+			 String udt_name;//수정자
+			 Date udt_date;//수정일
+			 String surq_title;//문제 1개
+		}
+		//.1번문제
+		
 		
 		return "";
 	}
