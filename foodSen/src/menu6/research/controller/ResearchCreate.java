@@ -2,8 +2,10 @@ package menu6.research.controller;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,11 +39,19 @@ public class ResearchCreate {
 	private ResearchDTO resultClass = new ResearchDTO();//설문조사 정보(최대시퀀스get)
 	
 	private ResearchDTO1 paramClass1 = new ResearchDTO1();//설문조사 문제
-	private ResearchDTO1 resultClass1 = new ResearchDTO1(); //설문조사 문자(최대시퀀스 get)
+	private ResearchDTO1 resultClass1 = new ResearchDTO1(); //설문조사 문제(최대시퀀스 get)
+	private List<ResearchDTO1> resultClass11 = new ArrayList<ResearchDTO1>(); //설문조사 문제(시퀀스모음)
 	
 	private ResearchDTO2 paramClass2 = new ResearchDTO2();//설문조사 문항
+	private List<ResearchDTO2> resultClass22 = new ArrayList<ResearchDTO2>(); //설문조사 문항(시퀀스모음)
 	
 	private ResearchDTO3 paramClass3 = new ResearchDTO3();//설문조사 결과
+	
+	//설문조사 결과 문제시퀀스 분할 모음
+	private int[] surq_seq_arr = new int[16];
+	
+	//설문조사 결과 문항시퀀스 분할 모음
+	private int[] suri_seq_arr = new int[16];
 	
 	//설문조사 결과 문제 분할 모음
 	private String[] title = new String[16];
@@ -198,6 +208,7 @@ public class ResearchCreate {
 		
 		//인코딩
 		request.setCharacterEncoding("euc-kr");
+		
 		//날짜
 		Calendar today = Calendar.getInstance();
 		
@@ -765,6 +776,16 @@ public class ResearchCreate {
 	@RequestMapping(value="/researchSave.do")
 	public String researchSave(HttpServletRequest request, HttpSession session) throws Exception{
 		
+		//인코딩
+		request.setCharacterEncoding("euc-kr");
+		
+		//날짜
+		Calendar today = Calendar.getInstance();
+		
+		//작성한 사용자(현재 로그인한 세션아이디)
+		String session_id = (String) session.getAttribute("session_id");
+		
+		
 		int sur_seq = Integer.parseInt(request.getParameter("sur_seq"));
 		String surq_seqItem = request.getParameter("surq_seqItem");
 		String surq_item = request.getParameter("surq_item");
@@ -784,22 +805,30 @@ public class ResearchCreate {
 		
 		/*
 		 * 모아서 온 레코드를 분할시킴
-		 * 0. 문제 시퀀스 분할
-		 * 1. 문항 시퀀스 분할
+		 * 0. 문제시퀀스 분할
+		 * 1. 문항시퀀스 분할
 		 * 2. 문제 분할
 		 * 3. 문항 분할
 		 * 4. 사유 분할
-		 * 분할 시킨 뒤 문제0번index, 문항0번index, 사유0번index 를 함께 insert, 
-		 * 					1번index,     1번index,     1번index 를 함께 insert ... 이하 동일 최대16
+		 * 분할 시킨 뒤 문제시퀀스0번index, 문항시퀀스0번index, 문제0번index, 문항0번index, 사유0번index 를 함께 insert, 
+		 * 					      1번index,           1번index,     1번index,     1번index,     1번index 를 함께 insert ... 이하 동일 최대16
 		*/
 		
-		//0. 문제 시퀀스 분할
+		//0. 문제시퀀스 분할
+		int sq1 = 0;
+		resultClass11 = sqlMapper.queryForList("Research.selectResearchOne1", sur_seq);
+		for(sq1=0; sq1<resultClass11.size(); sq1++){
+			surq_seq_arr[sq1] = resultClass11.get(sq1).getSurq_seq();
+		}
+		//.문제시퀀스 분할 종료
 		
-		//.문제 시퀀스 분할 종료
-		
-		//1. 문항 시퀀스 분할
-		
-		//.문항 시퀀스 분할 종료
+		//1. 문항시퀀스 분할
+		int sq2 = 0;
+		resultClass22 = sqlMapper.queryForList("Research.selectResearchOne2", sur_seq);
+		for(sq2=0; sq2<resultClass22.size(); sq2++){
+			suri_seq_arr[sq2] = resultClass22.get(sq2).getSuri_seq();
+		}
+		//.문항시퀀스 분할 종료
 		
 		//2. 문제분할
 		StringTokenizer st = new StringTokenizer(surq_item, "|"); // 기호 | 단위로 끊음
@@ -831,6 +860,7 @@ public class ResearchCreate {
 		//.사유분할 종료
 		//.모든 레코드 분할 종료
 		
+		
 		/*
 		 * 분할시킨 레코드 각각 insert 시작(최대16번)
 		*/
@@ -838,30 +868,24 @@ public class ResearchCreate {
 		//설문조사문항 개수
 		resultClass = (ResearchDTO)sqlMapper.queryForObject("Research.selectResearchOne", sur_seq);
 		int que_cnt = Integer.parseInt(resultClass.getQue_cnt()); //문항의 개수
-		//.설문조사문항 개수
-		
 		
 		//16개 공통
 		paramClass3.setSur_seq(sur_seq);
 		
 		
 		//1번문제의 선택문항, 선택사유 레코드
-		   //
 		if(1 <= que_cnt){
-			
-			
-			
-			
-			 int suri_seq;//문항번호
-			 int surq_seq;//문제번호
-			 String suri_num;//선택문항 1개
-			 String description;//선택사유
-			 String writer;//작성자
-			 String reg_name;//등록자
-			 Date reg_date;//등록일
-			 String udt_name;//수정자
-			 Date udt_date;//수정일
-			 String surq_title;//문제 1개
+			paramClass3.setSuri_seq(suri_seq_arr[0]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[0]); //문제시퀀스
+			paramClass3.setSurq_title(title[0]); //문제
+			paramClass3.setSuri_num(i_title[0]); //선택문항
+			paramClass3.setDescription(description[0]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
 		}
 		//.1번문제
 		

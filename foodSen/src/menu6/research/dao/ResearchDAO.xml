@@ -97,6 +97,16 @@
 			(TB_06_RSI_seq.NEXTVAL, #surq_seq#, #sur_seq#, #suri_title1#, #suri_title2#, #suri_title3#, #suri_title4#, #suri_title5#, #writer#, #reg_name#, #reg_date#, #udt_name#, #udt_date#, #suri_num1#, #suri_num2#, #suri_num3#, #suri_num4#, #suri_num5#)
 	</insert>
 	
+	<insert id="insertResearch3" parameterClass="researchDTO3">
+		insert into TB_06_RSR
+			(surr_seq, suri_seq, surq_seq, sur_seq, suri_num, description, writer, reg_name, reg_date, udt_name, udt_date, surq_title)
+		values
+			(TB_06_RSR_seq.NEXTVAL, #suri_seq#, #surq_seq#, #sur_seq#, #suri_num#, #description#, #writer#, #reg_name#, #reg_date#, #udt_name#, #udt_date#, #surq_title#)
+	</insert>
+	
+	
+	
+	
 	
 	
 	
@@ -129,6 +139,7 @@
 	<select id="selectResearchOne2" resultMap="researchRes2" parameterClass="int">
 		select * from TB_06_RSI
 		where sur_seq = #sur_seq#
+		order by suri_seq asc
 	</select>
 	
 	
