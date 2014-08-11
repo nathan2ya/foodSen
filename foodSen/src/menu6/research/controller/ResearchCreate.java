@@ -2,6 +2,7 @@ package menu6.research.controller;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -198,7 +199,12 @@ public class ResearchCreate {
 	
 	//설문조사 입력폼
 	@RequestMapping("/researchCreateForm.do")
-	public String researchCreateForm(){
+	public String researchCreateForm(HttpServletRequest request){
+		Calendar today = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String current_date = sdf.format(today.getTime());
+		
+		request.setAttribute("current_date", current_date);
 		return "/view/menu6/research/researchCreate.jsp";
 	}
 	

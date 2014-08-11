@@ -13,6 +13,13 @@
 <script type="text/javascript">
 
 	function goCreate(){
+		var current_date = "${current_date}";
+		
+		if(researchCreateForm.sur_sat_date.value < current_date){
+			alert("설문조사 시작일은 현재일 이후만 등록가능합니다.");
+			return;
+		}
+		
 		if(!researchCreateForm.sur_title.value){
 			alert("제목을 입력하세요.");
 			researchCreateForm.sur_title.focus();
