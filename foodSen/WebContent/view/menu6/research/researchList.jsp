@@ -150,7 +150,10 @@
 										<c:if test="${list.sur_end_date < currentTime}">
 											완료
 										</c:if>
-										<c:if test="${list.sur_end_date > currentTime}">
+										<c:if test="${list.sur_sat_date > currentTime}">
+											진행전
+										</c:if>
+										<c:if test="${currentTime <= list.sur_sat_date && list.sur_end_date >= currentTime}">
 											진행중
 										</c:if>
 									</td>

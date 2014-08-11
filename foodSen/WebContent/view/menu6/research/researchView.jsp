@@ -7,20 +7,24 @@
 
 <script>
 	function goEdit(cnt){
-		var res_cnt = "${res_cnt}";
+		var sur_seq = "${resultClass.sur_seq}"; //이글의 시퀀스(정보)
+		var res_cnt = "${res_cnt}"; //이글의 결과등록개수
+		var permit = 0; //0이면 내용수정가능, 1이면 내용수정불가
 		
 		if(res_cnt > 0){
 			alert("설문 결과가 존재하여 설문기간만 수정하실 수 있습니다.");
-			return;
+			permit = 1;
 		}
-		editOK.submit();
+		
+		location.href = '/foodSen/researchEdit.do?sur_seq='+sur_seq+'&permit='+permit;
 	}
 
 	function goDelete(){
 		var current_date = "${current_date}"; //오늘날짜
+		var sur_sat_date = "${resultClass.sur_sat_date}"; //설문시작일
 		var sur_end_date = "${resultClass.sur_end_date}"; //설문종료일
 		
-		if(sur_end_date <= current_date){ //오늘날짜를 지났으면
+		if(current_date < sur_sat_date || sur_end_date <= current_date){ //시작하지않았거나, 끝났을경우
 			if(confirm("게시글을 삭제하시겠습니까?")!=0){
 				deleteOK.submit();
 			}else{
@@ -254,9 +258,6 @@
 	<input type="hidden" id="descriptionItem" name="descriptionItem" class="descriptionItem"/>
 </form>
 
-<form name="editOK" action="/foodSen/researchEdit.do" method="post">
-	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq}" />
-</form>
 
 <form name="deleteOK" action="/foodSen/researchDelete.do" method="post">
 	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq}" />

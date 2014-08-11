@@ -285,7 +285,6 @@ public class ResearchView {
 		//설문조사(결과) 레코드get
 		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq);
 		
-		
 		request.setAttribute("sur_seq", sur_seq);
 		request.setAttribute("resultClass", resultClass);//설문조사(정보)레코드
 		request.setAttribute("cnt", cnt); //설문조사 문항개수
