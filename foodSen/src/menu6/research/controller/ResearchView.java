@@ -49,7 +49,7 @@ public class ResearchView {
 	private List<ResearchDTO2> resultClass2 = new ArrayList<ResearchDTO2>();
 	//설문조사(결과)
 	private ResearchDTO3 paramClass3 = new ResearchDTO3();
-	private ResearchDTO resultClass3 = new ResearchDTO();
+	private List<ResearchDTO3> resultClass3 = new ArrayList<ResearchDTO3>();
 	private List<ResearchDTO3> resultClass33 = new ArrayList<ResearchDTO3>();
 	
 	//설문조사 문제 모음
@@ -252,6 +252,36 @@ public class ResearchView {
 		request.setAttribute("resultClass3", resultClass3);//설문조사(결과)레코드
 		request.setAttribute("res_cnt_arr", res_cnt_arr);//설문조사(결과)선택 카운트
 		return "/view/menu6/research/researchPopup.jsp";
+	}
+	
+	//설문조사 결과_사유 팝업페이지
+	@RequestMapping("/researchResult1.do")
+	public String researchResult1(HttpServletRequest request, HttpSession session) throws SQLException{
+		
+		//요청한 뷰정보 초기화
+		int sur_seq = Integer.parseInt(request.getParameter("sur_seq"));
+		
+		//설문조사(정보) 레코드get
+		resultClass = (ResearchDTO)sqlMapper.queryForObject("Research.selectResearchOne", sur_seq);
+		int cnt = Integer.parseInt(resultClass.getQue_cnt());
+		
+		//설문조사(문제) 레코드get
+		resultClass1 = sqlMapper.queryForList("Research.selectResearchOne1", sur_seq);
+		for(int i=0; i<resultClass1.size(); i++){
+			resultClass1_seq[i] = resultClass1.get(i).getSurq_seq(); //문제의시퀀스 모음
+			title[i] = resultClass1.get(i).getSurq_title(); //문제모음
+		}
+		
+		//설문조사(결과) 레코드get
+		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq);
+		
+		request.setAttribute("sur_seq", sur_seq);
+		request.setAttribute("resultClass", resultClass);//설문조사(정보)레코드
+		request.setAttribute("cnt", cnt); //설문조사 문항개수
+		request.setAttribute("resultClass1", resultClass1);//설문조사(문제)레코드
+		request.setAttribute("title", title); //설문조사(문제배열)
+		request.setAttribute("resultClass3", resultClass3);//설문조사(결과)레코드
+		return "/view/menu6/research/researchChoiceReasonPopup.jsp";
 	}
 	
 } //end of class

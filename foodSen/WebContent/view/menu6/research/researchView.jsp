@@ -31,6 +31,16 @@
 		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=545");
 	}
 	
+	//사유전체보기
+	function goReason(sur_seq){
+		var sur_seq = "${resultClass.sur_seq}";
+		
+		//url
+		url = '/foodSen/researchResult1.do?sur_seq='+sur_seq;
+		// 새로운 윈도우를 엽니다.
+		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=450");
+	}
+	
 
 	function goSave() {
 		var selectYn = "Y";
@@ -82,26 +92,6 @@
 	}; // 문자열을 잘라주는 함수 - 원하는 byte수만큼 잘라준다
 	
 	
-	//사유전체보기
-	function goReason(sur_seq) {
-		var frm = document.reason;    //팝업에 넘길 부모창의 폼
-	
-		frm.sur_seq.value = sur_seq;  //폼의 값들을 셋팅한다.  
-	
-		//빈페이지로 팝업창을 우선 하나 띄운다.
-		window.open('', 'popup_post', 'width=500, height=450, resizable=yes');
-	
-		//부모창의 타겟을 빈페이지로 띄운 팝업창의 이름으로 한다
-		frm.target = 'popup_post';   
-	
-		//넘길 폼의 action을 팝업에 나타낼 페이지로 한다.
-		frm.action = 'researchReason.do';
-	
-		//팝업으로 넘길 값을 가지고있는 폼을 submit 한다.
-		frm.submit();
-	}
-	
-	 
 
 	$(document).ready(function(){
 		$('#goSave').click(function(){
