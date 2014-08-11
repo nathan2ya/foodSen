@@ -7,18 +7,29 @@
 
 <script>
 	function goEdit(cnt){
-		if(cnt > 0){
+		var res_cnt = "${res_cnt}";
+		
+		if(res_cnt > 0){
 			alert("설문 결과가 존재하여 설문기간만 수정하실 수 있습니다.");
+			return;
 		}
 		editOK.submit();
 	}
 
 	function goDelete(){
-		if(confirm("게시글을 삭제하시겠습니까?")!=0){
-			deleteOK.submit();
+		var current_date = "${current_date}"; //오늘날짜
+		var sur_end_date = "${resultClass.sur_end_date}"; //설문종료일
+		
+		if(sur_end_date <= current_date){ //오늘날짜를 지났으면
+			if(confirm("게시글을 삭제하시겠습니까?")!=0){
+				deleteOK.submit();
+			}else{
+				return;
+			}
 		}else{
-			return;
+			alert("설문조사 기간에는 게시글을 삭제할 수 없습니다.");
 		}
+		
 	}
 	
 	//결과전체보기
@@ -241,6 +252,14 @@
 	<input type="hidden" id="suri_seqItem" name="suri_seqItem" class="suri_seqItem"/>
 	<input type="hidden" id="suri_numItem" name="suri_numItem" class="suri_numItem"/>
 	<input type="hidden" id="descriptionItem" name="descriptionItem" class="descriptionItem"/>
+</form>
+
+<form name="editOK" action="/foodSen/researchEdit.do" method="post">
+	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq}" />
+</form>
+
+<form name="deleteOK" action="/foodSen/researchDelete.do" method="post">
+	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq}" />
 </form>
 
 <jsp:include page="../../include/footer.jsp"/>

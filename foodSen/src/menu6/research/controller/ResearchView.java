@@ -161,8 +161,18 @@ public class ResearchView {
 			i_title5[j] = resultClass2.get(j).getSuri_title5();
 		}
 		
+		//설문조사(결과) 레코드get
+		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq);
+		int res_cnt = resultClass3.size(); //결과개수(수정,삭제 유효성을 위해 jsp로 보냄)
+		
+		Calendar today = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String current_date = sdf.format(today.getTime());
+		
 		request.setAttribute("sur_seq", sur_seq);
+		request.setAttribute("res_cnt", res_cnt);
 		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("current_date", current_date);//오늘날짜
 		request.setAttribute("cnt", cnt); //설문조사 문항개수
 		request.setAttribute("resultClass", resultClass); //설문조사(정보)
 		request.setAttribute("resultClass1", resultClass1); //설문조사(문제)
@@ -274,6 +284,7 @@ public class ResearchView {
 		
 		//설문조사(결과) 레코드get
 		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq);
+		
 		
 		request.setAttribute("sur_seq", sur_seq);
 		request.setAttribute("resultClass", resultClass);//설문조사(정보)레코드
