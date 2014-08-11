@@ -63,6 +63,9 @@ public class ResearchView {
 	private String[] i_title4 = new String[16];
 	private String[] i_title5 = new String[16];
 	
+	//설문조사 결과 배열
+	private String[] res_cnt_arr = new String[16];
+	
 	//설문조사 결과 선택개수
 	private int cnt1;
 	private int cnt2;
@@ -211,22 +214,11 @@ public class ResearchView {
 			paramClass3.setSuri_seq(resultClass2_seq[k]);
 			paramClass3 = (ResearchDTO3)sqlMapper.queryForObject("Research.selectResearchOne33", paramClass3);
 			
-			String chosen = paramClass3.getSuri_num().substring(0, 1);
-			System.out.println("선택한문제번호 : "+chosen);
-			
-			if(chosen.equals("①")) cnt1++;
-			if(chosen.equals("②")) cnt2++;
-			if(chosen.equals("③")) cnt3++;
-			if(chosen.equals("④")) cnt4++;
-			if(chosen.equals("⑤")) cnt5++;
+			//String chosen = paramClass3.getSuri_num().substring(0, 1);
+			res_cnt_arr[k] = paramClass3.getSuri_num().substring(0, 1);
 		}
 		
-		System.out.println("총선택된값");
-		System.out.println("1번 : "+cnt1);
-		System.out.println("2번 : "+cnt2);
-		System.out.println("3번 : "+cnt3);
-		System.out.println("4번 : "+cnt4);
-		System.out.println("5번 : "+cnt5);
+		
 		
 		request.setAttribute("sur_seq", sur_seq);
 		request.setAttribute("resultClass", resultClass);//설문조사(정보)레코드
