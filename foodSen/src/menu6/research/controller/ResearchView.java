@@ -164,20 +164,39 @@ public class ResearchView {
 		
 		//설문조사(정보) 레코드get
 		resultClass = (ResearchDTO)sqlMapper.queryForObject("Research.selectResearchOne", sur_seq);
+		int cnt = Integer.parseInt(resultClass.getQue_cnt());
 		
 		//설문조사(문제) 레코드get
 		resultClass1 = sqlMapper.queryForList("Research.selectResearchOne1", sur_seq);
 		
+		//설문조사(문제) 레코드get
+		resultClass1 = sqlMapper.queryForList("Research.selectResearchOne1", sur_seq);
+		for(int i=0; i<resultClass1.size(); i++){
+			title[i] = resultClass1.get(i).getSurq_title();
+		}
+		
 		//설문조사(문항) 레코드get
 		resultClass2 = sqlMapper.queryForList("Research.selectResearchOne2", sur_seq);
+		for(int j=0; j<resultClass2.size(); j++){
+			i_title1[j] = resultClass2.get(j).getSuri_title1();
+			i_title2[j] = resultClass2.get(j).getSuri_title2();
+			i_title3[j] = resultClass2.get(j).getSuri_title3();
+			i_title4[j] = resultClass2.get(j).getSuri_title4();
+			i_title5[j] = resultClass2.get(j).getSuri_title5();
+		}
 		
-		//설문조사(결과) 레코드get
-		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq);
 		
 		request.setAttribute("sur_seq", sur_seq);
 		request.setAttribute("resultClass", resultClass);//설문조사(정보)레코드
+		request.setAttribute("cnt", cnt); //설문조사 문항개수
 		request.setAttribute("resultClass1", resultClass1);//설문조사(문제)레코드
-		request.setAttribute("resultClass2", resultClass2);//설문조사(문항)레코드
+		request.setAttribute("title", title); //설문조사(문제배열)
+		request.setAttribute("resultClass2", resultClass2); //설문조사(문항)
+		request.setAttribute("i_title1", i_title1); //설문조사(문항배열)
+		request.setAttribute("i_title2", i_title2); //설문조사(문항배열)
+		request.setAttribute("i_title3", i_title3); //설문조사(문항배열)
+		request.setAttribute("i_title4", i_title4); //설문조사(문항배열)
+		request.setAttribute("i_title5", i_title5); //설문조사(문항배열)
 		request.setAttribute("resultClass3", resultClass3);//설문조사(문항)레코드
 		return "/view/menu6/research/researchPopup.jsp";
 	}
