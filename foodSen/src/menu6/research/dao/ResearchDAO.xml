@@ -107,9 +107,6 @@
 	
 	
 	
-	
-	
-	
 	<!-- select -->
 	<select id="selectAll" resultMap="researchRes" parameterClass="int">
 		select * from TB_06_RS

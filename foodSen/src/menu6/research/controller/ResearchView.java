@@ -84,7 +84,6 @@ public class ResearchView {
 	@RequestMapping("/researchView.do")
 	public String researchView(HttpServletRequest request, HttpSession session) throws SQLException{
 		
-		
 		/*
 		 * 요청한 뷰정보 초기화
 		 * sur_seq, currentPage, searchingNow

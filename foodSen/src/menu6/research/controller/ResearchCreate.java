@@ -862,7 +862,7 @@ public class ResearchCreate {
 		
 		
 		/*
-		 * 분할시킨 레코드 각각 insert 시작(최대16번)
+		 * 분할시킨 레코드 각각 insert 시작(최소1번 ~ 최대16번)
 		*/
 		
 		//설문조사문항 개수
@@ -873,7 +873,12 @@ public class ResearchCreate {
 		paramClass3.setSur_seq(sur_seq);
 		
 		
-		//1번문제의 선택문항, 선택사유 레코드
+		/*
+		 * 1번문제의 시퀀스, 1번문항의 시퀀스, 1번문제, 1번문제의 선택문항, 1번문제의 선택사유 레코드
+		 * 2번문제의 시퀀스, 2번문항의 시퀀스, 2번문제, 2번문제의 선택문항, 2번문제의 선택사유 레코드
+		 * 								     ... 이하 동일 ...
+		*/
+		//1번문제
 		if(1 <= que_cnt){
 			paramClass3.setSuri_seq(suri_seq_arr[0]); //문항시퀀스
 			paramClass3.setSurq_seq(surq_seq_arr[0]); //문제시퀀스
@@ -889,8 +894,247 @@ public class ResearchCreate {
 		}
 		//.1번문제
 		
+		//2번문제
+		if(2 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[1]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[1]); //문제시퀀스
+			paramClass3.setSurq_title(title[1]); //문제
+			paramClass3.setSuri_num(i_title[1]); //선택문항
+			paramClass3.setDescription(description[1]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.2번문제
 		
-		return "";
+		//3번문제
+		if(3 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[2]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[2]); //문제시퀀스
+			paramClass3.setSurq_title(title[2]); //문제
+			paramClass3.setSuri_num(i_title[2]); //선택문항
+			paramClass3.setDescription(description[2]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.3번문제
+		
+		//4번문제
+		if(4 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[3]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[3]); //문제시퀀스
+			paramClass3.setSurq_title(title[3]); //문제
+			paramClass3.setSuri_num(i_title[3]); //선택문항
+			paramClass3.setDescription(description[3]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.4번문제
+		
+		//5번문제
+		if(5 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[4]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[4]); //문제시퀀스
+			paramClass3.setSurq_title(title[4]); //문제
+			paramClass3.setSuri_num(i_title[4]); //선택문항
+			paramClass3.setDescription(description[4]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.5번문제
+		
+		//6번문제
+		if(6 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[5]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[5]); //문제시퀀스
+			paramClass3.setSurq_title(title[5]); //문제
+			paramClass3.setSuri_num(i_title[5]); //선택문항
+			paramClass3.setDescription(description[5]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.6번문제
+		
+		//7번문제
+		if(7 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[6]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[6]); //문제시퀀스
+			paramClass3.setSurq_title(title[6]); //문제
+			paramClass3.setSuri_num(i_title[6]); //선택문항
+			paramClass3.setDescription(description[6]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.7번문제
+		
+		//8번문제
+		if(8 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[7]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[7]); //문제시퀀스
+			paramClass3.setSurq_title(title[7]); //문제
+			paramClass3.setSuri_num(i_title[7]); //선택문항
+			paramClass3.setDescription(description[7]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.8번문제
+		
+		//9번문제
+		if(9 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[8]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[8]); //문제시퀀스
+			paramClass3.setSurq_title(title[8]); //문제
+			paramClass3.setSuri_num(i_title[8]); //선택문항
+			paramClass3.setDescription(description[8]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.9번문제
+		
+		//10번문제
+		if(10 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[9]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[9]); //문제시퀀스
+			paramClass3.setSurq_title(title[9]); //문제
+			paramClass3.setSuri_num(i_title[9]); //선택문항
+			paramClass3.setDescription(description[9]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.10번문제
+		
+		//11번문제
+		if(11 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[10]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[10]); //문제시퀀스
+			paramClass3.setSurq_title(title[10]); //문제
+			paramClass3.setSuri_num(i_title[10]); //선택문항
+			paramClass3.setDescription(description[10]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.11번문제
+		
+		//12번문제
+		if(12 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[11]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[11]); //문제시퀀스
+			paramClass3.setSurq_title(title[11]); //문제
+			paramClass3.setSuri_num(i_title[11]); //선택문항
+			paramClass3.setDescription(description[11]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.12번문제
+		
+		//13번문제
+		if(13 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[12]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[12]); //문제시퀀스
+			paramClass3.setSurq_title(title[12]); //문제
+			paramClass3.setSuri_num(i_title[12]); //선택문항
+			paramClass3.setDescription(description[12]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.13번문제
+		
+		//14번문제
+		if(14 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[13]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[13]); //문제시퀀스
+			paramClass3.setSurq_title(title[13]); //문제
+			paramClass3.setSuri_num(i_title[13]); //선택문항
+			paramClass3.setDescription(description[13]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.14번문제
+		
+		//15번문제
+		if(15 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[14]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[14]); //문제시퀀스
+			paramClass3.setSurq_title(title[14]); //문제
+			paramClass3.setSuri_num(i_title[14]); //선택문항
+			paramClass3.setDescription(description[14]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.15번문제
+		
+		//16번문제
+		if(16 <= que_cnt){
+			paramClass3.setSuri_seq(suri_seq_arr[15]); //문항시퀀스
+			paramClass3.setSurq_seq(surq_seq_arr[15]); //문제시퀀스
+			paramClass3.setSurq_title(title[15]); //문제
+			paramClass3.setSuri_num(i_title[15]); //선택문항
+			paramClass3.setDescription(description[15]); //선택사유
+			paramClass3.setWriter(session_id); //작성자
+			paramClass3.setReg_name(session_id); //등록자
+			paramClass3.setReg_date(today.getTime());//등록일
+			paramClass3.setUdt_name(session_id); //수정자
+			paramClass3.setUdt_date(today.getTime()); //수정일
+			sqlMapper.insert("Research.insertResearch3", paramClass3);
+		}
+		//.16번문제
+		
+		return "redirect:/researchList.do"; //리스트로 리다이렉트
 	}
 	
 } //end of class
