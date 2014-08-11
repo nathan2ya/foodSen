@@ -157,4 +157,37 @@ public class ResearchView {
 		return "/view/menu6/research/researchView.jsp";
 	}
 	
+	//설문조사 결과 팝업페이지
+	@RequestMapping("/researchResult.do")
+	public String researchResult(HttpServletRequest request, HttpSession session) throws SQLException{
+		
+		//요청한 뷰정보 초기화
+		int sur_seq = Integer.parseInt(request.getParameter("sur_seq"));
+		System.out.println("sur_seq : "+sur_seq);
+		/*
+		//설문조사(정보) 레코드get
+		resultClass = (ResearchDTO)sqlMapper.queryForObject("Research.selectResearchOne", sur_seq);
+		int cnt = Integer.parseInt(resultClass.getQue_cnt());
+		
+		//설문조사(문제) 레코드get
+		resultClass1 = sqlMapper.queryForList("Research.selectResearchOne1", sur_seq);
+		for(int i=0; i<resultClass1.size(); i++){
+			title[i] = resultClass1.get(i).getSurq_title();
+		}
+		
+		//설문조사(문항) 레코드get
+		resultClass2 = sqlMapper.queryForList("Research.selectResearchOne2", sur_seq);
+		for(int j=0; j<resultClass2.size(); j++){
+			i_title1[j] = resultClass2.get(j).getSuri_title1();
+			i_title2[j] = resultClass2.get(j).getSuri_title2();
+			i_title3[j] = resultClass2.get(j).getSuri_title3();
+			i_title4[j] = resultClass2.get(j).getSuri_title4();
+			i_title5[j] = resultClass2.get(j).getSuri_title5();
+		}
+		*/
+		
+		request.setAttribute("sur_seq", sur_seq);
+		return "/view/menu6/research/researchPopup.jsp";
+	}
+	
 } //end of class

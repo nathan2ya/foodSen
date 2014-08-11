@@ -20,6 +20,17 @@
 			return;
 		}
 	}
+	
+	//결과전체보기
+	function goResultView(){
+		var sur_seq = "${resultClass.sur_seq}";
+		
+		//url
+		url = '/foodSen/researchResult.do?sur_seq='+sur_seq;
+		// 새로운 윈도우를 엽니다.
+		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=550,height=545");
+	}
+	
 
 	function goSave() {
 		var selectYn = "Y";
@@ -70,6 +81,8 @@
 	    return str;
 	}; // 문자열을 잘라주는 함수 - 원하는 byte수만큼 잘라준다
 	
+	
+	//사유전체보기
 	function goReason(sur_seq) {
 		var frm = document.reason;    //팝업에 넘길 부모창의 폼
 	
@@ -87,24 +100,8 @@
 		//팝업으로 넘길 값을 가지고있는 폼을 submit 한다.
 		frm.submit();
 	}
-
-	function goResult(sur_seq) {
-		var frm = document.reason;    //팝업에 넘길 부모창의 폼
 	
-		frm.sur_seq.value = sur_seq;  //폼의 값들을 셋팅한다.  
-	
-		//빈페이지로 팝업창을 우선 하나 띄운다.
-		window.open('', 'popup_post', 'width=550, height=545, resizable=yes');
-	
-		//부모창의 타겟을 빈페이지로 띄운 팝업창의 이름으로 한다
-		frm.target = 'popup_post';   
-	
-		//넘길 폼의 action을 팝업에 나타낼 페이지로 한다.
-		frm.action = 'researchResult.do';
-	
-		//팝업으로 넘길 값을 가지고있는 폼을 submit 한다.
-		frm.submit();
-	}
+	 
 
 	$(document).ready(function(){
 		$('#goSave').click(function(){
@@ -226,8 +223,8 @@
 					<span class="per_l"><a href="javascript:goSave()" class="pre_r" id="goSave">저장</a></span>
 					
 					<c:if test="${sessionScope.session_admin_yn == 'y'}">
-						<span class="wte_l"><a href="javascript:goResult('${resultClass.sur_seq }')" class="wte_r">결과보기</a></span>
-						<span class="wte_l"><a href="javascript:goReason('${resultClass.sur_seq }')" class="wte_r">사유전체보기</a></span>
+						<span class="wte_l"><a href="javascript:goResultView()" class="wte_r">설문결과</a></span>
+						<span class="wte_l"><a href="javascript:goReason()" class="wte_r">사유전체보기</a></span>
 					</c:if>
 
 				</span> 
@@ -245,32 +242,4 @@
 </div>
 
 
-
-
-<form name="editOK" action="researchEdit.do" method="post">
-	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq}" />
-</form>
-
-<form name="deleteOK" action="researchDelete.do" method="post">
-	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq}" />
-	<input type="hidden" name="url" id="url" value="research">
-</form>
-
-<form name="saveOK" action="/foodSen/researchSave.do" method="post">
-	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq}" />
-	<input type="hidden" id="surq_seqItem" name="surq_seqItem" class="surq_seqItem" />
-	<input type="hidden" id="surq_item" name="surq_item"  class="surq_item"/>
-	<input type="hidden" id="suri_seqItem" name="suri_seqItem" class="suri_seqItem"/>
-	<input type="hidden" id="suri_numItem" name="suri_numItem" class="suri_numItem"/>
-	<input type="hidden" id="descriptionItem" name="descriptionItem" class="descriptionItem"/>
-</form>
-
-<form name="reason" method="post">
-	<input type="hidden" id="sur_seq" name="sur_seq"/>
-</form>
-
-<form name="result" action="researchResult.do" method="post">
-	<input type="hidden" id="sur_seq" name="sur_seq" value="${resultClass.sur_seq}" />
-</form>
- 
 <jsp:include page="../../include/footer.jsp"/>
