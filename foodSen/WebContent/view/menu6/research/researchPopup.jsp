@@ -68,32 +68,32 @@
 						</tr>
 						<tr>
 							<td class="tl">¨ç</td>
-							<td class="tl"><img alt="${i_title1[i]}" src="./images/graph/bar1.JPG" width="99px" height="10px"></td>
-							<td>&nbsp;99</td>
+							<td class="tl"><img alt="${i_title1[i]}" src="./images/graph/bar1.JPG" width="${res_cnt_arr[i][0] * 10}px" height="10px"></td>
+							<td>&nbsp;${res_cnt_arr[i][0]}</td>
 							<td><span class="title">¨ç ${i_title1[i]}</span></td>
 						</tr>
 						<tr>
 							<td class="tl">¨è</td>
-							<td class="tl"><img alt="${i_title2[i]}" src="./images/graph/bar2.JPG" width="88px" height="10px"></td>
-							<td>&nbsp;88</td>
+							<td class="tl"><img alt="${i_title2[i]}" src="./images/graph/bar2.JPG" width="${res_cnt_arr[i][1] * 10}px" height="10px"></td>
+							<td>&nbsp;${res_cnt_arr[i][1]}</td>
 							<td><span class="title">¨è ${i_title2[i]}</span></td>
 						</tr>
 						<tr>
 							<td class="tl">¨é</td>
-							<td class="tl"><img alt="${i_title3[i]}" src="./images/graph/bar3.JPG" width="77px" height="10px"></td>
-							<td>&nbsp;77</td>
+							<td class="tl"><img alt="${i_title3[i]}" src="./images/graph/bar3.JPG" width="${res_cnt_arr[i][2] * 10}px" height="10px"></td>
+							<td>&nbsp;${res_cnt_arr[i][2]}</td>
 							<td><span class="title">¨é ${i_title3[i]}</span></td>
 						</tr>
 						<tr>
 							<td class="tl">¨ê</td>
-							<td class="tl"><img alt="${i_title4[i]}" src="./images/graph/bar4.JPG" width="66px" height="10px"></td>
-							<td>&nbsp;66</td>
+							<td class="tl"><img alt="${i_title4[i]}" src="./images/graph/bar4.JPG" width="${res_cnt_arr[i][3] * 10}px" height="10px"></td>
+							<td>&nbsp;${res_cnt_arr[i][3]}</td>
 							<td><span class="title">¨ê ${i_title4[i]}</span></td>
 						</tr>
 						<tr>
 							<td class="tl">¨ë</td>
-							<td class="tl"><img alt="${i_title5[i]}" src="./images/graph/bar5.JPG" width="55px" height="10px"></td>
-							<td>&nbsp;55</td>
+							<td class="tl"><img alt="${i_title5[i]}" src="./images/graph/bar5.JPG" width="${res_cnt_arr[i][4] * 10}px" height="10px"></td>
+							<td>&nbsp;${res_cnt_arr[i][4]}</td>
 							<td><span class="title">¨ë ${i_title5[i]}</span></td>
 						</tr>
 						<tr><td colsapn="4"><br/></td></tr>

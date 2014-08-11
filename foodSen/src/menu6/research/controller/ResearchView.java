@@ -64,7 +64,7 @@ public class ResearchView {
 	private String[] i_title5 = new String[16];
 	
 	//설문조사 결과 배열
-	private String[] res_cnt_arr = new String[16];
+	private int[][] res_cnt_arr = new int[16][5];
 	
 	//설문조사 결과 선택개수
 	private int cnt1;
@@ -209,15 +209,35 @@ public class ResearchView {
 		//공통사항
 		paramClass3.setSur_seq(sur_seq); //몇번글
 		
+		//모든배열값 초기화
+		for(int k=0; k<resultClass2.size(); k++){
+			res_cnt_arr[k][0]=0;
+			res_cnt_arr[k][0]=0;
+			res_cnt_arr[k][0]=0;
+			res_cnt_arr[k][0]=0;
+			res_cnt_arr[k][0]=0;
+		}
+		//매번 팝업을 클릭할때마다 새롭게 카운트
 		for(int k=0; k<resultClass2.size(); k++){
 			paramClass3.setSurq_seq(resultClass1_seq[k]);
 			paramClass3.setSuri_seq(resultClass2_seq[k]);
 			paramClass3 = (ResearchDTO3)sqlMapper.queryForObject("Research.selectResearchOne33", paramClass3);
 			
-			//String chosen = paramClass3.getSuri_num().substring(0, 1);
-			res_cnt_arr[k] = paramClass3.getSuri_num().substring(0, 1);
+			String chosen = paramClass3.getSuri_num().substring(0, 1);
+			if(chosen.equals("①")) res_cnt_arr[k][0]++;
+			if(chosen.equals("②")) res_cnt_arr[k][1]++;
+			if(chosen.equals("③")) res_cnt_arr[k][2]++;
+			if(chosen.equals("④")) res_cnt_arr[k][3]++;
+			if(chosen.equals("⑤")) res_cnt_arr[k][4]++;
+			
+			System.out.println("---------------------------------------");
+			System.out.println(k+"번문제");
+			System.out.println("1번문항 선택개수 : "+res_cnt_arr[k][0]);
+			System.out.println("2번문항 선택개수 : "+res_cnt_arr[k][1]);
+			System.out.println("3번문항 선택개수 : "+res_cnt_arr[k][2]);
+			System.out.println("4번문항 선택개수 : "+res_cnt_arr[k][3]);
+			System.out.println("5번문항 선택개수 : "+res_cnt_arr[k][4]);
 		}
-		
 		
 		
 		request.setAttribute("sur_seq", sur_seq);
@@ -231,7 +251,8 @@ public class ResearchView {
 		request.setAttribute("i_title3", i_title3); //설문조사(문항3배열)
 		request.setAttribute("i_title4", i_title4); //설문조사(문항4배열)
 		request.setAttribute("i_title5", i_title5); //설문조사(문항5배열)
-		request.setAttribute("resultClass3", resultClass3);//설문조사(문항)레코드
+		request.setAttribute("resultClass3", resultClass3);//설문조사(결과)레코드
+		request.setAttribute("res_cnt_arr", res_cnt_arr);//설문조사(결과)선택 카운트
 		return "/view/menu6/research/researchPopup.jsp";
 	}
 	
