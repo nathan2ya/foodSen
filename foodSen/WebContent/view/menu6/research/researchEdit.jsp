@@ -21,6 +21,8 @@
 
 	function goEdit(){
 		var current_date = "${current_date}";
+		var sur_sat_date = "${resultClass.sur_sat_date}";
+		var sur_end_date = "${resultClass.sur_end_date}";
 		
 		if(!editOK.sur_title.value){
 			alert("제목을 입력하세요.");
@@ -33,10 +35,12 @@
 			return;
 		}
 		
-		if(editOK.sur_sat_date.value < current_date){
-			alert("설문조사 시작일은 현재일 이후만 등록가능합니다.");
-			editOK.sur_sat_date.focus();
-			return;
+		if(current_date < sur_sat_date){ //설문조사 진행전이면
+			if(editOK.sur_sat_date.value < current_date){
+				alert("설문조사 시작일은 현재일 이후만 등록가능합니다.");
+				editOK.sur_sat_date.focus();
+				return;
+			}
 		}
 		
 		if(editOK.sur_sat_date.value > editOK.sur_end_date.value){
@@ -47,6 +51,12 @@
 		
 		if(!editOK.sur_end_date.value){
 			alert("종료날짜를 선택하세요.");
+			editOK.sur_end_date.focus();
+			return;
+		}
+		
+		if(editOK.sur_end_date.value < sur_end_date){
+			alert("종료날짜는 기존종료일 이후만 수정가능합니다. \n 기존종료일 "+sur_end_date+" 입니다.");
 			editOK.sur_end_date.focus();
 			return;
 		}
@@ -323,6 +333,7 @@
 											</c:if>
 											<c:if test="${permit == 1}">
 												<p>${i+1}. "${title[i]}"</p>
+												<input type="hidden" id="surq_title${i+1}" name="surq_title${i+1}" value="${title[i]}" />
 											</c:if>
 											<!-- .//문제 -->
 											
