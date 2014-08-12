@@ -311,9 +311,15 @@
 											</c:if>
 											<!-- .//뷰정보 -->
 											
+											<!-- 문제의시퀀스 -->
+											<input type="hidden" id="resultClass1_seq${i+1}" name="resultClass1_seq${i+1}" value="${resultClass1_seq[i]}" />
+											<!-- 문항의시퀀스 -->
+											<input type="hidden" id="resultClass2_seq${i+1}" name="resultClass2_seq${i+1}" value="${resultClass2_seq[i]}" />
+											
+											
 											<!-- 문제 -->
 											<c:if test="${permit == 0}">
-												<p>${i+1}. <input type="text" id="title" name="title" value="${title[i]}" /></p>
+												<p>${i+1}. <input type="text" id="surq_title${i+1}" name="surq_title${i+1}" value="${title[i]}" /></p>
 											</c:if>
 											<c:if test="${permit == 1}">
 												<p>${i+1}. "${title[i]}"</p>
