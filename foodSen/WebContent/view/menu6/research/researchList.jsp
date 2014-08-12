@@ -11,6 +11,22 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
+	
+	//결과보기
+	function goResultView(seq){
+		var sur_seq = seq;
+		
+		if(sur_seq == 20140625){
+			alert("설문조사 진행전입니다.");
+			return;
+		}
+		
+		//url
+		url = '/foodSen/researchResult.do?sur_seq='+sur_seq;
+		// 새로운 윈도우를 엽니다.
+		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=545");
+	}
+	
 	function goView(seq){
 		view.sur_seq.value=seq;
 		view.submit();
@@ -99,21 +115,25 @@
 					<caption>설문조사</caption>
 					<colgroup>
 						<col width="8%"/>
-			            <col width="45%"/>
+			            <col width="*%"/>
 			            <col width="15%"/>
 			            <col width="15%"/>
 			            <col width="10%"/>
 			            <col width="8%"/>
+			            <col width="10%"/>
 					</colgroup>
 					
 					<tbody>
 						<tr>
 							<th>NO</th>
-			                <th>제목</th>
-			                <th>시작일</th>
-			                <th>마감일</th>
-			                <th>완료여부</th>
-			                <th>조회수</th>
+							<th>제목</th>
+							<th>시작일</th>
+							<th>마감일</th>
+							<th>완료여부</th>
+							<th>조회수</th>
+							<c:if test="${sessionScope.session_admin_yn == 'y'}">
+								<th>결과확인</th>
+							</c:if>
 						</tr>
 			
 						<c:if test="${list eq '[]'}">
@@ -158,6 +178,22 @@
 										</c:if>
 									</td>
 									<td align="center">${list.hits}</td>
+									<td align="center">
+										<!-- 진행전 -->
+										<c:if test="${currentTime < list.sur_sat_date}">
+											<a href="javascript:goResultView('20140625')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
+										</c:if>
+										
+										<!-- 진행중 -->
+										<c:if test="${list.sur_sat_date <= currentTime && currentTime <= list.sur_end_date}">
+											<a href="javascript:goResultView('${list.sur_seq}')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
+										</c:if>
+										
+										<!-- 완료시 -->
+										<c:if test="${list.sur_end_date < currentTime}">
+											<a href="javascript:goResultView('${list.sur_seq}')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
+										</c:if>
+									</td>
 								</tr>
 							</c:forEach>
 							
