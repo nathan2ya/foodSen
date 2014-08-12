@@ -35,6 +35,13 @@
 		
 		if(editOK.sur_sat_date.value < current_date){
 			alert("설문조사 시작일은 현재일 이후만 등록가능합니다.");
+			editOK.sur_sat_date.focus();
+			return;
+		}
+		
+		if(editOK.sur_sat_date.value > editOK.sur_end_date.value){
+			alert("시작날짜는 종료날짜보다 과거야야 합니다.");
+			editOK.sur_sat_date.focus();
 			return;
 		}
 		
@@ -46,6 +53,7 @@
 		
 		if(editOK.sur_sat_date.value > editOK.sur_end_date.value){
 			alert("종료날짜는 시작날짜보다 미래여야 합니다.");
+			editOK.sur_end_date.focus();
 			return;
 		}
 		
