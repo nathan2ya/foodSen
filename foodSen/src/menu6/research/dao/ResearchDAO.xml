@@ -157,7 +157,19 @@
 			hits = #hits#
 		where sur_seq = #sur_seq#
 	</update>
+	
+	<update id="updateResearch" parameterClass="researchDTO">
+		UPDATE TB_06_RS
+		SET
+			sur_title = #sur_title#,
+			sur_sat_date = #sur_sat_date#,
+			sur_end_date = #sur_end_date#,
+			udt_name = #udt_name#,
+			udt_date = #udt_date#
+		where sur_seq = #sur_seq#
+	</update>
 
+	
 	
 	
 	<!-- delete -->

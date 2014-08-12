@@ -289,7 +289,7 @@ public class ResearchCreate {
 		/*
 		 * 사용자가 정한 문항개수만큼 문제, 문항에 대해 insert를 실시한다.
 		 * 설문조사 문제 insert (1번~최대16번 실행)
-		 *    각 문제에 포함된 문항5개 insert (1번~최대16번 실행)
+		 *  - 각 문제에 포함된 문항5개 insert (1번~최대16번 실행)
 		*/
 		if(1 <= que_cnt_size){
 			surq_title1 = request.getParameter("surq_title1");

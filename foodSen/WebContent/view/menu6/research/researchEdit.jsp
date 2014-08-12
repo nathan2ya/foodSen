@@ -273,6 +273,7 @@
 									</c:if>
 									<c:if test="${resultClass.sur_sat_date <= current_date && current_date <= resultClass.sur_end_date}">
 										${resultClass.sur_sat_date}
+										<input type="hidden" id="sur_sat_date" name="sur_sat_date" class="inp" style="width:100px;" value="${resultClass.sur_sat_date}" readonly/>
 									</c:if>
 								</td>
 								<th>종료일</th>
@@ -290,6 +291,18 @@
 									
 									<c:forEach var="i" begin="0" end="${cnt-1}" step="1"> 
 										<div class="research">
+											
+											<!-- 뷰정보 -->
+											<input type="hidden" id="sur_seq" name="sur_seq" value="${sur_seq}" />
+											<input type="hidden" id="cnt" name="cnt" value="${cnt}" />
+											<input type="hidden" id="current_date" name="current_date" value="${current_date}" />
+											<input type="hidden" id="searchingNow" name="searchingNow" value="${searchingNow}" />
+											<c:if test="${searchingNow == 1}">
+												<input type="hidden" id="searchType" name="searchType" value="${searchType}" />
+												<input type="hidden" id="userinput" name="userinput" value="${userinput}" />
+											</c:if>
+											<!-- .//뷰정보 -->
+											
 											<!-- 문제 -->
 											<c:if test="${permit == 0}">
 												<p>${i+1}. <input type="text" id="title" name="title" value="${title[i]}" /></p>
@@ -307,25 +320,23 @@
 											
 											<c:if test="${permit == 0}">
 												<ul>
-													<li>① <input type="text" id="item1${i+1}" name="item1" value="${i_title1[i]}" /> </li>
-													<li>② <input type="text" id="item2${i+1}" name="item2" value="${i_title2[i]}" /> </li>
-													<li>③ <input type="text" id="item3${i+1}" name="item3" value="${i_title3[i]}" /> </li>
-													<li>④ <input type="text" id="item4${i+1}" name="item4" value="${i_title4[i]}" /> </li>
-													<li>⑤ <input type="text" id="item5${i+1}" name="item5" value="${i_title5[i]}" /> </li>
+													<li>① <input type="text" id="item1${i+1}" name="item1${i+1}" value="${i_title1[i]}" /> </li>
+													<li>② <input type="text" id="item2${i+1}" name="item2${i+1}" value="${i_title2[i]}" /> </li>
+													<li>③ <input type="text" id="item3${i+1}" name="item3${i+1}" value="${i_title3[i]}" /> </li>
+													<li>④ <input type="text" id="item4${i+1}" name="item4${i+1}" value="${i_title4[i]}" /> </li>
+													<li>⑤ <input type="text" id="item5${i+1}" name="item5${i+1}" value="${i_title5[i]}" /> </li>
 												</ul>
 											</c:if>
 											
 											<c:if test="${permit == 1}">
 												<ul>
-													<li>① ${i_title1[i]}<input type="hidden" id="item1${i+1}" name="item1" value="${i_title1[i]}" /> </li>
-													<li>② ${i_title2[i]}<input type="hidden" id="item2${i+1}" name="item2" value="${i_title2[i]}" /> </li>
-													<li>③ ${i_title3[i]}<input type="hidden" id="item3${i+1}" name="item3" value="${i_title3[i]}" /> </li>
-													<li>④ ${i_title4[i]}<input type="hidden" id="item4${i+1}" name="item4" value="${i_title4[i]}" /> </li>
-													<li>⑤ ${i_title5[i]}<input type="hidden" id="item5${i+1}" name="item5" value="${i_title5[i]}" /> </li>
+													<li>① ${i_title1[i]}<input type="hidden" id="item1${i+1}" name="item1${i+1}" value="${i_title1[i]}" /> </li>
+													<li>② ${i_title2[i]}<input type="hidden" id="item2${i+1}" name="item2${i+1}" value="${i_title2[i]}" /> </li>
+													<li>③ ${i_title3[i]}<input type="hidden" id="item3${i+1}" name="item3${i+1}" value="${i_title3[i]}" /> </li>
+													<li>④ ${i_title4[i]}<input type="hidden" id="item4${i+1}" name="item4${i+1}" value="${i_title4[i]}" /> </li>
+													<li>⑤ ${i_title5[i]}<input type="hidden" id="item5${i+1}" name="item5${i+1}" value="${i_title5[i]}" /> </li>
 												</ul>
 											</c:if>
-											
-											
 											<!-- .//문항 -->
 											
 										</div>

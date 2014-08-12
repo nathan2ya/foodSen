@@ -79,6 +79,11 @@ public class ResearchEdit {
 	private String searchType;
 	private String userinput;
 	
+	//설문조사 문제개수
+	private int cnt;
+	
+	//결과return path
+	private String uri;
 	//DB커넥트 인스턴스 변수
 	SqlMapClientTemplate ibatis = null;
 	public static Reader reader;
@@ -92,7 +97,7 @@ public class ResearchEdit {
 	}
 	//.DB커넥트 생성자 버전 끝
 	
-	//설문조사 수정 페이지
+	//설문조사 수정폼 페이지
 	@RequestMapping("/researchEditForm.do")
 	public String researchEditForm(HttpServletRequest request, HttpSession session) throws SQLException{
 		
@@ -173,6 +178,85 @@ public class ResearchEdit {
 		request.setAttribute("i_title4", i_title4); //설문조사(문항배열)
 		request.setAttribute("i_title5", i_title5); //설문조사(문항배열)
 		return "/view/menu6/research/researchEdit.jsp";
+	}
+	
+	//설문조사 수정 페이지
+	@RequestMapping("/researchEdit.do")
+	public String researchEdit(HttpServletRequest request, HttpSession session) throws Exception{
+		
+		//인코딩
+		request.setCharacterEncoding("euc-kr");
+		
+		//날짜
+		Calendar today = Calendar.getInstance();
+		
+		//작성한 사용자(현재 로그인한 세션아이디)
+		String session_id = (String) session.getAttribute("session_id");
+		
+
+		/*
+		 * 요청한 뷰정보 초기화
+		 * sur_seq, currentPage, searchingNow, permit
+		*/
+		int sur_seq = Integer.parseInt(request.getParameter("sur_seq"));
+		if(null == request.getParameter("currentPage")){
+			currentPage = 1;
+		}else{
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		searchingNow = Integer.parseInt(request.getParameter("searchingNow"));
+		
+		//검색일 경우 존재하는 변수 초기화
+		if(searchingNow==1){
+			searchType = request.getParameter("searchType");
+			userinput = request.getParameter("userinput");
+			uri = "redirect:/researchView.do?sur_seq="+sur_seq+"&currentPage="+currentPage+"&searchingNow=1&searchType="+searchType+"&userinput="+userinput;
+		}else{
+			uri = "redirect:/researchView.do?sur_seq="+sur_seq+"&currentPage="+currentPage+"&searchingNow=0&searchType=0&userinput=0";
+		}
+		
+		permit = request.getParameter("permit");
+		cnt = Integer.parseInt(request.getParameter("cnt")); //문제개수
+		//.요청한 뷰정보
+		
+		
+		
+		
+		//-----------------------------------------------------------------------------------------------------------------------------------------//
+
+		/*
+		 * 설문조사 정보 update
+		 * 설문조사 게시글 데이터
+		 * PK : sur_seq
+		*/
+		//사용자가 입력한 값(정보)
+		String sur_title = request.getParameter("sur_title");
+		String sur_sat_date = request.getParameter("sur_sat_date");
+		String sur_end_date = request.getParameter("sur_end_date");
+		
+		//DTO Set()
+		paramClass.setSur_seq(sur_seq);
+		paramClass.setSur_title(sur_title);
+		paramClass.setSur_sat_date(sur_sat_date);
+		paramClass.setSur_end_date(sur_end_date);
+		paramClass.setUdt_name(session_id);
+		paramClass.setUdt_date(today.getTime());
+		sqlMapper.update("Research.updateResearch", paramClass);
+		
+		//-----------------------------------------------------------------------------------------------------------------------------------------//
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return uri; //수정요청했던 뷰페이지로 리다이렉트
 	}
 	
 } //end of class
