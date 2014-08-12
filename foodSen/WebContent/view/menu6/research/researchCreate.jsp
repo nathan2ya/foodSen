@@ -15,11 +15,6 @@
 	function goCreate(){
 		var current_date = "${current_date}";
 		
-		if(researchCreateForm.sur_sat_date.value < current_date){
-			alert("설문조사 시작일은 현재일 이후만 등록가능합니다.");
-			return;
-		}
-		
 		if(!researchCreateForm.sur_title.value){
 			alert("제목을 입력하세요.");
 			researchCreateForm.sur_title.focus();
@@ -32,6 +27,17 @@
 			return;
 		}
 		
+		if(researchCreateForm.sur_sat_date.value < current_date){
+			alert("설문조사 시작일은 현재일 이후만 등록가능합니다.");
+			return;
+		}
+		
+		if(researchCreateForm.sur_sat_date.value > researchCreateForm.sur_end_date.value){
+			alert("시작날짜는 종료날짜보다 과거여야 합니다.");
+			researchCreateForm.sur_sat_date.focus();
+			return;
+		}
+		
 		if(!researchCreateForm.sur_end_date.value){
 			alert("종료날짜를 선택하세요.");
 			researchCreateForm.sur_end_date.focus();
@@ -40,6 +46,7 @@
 		
 		if(researchCreateForm.sur_sat_date.value > researchCreateForm.sur_end_date.value){
 			alert("종료날짜는 시작날짜보다 미래여야 합니다.");
+			researchCreateForm.sur_end_date.focus();
 			return;
 		}
 		
