@@ -465,18 +465,17 @@ public class ResearchEdit {
 		 *  - 각 문제에 포함된 문항5개 insert (1번~최대16번 실행)
 		*/
 		if(1 <= que_cnt_size){
+			//문제의시퀀스
 			surq_seq1 = Integer.parseInt(request.getParameter("resultClass1_seq1"));
 			surq_title1 = request.getParameter("surq_title1");
 			
 			paramClass1.setSurq_seq(surq_seq1);
 			paramClass1.setSurq_title(surq_title1);
-			//설문조사 문제 update
-			sqlMapper.update("Research.updateResearch1", paramClass1);
+			sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
 			
-			/*
-			//설문조사 문제 최대시퀀스
-			resultClass1 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
-			int surq_seq = (int)(resultClass1.getSurq_seq());
+			
+			//문항의시퀀스
+			suri_seq1 = Integer.parseInt(request.getParameter("resultClass2_seq1"));
 			
 			//사용자가 입력한 값(문항)
 			item11 = request.getParameter("item11");
@@ -485,7 +484,8 @@ public class ResearchEdit {
 			item41 = request.getParameter("item41");
 			item51 = request.getParameter("item51");
 			
-			paramClass2.setSurq_seq(surq_seq);
+			paramClass2.setSurq_seq(surq_seq1);
+			paramClass2.setSuri_seq(suri_seq1);
 			paramClass2.setSuri_title1(item11);
 			paramClass2.setSuri_title2(item21);
 			paramClass2.setSuri_title3(item31);
@@ -496,8 +496,7 @@ public class ResearchEdit {
 			paramClass2.setSuri_num3(31);
 			paramClass2.setSuri_num4(41);
 			paramClass2.setSuri_num5(51);
-			sqlMapper.insert("Research.insertResearch2", paramClass2);
-			*/
+			sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
 		}
 		
 		

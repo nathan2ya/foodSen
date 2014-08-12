@@ -177,9 +177,26 @@
 			udt_date = #udt_date#
 		where sur_seq = #sur_seq# and surq_seq = #surq_seq#
 	</update>
+	
+	<update id="updateResearch2" parameterClass="researchDTO2">
+		UPDATE TB_06_RSI
+		SET
+			suri_title1 = #suri_title1#,
+			suri_title2 = #suri_title2#,
+			suri_title3 = #suri_title3#,
+			suri_title4 = #suri_title4#,
+			suri_title5 = #suri_title5#,
+			suri_num1 = #suri_num1#,
+			suri_num2 = #suri_num2#,
+			suri_num3 = #suri_num3#,
+			suri_num4 = #suri_num4#,
+			suri_num5 = #suri_num5#,
+			udt_name = #udt_name#,
+			udt_date = #udt_date#
+		where sur_seq = #sur_seq# and surq_seq = #surq_seq# and suri_seq = #suri_seq#
+	</update>
+	
 
-	
-	
 	
 	<!-- delete -->
 	<delete id="deleteResearch" parameterClass="int">
