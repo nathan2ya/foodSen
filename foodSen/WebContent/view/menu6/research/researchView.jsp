@@ -65,18 +65,18 @@
 		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=450");
 	}
 	
-
+	//저장
 	function goSave() {
 		var current_date = "${current_date}"; //오늘날짜
 		var sur_sat_date = "${resultClass.sur_sat_date}"; //설문시작일
 		var sur_end_date = "${resultClass.sur_end_date}"; //설문종료일
 		
 		if(current_date < sur_sat_date){//설문조사 시작전일때
-			alert("설문조사는 기간이 아닙니다.");
+			alert("지금은 설문조사는 기간이 아닙니다. \n 시작일자는 "+sur_sat_date+" 입니다.");
 			return;
 		}
 		if(sur_end_date < current_date){//설문조사 종료되었을때
-			alert("설문조사가 종료되었습니다.");
+			alert("설문조사가 종료되어 참여하실 수 없습니다.");
 			return;
 		}
 		
@@ -219,15 +219,15 @@
 								
 								<c:forEach var="i" begin="0" end="${cnt-1}" step="1"> 
 									<div class="research">
-										<p>${i+1}. ${title[i] }</p>
-										<input type="hidden" id="surq_seqItem${i+1 }" name="surq_seqItem" class="txt" value="${i+1 }">
-										<input type="hidden" id="surq_item${i+1 }" name="surq_item" value="${title[i]}">
+										<p>${i+1}. ${title[i]}</p>
+										<input type="hidden" id="surq_seqItem${i+1}" name="surq_seqItem" class="txt" value="${i+1}">
+										<input type="hidden" id="surq_item${i+1}" name="surq_item" value="${title[i]}">
 										<ul>
-											<li><input type="radio" id="suri_num${i+1 }" name="suri_numItem${i+1 }" value="① ${i_title1[i] }" />  <label for="suri_num${i+1 }">①  ${i_title1[i] } </label></li>
-											<li><input type="radio" id="suri_num${i+1 }" name="suri_numItem${i+1 }" value="② ${i_title2[i] }" />  <label for="suri_num${i+1 }">②  ${i_title2[i] } </label></li>
-											<li><input type="radio" id="suri_num${i+1 }" name="suri_numItem${i+1 }" value="③ ${i_title3[i] }" />  <label for="suri_num${i+1 }">③  ${i_title3[i] } </label></li>
-											<li><input type="radio" id="suri_num${i+1 }" name="suri_numItem${i+1 }" value="④ ${i_title4[i] }" />  <label for="suri_num${i+1 }">④  ${i_title4[i] } </label></li>
-											<li><input type="radio" id="suri_num${i+1 }" name="suri_numItem${i+1 }" value="⑤ ${i_title5[i] }" />  <label for="suri_num${i+1 }">⑤  ${i_title5[i] } </label></li>
+											<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="① ${i_title1[i]}" />  <label for="suri_num${i+1}">①  ${i_title1[i]} </label></li>
+											<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="② ${i_title2[i]}" />  <label for="suri_num${i+1}">②  ${i_title2[i]} </label></li>
+											<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="③ ${i_title3[i]}" />  <label for="suri_num${i+1}">③  ${i_title3[i]} </label></li>
+											<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="④ ${i_title4[i]}" />  <label for="suri_num${i+1}">④  ${i_title4[i]} </label></li>
+											<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="⑤ ${i_title5[i]}" />  <label for="suri_num${i+1}">⑤  ${i_title5[i]} </label></li>
 											<li>선택사유 <input type="text" id="descriptionItem${i+1 }" name="descriptionItem" class="inp" style="width:200px;" /> </li>
 										</ul>
 									</div>
