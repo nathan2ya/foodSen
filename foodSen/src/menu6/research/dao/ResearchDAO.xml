@@ -153,6 +153,12 @@
 		where sur_seq = #sur_seq# and writer = #writer#
 	</select>
 	
+	<select id="selectWithTitle" resultMap="researchRes" parameterClass="java.lang.String">
+		select * from TB_06_RS
+		where sur_title like  '%'||#userinput#||'%'
+	</select>
+	
+	
 	
 	<!-- update -->
 	<update id="updateHits" parameterClass="researchDTO">

@@ -120,7 +120,7 @@
 			            <col width="15%"/>
 			            <col width="10%"/>
 			            <col width="8%"/>
-			            <col width="10%"/>
+		           		<col width="10%"/>
 					</colgroup>
 					
 					<tbody>
@@ -178,22 +178,26 @@
 										</c:if>
 									</td>
 									<td align="center">${list.hits}</td>
-									<td align="center">
-										<!-- 진행전 -->
-										<c:if test="${currentTime < list.sur_sat_date}">
-											<a href="javascript:goResultView('20140625')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
-										</c:if>
-										
-										<!-- 진행중 -->
-										<c:if test="${list.sur_sat_date <= currentTime && currentTime <= list.sur_end_date}">
-											<a href="javascript:goResultView('${list.sur_seq}')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
-										</c:if>
-										
-										<!-- 완료시 -->
-										<c:if test="${list.sur_end_date < currentTime}">
-											<a href="javascript:goResultView('${list.sur_seq}')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
-										</c:if>
-									</td>
+									
+									<c:if test="${sessionScope.session_admin_yn == 'y'}">
+										<td align="center">
+											<!-- 진행전 -->
+											<c:if test="${currentTime < list.sur_sat_date}">
+												<a href="javascript:goResultView('20140625')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
+											</c:if>
+											
+											<!-- 진행중 -->
+											<c:if test="${list.sur_sat_date <= currentTime && currentTime <= list.sur_end_date}">
+												<a href="javascript:goResultView('${list.sur_seq}')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
+											</c:if>
+											
+											<!-- 완료시 -->
+											<c:if test="${list.sur_end_date < currentTime}">
+												<a href="javascript:goResultView('${list.sur_seq}')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
+											</c:if>
+										</td>
+									</c:if>
+									
 								</tr>
 							</c:forEach>
 							
@@ -237,7 +241,7 @@
 			<div class="search_box">
 		        <form name="search" action="/foodSen/researchSearch.do" method="post">
 		          <select name="searchType">
-		            <option value="title">제목</option>
+		          	<option value="title">제목</option>
 		          </select>
 		          <input type="text" id="userinput" name="userinput" />
 		          <a href="javascript:goSearch()"><img src="./images/sub/btn/btn_serch.gif" alt="검색" /></a> 

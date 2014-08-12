@@ -156,7 +156,6 @@ public class ResearchList {
 		return "/view/menu6/research/researchList.jsp";
 	}
 	
-	/*
 	//설문조사 (검색글) 리스트
 	@RequestMapping("/researchSearch.do")
 	public String researchSearchList(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -172,20 +171,17 @@ public class ResearchList {
 		String userinput = request.getParameter("userinput"); //검색어
 		
 		//검색종류&검색어를 만족하는 레코드 검색
-		if(searchType.equals("title")){
-			list = sqlMapper.queryForList("InspectionResult.selectWithTitle", userinput); //제목 검색
-		}else if(searchType.equals("writer")){
-			list = sqlMapper.queryForList("InspectionResult.selectWithWriter", userinput); //작성자 검색
-		}
-			
+		list = sqlMapper.queryForList("Research.selectWithTitle", userinput); //제목 검색
 		
+		
+		/*
 		 * PagingAction 클래스를 이용하여 페이지정의
 		 * 현재게시판의 페이지단위나 레코드개수를 정의하여 파라미터로 호출
-		
+		*/
 		//PagingAction 파라미터 정의
 		blockCount = 10;// 한 페이지의 게시물의 수
 		blockPage = 5;// 한 화면에 보여줄 페이지 수
-		serviceName = "inspectionResultSearch";// 호출 URI 정의
+		serviceName = "researchSearch";// 호출 URI 정의
 		totalCount = list.size(); // 전체 글 갯수
 		//currentPage 초기화
 		if(null == request.getParameter("currentPage")){
@@ -198,10 +194,10 @@ public class ResearchList {
 		page = new PagingAction(serviceName, currentPage, totalCount, blockCount, blockPage, searchType, userinput); // pagingAction 객체 생성.
 		pagingHtml = page.getPagingHtml().toString(); // 페이지 HTML 생성.
 		
-		
+		/*
 		 * 한페이지의 list에서 startCound ~ endCound 만큼의 레코드를 잘라내는 과정이다.
 		 * 참고 : startCound, endCound 는 현재페이지에 의해 정의되는 변수이다.
-		
+		*/
 		int lastCount = totalCount; // 마지막 레코드 = 개수
 		if (page.getEndCount() < totalCount) //현재페이지 endCound가 / 실제페이지 마지막 totalCount 보다 작을경우 +1 해줌.(이유는 -1했기때문..)
 			lastCount = page.getEndCount() + 1; //+1
@@ -213,6 +209,13 @@ public class ResearchList {
 		//리스트 글번호 가변 계산
 		int number=totalCount-(page.getCurrentPage()-1)*blockCount;
 		
+		//현재날짜
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String currentTime = sdf.format(cal.getTime());
+		//.현재날짜
+		
+		request.setAttribute("currentTime", currentTime);
 		request.setAttribute("number", number);	
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pagingHtml", pagingHtml);
@@ -222,7 +225,7 @@ public class ResearchList {
 		request.setAttribute("tempInput", tempInput);
 		request.setAttribute("totalCount", totalCount);
 		request.setAttribute("searchingNow", searchingNow);
-		return  "/view/menu2/inspectionResultList.jsp";
+		return  "/view/menu6/research/researchList.jsp";
 	}
-	*/
+		
 } //end of class
