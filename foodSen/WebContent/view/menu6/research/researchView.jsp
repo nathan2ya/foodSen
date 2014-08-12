@@ -68,6 +68,11 @@
 		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=450");
 	}
 	
+	function goAlert(){
+		var sur_sat_date = "${resultClass.sur_sat_date}"; //설문시작일
+		alert("설문조사가 시작되어야 결과열람이 가능합니다. \n 설문조사 시작일은 "+sur_sat_date+" 입니다.");
+	}
+	
 	//저장
 	function goSave() {
 		var current_date = "${current_date}"; //오늘날짜
@@ -263,8 +268,23 @@
 					</c:if>
 					
 					<c:if test="${sessionScope.session_admin_yn == 'y'}">
-						<span class="wte_l"><a href="javascript:goResultView()" class="wte_r">설문결과</a></span>
-						<span class="wte_l"><a href="javascript:goReason()" class="wte_r">사유전체보기</a></span>
+						<!-- 진행전 -->
+						<c:if test="${current_date < resultClass.sur_sat_date}">
+							<span class="wte_l"><a href="javascript:goAlert()" class="wte_r">설문결과</a></span>
+							<span class="wte_l"><a href="javascript:goAlert()" class="wte_r">사유전체보기</a></span>
+						</c:if>
+						
+						<!-- 진행중 -->
+						<c:if test="${resultClass.sur_sat_date <= current_date && current_date <= resultClass.sur_end_date}">
+							<span class="wte_l"><a href="javascript:goResultView()" class="wte_r">설문결과</a></span>
+							<span class="wte_l"><a href="javascript:goReason()" class="wte_r">사유전체보기</a></span>
+						</c:if>
+						
+						<!-- 완료시 -->
+						<c:if test="${resultClass.sur_end_date < current_date}">
+							<span class="wte_l"><a href="javascript:goResultView()" class="wte_r">설문결과</a></span>
+							<span class="wte_l"><a href="javascript:goReason()" class="wte_r">사유전체보기</a></span>
+						</c:if>
 					</c:if>
 
 				</span> 
