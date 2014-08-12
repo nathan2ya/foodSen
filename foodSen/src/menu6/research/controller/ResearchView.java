@@ -157,14 +157,30 @@ public class ResearchView {
 		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq);
 		int res_cnt = resultClass3.size(); //결과개수(수정,삭제 유효성을 위해 jsp로 보냄)
 		
+		//현재로그인된 세션이 결과등록한 이력이있는지 판단
+		String session_id = (String) session.getAttribute("session_id");
+		
+		paramClass3.setSur_seq(sur_seq);
+		paramClass3.setWriter(session_id);
+		Integer count = (Integer) sqlMapper.queryForObject("Research.selectCountForPermit", paramClass3);
+		
+		int canSave = 0; // 설문조사 참여가능
+		if(count > 0){
+			canSave = 1; // 설문조사 참여못함
+		}
+		//.참여이력 판단 종료
+		
+		//현재날짜
 		Calendar today = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String current_date = sdf.format(today.getTime());
+		//.현재날짜
 		
 		request.setAttribute("sur_seq", sur_seq);
 		request.setAttribute("res_cnt", res_cnt);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("current_date", current_date);//오늘날짜
+		request.setAttribute("canSave", canSave); //설문조사 참여가능0, 설문조사참여불가능1
 		request.setAttribute("cnt", cnt); //설문조사 문항개수
 		request.setAttribute("resultClass", resultClass); //설문조사(정보)
 		request.setAttribute("resultClass1", resultClass1); //설문조사(문제)

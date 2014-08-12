@@ -73,6 +73,12 @@
 		var current_date = "${current_date}"; //오늘날짜
 		var sur_sat_date = "${resultClass.sur_sat_date}"; //설문시작일
 		var sur_end_date = "${resultClass.sur_end_date}"; //설문종료일
+		var canSave = "${canSave}"; //참여가능0, 참여불가능1
+		
+		if(canSave == 1){
+			alert("이미 설문조사에 참여하셨습니다. \n 설문조사는 1번만 참여하실 수 있습니다.");
+			return;
+		}
 		
 		if(current_date < sur_sat_date){//설문조사 시작전일때
 			alert("지금은 설문조사는 기간이 아닙니다. \n 시작일자는 "+sur_sat_date+" 입니다.");

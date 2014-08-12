@@ -148,6 +148,10 @@
 		where sur_seq = #sur_seq# and surq_seq = #surq_seq# and suri_seq = #suri_seq#
 	</select>
 	
+	<select id="selectCountForPermit" resultClass ="int" parameterClass="researchDTO3">
+		SELECT count(*) FROM TB_06_RSR
+		where sur_seq = #sur_seq# and writer = #writer#
+	</select>
 	
 	
 	<!-- update -->
