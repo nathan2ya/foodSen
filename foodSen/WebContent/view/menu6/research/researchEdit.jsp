@@ -20,6 +20,8 @@
 	}
 
 	function goEdit(){
+		var current_date = "${current_date}";
+		
 		if(!editOK.sur_title.value){
 			alert("제목을 입력하세요.");
 			editOK.sur_title.focus();
@@ -28,6 +30,11 @@
 		if(!editOK.sur_sat_date.value){
 			alert("시작날짜를 선택하세요.");
 			editOK.sur_sat_date.focus();
+			return;
+		}
+		
+		if(editOK.sur_sat_date.value < current_date){
+			alert("설문조사 시작일은 현재일 이후만 등록가능합니다.");
 			return;
 		}
 		
@@ -184,6 +191,19 @@
 			});
 		});
 		
+
+		$('#sur_sat_date').datepicker({
+			dateFormat : 'yy-mm-dd',
+			defaultDate : 0,
+			changeMonth : true,
+			changeYear : true,
+			showMonthAfterYear: true ,
+			yearRange: 'c-90:c+100',
+			dayNamesMin : ['일','월','화','수','목','금','토'],
+			monthNamesShort : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			showAnim : 'slideDown',
+		});
+		
 		$('#sur_end_date').datepicker({
 			dateFormat : 'yy-mm-dd',
 			defaultDate : 0,
@@ -225,64 +245,98 @@
 			
 			<!-- 게시판영역 -->
 			<div class="tbl_box">
-			
-				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tbl_type01" summary="설문조사">
+				<form name="editOK" action="/foodSen/researchEdit.do" method="post">
 				
-		            <caption>설문조사</caption>
-		            <colgroup>
-			            <col width="15%"/>
-			            <col width="20%"/>
-			            <col width="15%"/>
-			            <col width="20%"/>
-			            <col width="15%"/>
-			            <col width="%"/>
-		            </colgroup>
-            
-            
-					<tbody>
-						<tr>
-							<th>제목</th>
-							<td colspan="5" class="tl"><input type="text" id="sur_title" name="sur_title" class="inp" value="${resultClass.sur_title}"/></td>
-						</tr>
-						<tr>
-							<th>시작일</th>
-							<td class="tl">
-								${resultClass.sur_sat_date}
-							</td>
-							<th>종료일</th>
-							<td class="tl">
-								<input id="sur_end_date" name="sur_end_date" class="inp" style="width:100px;" value="${resultClass.sur_end_date}" readonly/>
-							</td>
-							<th>문항수</th>
-							<td class="tl">
-								${resultClass.que_cnt}
-							</td>
-						</tr>
-						<tr>
-							<th>내용</th>
-							<td colspan="5" class="tl">
-								
-								<c:forEach var="i" begin="0" end="${cnt-1}" step="1"> 
-									<div class="research">
-										<p>${i+1}. ${title[i]}</p>
-										<input type="hidden" id="surq_seqItem${i+1}" name="surq_seqItem" class="txt" value="${i+1}">
-										<%-- <input type="hidden" id="suri_seqItem${j.count }" name="suri_seqItem" class="inp" value="${re.suri_seq}"/> --%>
-										<input type="hidden" id="surq_item${i+1}" name="surq_item" value="${title[i]}">
-										<ul>
-											<li><input type="text" id="item1${i+1}" name="item1" value="① ${i_title1[i]}" /> </li>
-											<li><input type="text" id="item2${i+1}" name="item2" value="② ${i_title2[i]}" /> </li>
-											<li><input type="text" id="item3${i+1}" name="item3" value="③ ${i_title3[i]}" /> </li>
-											<li><input type="text" id="item4${i+1}" name="item4" value="④ ${i_title4[i]}" /> </li>
-											<li><input type="text" id="item5${i+1}" name="item5" value="⑤ ${i_title5[i]}" /> </li>
-											<li>선택사유 <input type="text" id="descriptionItem${i+1 }" name="descriptionItem" class="inp" style="width:200px;" /> </li>
-										</ul>
-									</div>
-								</c:forEach> 
-								
-							</td>
-						</tr>
-					</tbody>
-				</table> 
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tbl_type01" summary="설문조사">
+					
+			            <caption>설문조사</caption>
+			            <colgroup>
+				            <col width="15%"/>
+				            <col width="20%"/>
+				            <col width="15%"/>
+				            <col width="20%"/>
+				            <col width="15%"/>
+				            <col width="%"/>
+			            </colgroup>
+	            
+	            
+						<tbody>
+							<tr>
+								<th>제목</th>
+								<td colspan="5" class="tl"><input type="text" id="sur_title" name="sur_title" class="inp" value="${resultClass.sur_title}"/></td>
+							</tr>
+							<tr>
+								<th>시작일</th>
+								<td class="tl">
+									<c:if test="${current_date < resultClass.sur_sat_date}">
+										<input type="text" id="sur_sat_date" name="sur_sat_date" class="inp" style="width:100px;" value="${resultClass.sur_sat_date}" readonly/>
+									</c:if>
+									<c:if test="${resultClass.sur_sat_date <= current_date && current_date <= resultClass.sur_end_date}">
+										${resultClass.sur_sat_date}
+									</c:if>
+								</td>
+								<th>종료일</th>
+								<td class="tl">
+									<input id="sur_end_date" name="sur_end_date" class="inp" style="width:100px;" value="${resultClass.sur_end_date}" readonly/>
+								</td>
+								<th>문항수</th>
+								<td class="tl">
+									${resultClass.que_cnt}
+								</td>
+							</tr>
+							<tr>
+								<th>내용</th>
+								<td colspan="5" class="tl">
+									
+									<c:forEach var="i" begin="0" end="${cnt-1}" step="1"> 
+										<div class="research">
+											<!-- 문제 -->
+											<c:if test="${permit == 0}">
+												<p>${i+1}. <input type="text" id="title" name="title" value="${title[i]}" /></p>
+											</c:if>
+											<c:if test="${permit == 1}">
+												<p>${i+1}. "${title[i]}"</p>
+											</c:if>
+											<!-- .//문제 -->
+											
+											<!-- 문항 -->
+											<input type="hidden" id="surq_seqItem${i+1}" name="surq_seqItem" class="txt" value="${i+1}">
+											<%-- <input type="hidden" id="suri_seqItem${j.count }" name="suri_seqItem" class="inp" value="${re.suri_seq}"/> --%>
+											<input type="hidden" id="surq_item${i+1}" name="surq_item" value="${title[i]}">
+											
+											
+											<c:if test="${permit == 0}">
+												<ul>
+													<li>① <input type="text" id="item1${i+1}" name="item1" value="${i_title1[i]}" /> </li>
+													<li>② <input type="text" id="item2${i+1}" name="item2" value="${i_title2[i]}" /> </li>
+													<li>③ <input type="text" id="item3${i+1}" name="item3" value="${i_title3[i]}" /> </li>
+													<li>④ <input type="text" id="item4${i+1}" name="item4" value="${i_title4[i]}" /> </li>
+													<li>⑤ <input type="text" id="item5${i+1}" name="item5" value="${i_title5[i]}" /> </li>
+												</ul>
+											</c:if>
+											
+											<c:if test="${permit == 1}">
+												<ul>
+													<li>① ${i_title1[i]}<input type="hidden" id="item1${i+1}" name="item1" value="${i_title1[i]}" /> </li>
+													<li>② ${i_title2[i]}<input type="hidden" id="item2${i+1}" name="item2" value="${i_title2[i]}" /> </li>
+													<li>③ ${i_title3[i]}<input type="hidden" id="item3${i+1}" name="item3" value="${i_title3[i]}" /> </li>
+													<li>④ ${i_title4[i]}<input type="hidden" id="item4${i+1}" name="item4" value="${i_title4[i]}" /> </li>
+													<li>⑤ ${i_title5[i]}<input type="hidden" id="item5${i+1}" name="item5" value="${i_title5[i]}" /> </li>
+												</ul>
+											</c:if>
+											
+											
+											<!-- .//문항 -->
+											
+										</div>
+									</c:forEach> 
+									
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+				</form>
 
 				<p class="pt40"></p>
 				

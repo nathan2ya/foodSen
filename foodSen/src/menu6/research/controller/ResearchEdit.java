@@ -162,7 +162,7 @@ public class ResearchEdit {
 		request.setAttribute("permit", permit); //0내용수정가능, 1내용수정불가능
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("current_date", current_date);//오늘날짜
-		request.setAttribute("cnt", cnt); //설문조사 문항개수
+		request.setAttribute("cnt", cnt); //설문조사 문제개수
 		request.setAttribute("resultClass", resultClass); //설문조사(정보)
 		request.setAttribute("resultClass1", resultClass1); //설문조사(문제)
 		request.setAttribute("title", title); //설문조사(문제배열)

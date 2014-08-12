@@ -114,7 +114,7 @@
 		alert("설문이 완료되었습니다.\n참여하여 주셔서 감사합니다.");
 	}
 	
-	function getStrByte(str) {
+	function getStrByte(str){
 		var p, len = 0;
 		for(p=0; p<str.length; p++) {
 			(str.charCodeAt(p) > 255) ? len+=2 : len++; // charCodeAt(문자열) - 문자열을 유니코드값으로 변환하여 255보다 크면 한글.
