@@ -70,14 +70,6 @@ public class ResearchView {
 	//설문조사 번호만 잘라낸 결과
 	private String chosen;
 	
-	//설문조사 결과 선택개수
-	private int cnt1;
-	private int cnt2;
-	private int cnt3;
-	private int cnt4;
-	private int cnt5;
-	
-
 	//뷰정보
 	private int currentPage;
 	private int searchingNow; // 전체글, 검색글을 판단하여 각종 논리성을 판가르는 논리값

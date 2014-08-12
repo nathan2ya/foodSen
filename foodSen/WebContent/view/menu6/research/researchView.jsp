@@ -13,6 +13,9 @@
 		var permit = 0; //0이면 내용수정가능, 1이면 내용수정불가
 		var current_date = "${current_date}"; //오늘날짜
 		var sur_end_date = "${resultClass.sur_end_date}"; //설문종료일
+		var searchType = "${searchType}";
+		var userinput = "${userinput}";
+		var searchingNow = "${searchingNow}";
 		
 		if(sur_end_date < current_date){
 			alert("설문조사가 종료되면 수정이 불가능합니다.");
@@ -24,7 +27,7 @@
 			permit = 1;
 		}
 		
-		location.href = '/foodSen/researchEditForm.do?sur_seq='+sur_seq+'&permit='+permit;
+		location.href = '/foodSen/researchEditForm.do?sur_seq='+sur_seq+'&permit='+permit+'&searchType='+searchType+'&userinput='+userinput+'&searchingNow='+searchingNow;
 	}
 	
 	//삭제
