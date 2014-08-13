@@ -131,9 +131,7 @@
 							<th>마감일</th>
 							<th>완료여부</th>
 							<th>조회수</th>
-							<c:if test="${sessionScope.session_admin_yn == 'y'}">
-								<th>결과확인</th>
-							</c:if>
+							<th>결과확인</th>
 						</tr>
 			
 						<c:if test="${list eq '[]'}">
@@ -179,24 +177,24 @@
 									</td>
 									<td align="center">${list.hits}</td>
 									
-									<c:if test="${sessionScope.session_admin_yn == 'y'}">
-										<td align="center">
-											<!-- 진행전 -->
-											<c:if test="${currentTime < list.sur_sat_date}">
-												<a href="javascript:goResultView('20140625')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
-											</c:if>
-											
-											<!-- 진행중 -->
-											<c:if test="${list.sur_sat_date <= currentTime && currentTime <= list.sur_end_date}">
-												<a href="javascript:goResultView('${list.sur_seq}')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
-											</c:if>
-											
-											<!-- 완료시 -->
-											<c:if test="${list.sur_end_date < currentTime}">
-												<a href="javascript:goResultView('${list.sur_seq}')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
-											</c:if>
-										</td>
-									</c:if>
+									<td align="center">
+										<c:if test="${sessionScope.session_admin_yn == 'y'}">
+												<!-- 진행전 -->
+												<c:if test="${currentTime < list.sur_sat_date}">
+													<a href="javascript:goResultView('20140625')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
+												</c:if>
+												
+												<!-- 진행중 -->
+												<c:if test="${list.sur_sat_date <= currentTime && currentTime <= list.sur_end_date}">
+													<a href="javascript:goResultView('${list.sur_seq}')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
+												</c:if>
+												
+												<!-- 완료시 -->
+												<c:if test="${list.sur_end_date < currentTime}">
+													<a href="javascript:goResultView('${list.sur_seq}')"><img src="./images/sub/btn/btn_view.gif" alt="결과보기" /></a>
+												</c:if>
+										</c:if>
+									</td>
 									
 								</tr>
 							</c:forEach>

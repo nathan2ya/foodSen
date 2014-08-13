@@ -172,6 +172,7 @@
 		UPDATE TB_06_RS
 		SET
 			sur_title = #sur_title#,
+			que_cnt = #que_cnt#,
 			sur_sat_date = #sur_sat_date#,
 			sur_end_date = #sur_end_date#,
 			udt_name = #udt_name#,
@@ -229,6 +230,16 @@
 		where sur_seq = #sur_seq#
 	</delete>
 	
+	
+	<delete id="deleteResearchWhenUpdate1" parameterClass="researchDTO1">
+		delete from TB_06_RSQ
+		where sur_seq = #sur_seq# and surq_seq = #surq_seq#
+	</delete>
+	
+	<delete id="deleteResearchWhenUpdate2" parameterClass="researchDTO2">
+		delete from TB_06_RSI
+		where sur_seq = #sur_seq# and surq_seq = #surq_seq# and suri_seq = #suri_seq#
+	</delete>
 	
 	
 </sqlMap>

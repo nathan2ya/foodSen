@@ -68,17 +68,17 @@
 			}
 			
 			if(item1.value == ""){
-				alert("문제"+i+"번의 1번 항목을 입력하세요.");
+				alert("문제"+i+"번의 1번 항목을 입력하세요. \n 한 문제에 최소 2개의 문항은 존재하여야 합니다.");
 				item1.focus();
 				return;
 			}
 			
 			if(item2.value == ""){
-				alert("문제"+i+"번의 2번 항목을 입력하세요.");
+				alert("문제"+i+"번의 2번 항목을 입력하세요.  \n 한 문제에 최소 2개의 문항은 존재하여야 합니다.");
 				item2.focus();
 				return;
 			}
-			
+			/* 
 			if(item3.value == ""){
 				alert("문제"+i+"번의 3번 항목을 입력하세요.");
 				item3.focus();
@@ -96,7 +96,7 @@
 				item5.focus();
 				return;
 			}
-			
+			 */
 			
 			//문제, 문항의 글자수가 초과되었을때
 			if(getStrByte(titleTxt.value) > 200){
@@ -293,7 +293,6 @@
 					               	   		<!--문제-->
 					      					<p>${i.index }. <input type="text" id="surq_title${i.index}" name="surq_title${i.index}" class="inp"/></p>
 					      					<!--.//문제-->
-					      					
 					      					
 					      					<!--문항-->
 					                        <ul>

@@ -67,11 +67,11 @@
 			return;
 		}
 		
-		var num = $("#que_cnt").text();
+		var num=document.getElementById("que_cnt").value;
 		
 		for(var i=1; i<=num; i++){
 			
-			var titleTxt = document.getElementById("surq_item"+i);
+			var titleTxt = document.getElementById("surq_title"+i);
 			var item1 = document.getElementById("item1"+i);
 			var item2 = document.getElementById("item2"+i);
 			var item3 = document.getElementById("item3"+i);
@@ -85,17 +85,18 @@
 			}
 			
 			if(item1.value == ""){
-				alert("문제"+i+"번의 1번 항목을 입력하세요.");
+				alert("문제"+i+"번의 1번 항목을 입력하세요. \n 한 문제에 최소 2개의 문항은 존재하여야 합니다.");
 				item1.focus();
 				return;
 			}
 			
 			if(item2.value == ""){
-				alert("문제"+i+"번의 2번 항목을 입력하세요.");
+				alert("문제"+i+"번의 2번 항목을 입력하세요. \n 한 문제에 최소 2개의 문항은 존재하여야 합니다.");
 				item2.focus();
 				return;
 			}
 			
+			/* 
 			if(item3.value == ""){
 				alert("문제"+i+"번의 3번 항목을 입력하세요.");
 				item3.focus();
@@ -113,7 +114,8 @@
 				item5.focus();
 				return;
 			}
-			
+			 */
+			 
 			if(getStrByte(titleTxt.value) > 200){
 				alert("문제 제목의 글자수가 초과 되었습니다.");
 				//titleTxt.value = titleTxt.value.cut(120);
@@ -186,30 +188,60 @@
 	    return str;
 	}; // 문자열을 잘라주는 함수 - 원하는 byte수만큼 잘라준다
 	
+	
+	
 	$(document).ready(function(){
-		$('.suri1').show();
-		var cnt = "${cnt}";
+		//시작과 동시에 항목수 만큼 div show
+		var sel = $('#que_cnt option:selected').text(); //항목수 선택값
+		var cnt=0;
 		
+		for(var i=0; i<sel; i++){
+			$('.suri'+i).show();
+			cnt=i;
+		}
+		for(var j=cnt; j<17; j++){ //나머지div는 숨김
+			$('.suri'+(j+1)).hide(); //div숨김
+			$('#surq_title'+(j+2)).val(""); //문제값제거
+			$('#item1'+(j+2)).val("");//항목1값제거
+			$('#item2'+(j+2)).val("");//항목2값제거
+			$('#item3'+(j+2)).val("");//항목3값제거
+			$('#item4'+(j+2)).val("");//항목4값제거
+			$('#item5'+(j+2)).val("");//항목5값제거
+		}
+		
+		//항목수를 선택할때마다 suri1~16 div show // hide
 		$('#que_cnt').change(function(){
-			var sel = $('#que_cnt option:selected').text();
+			var sel = $('#que_cnt option:selected').text(); //항목수 선택값
 			var cnt=0;
-			for(var i=0;i<=sel;i++){
+			
+			
+			for(var i=0; i<sel; i++){
 				$('.suri'+i).show();
 				cnt=i;
 			}
-			for(var j=cnt;j<17;j++){
-				$('.suri'+(j+1)).hide();
-			}
-			for(var k=0; k<17; k++){
-				$('#surq_title'+k).val("");
+			for(var j=cnt; j<17; j++){ //나머지div는 숨김
+				$('.suri'+(j+1)).hide(); //div숨김
+				$('#surq_title'+(j+2)).val(""); //문제값제거
+				$('#item1'+(j+2)).val("");//항목1값제거
+				$('#item2'+(j+2)).val("");//항목2값제거
+				$('#item3'+(j+2)).val("");//항목3값제거
+				$('#item4'+(j+2)).val("");//항목4값제거
+				$('#item5'+(j+2)).val("");//항목5값제거
 			}
 			
+			/* 
+			//1~16까지 제목을 지움
+			for(var k=1; k<17; k++){
+				$('#surq_title'+k).val("");
+			}
+			 */
+			 
 			$('.i').each(function(index, item){
 				$(item).val("");
 			});
 		});
 		
-
+		//행사시작일 달력
 		$('#sur_sat_date').datepicker({
 			dateFormat : 'yy-mm-dd',
 			defaultDate : 0,
@@ -222,6 +254,7 @@
 			showAnim : 'slideDown',
 		});
 		
+		//행사종료일 달력
 		$('#sur_end_date').datepicker({
 			dateFormat : 'yy-mm-dd',
 			defaultDate : 0,
@@ -236,7 +269,6 @@
 	});
 
 </script>
-
 
 <div id="container">
 	<div id="contents">
@@ -263,6 +295,7 @@
 			
 			<!-- 게시판영역 -->
 			<div class="tbl_box">
+			
 				<form name="editOK" action="/foodSen/researchEdit.do" method="post">
 				
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tbl_type01" summary="설문조사">
@@ -300,15 +333,334 @@
 								</td>
 								<th>문항수</th>
 								<td class="tl">
-									${resultClass.que_cnt}
+									<c:if test="${resultClass.que_cnt == 1}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1" selected />1</option>
+											<option value="2"/>2</option>
+											<option value="3"/>3</option>
+											<option value="4"/>4</option>
+											<option value="5"/>5</option>
+											<option value="6"/>6</option>
+											<option value="7"/>7</option>
+											<option value="8"/>8</option>
+											<option value="9"/>9</option>
+											<option value="10"/>10</option>
+											<option value="11"/>11</option>
+											<option value="12"/>12</option>
+											<option value="13"/>13</option>
+											<option value="14"/>14</option>
+											<option value="15"/>15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 2}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2" selected/>2</option>
+											<option value="3"/>3</option>
+											<option value="4"/>4</option>
+											<option value="5"/>5</option>
+											<option value="6"/>6</option>
+											<option value="7"/>7</option>
+											<option value="8"/>8</option>
+											<option value="9"/>9</option>
+											<option value="10"/>10</option>
+											<option value="11"/>11</option>
+											<option value="12"/>12</option>
+											<option value="13"/>13</option>
+											<option value="14"/>14</option>
+											<option value="15"/>15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 3}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2"/>2</option>
+											<option value="3" selected />3</option>
+											<option value="4"/>4</option>
+											<option value="5"/>5</option>
+											<option value="6"/>6</option>
+											<option value="7"/>7</option>
+											<option value="8"/>8</option>
+											<option value="9"/>9</option>
+											<option value="10"/>10</option>
+											<option value="11"/>11</option>
+											<option value="12"/>12</option>
+											<option value="13"/>13</option>
+											<option value="14"/>14</option>
+											<option value="15"/>15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 4}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2"/>2</option>
+											<option value="3"/>3</option>
+											<option value="4" selected />4</option>
+											<option value="5"/>5</option>
+											<option value="6"/>6</option>
+											<option value="7"/>7</option>
+											<option value="8"/>8</option>
+											<option value="9"/>9</option>
+											<option value="10"/>10</option>
+											<option value="11"/>11</option>
+											<option value="12"/>12</option>
+											<option value="13"/>13</option>
+											<option value="14"/>14</option>
+											<option value="15"/>15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 5}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2"/>2</option>
+											<option value="3"/>3</option>
+											<option value="4"/>4</option>
+											<option value="5" selected />5</option>
+											<option value="6"/>6</option>
+											<option value="7"/>7</option>
+											<option value="8"/>8</option>
+											<option value="9"/>9</option>
+											<option value="10"/>10</option>
+											<option value="11"/>11</option>
+											<option value="12"/>12</option>
+											<option value="13"/>13</option>
+											<option value="14"/>14</option>
+											<option value="15"/>15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 6}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2"/>2</option>
+											<option value="3"/>3</option>
+											<option value="4"/>4</option>
+											<option value="5"/>5</option>
+											<option value="6" selected />6</option>
+											<option value="7"/>7</option>
+											<option value="8"/>8</option>
+											<option value="9"/>9</option>
+											<option value="10"/>10</option>
+											<option value="11"/>11</option>
+											<option value="12"/>12</option>
+											<option value="13"/>13</option>
+											<option value="14"/>14</option>
+											<option value="15"/>15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 7}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2"/>2</option>
+											<option value="3"/>3</option>
+											<option value="4"/>4</option>
+											<option value="5"/>5</option>
+											<option value="6"/>6</option>
+											<option value="7" selected />7</option>
+											<option value="8"/>8</option>
+											<option value="9"/>9</option>
+											<option value="10"/>10</option>
+											<option value="11"/>11</option>
+											<option value="12"/>12</option>
+											<option value="13"/>13</option>
+											<option value="14"/>14</option>
+											<option value="15"/>15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 8}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2"/>2</option>
+											<option value="3"/>3</option>
+											<option value="4"/>4</option>
+											<option value="5"/>5</option>
+											<option value="6"/>6</option>
+											<option value="7"/>7</option>
+											<option value="8" selected />8</option>
+											<option value="9"/>9</option>
+											<option value="10"/>10</option>
+											<option value="11"/>11</option>
+											<option value="12"/>12</option>
+											<option value="13"/>13</option>
+											<option value="14"/>14</option>
+											<option value="15"/>15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 9}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2"/>2</option>
+											<option value="3"/>3</option>
+											<option value="4"/>4</option>
+											<option value="5"/>5</option>
+											<option value="6"/>6</option>
+											<option value="7"/>7</option>
+											<option value="8"/>8</option>
+											<option value="9" selected />9</option>
+											<option value="10"/>10</option>
+											<option value="11"/>11</option>
+											<option value="12"/>12</option>
+											<option value="13"/>13</option>
+											<option value="14"/>14</option>
+											<option value="15"/>15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 10}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2"/>2</option>
+											<option value="3"/>3</option>
+											<option value="4"/>4</option>
+											<option value="5"/>5</option>
+											<option value="6"/>6</option>
+											<option value="7"/>7</option>
+											<option value="8"/>8</option>
+											<option value="9"/>9</option>
+											<option value="10" selected />10</option>
+											<option value="11"/>11</option>
+											<option value="12"/>12</option>
+											<option value="13"/>13</option>
+											<option value="14"/>14</option>
+											<option value="15"/>15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 11}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2"/>2</option>
+											<option value="3"/>3</option>
+											<option value="4"/>4</option>
+											<option value="5"/>5</option>
+											<option value="6"/>6</option>
+											<option value="7"/>7</option>
+											<option value="8"/>8</option>
+											<option value="9"/>9</option>
+											<option value="10"/>10</option>
+											<option value="11" selected />11</option>
+											<option value="12"/>12</option>
+											<option value="13"/>13</option>
+											<option value="14"/>14</option>
+											<option value="15"/>15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 12}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2"/>2</option>
+											<option value="3"/>3</option>
+											<option value="4"/>4</option>
+											<option value="5"/>5</option>
+											<option value="6"/>6</option>
+											<option value="7"/>7</option>
+											<option value="8"/>8</option>
+											<option value="9"/>9</option>
+											<option value="10"/>10</option>
+											<option value="11"/>11</option>
+											<option value="12" selected />12</option>
+											<option value="13"/>13</option>
+											<option value="14"/>14</option>
+											<option value="15"/>15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 13}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2"/>2</option>
+											<option value="3"/>3</option>
+											<option value="4"/>4</option>
+											<option value="5"/>5</option>
+											<option value="6"/>6</option>
+											<option value="7"/>7</option>
+											<option value="8"/>8</option>
+											<option value="9"/>9</option>
+											<option value="10"/>10</option>
+											<option value="11"/>11</option>
+											<option value="12"/>12</option>
+											<option value="13" selected />13</option>
+											<option value="14"/>14</option>
+											<option value="15"/>15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 14}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2"/>2</option>
+											<option value="3"/>3</option>
+											<option value="4"/>4</option>
+											<option value="5"/>5</option>
+											<option value="6"/>6</option>
+											<option value="7"/>7</option>
+											<option value="8"/>8</option>
+											<option value="9"/>9</option>
+											<option value="10"/>10</option>
+											<option value="11"/>11</option>
+											<option value="12"/>12</option>
+											<option value="13"/>13</option>
+											<option value="14" selected />14</option>
+											<option value="15"/>15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 15}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2"/>2</option>
+											<option value="3"/>3</option>
+											<option value="4"/>4</option>
+											<option value="5"/>5</option>
+											<option value="6"/>6</option>
+											<option value="7"/>7</option>
+											<option value="8"/>8</option>
+											<option value="9"/>9</option>
+											<option value="10"/>10</option>
+											<option value="11"/>11</option>
+											<option value="12"/>12</option>
+											<option value="13"/>13</option>
+											<option value="14"/>14</option>
+											<option value="15" selected />15</option>
+											<option value="16"/>16</option>
+										</select>
+									</c:if>
+									<c:if test="${resultClass.que_cnt == 16}">
+										<select id="que_cnt" name="que_cnt">
+											<option value="1"/>1</option>
+											<option value="2"/>2</option>
+											<option value="3"/>3</option>
+											<option value="4"/>4</option>
+											<option value="5"/>5</option>
+											<option value="6"/>6</option>
+											<option value="7"/>7</option>
+											<option value="8"/>8</option>
+											<option value="9"/>9</option>
+											<option value="10"/>10</option>
+											<option value="11"/>11</option>
+											<option value="12"/>12</option>
+											<option value="13"/>13</option>
+											<option value="14"/>14</option>
+											<option value="15"/>15</option>
+											<option value="16" selected />16</option>
+										</select>
+									</c:if>
 								</td>
 							</tr>
 							<tr>
 								<th>내용</th>
 								<td colspan="5" class="tl">
 									
-									<c:forEach var="i" begin="0" end="${cnt-1}" step="1"> 
-										<div class="research">
+									<c:forEach var="i" begin="0" end="15" step="1"> 
+										<div class="research suri${i}" style="display: none">
 											
 											<!-- 뷰정보 -->
 											<input type="hidden" id="sur_seq" name="sur_seq" value="${sur_seq}" />
@@ -342,7 +694,7 @@
 											<%-- <input type="hidden" id="suri_seqItem${j.count }" name="suri_seqItem" class="inp" value="${re.suri_seq}"/> --%>
 											<input type="hidden" id="surq_item${i+1}" name="surq_item" value="${title[i]}">
 											
-											
+											<!-- 설문조사를 누군가가 할경우 수정할 수 있음 -->
 											<c:if test="${permit == 0}">
 												<ul>
 													<li>① <input type="text" id="item1${i+1}" name="item1${i+1}" value="${i_title1[i]}" /> </li>
@@ -352,7 +704,7 @@
 													<li>⑤ <input type="text" id="item5${i+1}" name="item5${i+1}" value="${i_title5[i]}" /> </li>
 												</ul>
 											</c:if>
-											
+											<!-- 설문조사를 그누구도 하지 않았을 경우 수정못함 -> 히든값으로 java로 넘김 -->
 											<c:if test="${permit == 1}">
 												<ul>
 													<li>① ${i_title1[i]}<input type="hidden" id="item1${i+1}" name="item1${i+1}" value="${i_title1[i]}" /> </li>
