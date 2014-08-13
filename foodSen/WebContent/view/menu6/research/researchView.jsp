@@ -35,15 +35,28 @@
 		var current_date = "${current_date}"; //오늘날짜
 		var sur_sat_date = "${resultClass.sur_sat_date}"; //설문시작일
 		var sur_end_date = "${resultClass.sur_end_date}"; //설문종료일
+		var res_cnt = "${res_cnt}"; //이글의 결과등록개수
 		
-		if(current_date < sur_sat_date || sur_end_date < current_date){ //시작하지않았거나, 끝났을경우
+		if(current_date < sur_sat_date || sur_end_date < current_date){  //시작하지않았거나, 끝났을경우
 			if(confirm("게시글을 삭제하시겠습니까?")!=0){
 				deleteOK.submit();
 			}else{
 				return;
 			}
 		}else{
-			alert("설문조사 기간에는 게시글을 삭제할 수 없습니다.");
+			if(res_cnt > 0){
+				if(confirm("설문조사 참여자가 있습니다. 삭제할경우 모든 데이터가 삭제됩니다. \n 그래도 삭제하시겠습니까?")!=0){
+					deleteOK.submit();
+				}else{
+					return;
+				}
+			}else{
+				if(confirm("설문조사 진행중입니다. \n 그래도 삭제하시겠습니까?")!=0){
+					deleteOK.submit();
+				}else{
+					return;
+				}
+			}
 		}
 		
 	}
