@@ -712,7 +712,7 @@ public class ResearchEdit {
 			paramClass2.setSuri_seq(suri_seq7);
 			
 			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(6 > que_cnt){
+			if(7 > que_cnt){
 				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
 				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
 			}else{ //아닐경우 - 레코드업데이트
