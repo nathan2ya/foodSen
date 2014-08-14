@@ -7,69 +7,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript">
-	/* 
-	//Load the Visualization API and the piechart package.
-	google.load('visualization', '1.0', {'packages':['corechart']});
-	
-	//Set a callback to run when the Google Visualization API is loaded.
-	google.setOnLoadCallback(drawChart);
-	
-	//Callback that creates and populates a data table,
-	//instantiates the pie chart, passes in the data and
-	//draws it.
-	function drawChart()
-	{
-		var cnt = "${cnt-1}";
-		var i = 0;
-		var i_title1 = "${i_title1}";
 
-		
-		for(i=0; i<cnt; i++){
-			
-			var item1 = "${i_title1[i]}"
-			var item2 = "${i_title2[i]}";
-			var item3 = "${i_title3[i]}";
-			var item4 = "${i_title4[i]}";
-			var item5 = "${i_title5[i]}";
-			
-			var item1Cnt = "${res_cnt_arr[i][0]}";
-			var item2Cnt = "${res_cnt_arr[i][1]}";
-			var item3Cnt = "${res_cnt_arr[i][2]}";
-			var item4Cnt = "${res_cnt_arr[i][3]}";
-			var item5Cnt = "${res_cnt_arr[i][4]}";
-			
-			
-			// Create the data table.
-			var data = new google.visualization.DataTable();
-			data.addColumn('string', 'Topping');
-			data.addColumn('number', 'Slices');
-			data.addRows([
-			['1번', 1],
-			['2번', 2],
-			['3번', 3],
-			['4번', 4],
-			['5번', 5]
-			]);
-		
-			// Set chart options
-			var options =
-			{
-				'title': ''+(i+1)+'번째 문항에 대한 결과',
-				'width':400,
-				'height':300
-			};
-		
-			// Instantiate and draw our chart, passing in some options.
-			var chart = new google.visualization.PieChart(document.getElementById('chart_div'+i));
-			chart.draw(data, options);
-			
-		}
-		
-	}
-	 */
-	
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/data.js"></script>
+<script src="http://code.highcharts.com/modules/drilldown.js"></script>
+
+<script type="text/javascript">
+
+
 	//이곳 위쪽은 추가
 	//이곳 아래는 원본
 	
@@ -132,13 +77,13 @@
 							</td>
 						</tr>
 						
-						<%-- 
-						<!-- 차트출력공간 -->
+						<!-- 
+						차트출력공간
 						<tr><td>
-						<div id="chart_div${i}"></div>
-						</td></tr>
-						 --%>
 						
+						</td></tr>
+						  -->
+						 
 						<!-- 기존출력공간 -->
 						<tr>
 							<td class="tl">①</td>
@@ -172,6 +117,7 @@
 						</tr>
 						<tr><td colsapn="4"><br/></td></tr>
 						<!-- .//기존출력공간 -->
+						
 						
 					</c:forEach>
 					
