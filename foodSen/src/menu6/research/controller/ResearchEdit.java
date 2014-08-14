@@ -1103,7 +1103,7 @@ public class ResearchEdit {
 		//시나리오2. 사용자가 문제수를 감소했거나, 유지했을때
 		if(que_cnt_size < que_cnt){
 			
-			if(que_cnt_size < 1){
+			if(que_cnt_size < 1 && 1 <= que_cnt){
 				surq_title1 = request.getParameter("surq_title1");
 				paramClass1.setSurq_title(surq_title1);
 				//설문조사 문제 insert
@@ -1133,7 +1133,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(51);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 2){
+			if(que_cnt_size < 2 && 2 <= que_cnt){
 				surq_title2 = request.getParameter("surq_title2");
 				paramClass1.setSurq_title(surq_title2);
 				//설문조사 문제 insert
@@ -1163,7 +1163,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(52);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 3){
+			if(que_cnt_size < 3 && 3 <= que_cnt){
 				surq_title3 = request.getParameter("surq_title3");
 				paramClass1.setSurq_title(surq_title3);
 				//설문조사 문제 insert
@@ -1193,7 +1193,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(53);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 4){
+			if(que_cnt_size < 4 && 4 <= que_cnt){
 				surq_title4 = request.getParameter("surq_title4");
 				paramClass1.setSurq_title(surq_title4);
 				//설문조사 문제 insert
@@ -1223,7 +1223,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(54);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 5){
+			if(que_cnt_size < 5 && 5 <= que_cnt){
 				surq_title5 = request.getParameter("surq_title5");
 				paramClass1.setSurq_title(surq_title5);
 				//설문조사 문제 insert
@@ -1254,7 +1254,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(55);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 6){
+			if(que_cnt_size < 6 && 6 <= que_cnt){
 				surq_title6 = request.getParameter("surq_title6");
 				paramClass1.setSurq_title(surq_title6);
 				//설문조사 문제 insert
@@ -1285,7 +1285,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(56);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 7){
+			if(que_cnt_size < 7 && 7 <= que_cnt){
 				surq_title7 = request.getParameter("surq_title7");
 				paramClass1.setSurq_title(surq_title7);
 				//설문조사 문제 insert
@@ -1316,7 +1316,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(57);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 8){
+			if(que_cnt_size < 8 && 8 <= que_cnt){
 				surq_title8 = request.getParameter("surq_title8");
 				paramClass1.setSurq_title(surq_title8);
 				//설문조사 문제 insert
@@ -1346,7 +1346,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(58);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 9){
+			if(que_cnt_size < 9 && 9 <= que_cnt){
 				surq_title9 = request.getParameter("surq_title9");
 				paramClass1.setSurq_title(surq_title9);
 				//설문조사 문제 insert
@@ -1376,7 +1376,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(59);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 10){
+			if(que_cnt_size < 10 && 10 <= que_cnt){
 				surq_title10 = request.getParameter("surq_title10");
 				paramClass1.setSurq_title(surq_title10);
 				//설문조사 문제 insert
@@ -1406,7 +1406,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(510);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 11){
+			if(que_cnt_size < 11 && 11 <= que_cnt){
 				surq_title11 = request.getParameter("surq_title11");
 				paramClass1.setSurq_title(surq_title11);
 				//설문조사 문제 insert
@@ -1436,7 +1436,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(511);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 12){
+			if(que_cnt_size < 12 && 12 <= que_cnt){
 				surq_title12 = request.getParameter("surq_title12");
 				paramClass1.setSurq_title(surq_title12);
 				//설문조사 문제 insert
@@ -1466,7 +1466,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(512);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 13){
+			if(que_cnt_size < 13 && 13 <= que_cnt){
 				surq_title13 = request.getParameter("surq_title13");
 				paramClass1.setSurq_title(surq_title13);
 				//설문조사 문제 insert
@@ -1496,7 +1496,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(513);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 14){
+			if(que_cnt_size < 14 && 14 <= que_cnt){
 				surq_title14 = request.getParameter("surq_title14");
 				paramClass1.setSurq_title(surq_title14);
 				//설문조사 문제 insert
@@ -1526,7 +1526,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(514);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 15){
+			if(que_cnt_size < 15 && 15 <= que_cnt){
 				surq_title15 = request.getParameter("surq_title15");
 				paramClass1.setSurq_title(surq_title15);
 				//설문조사 문제 insert
@@ -1556,7 +1556,7 @@ public class ResearchEdit {
 				paramClass2.setSuri_num5(515);
 				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			if(que_cnt_size < 16){
+			if(que_cnt_size < 16 && 16 <= que_cnt){
 				surq_title16 = request.getParameter("surq_title16");
 				paramClass1.setSurq_title(surq_title16);
 				//설문조사 문제 insert
