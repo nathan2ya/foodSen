@@ -43,6 +43,7 @@ public class ResearchEdit {
 	private ResearchDTO resultClass = new ResearchDTO();
 	//설문조사(문제)
 	private ResearchDTO1 paramClass1 = new ResearchDTO1();
+	private ResearchDTO1 resultClass11 = new ResearchDTO1();
 	private List<ResearchDTO1> resultClass1 = new ArrayList<ResearchDTO1>();
 	//설문조사(정보)
 	private ResearchDTO2 paramClass2 = new ResearchDTO2();
@@ -470,27 +471,647 @@ public class ResearchEdit {
 		 *  que_cnt : 방금사용자가 선택한 수정개수
 		*/
 		
-			
-		if(1 <= que_cnt_size){
-			surq_seq1 = Integer.parseInt(request.getParameter("resultClass1_seq1"));//문제의시퀀스
-			suri_seq1 = Integer.parseInt(request.getParameter("resultClass2_seq1"));//문항의시퀀스
-			//문제DTO SET
-			paramClass1.setSurq_seq(surq_seq1);
-			//문항DTO SET
-			paramClass2.setSurq_seq(surq_seq1);
-			paramClass2.setSuri_seq(suri_seq1);
-			
-			//수정시 문제를 줄였을 경우
-			if(1 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 업데이트
-				
-				//사용자가 입력한 값(문제)
-				surq_title1 = request.getParameter("surq_title1");
+		//시나리오1. 사용자가 문제수를 감소했거나, 유지했을때
+		if(que_cnt_size >= que_cnt){
+		
+			if(1 <= que_cnt_size){
+				surq_seq1 = Integer.parseInt(request.getParameter("resultClass1_seq1"));//문제의시퀀스
+				suri_seq1 = Integer.parseInt(request.getParameter("resultClass2_seq1"));//문항의시퀀스
 				//문제DTO SET
+				paramClass1.setSurq_seq(surq_seq1);
+				//문항DTO SET
+				paramClass2.setSurq_seq(surq_seq1);
+				paramClass2.setSuri_seq(suri_seq1);
+				
+				//수정시 문제를 줄였을 경우
+				if(1 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 업데이트
+					
+					//사용자가 입력한 값(문제)
+					surq_title1 = request.getParameter("surq_title1");
+					//문제DTO SET
+					paramClass1.setSurq_title(surq_title1);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					//사용자가 입력한 값(문항)
+					item11 = request.getParameter("item11");
+					item21 = request.getParameter("item21");
+					item31 = request.getParameter("item31");
+					item41 = request.getParameter("item41");
+					item51 = request.getParameter("item51");
+					//문항DTO SET
+					paramClass2.setSuri_title1(item11);
+					paramClass2.setSuri_title2(item21);
+					paramClass2.setSuri_title3(item31);
+					paramClass2.setSuri_title4(item41);
+					paramClass2.setSuri_title5(item51);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				}
+			}
+			
+			if(2 <= que_cnt_size){
+				surq_seq2 = Integer.parseInt(request.getParameter("resultClass1_seq2"));//문제의시퀀스
+				suri_seq2 = Integer.parseInt(request.getParameter("resultClass2_seq2"));//문항의시퀀스
+				paramClass1.setSurq_seq(surq_seq2);
+				paramClass2.setSurq_seq(surq_seq2);
+				paramClass2.setSuri_seq(suri_seq2);
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(2 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					//사용자가 입력한 값(문제)
+					surq_title2 = request.getParameter("surq_title2");
+					//문제DTO SET
+					paramClass1.setSurq_title(surq_title2);
+					//설문조사(문제) update
+					sqlMapper.update("Research.updateResearch1", paramClass1);
+					
+					
+					//사용자가 입력한 값(문항)
+					item12 = request.getParameter("item12");
+					item22 = request.getParameter("item22");
+					item32 = request.getParameter("item32");
+					item42 = request.getParameter("item42");
+					item52 = request.getParameter("item52");
+					//문항DTO SET
+					paramClass2.setSuri_title1(item12);
+					paramClass2.setSuri_title2(item22);
+					paramClass2.setSuri_title3(item32);
+					paramClass2.setSuri_title4(item42);
+					paramClass2.setSuri_title5(item52);
+					//설문조사(문항) update
+					sqlMapper.update("Research.updateResearch2", paramClass2);
+				}
+			}
+			
+			
+			if(3 <= que_cnt_size){
+				surq_seq3 = Integer.parseInt(request.getParameter("resultClass1_seq3"));//문제의시퀀스
+				suri_seq3 = Integer.parseInt(request.getParameter("resultClass2_seq3"));//문항의시퀀스
+				paramClass1.setSurq_seq(surq_seq3);
+				paramClass2.setSurq_seq(surq_seq3);
+				paramClass2.setSuri_seq(suri_seq3);
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(3 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					surq_title3 = request.getParameter("surq_title3");
+					paramClass1.setSurq_title(surq_title3);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					//사용자가 입력한 값(문항)
+					item13 = request.getParameter("item13");
+					item23 = request.getParameter("item23");
+					item33 = request.getParameter("item33");
+					item43 = request.getParameter("item43");
+					item53 = request.getParameter("item53");
+					paramClass2.setSuri_title1(item13);
+					paramClass2.setSuri_title2(item23);
+					paramClass2.setSuri_title3(item33);
+					paramClass2.setSuri_title4(item43);
+					paramClass2.setSuri_title5(item53);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				}
+			}
+			
+			  
+			if(4 <= que_cnt_size){
+				//문제의시퀀스
+				surq_seq4 = Integer.parseInt(request.getParameter("resultClass1_seq4"));
+				paramClass1.setSurq_seq(surq_seq4);
+				//문항의시퀀스
+				suri_seq4 = Integer.parseInt(request.getParameter("resultClass2_seq4"));
+				paramClass2.setSurq_seq(surq_seq4);
+				paramClass2.setSuri_seq(suri_seq4);
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(4 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					surq_title4 = request.getParameter("surq_title4");
+					paramClass1.setSurq_seq(surq_seq4);
+					paramClass1.setSurq_title(surq_title4);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					
+					//문항의시퀀스
+					suri_seq4 = Integer.parseInt(request.getParameter("resultClass2_seq4"));
+					
+					//사용자가 입력한 값(문항)
+					item14 = request.getParameter("item14");
+					item24 = request.getParameter("item24");
+					item34 = request.getParameter("item34");
+					item44 = request.getParameter("item44");
+					item54 = request.getParameter("item54");
+					
+					paramClass2.setSurq_seq(surq_seq4);
+					paramClass2.setSuri_seq(suri_seq4);
+					paramClass2.setSuri_title1(item14);
+					paramClass2.setSuri_title2(item24);
+					paramClass2.setSuri_title3(item34);
+					paramClass2.setSuri_title4(item44);
+					paramClass2.setSuri_title5(item54);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				}
+			}
+			
+			if(5 <= que_cnt_size){
+				//문제의시퀀스
+				surq_seq5 = Integer.parseInt(request.getParameter("resultClass1_seq5"));
+				paramClass1.setSurq_seq(surq_seq5);
+				//문항의시퀀스
+				suri_seq5 = Integer.parseInt(request.getParameter("resultClass2_seq5"));
+				paramClass2.setSurq_seq(surq_seq5);
+				paramClass2.setSuri_seq(suri_seq5);
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(5 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					//문제의시퀀스
+					surq_seq5 = Integer.parseInt(request.getParameter("resultClass1_seq5"));
+					surq_title5 = request.getParameter("surq_title5");
+					paramClass1.setSurq_seq(surq_seq5);
+					paramClass1.setSurq_title(surq_title5);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					
+					//사용자가 입력한 값(문항)
+					item15 = request.getParameter("item15");
+					item25 = request.getParameter("item25");
+					item35 = request.getParameter("item35");
+					item45 = request.getParameter("item45");
+					item55 = request.getParameter("item55");
+					
+					paramClass2.setSurq_seq(surq_seq5);
+					paramClass2.setSuri_seq(suri_seq5);
+					paramClass2.setSuri_title1(item15);
+					paramClass2.setSuri_title2(item25);
+					paramClass2.setSuri_title3(item35);
+					paramClass2.setSuri_title4(item45);
+					paramClass2.setSuri_title5(item55);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				}
+			}
+			
+			if(6 <= que_cnt_size){
+				//문제의시퀀스
+				surq_seq6 = Integer.parseInt(request.getParameter("resultClass1_seq6"));
+				paramClass1.setSurq_seq(surq_seq6);
+				//문항의시퀀스
+				suri_seq6 = Integer.parseInt(request.getParameter("resultClass2_seq6"));
+				paramClass2.setSurq_seq(surq_seq6);
+				paramClass2.setSuri_seq(suri_seq6);
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(6 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					surq_title6 = request.getParameter("surq_title6");
+					paramClass1.setSurq_seq(surq_seq6);
+					paramClass1.setSurq_title(surq_title6);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					
+					//문항의시퀀스
+					suri_seq6 = Integer.parseInt(request.getParameter("resultClass2_seq6"));
+					
+					//사용자가 입력한 값(문항)
+					item16 = request.getParameter("item16");
+					item26 = request.getParameter("item26");
+					item36 = request.getParameter("item36");
+					item46 = request.getParameter("item46");
+					item56 = request.getParameter("item56");
+					
+					paramClass2.setSurq_seq(surq_seq6);
+					paramClass2.setSuri_seq(suri_seq6);
+					paramClass2.setSuri_title1(item16);
+					paramClass2.setSuri_title2(item26);
+					paramClass2.setSuri_title3(item36);
+					paramClass2.setSuri_title4(item46);
+					paramClass2.setSuri_title5(item56);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				}
+			}
+			
+			if(7 <= que_cnt_size){
+				//문제의시퀀스
+				surq_seq7 = Integer.parseInt(request.getParameter("resultClass1_seq7"));
+				paramClass1.setSurq_seq(surq_seq7);
+				//문항의시퀀스
+				suri_seq7 = Integer.parseInt(request.getParameter("resultClass2_seq7"));
+				paramClass2.setSurq_seq(surq_seq7);
+				paramClass2.setSuri_seq(suri_seq7);
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(7 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					surq_title7 = request.getParameter("surq_title7");
+					paramClass1.setSurq_seq(surq_seq7);
+					paramClass1.setSurq_title(surq_title7);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					
+					//사용자가 입력한 값(문항)
+					item17 = request.getParameter("item17");
+					item27 = request.getParameter("item27");
+					item37 = request.getParameter("item37");
+					item47 = request.getParameter("item47");
+					item57 = request.getParameter("item57");
+					
+					paramClass2.setSurq_seq(surq_seq7);
+					paramClass2.setSuri_seq(suri_seq7);
+					paramClass2.setSuri_title1(item17);
+					paramClass2.setSuri_title2(item27);
+					paramClass2.setSuri_title3(item37);
+					paramClass2.setSuri_title4(item47);
+					paramClass2.setSuri_title5(item57);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				}
+			}
+			
+			if(8 <= que_cnt_size){
+				//문제의시퀀스
+				surq_seq8 = Integer.parseInt(request.getParameter("resultClass1_seq8"));
+				paramClass1.setSurq_seq(surq_seq8);
+				//문항의시퀀스
+				suri_seq8 = Integer.parseInt(request.getParameter("resultClass2_seq8"));
+				paramClass2.setSurq_seq(surq_seq8);
+				paramClass2.setSuri_seq(suri_seq8);
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(8 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					surq_title8 = request.getParameter("surq_title8");
+					paramClass1.setSurq_seq(surq_seq8);
+					paramClass1.setSurq_title(surq_title8);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					//문항의시퀀스
+					suri_seq8 = Integer.parseInt(request.getParameter("resultClass2_seq8"));
+					
+					//사용자가 입력한 값(문항)
+					item18 = request.getParameter("item18");
+					item28 = request.getParameter("item28");
+					item38 = request.getParameter("item38");
+					item48 = request.getParameter("item48");
+					item58 = request.getParameter("item58");
+					
+					paramClass2.setSurq_seq(surq_seq8);
+					paramClass2.setSuri_seq(suri_seq8);
+					paramClass2.setSuri_title1(item18);
+					paramClass2.setSuri_title2(item28);
+					paramClass2.setSuri_title3(item38);
+					paramClass2.setSuri_title4(item48);
+					paramClass2.setSuri_title5(item58);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				}
+			}
+			
+			if(9 <= que_cnt_size){
+				//문제의시퀀스
+				surq_seq9 = Integer.parseInt(request.getParameter("resultClass1_seq9"));
+				paramClass1.setSurq_seq(surq_seq9);
+				//문항의시퀀스
+				suri_seq9 = Integer.parseInt(request.getParameter("resultClass2_seq9"));
+				paramClass2.setSurq_seq(surq_seq9);
+				paramClass2.setSuri_seq(suri_seq9);
+				
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(9 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					surq_title9 = request.getParameter("surq_title9");
+					paramClass1.setSurq_seq(surq_seq9);
+					paramClass1.setSurq_title(surq_title9);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					//사용자가 입력한 값(문항)
+					item19 = request.getParameter("item19");
+					item29 = request.getParameter("item29");
+					item39 = request.getParameter("item39");
+					item49 = request.getParameter("item49");
+					item59 = request.getParameter("item59");
+					
+					paramClass2.setSurq_seq(surq_seq9);
+					paramClass2.setSuri_seq(suri_seq9);
+					paramClass2.setSuri_title1(item19);
+					paramClass2.setSuri_title2(item29);
+					paramClass2.setSuri_title3(item39);
+					paramClass2.setSuri_title4(item49);
+					paramClass2.setSuri_title5(item59);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				}
+			}
+			
+			if(10 <= que_cnt_size){
+				//문제의시퀀스
+				surq_seq10 = Integer.parseInt(request.getParameter("resultClass1_seq10"));
+				paramClass1.setSurq_seq(surq_seq10);
+				//문항의시퀀스
+				suri_seq10 = Integer.parseInt(request.getParameter("resultClass2_seq10"));
+				paramClass2.setSurq_seq(surq_seq10);
+				paramClass2.setSuri_seq(suri_seq10);
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(10 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					surq_title10 = request.getParameter("surq_title10");
+					paramClass1.setSurq_seq(surq_seq10);
+					paramClass1.setSurq_title(surq_title10);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					
+					//사용자가 입력한 값(문항)
+					item110 = request.getParameter("item110");
+					item210 = request.getParameter("item210");
+					item310 = request.getParameter("item310");
+					item410 = request.getParameter("item410");
+					item510 = request.getParameter("item510");
+					
+					paramClass2.setSurq_seq(surq_seq10);
+					paramClass2.setSuri_seq(suri_seq10);
+					paramClass2.setSuri_title1(item110);
+					paramClass2.setSuri_title2(item210);
+					paramClass2.setSuri_title3(item310);
+					paramClass2.setSuri_title4(item410);
+					paramClass2.setSuri_title5(item510);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				}
+				
+			}
+			
+			if(11 <= que_cnt_size){
+				//문제의시퀀스
+				surq_seq11 = Integer.parseInt(request.getParameter("resultClass1_seq11"));
+				paramClass1.setSurq_seq(surq_seq11);
+				//문항의시퀀스
+				suri_seq11 = Integer.parseInt(request.getParameter("resultClass2_seq11"));
+				paramClass2.setSurq_seq(surq_seq11);
+				paramClass2.setSuri_seq(suri_seq11);
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(11 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					surq_title11 = request.getParameter("surq_title11");
+					paramClass1.setSurq_seq(surq_seq11);
+					paramClass1.setSurq_title(surq_title11);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					//사용자가 입력한 값(문항)
+					item111 = request.getParameter("item111");
+					item211 = request.getParameter("item211");
+					item311 = request.getParameter("item311");
+					item411 = request.getParameter("item411");
+					item511 = request.getParameter("item511");
+					
+					paramClass2.setSurq_seq(surq_seq11);
+					paramClass2.setSuri_seq(suri_seq11);
+					paramClass2.setSuri_title1(item111);
+					paramClass2.setSuri_title2(item211);
+					paramClass2.setSuri_title3(item311);
+					paramClass2.setSuri_title4(item411);
+					paramClass2.setSuri_title5(item511);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+					
+				}
+			}
+			
+			if(12 <= que_cnt_size){
+				//문제의시퀀스
+				surq_seq12 = Integer.parseInt(request.getParameter("resultClass1_seq12"));
+				paramClass1.setSurq_seq(surq_seq12);
+				//문항의시퀀스
+				suri_seq12 = Integer.parseInt(request.getParameter("resultClass2_seq12"));
+				paramClass2.setSurq_seq(surq_seq12);
+				paramClass2.setSuri_seq(suri_seq12);
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(12 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					surq_title12 = request.getParameter("surq_title12");
+					paramClass1.setSurq_title(surq_title12);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					
+					//사용자가 입력한 값(문항)
+					item112 = request.getParameter("item112");
+					item212 = request.getParameter("item212");
+					item312 = request.getParameter("item312");
+					item412 = request.getParameter("item412");
+					item512 = request.getParameter("item512");
+					
+					paramClass2.setSurq_seq(surq_seq12);
+					paramClass2.setSuri_seq(suri_seq12);
+					paramClass2.setSuri_title1(item112);
+					paramClass2.setSuri_title2(item212);
+					paramClass2.setSuri_title3(item312);
+					paramClass2.setSuri_title4(item412);
+					paramClass2.setSuri_title5(item512);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				}
+				
+			}
+			
+			if(13 <= que_cnt_size){
+				//문제의시퀀스
+				surq_seq13 = Integer.parseInt(request.getParameter("resultClass1_seq13"));
+				paramClass1.setSurq_seq(surq_seq13);
+				//문항의시퀀스
+				suri_seq13 = Integer.parseInt(request.getParameter("resultClass2_seq13"));
+				paramClass2.setSurq_seq(surq_seq13);
+				paramClass2.setSuri_seq(suri_seq13);
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(13 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					surq_title13 = request.getParameter("surq_title13");
+					paramClass1.setSurq_title(surq_title13);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					
+					//사용자가 입력한 값(문항)
+					item113 = request.getParameter("item113");
+					item213 = request.getParameter("item213");
+					item313 = request.getParameter("item313");
+					item413 = request.getParameter("item413");
+					item513 = request.getParameter("item513");
+					
+					paramClass2.setSurq_seq(surq_seq13);
+					paramClass2.setSuri_seq(suri_seq13);
+					paramClass2.setSuri_title1(item113);
+					paramClass2.setSuri_title2(item213);
+					paramClass2.setSuri_title3(item313);
+					paramClass2.setSuri_title4(item413);
+					paramClass2.setSuri_title5(item513);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				}
+				
+			}
+			
+			
+			if(14 <= que_cnt_size){
+				//문제의시퀀스
+				surq_seq14 = Integer.parseInt(request.getParameter("resultClass1_seq14"));
+				paramClass1.setSurq_seq(surq_seq14);
+				//문항의시퀀스
+				suri_seq14 = Integer.parseInt(request.getParameter("resultClass2_seq14"));
+				paramClass2.setSurq_seq(surq_seq14);
+				paramClass2.setSuri_seq(suri_seq14);
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(14 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					surq_title14 = request.getParameter("surq_title14");
+					paramClass1.setSurq_seq(surq_seq14);
+					paramClass1.setSurq_title(surq_title14);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					//문항의시퀀스
+					suri_seq14 = Integer.parseInt(request.getParameter("resultClass2_seq14"));
+					
+					//사용자가 입력한 값(문항)
+					item114 = request.getParameter("item114");
+					item214 = request.getParameter("item214");
+					item314 = request.getParameter("item314");
+					item414 = request.getParameter("item414");
+					item514 = request.getParameter("item514");
+					
+					paramClass2.setSuri_title1(item114);
+					paramClass2.setSuri_title2(item214);
+					paramClass2.setSuri_title3(item314);
+					paramClass2.setSuri_title4(item414);
+					paramClass2.setSuri_title5(item514);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				}
+			}
+			
+			if(15 <= que_cnt_size){
+				//문제의시퀀스
+				surq_seq15 = Integer.parseInt(request.getParameter("resultClass1_seq15"));
+				paramClass1.setSurq_seq(surq_seq15);
+				//문항의시퀀스
+				suri_seq15 = Integer.parseInt(request.getParameter("resultClass2_seq15"));
+				paramClass2.setSurq_seq(surq_seq15);
+				paramClass2.setSuri_seq(suri_seq15);
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(15 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					surq_title15 = request.getParameter("surq_title15");
+					paramClass1.setSurq_title(surq_title15);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					//사용자가 입력한 값(문항)
+					item115 = request.getParameter("item115");
+					item215 = request.getParameter("item215");
+					item315 = request.getParameter("item315");
+					item415 = request.getParameter("item415");
+					item515 = request.getParameter("item515");
+					
+					paramClass2.setSuri_title1(item115);
+					paramClass2.setSuri_title2(item215);
+					paramClass2.setSuri_title3(item315);
+					paramClass2.setSuri_title4(item415);
+					paramClass2.setSuri_title5(item515);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				}
+			}
+			
+			if(16 <= que_cnt_size){
+				//문제의시퀀스
+				surq_seq16 = Integer.parseInt(request.getParameter("resultClass1_seq16"));
+				paramClass1.setSurq_seq(surq_seq16);
+				//문항의시퀀스
+				suri_seq16 = Integer.parseInt(request.getParameter("resultClass2_seq16"));
+				paramClass2.setSurq_seq(surq_seq16);
+				paramClass2.setSuri_seq(suri_seq16);
+				
+				//수정시 문제를 줄였을 경우 - 레코드삭제
+				if(16 > que_cnt){
+					sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
+					sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
+				}else{ //아닐경우 - 레코드업데이트
+					surq_title16 = request.getParameter("surq_title16");
+					paramClass1.setSurq_seq(surq_seq16);
+					paramClass1.setSurq_title(surq_title16);
+					sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+					
+					//사용자가 입력한 값(문항)
+					item116 = request.getParameter("item116");
+					item216 = request.getParameter("item216");
+					item316 = request.getParameter("item316");
+					item416 = request.getParameter("item416");
+					item516 = request.getParameter("item516");
+					
+					paramClass2.setSurq_seq(surq_seq16);
+					paramClass2.setSuri_seq(suri_seq16);
+					paramClass2.setSuri_title1(item116);
+					paramClass2.setSuri_title2(item216);
+					paramClass2.setSuri_title3(item316);
+					paramClass2.setSuri_title4(item416);
+					paramClass2.setSuri_title5(item516);
+					sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				}
+			}
+		}//.시나리오1 종료
+		
+		
+		//설문조사 문제 공통으로 들어가는 레코드.
+		paramClass1.setSur_seq(sur_seq);
+		paramClass1.setWriter(session_id);
+		paramClass1.setReg_name(session_id);
+		paramClass1.setReg_date(today.getTime());
+		paramClass1.setUdt_name(session_id);
+		paramClass1.setUdt_date(today.getTime());
+		
+		//설문조사 문항 공통으로 들어가는 레코드
+		paramClass2.setSur_seq(sur_seq);
+		paramClass2.setWriter(session_id);
+		paramClass2.setReg_name(session_id);
+		paramClass2.setReg_date(today.getTime());
+		paramClass2.setUdt_name(session_id);
+		paramClass2.setUdt_date(today.getTime());
+		
+		//시나리오2. 사용자가 문제수를 감소했거나, 유지했을때
+		if(que_cnt_size < que_cnt){
+			
+			if(que_cnt_size < 1){
+				surq_title1 = request.getParameter("surq_title1");
 				paramClass1.setSurq_title(surq_title1);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+				
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
 				//사용자가 입력한 값(문항)
 				item11 = request.getParameter("item11");
@@ -498,35 +1119,29 @@ public class ResearchEdit {
 				item31 = request.getParameter("item31");
 				item41 = request.getParameter("item41");
 				item51 = request.getParameter("item51");
-				//문항DTO SET
+				
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item11);
 				paramClass2.setSuri_title2(item21);
 				paramClass2.setSuri_title3(item31);
 				paramClass2.setSuri_title4(item41);
 				paramClass2.setSuri_title5(item51);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				paramClass2.setSuri_num1(11);
+				paramClass2.setSuri_num2(21);
+				paramClass2.setSuri_num3(31);
+				paramClass2.setSuri_num4(41);
+				paramClass2.setSuri_num5(51);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-		}
-		
-		if(2 <= que_cnt_size){
-			surq_seq2 = Integer.parseInt(request.getParameter("resultClass1_seq2"));//문제의시퀀스
-			suri_seq2 = Integer.parseInt(request.getParameter("resultClass2_seq2"));//문항의시퀀스
-			paramClass1.setSurq_seq(surq_seq2);
-			paramClass2.setSurq_seq(surq_seq2);
-			paramClass2.setSuri_seq(suri_seq2);
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(2 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
-				//사용자가 입력한 값(문제)
+			if(que_cnt_size < 2){
 				surq_title2 = request.getParameter("surq_title2");
-				//문제DTO SET
 				paramClass1.setSurq_title(surq_title2);
-				//설문조사(문제) update
-				sqlMapper.update("Research.updateResearch1", paramClass1);
-				
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
 				//사용자가 입력한 값(문항)
 				item12 = request.getParameter("item12");
@@ -534,33 +1149,29 @@ public class ResearchEdit {
 				item32 = request.getParameter("item32");
 				item42 = request.getParameter("item42");
 				item52 = request.getParameter("item52");
-				//문항DTO SET
+				
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item12);
 				paramClass2.setSuri_title2(item22);
 				paramClass2.setSuri_title3(item32);
 				paramClass2.setSuri_title4(item42);
 				paramClass2.setSuri_title5(item52);
-				//설문조사(문항) update
-				sqlMapper.update("Research.updateResearch2", paramClass2);
+				paramClass2.setSuri_num1(12);
+				paramClass2.setSuri_num2(22);
+				paramClass2.setSuri_num3(32);
+				paramClass2.setSuri_num4(42);
+				paramClass2.setSuri_num5(52);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-		}
-		
-		
-		if(3 <= que_cnt_size){
-			surq_seq3 = Integer.parseInt(request.getParameter("resultClass1_seq3"));//문제의시퀀스
-			suri_seq3 = Integer.parseInt(request.getParameter("resultClass2_seq3"));//문항의시퀀스
-			paramClass1.setSurq_seq(surq_seq3);
-			paramClass2.setSurq_seq(surq_seq3);
-			paramClass2.setSuri_seq(suri_seq3);
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(3 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
+			if(que_cnt_size < 3){
 				surq_title3 = request.getParameter("surq_title3");
 				paramClass1.setSurq_title(surq_title3);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
 				//사용자가 입력한 값(문항)
 				item13 = request.getParameter("item13");
@@ -568,38 +1179,29 @@ public class ResearchEdit {
 				item33 = request.getParameter("item33");
 				item43 = request.getParameter("item43");
 				item53 = request.getParameter("item53");
+				
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item13);
 				paramClass2.setSuri_title2(item23);
 				paramClass2.setSuri_title3(item33);
 				paramClass2.setSuri_title4(item43);
 				paramClass2.setSuri_title5(item53);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				paramClass2.setSuri_num1(13);
+				paramClass2.setSuri_num2(23);
+				paramClass2.setSuri_num3(33);
+				paramClass2.setSuri_num4(43);
+				paramClass2.setSuri_num5(53);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-		}
-		
-		  
-		if(4 <= que_cnt_size){
-			//문제의시퀀스
-			surq_seq4 = Integer.parseInt(request.getParameter("resultClass1_seq4"));
-			paramClass1.setSurq_seq(surq_seq4);
-			//문항의시퀀스
-			suri_seq4 = Integer.parseInt(request.getParameter("resultClass2_seq4"));
-			paramClass2.setSurq_seq(surq_seq4);
-			paramClass2.setSuri_seq(suri_seq4);
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(4 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
+			if(que_cnt_size < 4){
 				surq_title4 = request.getParameter("surq_title4");
-				paramClass1.setSurq_seq(surq_seq4);
 				paramClass1.setSurq_title(surq_title4);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
-				
-				
-				//문항의시퀀스
-				suri_seq4 = Integer.parseInt(request.getParameter("resultClass2_seq4"));
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
 				//사용자가 입력한 값(문항)
 				item14 = request.getParameter("item14");
@@ -608,37 +1210,28 @@ public class ResearchEdit {
 				item44 = request.getParameter("item44");
 				item54 = request.getParameter("item54");
 				
-				paramClass2.setSurq_seq(surq_seq4);
-				paramClass2.setSuri_seq(suri_seq4);
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item14);
 				paramClass2.setSuri_title2(item24);
 				paramClass2.setSuri_title3(item34);
 				paramClass2.setSuri_title4(item44);
 				paramClass2.setSuri_title5(item54);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				paramClass2.setSuri_num1(14);
+				paramClass2.setSuri_num2(24);
+				paramClass2.setSuri_num3(34);
+				paramClass2.setSuri_num4(44);
+				paramClass2.setSuri_num5(54);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-		}
-		
-		if(5 <= que_cnt_size){
-			//문제의시퀀스
-			surq_seq5 = Integer.parseInt(request.getParameter("resultClass1_seq5"));
-			paramClass1.setSurq_seq(surq_seq5);
-			//문항의시퀀스
-			suri_seq5 = Integer.parseInt(request.getParameter("resultClass2_seq5"));
-			paramClass2.setSurq_seq(surq_seq5);
-			paramClass2.setSuri_seq(suri_seq5);
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(5 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
-				//문제의시퀀스
-				surq_seq5 = Integer.parseInt(request.getParameter("resultClass1_seq5"));
+			if(que_cnt_size < 5){
 				surq_title5 = request.getParameter("surq_title5");
-				paramClass1.setSurq_seq(surq_seq5);
 				paramClass1.setSurq_title(surq_title5);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
 				
 				//사용자가 입력한 값(문항)
@@ -648,39 +1241,29 @@ public class ResearchEdit {
 				item45 = request.getParameter("item45");
 				item55 = request.getParameter("item55");
 				
-				paramClass2.setSurq_seq(surq_seq5);
-				paramClass2.setSuri_seq(suri_seq5);
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item15);
 				paramClass2.setSuri_title2(item25);
 				paramClass2.setSuri_title3(item35);
 				paramClass2.setSuri_title4(item45);
 				paramClass2.setSuri_title5(item55);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				paramClass2.setSuri_num1(15);
+				paramClass2.setSuri_num2(25);
+				paramClass2.setSuri_num3(35);
+				paramClass2.setSuri_num4(45);
+				paramClass2.setSuri_num5(55);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-		}
-		
-		if(6 <= que_cnt_size){
-			//문제의시퀀스
-			surq_seq6 = Integer.parseInt(request.getParameter("resultClass1_seq6"));
-			paramClass1.setSurq_seq(surq_seq6);
-			//문항의시퀀스
-			suri_seq6 = Integer.parseInt(request.getParameter("resultClass2_seq6"));
-			paramClass2.setSurq_seq(surq_seq6);
-			paramClass2.setSuri_seq(suri_seq6);
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(6 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
+			if(que_cnt_size < 6){
 				surq_title6 = request.getParameter("surq_title6");
-				paramClass1.setSurq_seq(surq_seq6);
 				paramClass1.setSurq_title(surq_title6);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
-				
-				//문항의시퀀스
-				suri_seq6 = Integer.parseInt(request.getParameter("resultClass2_seq6"));
 				
 				//사용자가 입력한 값(문항)
 				item16 = request.getParameter("item16");
@@ -689,35 +1272,28 @@ public class ResearchEdit {
 				item46 = request.getParameter("item46");
 				item56 = request.getParameter("item56");
 				
-				paramClass2.setSurq_seq(surq_seq6);
-				paramClass2.setSuri_seq(suri_seq6);
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item16);
 				paramClass2.setSuri_title2(item26);
 				paramClass2.setSuri_title3(item36);
 				paramClass2.setSuri_title4(item46);
 				paramClass2.setSuri_title5(item56);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				paramClass2.setSuri_num1(16);
+				paramClass2.setSuri_num2(26);
+				paramClass2.setSuri_num3(36);
+				paramClass2.setSuri_num4(46);
+				paramClass2.setSuri_num5(56);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-		}
-		
-		if(7 <= que_cnt_size){
-			//문제의시퀀스
-			surq_seq7 = Integer.parseInt(request.getParameter("resultClass1_seq7"));
-			paramClass1.setSurq_seq(surq_seq7);
-			//문항의시퀀스
-			suri_seq7 = Integer.parseInt(request.getParameter("resultClass2_seq7"));
-			paramClass2.setSurq_seq(surq_seq7);
-			paramClass2.setSuri_seq(suri_seq7);
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(7 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
+			if(que_cnt_size < 7){
 				surq_title7 = request.getParameter("surq_title7");
-				paramClass1.setSurq_seq(surq_seq7);
 				paramClass1.setSurq_title(surq_title7);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
 				
 				//사용자가 입력한 값(문항)
@@ -727,39 +1303,29 @@ public class ResearchEdit {
 				item47 = request.getParameter("item47");
 				item57 = request.getParameter("item57");
 				
-				paramClass2.setSurq_seq(surq_seq7);
-				paramClass2.setSuri_seq(suri_seq7);
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item17);
 				paramClass2.setSuri_title2(item27);
 				paramClass2.setSuri_title3(item37);
 				paramClass2.setSuri_title4(item47);
 				paramClass2.setSuri_title5(item57);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				paramClass2.setSuri_num1(17);
+				paramClass2.setSuri_num2(27);
+				paramClass2.setSuri_num3(37);
+				paramClass2.setSuri_num4(47);
+				paramClass2.setSuri_num5(57);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-		}
-		
-		if(8 <= que_cnt_size){
-			//문제의시퀀스
-			surq_seq8 = Integer.parseInt(request.getParameter("resultClass1_seq8"));
-			paramClass1.setSurq_seq(surq_seq8);
-			//문항의시퀀스
-			suri_seq8 = Integer.parseInt(request.getParameter("resultClass2_seq8"));
-			paramClass2.setSurq_seq(surq_seq8);
-			paramClass2.setSuri_seq(suri_seq8);
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(8 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
+			if(que_cnt_size < 8){
 				surq_title8 = request.getParameter("surq_title8");
-				paramClass1.setSurq_seq(surq_seq8);
 				paramClass1.setSurq_title(surq_title8);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
-				
-				//문항의시퀀스
-				suri_seq8 = Integer.parseInt(request.getParameter("resultClass2_seq8"));
-				
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
+
 				//사용자가 입력한 값(문항)
 				item18 = request.getParameter("item18");
 				item28 = request.getParameter("item28");
@@ -767,36 +1333,28 @@ public class ResearchEdit {
 				item48 = request.getParameter("item48");
 				item58 = request.getParameter("item58");
 				
-				paramClass2.setSurq_seq(surq_seq8);
-				paramClass2.setSuri_seq(suri_seq8);
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item18);
 				paramClass2.setSuri_title2(item28);
 				paramClass2.setSuri_title3(item38);
 				paramClass2.setSuri_title4(item48);
 				paramClass2.setSuri_title5(item58);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				paramClass2.setSuri_num1(18);
+				paramClass2.setSuri_num2(28);
+				paramClass2.setSuri_num3(38);
+				paramClass2.setSuri_num4(48);
+				paramClass2.setSuri_num5(58);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-		}
-		
-		if(9 <= que_cnt_size){
-			//문제의시퀀스
-			surq_seq9 = Integer.parseInt(request.getParameter("resultClass1_seq9"));
-			paramClass1.setSurq_seq(surq_seq9);
-			//문항의시퀀스
-			suri_seq9 = Integer.parseInt(request.getParameter("resultClass2_seq9"));
-			paramClass2.setSurq_seq(surq_seq9);
-			paramClass2.setSuri_seq(suri_seq9);
-			
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(9 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
+			if(que_cnt_size < 9){
 				surq_title9 = request.getParameter("surq_title9");
-				paramClass1.setSurq_seq(surq_seq9);
 				paramClass1.setSurq_title(surq_title9);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
 				//사용자가 입력한 값(문항)
 				item19 = request.getParameter("item19");
@@ -805,36 +1363,28 @@ public class ResearchEdit {
 				item49 = request.getParameter("item49");
 				item59 = request.getParameter("item59");
 				
-				paramClass2.setSurq_seq(surq_seq9);
-				paramClass2.setSuri_seq(suri_seq9);
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item19);
 				paramClass2.setSuri_title2(item29);
 				paramClass2.setSuri_title3(item39);
 				paramClass2.setSuri_title4(item49);
 				paramClass2.setSuri_title5(item59);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				paramClass2.setSuri_num1(19);
+				paramClass2.setSuri_num2(29);
+				paramClass2.setSuri_num3(39);
+				paramClass2.setSuri_num4(49);
+				paramClass2.setSuri_num5(59);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-		}
-		
-		if(10 <= que_cnt_size){
-			//문제의시퀀스
-			surq_seq10 = Integer.parseInt(request.getParameter("resultClass1_seq10"));
-			paramClass1.setSurq_seq(surq_seq10);
-			//문항의시퀀스
-			suri_seq10 = Integer.parseInt(request.getParameter("resultClass2_seq10"));
-			paramClass2.setSurq_seq(surq_seq10);
-			paramClass2.setSuri_seq(suri_seq10);
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(10 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
+			if(que_cnt_size < 10){
 				surq_title10 = request.getParameter("surq_title10");
-				paramClass1.setSurq_seq(surq_seq10);
 				paramClass1.setSurq_title(surq_title10);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
-				
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
 				//사용자가 입력한 값(문항)
 				item110 = request.getParameter("item110");
@@ -843,36 +1393,28 @@ public class ResearchEdit {
 				item410 = request.getParameter("item410");
 				item510 = request.getParameter("item510");
 				
-				paramClass2.setSurq_seq(surq_seq10);
-				paramClass2.setSuri_seq(suri_seq10);
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item110);
 				paramClass2.setSuri_title2(item210);
 				paramClass2.setSuri_title3(item310);
 				paramClass2.setSuri_title4(item410);
 				paramClass2.setSuri_title5(item510);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				paramClass2.setSuri_num1(110);
+				paramClass2.setSuri_num2(210);
+				paramClass2.setSuri_num3(310);
+				paramClass2.setSuri_num4(410);
+				paramClass2.setSuri_num5(510);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			
-		}
-		
-		if(11 <= que_cnt_size){
-			//문제의시퀀스
-			surq_seq11 = Integer.parseInt(request.getParameter("resultClass1_seq11"));
-			paramClass1.setSurq_seq(surq_seq11);
-			//문항의시퀀스
-			suri_seq11 = Integer.parseInt(request.getParameter("resultClass2_seq11"));
-			paramClass2.setSurq_seq(surq_seq11);
-			paramClass2.setSuri_seq(suri_seq11);
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(11 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
+			if(que_cnt_size < 11){
 				surq_title11 = request.getParameter("surq_title11");
-				paramClass1.setSurq_seq(surq_seq11);
 				paramClass1.setSurq_title(surq_title11);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
 				//사용자가 입력한 값(문항)
 				item111 = request.getParameter("item111");
@@ -881,36 +1423,28 @@ public class ResearchEdit {
 				item411 = request.getParameter("item411");
 				item511 = request.getParameter("item511");
 				
-				paramClass2.setSurq_seq(surq_seq11);
-				paramClass2.setSuri_seq(suri_seq11);
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item111);
 				paramClass2.setSuri_title2(item211);
 				paramClass2.setSuri_title3(item311);
 				paramClass2.setSuri_title4(item411);
 				paramClass2.setSuri_title5(item511);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
-				
+				paramClass2.setSuri_num1(111);
+				paramClass2.setSuri_num2(211);
+				paramClass2.setSuri_num3(311);
+				paramClass2.setSuri_num4(411);
+				paramClass2.setSuri_num5(511);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-		}
-		
-		if(12 <= que_cnt_size){
-			//문제의시퀀스
-			surq_seq12 = Integer.parseInt(request.getParameter("resultClass1_seq12"));
-			paramClass1.setSurq_seq(surq_seq12);
-			//문항의시퀀스
-			suri_seq12 = Integer.parseInt(request.getParameter("resultClass2_seq12"));
-			paramClass2.setSurq_seq(surq_seq12);
-			paramClass2.setSuri_seq(suri_seq12);
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(12 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
+			if(que_cnt_size < 12){
 				surq_title12 = request.getParameter("surq_title12");
 				paramClass1.setSurq_title(surq_title12);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
-				
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
 				//사용자가 입력한 값(문항)
 				item112 = request.getParameter("item112");
@@ -919,36 +1453,28 @@ public class ResearchEdit {
 				item412 = request.getParameter("item412");
 				item512 = request.getParameter("item512");
 				
-				paramClass2.setSurq_seq(surq_seq12);
-				paramClass2.setSuri_seq(suri_seq12);
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item112);
 				paramClass2.setSuri_title2(item212);
 				paramClass2.setSuri_title3(item312);
 				paramClass2.setSuri_title4(item412);
 				paramClass2.setSuri_title5(item512);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				paramClass2.setSuri_num1(112);
+				paramClass2.setSuri_num2(212);
+				paramClass2.setSuri_num3(312);
+				paramClass2.setSuri_num4(412);
+				paramClass2.setSuri_num5(512);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			
-		}
-		
-		if(13 <= que_cnt_size){
-			//문제의시퀀스
-			surq_seq13 = Integer.parseInt(request.getParameter("resultClass1_seq13"));
-			paramClass1.setSurq_seq(surq_seq13);
-			//문항의시퀀스
-			suri_seq13 = Integer.parseInt(request.getParameter("resultClass2_seq13"));
-			paramClass2.setSurq_seq(surq_seq13);
-			paramClass2.setSuri_seq(suri_seq13);
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(13 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
+			if(que_cnt_size < 13){
 				surq_title13 = request.getParameter("surq_title13");
 				paramClass1.setSurq_title(surq_title13);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
-				
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
 				//사용자가 입력한 값(문항)
 				item113 = request.getParameter("item113");
@@ -957,40 +1483,28 @@ public class ResearchEdit {
 				item413 = request.getParameter("item413");
 				item513 = request.getParameter("item513");
 				
-				paramClass2.setSurq_seq(surq_seq13);
-				paramClass2.setSuri_seq(suri_seq13);
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item113);
 				paramClass2.setSuri_title2(item213);
 				paramClass2.setSuri_title3(item313);
 				paramClass2.setSuri_title4(item413);
 				paramClass2.setSuri_title5(item513);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				paramClass2.setSuri_num1(113);
+				paramClass2.setSuri_num2(213);
+				paramClass2.setSuri_num3(313);
+				paramClass2.setSuri_num4(413);
+				paramClass2.setSuri_num5(513);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-			
-		}
-		
-		
-		if(14 <= que_cnt_size){
-			//문제의시퀀스
-			surq_seq14 = Integer.parseInt(request.getParameter("resultClass1_seq14"));
-			paramClass1.setSurq_seq(surq_seq14);
-			//문항의시퀀스
-			suri_seq14 = Integer.parseInt(request.getParameter("resultClass2_seq14"));
-			paramClass2.setSurq_seq(surq_seq14);
-			paramClass2.setSuri_seq(suri_seq14);
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(14 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
+			if(que_cnt_size < 14){
 				surq_title14 = request.getParameter("surq_title14");
-				paramClass1.setSurq_seq(surq_seq14);
 				paramClass1.setSurq_title(surq_title14);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
-				
-				//문항의시퀀스
-				suri_seq14 = Integer.parseInt(request.getParameter("resultClass2_seq14"));
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
 				//사용자가 입력한 값(문항)
 				item114 = request.getParameter("item114");
@@ -999,32 +1513,28 @@ public class ResearchEdit {
 				item414 = request.getParameter("item414");
 				item514 = request.getParameter("item514");
 				
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item114);
 				paramClass2.setSuri_title2(item214);
 				paramClass2.setSuri_title3(item314);
 				paramClass2.setSuri_title4(item414);
 				paramClass2.setSuri_title5(item514);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				paramClass2.setSuri_num1(114);
+				paramClass2.setSuri_num2(214);
+				paramClass2.setSuri_num3(314);
+				paramClass2.setSuri_num4(414);
+				paramClass2.setSuri_num5(514);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-		}
-		
-		if(15 <= que_cnt_size){
-			//문제의시퀀스
-			surq_seq15 = Integer.parseInt(request.getParameter("resultClass1_seq15"));
-			paramClass1.setSurq_seq(surq_seq15);
-			//문항의시퀀스
-			suri_seq15 = Integer.parseInt(request.getParameter("resultClass2_seq15"));
-			paramClass2.setSurq_seq(surq_seq15);
-			paramClass2.setSuri_seq(suri_seq15);
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(15 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
+			if(que_cnt_size < 15){
 				surq_title15 = request.getParameter("surq_title15");
 				paramClass1.setSurq_title(surq_title15);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
 				//사용자가 입력한 값(문항)
 				item115 = request.getParameter("item115");
@@ -1033,33 +1543,28 @@ public class ResearchEdit {
 				item415 = request.getParameter("item415");
 				item515 = request.getParameter("item515");
 				
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item115);
 				paramClass2.setSuri_title2(item215);
 				paramClass2.setSuri_title3(item315);
 				paramClass2.setSuri_title4(item415);
 				paramClass2.setSuri_title5(item515);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				paramClass2.setSuri_num1(115);
+				paramClass2.setSuri_num2(215);
+				paramClass2.setSuri_num3(315);
+				paramClass2.setSuri_num4(415);
+				paramClass2.setSuri_num5(515);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-		}
-		
-		if(16 <= que_cnt_size){
-			//문제의시퀀스
-			surq_seq16 = Integer.parseInt(request.getParameter("resultClass1_seq16"));
-			paramClass1.setSurq_seq(surq_seq16);
-			//문항의시퀀스
-			suri_seq16 = Integer.parseInt(request.getParameter("resultClass2_seq16"));
-			paramClass2.setSurq_seq(surq_seq16);
-			paramClass2.setSuri_seq(suri_seq16);
-			
-			//수정시 문제를 줄였을 경우 - 레코드삭제
-			if(16 > que_cnt){
-				sqlMapper.delete("Research.deleteResearchWhenUpdate1", paramClass1);//설문조사(문제) 삭제
-				sqlMapper.delete("Research.deleteResearchWhenUpdate2", paramClass2);//설문조사(문항) 삭제
-			}else{ //아닐경우 - 레코드업데이트
+			if(que_cnt_size < 16){
 				surq_title16 = request.getParameter("surq_title16");
-				paramClass1.setSurq_seq(surq_seq16);
 				paramClass1.setSurq_title(surq_title16);
-				sqlMapper.update("Research.updateResearch1", paramClass1); //설문조사(문제) update
+				//설문조사 문제 insert
+				sqlMapper.insert("Research.insertResearch1", paramClass1);
+
+				//설문조사 문제 최대시퀀스
+				resultClass11 = (ResearchDTO1) sqlMapper.queryForObject("Research.selectLastNum1");
+				int surq_seq = (int)(resultClass11.getSurq_seq());
 				
 				//사용자가 입력한 값(문항)
 				item116 = request.getParameter("item116");
@@ -1068,16 +1573,20 @@ public class ResearchEdit {
 				item416 = request.getParameter("item416");
 				item516 = request.getParameter("item516");
 				
-				paramClass2.setSurq_seq(surq_seq16);
-				paramClass2.setSuri_seq(suri_seq16);
+				paramClass2.setSurq_seq(surq_seq);
 				paramClass2.setSuri_title1(item116);
 				paramClass2.setSuri_title2(item216);
 				paramClass2.setSuri_title3(item316);
 				paramClass2.setSuri_title4(item416);
 				paramClass2.setSuri_title5(item516);
-				sqlMapper.update("Research.updateResearch2", paramClass2); //설문조사(문항) update
+				paramClass2.setSuri_num1(116);
+				paramClass2.setSuri_num2(216);
+				paramClass2.setSuri_num3(316);
+				paramClass2.setSuri_num4(416);
+				paramClass2.setSuri_num5(516);
+				sqlMapper.insert("Research.insertResearch2", paramClass2);
 			}
-		}
+		}//.시나리오2 종료
 		
 		return uri; //수정요청했던 뷰페이지로 리다이렉트
 	}
