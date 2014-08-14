@@ -23,6 +23,8 @@
 		var current_date = "${current_date}";
 		var sur_sat_date = "${resultClass.sur_sat_date}";
 		var sur_end_date = "${resultClass.sur_end_date}";
+		var ori_cnt = "${resultClass.que_cnt}";
+		
 		
 		if(!editOK.sur_title.value){
 			alert("제목을 입력하세요.");
@@ -680,13 +682,16 @@
 											
 											
 											<!-- 문제 -->
-											<c:if test="${permit == 0}">
+											<c:if test="${permit == 0 || permit == 1}">
 												<p>${i+1}. <input type="text" id="surq_title${i+1}" name="surq_title${i+1}" value="${title[i]}" /></p>
 											</c:if>
+											
+											<%-- 
 											<c:if test="${permit == 1}">
 												<p>${i+1}. "${title[i]}"</p>
 												<input type="hidden" id="surq_title${i+1}" name="surq_title${i+1}" value="${title[i]}" />
 											</c:if>
+											 --%>
 											<!-- .//문제 -->
 											
 											<!-- 문항 -->
@@ -694,8 +699,8 @@
 											<%-- <input type="hidden" id="suri_seqItem${j.count }" name="suri_seqItem" class="inp" value="${re.suri_seq}"/> --%>
 											<input type="hidden" id="surq_item${i+1}" name="surq_item" value="${title[i]}">
 											
-											<!-- 설문조사를 누군가가 할경우 수정할 수 있음 -->
-											<c:if test="${permit == 0}">
+											<!-- 설문조사 참여결과가 있던, 없던 수정할 수 있음 -->
+											<c:if test="${permit == 0 || permit == 1}">
 												<ul>
 													<li>① <input type="text" id="item1${i+1}" name="item1${i+1}" value="${i_title1[i]}" /> </li>
 													<li>② <input type="text" id="item2${i+1}" name="item2${i+1}" value="${i_title2[i]}" /> </li>
@@ -704,6 +709,8 @@
 													<li>⑤ <input type="text" id="item5${i+1}" name="item5${i+1}" value="${i_title5[i]}" /> </li>
 												</ul>
 											</c:if>
+											
+											<%-- 
 											<!-- 설문조사를 그누구도 하지 않았을 경우 수정못함 -> 히든값으로 java로 넘김 -->
 											<c:if test="${permit == 1}">
 												<ul>
@@ -714,6 +721,8 @@
 													<li>⑤ ${i_title5[i]}<input type="hidden" id="item5${i+1}" name="item5${i+1}" value="${i_title5[i]}" /> </li>
 												</ul>
 											</c:if>
+											 --%>
+											
 											<!-- .//문항 -->
 											
 										</div>

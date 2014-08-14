@@ -344,6 +344,12 @@ public class ResearchEdit {
 			i_title5[j] = resultClass2.get(j).getSuri_title5(); //문항5 모음
 		}
 		
+		//설문조사(결과)레코드 삭제
+		//아래의 설문조사(결과) 레코드get 부분은 필요없어짐. (설문조사 결과가있을때, 수정할 경우 삭제하는 것이 맞지 않다면 아래의 설문조사(결과) 레코드get이 필요하게됨)
+		if(permit.equals("1")){
+			sqlMapper.delete("Research.deleteResearch3", sur_seq);
+		}
+		
 		//설문조사(결과) 레코드get
 		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq);
 		int res_cnt = resultClass3.size(); //결과개수(수정,삭제 유효성을 위해 jsp로 보냄)

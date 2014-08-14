@@ -23,8 +23,12 @@
 		}
 		
 		if(res_cnt > 0){
-			alert("설문 결과가 존재하여 문제 및 문항은 수정할 수 없습니다.");
 			permit = 1;
+			if(confirm("설문결과가 존재하여 수정하실경우 설문조사의 데이터가 삭제됩니다. \n 게시글을 수정하시겠습니까?")!=0){
+				location.href = '/foodSen/researchEditForm.do?sur_seq='+sur_seq+'&permit='+permit+'&searchType='+searchType+'&userinput='+userinput+'&searchingNow='+searchingNow;
+			}else{
+				return;
+			}
 		}
 		
 		location.href = '/foodSen/researchEditForm.do?sur_seq='+sur_seq+'&permit='+permit+'&searchType='+searchType+'&userinput='+userinput+'&searchingNow='+searchingNow;
