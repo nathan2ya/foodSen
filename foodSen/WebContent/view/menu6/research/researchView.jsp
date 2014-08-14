@@ -116,10 +116,12 @@
 		var lengthMax = "Y";
 		var lengthMaxTxt = "";
 		$('.txt').each(function(index, item){
+			/* 
 			if($('input:radio[name=suri_numItem'+(index+1)+']:checked').val() == "undefined" || $('input:radio[name=suri_numItem'+(index+1)+']:checked').val() == "" || $('input:radio[name=suri_numItem'+(index+1)+']:checked').val() == null)
 			{
 				selectYn = "N";
 			}
+			 */
 			if(getStrByte($('#descriptionItem'+(index+1)).val()) > 120){
 				lengthMaxTxt = $('#descriptionItem'+(index+1));
 				//$('#descriptionItem'+(index+1)).val($('#descriptionItem'+(index+1)).val().cut(120));
