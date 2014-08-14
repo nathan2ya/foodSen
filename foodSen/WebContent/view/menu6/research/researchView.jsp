@@ -116,7 +116,7 @@
 		var lengthMax = "Y";
 		var lengthMaxTxt = "";
 		$('.txt').each(function(index, item){
-			/* 
+			/* 모든문항을 선택해야 설문조사 참여가 가능하도록 하려면 이 주석을 해제할것
 			if($('input:radio[name=suri_numItem'+(index+1)+']:checked').val() == "undefined" || $('input:radio[name=suri_numItem'+(index+1)+']:checked').val() == "" || $('input:radio[name=suri_numItem'+(index+1)+']:checked').val() == null)
 			{
 				selectYn = "N";
