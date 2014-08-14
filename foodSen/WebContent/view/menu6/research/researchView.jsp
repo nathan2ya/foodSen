@@ -256,11 +256,21 @@
 										<input type="hidden" id="surq_seqItem${i+1}" name="surq_seqItem" class="txt" value="${i+1}">
 										<input type="hidden" id="surq_item${i+1}" name="surq_item" value="${title[i]}">
 										<ul>
-											<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="① ${i_title1[i]}" />  <label for="suri_num${i+1}">①  ${i_title1[i]} </label></li>
-											<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="② ${i_title2[i]}" />  <label for="suri_num${i+1}">②  ${i_title2[i]} </label></li>
-											<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="③ ${i_title3[i]}" />  <label for="suri_num${i+1}">③  ${i_title3[i]} </label></li>
-											<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="④ ${i_title4[i]}" />  <label for="suri_num${i+1}">④  ${i_title4[i]} </label></li>
-											<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="⑤ ${i_title5[i]}" />  <label for="suri_num${i+1}">⑤  ${i_title5[i]} </label></li>
+											<c:if test="${i_title1[i] ne null}">
+												<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="① ${i_title1[i]}" />  <label for="suri_num${i+1}">①  ${i_title1[i]} </label></li>
+											</c:if>
+											<c:if test="${i_title2[i] ne null}">
+												<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="② ${i_title2[i]}" />  <label for="suri_num${i+1}">②  ${i_title2[i]} </label></li>
+											</c:if>
+											<c:if test="${i_title3[i] ne null}">
+												<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="③ ${i_title3[i]}" />  <label for="suri_num${i+1}">③  ${i_title3[i]} </label></li>
+											</c:if>
+											<c:if test="${i_title4[i] ne null}">
+												<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="④ ${i_title4[i]}" />  <label for="suri_num${i+1}">④  ${i_title4[i]} </label></li>
+											</c:if>
+											<c:if test="${i_title5[i] ne null}">
+												<li><input type="radio" id="suri_num${i+1}" name="suri_numItem${i+1}" value="⑤ ${i_title5[i]}" />  <label for="suri_num${i+1}">⑤  ${i_title5[i]} </label></li>
+											</c:if>
 											<li>선택사유 <input type="text" id="descriptionItem${i+1 }" name="descriptionItem" class="inp" style="width:200px;" /> </li>
 										</ul>
 									</div>
