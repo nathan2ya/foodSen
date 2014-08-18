@@ -46,6 +46,7 @@
 			i_title4[i] = document.getElementById("i_title4"+i).value;
 			i_title5[i] = document.getElementById("i_title5"+i).value;
 			
+			//차트에 보여줄 문항개수
 			if(i_title3[i] == ''){
 				itemCnt--;
 			}
@@ -64,11 +65,6 @@
 			res_cnt_arr5[i] = Number(document.getElementById("res_cnt_arr5"+i).value);
 			
 			//데이터기입
-			//if 2
-			//if 3
-			//if 4
-			//if 5
-			
 			if(itemCnt == 5){
 				var data = google.visualization.arrayToDataTable([
 					['title', i_title1[i], i_title2[i], i_title3[i], i_title4[i], i_title5[i]],
