@@ -74,6 +74,11 @@ public class ResearchView {
 	//설문조사 번호만 잘라낸 결과
 	private String chosen;
 	
+	//설문조사 엑셀write 변수
+	private String[] sur_title = new String[1000];//문제모음
+	private String[] sur_item = new String[1000];//문항모음
+	private String[] sur_description = new String[1000];//사유모음
+	
 	//뷰정보
 	private int currentPage;
 	private int searchingNow; // 전체글, 검색글을 판단하여 각종 논리성을 판가르는 논리값
@@ -310,15 +315,50 @@ public class ResearchView {
 	@RequestMapping("/writeExcel.do") 
 	public void writeExcel(HttpServletRequest request, HttpServletResponse response, HttpSession session)  throws Exception {
 		
-		//요청한 뷰정보 초기화
-		int sur_seq = Integer.parseInt(request.getParameter("sur_seq"));
+		//1. 엑셀에 기입될 데이터 get
+		int sur_seq = Integer.parseInt(request.getParameter("sur_seq")); //요청한뷰의 시퀀스넘버
+		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq); //엑셀에 write될 데이터
 		
-		//데이터 가지고 옴
-		//엑셀만듬 파일이름을-> test.txt
 		
-		//위에서 만든 엑셀파일 다운로드
-		String uploadPath = file_path; //엑셀 저장 경로
-		String requestedFile = "test.txt"; //파일명.확장자
+		
+		//2. 엑셀파일 생성
+		
+		/*
+		-------------------[ 엑셀파일생성 ]-------------------
+		                   
+		// 설문조사 문제 // 설문조사 선택문항 //  설문조사 선택사유  //
+		//  sur_title[i] //    sur_item[j]    //  sur_description[k] //
+		
+		-------------------------------------------------------
+		*/
+		
+		int i = 0; int j = 0; int k = 0;
+		
+		//설문조사 문제 (sur_title)
+		for(i=0; i<resultClass3.size(); i++){
+			sur_title[i] = resultClass3.get(i).getSurq_title();
+		}
+		
+		//설문조사 선택문항 (sur_item)
+		for(j=0; j<resultClass3.size(); j++){
+			if(resultClass3.get(j).getSuri_num().substring(0, 1).equals("u")){
+				sur_item[j] = "선택하지 않음";
+			}else{
+				sur_item[j] = resultClass3.get(j).getSuri_num().substring(0, 1);
+			}
+		}
+		
+		//설문조사 선택사유 (sur_description)
+		for(k=0; k<resultClass3.size(); k++){
+			sur_description[i] = resultClass3.get(i).getDescription();
+		}
+		
+		
+		
+		
+		//3. 엑셀다운로드 제공
+		String uploadPath = file_path; //엑셀파일이 저장되어있는 경로
+		String requestedFile = "test.xlsx"; //위에서 만든 엑셀파일명.확장자
 		//String attach_path = request.getParameter("attach_path"); //파일과 모든 경로를 포함한 변수(향후 쓰일 수 있음)
 
 		File uFile = new File(uploadPath, requestedFile); //경로,파일명으로 파일객체 생성
