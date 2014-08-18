@@ -15,6 +15,7 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 	
+	//차트시작
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawVisualization);
 	
@@ -104,7 +105,7 @@
 			chart.draw(data, options);
 		}
 	}
-
+	//.차트종료
 	
 	$(document).ready(function(){
 		var i=40;
