@@ -34,32 +34,30 @@
 		var res_cnt_arr5 = new Array();
 		
 		for(var i = 0; i<cnt; i++){
+			//제목
 			title[i] = document.getElementById("title"+i).value;
+			
+			//항목
 			i_title1[i] = document.getElementById("i_title1"+i).value;
 			i_title2[i] = document.getElementById("i_title2"+i).value;
 			i_title3[i] = document.getElementById("i_title3"+i).value;
 			i_title4[i] = document.getElementById("i_title4"+i).value;
 			i_title5[i] = document.getElementById("i_title5"+i).value;
 			
-			res_cnt_arr1[i] = document.getElementById("res_cnt_arr1"+i).value;
-			res_cnt_arr2[i] = document.getElementById("res_cnt_arr2"+i).value;
-			res_cnt_arr3[i] = document.getElementById("res_cnt_arr3"+i).value;
-			res_cnt_arr4[i] = document.getElementById("res_cnt_arr4"+i).value;
-			res_cnt_arr5[i] = document.getElementById("res_cnt_arr5"+i).value;
-		
-			/* 
-			alert(res_cnt_arr1[0]);
-			alert(res_cnt_arr2[0]);
-			alert(res_cnt_arr3[0]);
-			alert(res_cnt_arr4[0]);
-			alert(res_cnt_arr5[0]);
-			 */
-		
+			//항목 석택회수 (Number함수를 이용한 int로 형변환)
+			res_cnt_arr1[i] = Number(document.getElementById("res_cnt_arr1"+i).value);
+			res_cnt_arr2[i] = Number(document.getElementById("res_cnt_arr2"+i).value);
+			res_cnt_arr3[i] = Number(document.getElementById("res_cnt_arr3"+i).value);
+			res_cnt_arr4[i] = Number(document.getElementById("res_cnt_arr4"+i).value);
+			res_cnt_arr5[i] = Number(document.getElementById("res_cnt_arr5"+i).value);
+			
+			//데이터기입
 			var data = google.visualization.arrayToDataTable([
 				['title', i_title1[i], i_title2[i], i_title3[i], i_title4[i], i_title5[i]],
-				[title[i], 11, 22, 33, 44, 55],
+				[title[i], res_cnt_arr1[i] , res_cnt_arr2[i], res_cnt_arr3[i], res_cnt_arr4[i], res_cnt_arr5[i]],
 			]);
 			
+			//추가차트정보
 			var options = {
 				title : (i+1)+'. 문제 : '+title[i],
 				vAxis: {title: "선택횟수"},
@@ -68,6 +66,7 @@
 				series: {5: {type: "line"}}
 			};
 			
+			//차트생성(for문 돌고있는 div영역에)
 			var chart = new google.visualization.ComboChart(document.getElementById('chart_div'+i));
 			chart.draw(data, options);
 		}
