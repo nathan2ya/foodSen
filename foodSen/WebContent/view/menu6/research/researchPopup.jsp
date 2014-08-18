@@ -97,24 +97,34 @@
 							<td>&nbsp;${res_cnt_arr[i][1]}</td>
 							<td><span class="title">② ${i_title2[i]}</span></td>
 						</tr>
-						<tr>
-							<td class="tl">③</td>
-							<td class="tl"><img alt="${i_title3[i]}" src="./images/graph/bar3.JPG" width="${res_cnt_arr[i][2] * 10}px" height="10px"></td>
-							<td>&nbsp;${res_cnt_arr[i][2]}</td>
-							<td><span class="title">③ ${i_title3[i]}</span></td>
-						</tr>
-						<tr>
-							<td class="tl">④</td>
-							<td class="tl"><img alt="${i_title4[i]}" src="./images/graph/bar4.JPG" width="${res_cnt_arr[i][3] * 10}px" height="10px"></td>
-							<td>&nbsp;${res_cnt_arr[i][3]}</td>
-							<td><span class="title">④ ${i_title4[i]}</span></td>
-						</tr>
-						<tr>
-							<td class="tl">⑤</td>
-							<td class="tl"><img alt="${i_title5[i]}" src="./images/graph/bar5.JPG" width="${res_cnt_arr[i][4] * 10}px" height="10px"></td>
-							<td>&nbsp;${res_cnt_arr[i][4]}</td>
-							<td><span class="title">⑤ ${i_title5[i]}</span></td>
-						</tr>
+						
+						<c:if test="${i_title3[i] != null}">
+							<tr>
+								<td class="tl">③</td>
+								<td class="tl"><img alt="${i_title3[i]}" src="./images/graph/bar3.JPG" width="${res_cnt_arr[i][2] * 10}px" height="10px"></td>
+								<td>&nbsp;${res_cnt_arr[i][2]}</td>
+								<td><span class="title">③ ${i_title3[i]}</span></td>
+							</tr>
+						</c:if>
+						
+						<c:if test="${i_title4[i] != null}">
+							<tr>
+								<td class="tl">④</td>
+								<td class="tl"><img alt="${i_title4[i]}" src="./images/graph/bar4.JPG" width="${res_cnt_arr[i][3] * 10}px" height="10px"></td>
+								<td>&nbsp;${res_cnt_arr[i][3]}</td>
+								<td><span class="title">④ ${i_title4[i]}</span></td>
+							</tr>
+						</c:if>
+						
+						<c:if test="${i_title5[i] != null}">	
+							<tr>
+								<td class="tl">⑤</td>
+								<td class="tl"><img alt="${i_title5[i]}" src="./images/graph/bar5.JPG" width="${res_cnt_arr[i][4] * 10}px" height="10px"></td>
+								<td>&nbsp;${res_cnt_arr[i][4]}</td>
+								<td><span class="title">⑤ ${i_title5[i]}</span></td>
+							</tr>
+						</c:if>
+						
 						<tr><td colsapn="4"><br/></td></tr>
 						<!-- .//기존출력공간 -->
 						
