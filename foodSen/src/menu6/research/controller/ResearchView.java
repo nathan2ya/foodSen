@@ -342,8 +342,6 @@ public class ResearchView {
 		int sur_seq = Integer.parseInt(request.getParameter("sur_seq")); //요청한뷰의 시퀀스넘버
 		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq); //엑셀에 write될 데이터
 		
-		
-		
 		//2. 엑셀파일에 insert할 데이터 저장
 		int i = 0; int j = 0; int k = 0;
 		
@@ -365,7 +363,6 @@ public class ResearchView {
 		for(k=0; k<resultClass3.size(); k++){
 			sur_description[k] = resultClass3.get(k).getDescription();
 		}
-		
 		
 		
 		//3. 엑셀파일 생성
@@ -395,7 +392,6 @@ public class ResearchView {
 			data.add(map);
 		}
 		
-		
 		//WorkBook 생성
 		WritableWorkbook wb = Workbook.createWorkbook(file);
 		
@@ -409,8 +405,10 @@ public class ResearchView {
 		
 		// 셀형식
 		WritableCellFormat textFormat = new WritableCellFormat();
+		
 		//생성
 		textFormat.setAlignment(Alignment.CENTRE);
+		
 		//테두리
 		textFormat.setBorder(Border.ALL, BorderLineStyle.THIN);
 		int row = 0;
@@ -426,7 +424,6 @@ public class ResearchView {
 		//sh.addCell(label);
 		row++;
 		
-		
 		//데이터
 		for (Map<String, Object> tem : data) {
 			// 이름
@@ -438,15 +435,10 @@ public class ResearchView {
 			// 전화번호
 			label = new jxl.write.Label(2, row, (String) tem.get("sur_description"),textFormat);
 			sh.addCell(label);
-			// 비고
-			//label = new jxl.write.Label(3, row, (String) tem.get("etc"),textFormat);
-			//sh.addCell(label);
-
 			row++;
 		}
 		wb.write(); //WorkSheet 쓰기
 		wb.close(); //WorkSheet 닫기
-		
 		
 		//4. 엑셀다운로드 제공
 		String uploadPath = file_path; //엑셀파일이 저장되어있는 경로
@@ -459,9 +451,7 @@ public class ResearchView {
 		
 		if (ctrl){
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(uFile)); //파일을 읽어오되 // 버퍼에
-
 			String mimetype = "text/html";
-
 			response.setBufferSize(fSize); //버퍼크기설정
 			response.setContentType(mimetype); //컨텐츠형식설정
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + requestedFile + "\"");
