@@ -398,9 +398,9 @@ public class ResearchView {
 		//WorkSheet 생성
 		WritableSheet sh = wb.createSheet("테스트", 0);
 		//열넓이 설정 (열 위치, 넓이)
-		sh.setColumnView(0, 20);
+		sh.setColumnView(0, 40);
 		sh.setColumnView(1, 20);
-		sh.setColumnView(2, 40);
+		sh.setColumnView(2, 50);
 		sh.setColumnView(3, 20);
 		
 		// 셀형식
