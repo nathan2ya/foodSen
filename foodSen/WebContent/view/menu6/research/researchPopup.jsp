@@ -13,38 +13,66 @@
 <script src="http://code.highcharts.com/modules/drilldown.js"></script>
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-
 <script type="text/javascript">
 	
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawVisualization);
 	
 	function drawVisualization(){
-		var current_date = "${current_date}"; //현재날짜
-		var title = "${title}"; // 제목모음
-		var i_title1 = "${i_title1}"; //문항1 모음
-		var i_title2 = "${i_title2}"; //문항2 모음
-		var i_title3 = "${i_title3}"; //문항3 모음
-		var i_title4 = "${i_title4}"; //문항4 모음
-		var i_title5 = "${i_title5}"; //문항5 모음
+		var cnt = "${cnt}"; //문제개수
+		var title = new Array();
+		var i_title1 = new Array();
+		var i_title2 = new Array();
+		var i_title3 = new Array();
+		var i_title4 = new Array();
+		var i_title5 = new Array();
+		
+		var res_cnt_arr1 = new Array();
+		var res_cnt_arr2 = new Array();
+		var res_cnt_arr3 = new Array();
+		var res_cnt_arr4 = new Array();
+		var res_cnt_arr5 = new Array();
+		
+		for(var i = 0; i<cnt; i++){
+			title[i] = document.getElementById("title"+i).value;
+			i_title1[i] = document.getElementById("i_title1"+i).value;
+			i_title2[i] = document.getElementById("i_title2"+i).value;
+			i_title3[i] = document.getElementById("i_title3"+i).value;
+			i_title4[i] = document.getElementById("i_title4"+i).value;
+			i_title5[i] = document.getElementById("i_title5"+i).value;
+			
+			res_cnt_arr1[i] = document.getElementById("res_cnt_arr1"+i).value;
+			res_cnt_arr2[i] = document.getElementById("res_cnt_arr2"+i).value;
+			res_cnt_arr3[i] = document.getElementById("res_cnt_arr3"+i).value;
+			res_cnt_arr4[i] = document.getElementById("res_cnt_arr4"+i).value;
+			res_cnt_arr5[i] = document.getElementById("res_cnt_arr5"+i).value;
+		}
 		
 		
+		alert(res_cnt_arr1[0]);
+		alert(res_cnt_arr2[0]);
+		alert(res_cnt_arr3[0]);
+		alert(res_cnt_arr4[0]);
+		alert(res_cnt_arr5[0]);
 		
-		var data = google.visualization.arrayToDataTable([
-			['Month', '1번문항', '2번문항', '3번문항', '4번문항', '5번문항'],
-			[current_date, 165, 938, 522, 998, 450],
-		]);
 		
-		var options = {
-			title : '문제',
-			vAxis: {title: "선택횟수"},
-			hAxis: {title: "문항"},
-			seriesType: "bars",
-			series: {5: {type: "line"}}
-		};
-		
-		var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-		chart.draw(data, options);
+		for(var i = 0; i<cnt; i++){
+			var data = google.visualization.arrayToDataTable([
+				['title[0]', i_title1[i], i_title2[i], i_title3[i], i_title4[i], i_title5[i]],
+				['', 11, 22, 33, 44, 55],
+			]);
+			
+			var options = {
+				title : i+'. 문제 : '+title[0],
+				vAxis: {title: "선택횟수"},
+				hAxis: {title: "문항"},
+				seriesType: "bars",
+				series: {5: {type: "line"}}
+			};
+			
+			var chart = new google.visualization.ComboChart(document.getElementById('chart_div'+i));
+			chart.draw(data, options);
+		}
 	}
 
 	
@@ -110,12 +138,26 @@
 							</td>
 						</tr>
 						
+						<input type="hidden" id="title${i}" name="title" class="txt" value="${title[i]}">
+						<input type="hidden" id="i_title1${i}" name="i_title1" class="txt" value="${i_title1[i]}">
+						<input type="hidden" id="i_title2${i}" name="i_title2" class="txt" value="${i_title2[i]}">
+						<input type="hidden" id="i_title3${i}" name="i_title3" class="txt" value="${i_title3[i]}">
+						<input type="hidden" id="i_title4${i}" name="i_title4" class="txt" value="${i_title4[i]}">
+						<input type="hidden" id="i_title5${i}" name="i_title5" class="txt" value="${i_title5[i]}">
+						
+						<input type="hidden" id="res_cnt_arr1${i}" name="res_cnt_arr" class="txt" value="${res_cnt_arr[i][0]}">
+						<input type="hidden" id="res_cnt_arr2${i}" name="res_cnt_arr" class="txt" value="${res_cnt_arr[i][1]}">
+						<input type="hidden" id="res_cnt_arr3${i}" name="res_cnt_arr" class="txt" value="${res_cnt_arr[i][2]}">
+						<input type="hidden" id="res_cnt_arr4${i}" name="res_cnt_arr" class="txt" value="${res_cnt_arr[i][3]}">
+						<input type="hidden" id="res_cnt_arr5${i}" name="res_cnt_arr" class="txt" value="${res_cnt_arr[i][4]}">
 						
 						<!-- 차트출력공간 -->
 						<tr><td>
-							<div id="chart_div" style="width: 900px; height: 500px;"></div>
+							<div id="chart_div${i}" style="width: 900px; height: 500px;"></div>
 						</td></tr>
-						 
+						<!-- .//차트출력공간 -->
+						
+						
 						 
 						<%-- 
 						<!-- 기존출력공간 -->
