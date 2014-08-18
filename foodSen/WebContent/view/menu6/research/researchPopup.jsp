@@ -73,10 +73,6 @@
 	}
 
 	
-	//이곳 위쪽은 추가
-	//이곳 아래는 원본
-	
-	
 	$(document).ready(function(){
 		var i=40;
 		$(".title").each(function(index, item){		
@@ -103,6 +99,13 @@
 	    }
 	    return str;
 	}; // 문자열을 잘라주는 함수 - 원하는 byte수만큼 잘라주고 '...'을 붙여준다
+	
+	//엑셀파일생성
+	function goWriteExcel(){
+		var sur_seq = "${sur_seq}"; //이글의 시퀀스(정보)
+		location.href = '/foodSen/writeExcel.do?sur_seq='+sur_seq;
+	}
+	
 </script>
 
 <!-- w100% h545px -->
@@ -218,6 +221,7 @@
 		<p class="pt20"></p>
 		<div class="pop_btn">
 			<span class="blue_l"><a href="javascript:self.close()" class="blue_r">확인</a></span>
+			<span class="blue_l"><a href="javascript:goWriteExcel()" class="blue_r">엑셀다운로드</a></span>
 		</div>
     	
 	</div>
