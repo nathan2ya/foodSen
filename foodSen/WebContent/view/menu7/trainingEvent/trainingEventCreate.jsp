@@ -143,8 +143,6 @@
 			var size = 0;
 			var browser = navigator.appName;
 			
-			alert(browser);
-			
 			if (browser=="Microsoft Internet Explorer"){
 				var oas = new ActiveXObject("Scripting.FileSystemObject");
 				var filepath = document.getElementById('filename').value;
