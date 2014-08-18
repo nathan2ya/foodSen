@@ -34,6 +34,8 @@
 		var res_cnt_arr5 = new Array();
 		
 		for(var i = 0; i<cnt; i++){
+			var itemCnt = 5;
+			
 			//제목
 			title[i] = document.getElementById("title"+i).value;
 			
@@ -44,6 +46,16 @@
 			i_title4[i] = document.getElementById("i_title4"+i).value;
 			i_title5[i] = document.getElementById("i_title5"+i).value;
 			
+			if(i_title3[i] == ''){
+				itemCnt--;
+			}
+			if(i_title4[i] == ''){
+				itemCnt--;
+			}
+			if(i_title5[i] == ''){
+				itemCnt--;
+			}
+			
 			//항목 석택회수 (Number함수를 이용한 int로 형변환)
 			res_cnt_arr1[i] = Number(document.getElementById("res_cnt_arr1"+i).value);
 			res_cnt_arr2[i] = Number(document.getElementById("res_cnt_arr2"+i).value);
@@ -52,10 +64,35 @@
 			res_cnt_arr5[i] = Number(document.getElementById("res_cnt_arr5"+i).value);
 			
 			//데이터기입
-			var data = google.visualization.arrayToDataTable([
-				['title', i_title1[i], i_title2[i], i_title3[i], i_title4[i], i_title5[i]],
-				[title[i], res_cnt_arr1[i] , res_cnt_arr2[i], res_cnt_arr3[i], res_cnt_arr4[i], res_cnt_arr5[i]],
-			]);
+			//if 2
+			//if 3
+			//if 4
+			//if 5
+			
+			if(itemCnt == 5){
+				var data = google.visualization.arrayToDataTable([
+					['title', i_title1[i], i_title2[i], i_title3[i], i_title4[i], i_title5[i]],
+					[title[i], res_cnt_arr1[i] , res_cnt_arr2[i], res_cnt_arr3[i], res_cnt_arr4[i], res_cnt_arr5[i]],
+				]);
+			}
+			if(itemCnt == 4){
+				var data = google.visualization.arrayToDataTable([
+					['title', i_title1[i], i_title2[i], i_title3[i], i_title4[i]],
+					[title[i], res_cnt_arr1[i] , res_cnt_arr2[i], res_cnt_arr3[i], res_cnt_arr4[i]],
+				]);
+			}
+			if(itemCnt == 3){
+				var data = google.visualization.arrayToDataTable([
+					['title', i_title1[i], i_title2[i], i_title3[i]],
+					[title[i], res_cnt_arr1[i] , res_cnt_arr2[i], res_cnt_arr3[i]],
+				]);
+			}
+			if(itemCnt == 2){
+				var data = google.visualization.arrayToDataTable([
+					['title', i_title1[i], i_title2[i]],
+					[title[i], res_cnt_arr1[i] , res_cnt_arr2[i]],
+				]);
+			}
 			
 			//추가차트정보
 			var options = {
