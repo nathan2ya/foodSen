@@ -10,7 +10,6 @@
 	//엑셀파일생성
 	function goWriteExcel(){
 		var sur_seq = "${resultClass.sur_seq}"; //이글의 시퀀스(정보)
-		
 		location.href = '/foodSen/writeExcel.do?sur_seq='+sur_seq;
 	}
 	
@@ -80,7 +79,7 @@
 		//url
 		url = '/foodSen/researchResult.do?sur_seq='+sur_seq;
 		// 새로운 윈도우를 엽니다.
-		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=545");
+		open(url,"confirm","toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=1000,height=550");
 	}
 	
 	//사유전체보기

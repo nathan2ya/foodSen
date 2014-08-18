@@ -288,6 +288,13 @@ public class ResearchView {
 			}
 		}
 		
+		//현재날짜
+		Calendar today = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String current_date = sdf.format(today.getTime());
+		//.현재날짜
+		
+		request.setAttribute("current_date", current_date); //현재날짜
 		request.setAttribute("sur_seq", sur_seq);
 		request.setAttribute("resultClass", resultClass);//설문조사(정보)레코드
 		request.setAttribute("cnt", cnt); //설문조사 문항개수
@@ -301,7 +308,8 @@ public class ResearchView {
 		request.setAttribute("i_title5", i_title5); //설문조사(문항5배열)
 		request.setAttribute("resultClass3", resultClass3);//설문조사(결과)레코드
 		request.setAttribute("res_cnt_arr", res_cnt_arr);//설문조사(결과)선택 카운트
-		return "/view/menu6/research/researchPopup.jsp";
+		//return "/view/menu6/research/researchChart.jsp"; //차트보여주기
+		return "/view/menu6/research/researchPopup.jsp"; //원본(일반그래프보여주기)
 	}
 	
 	//설문조사 결과_사유 팝업페이지

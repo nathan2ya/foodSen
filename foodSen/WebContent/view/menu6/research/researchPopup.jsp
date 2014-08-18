@@ -12,9 +12,42 @@
 <script src="http://code.highcharts.com/modules/data.js"></script>
 <script src="http://code.highcharts.com/modules/drilldown.js"></script>
 
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 <script type="text/javascript">
+	
+	google.load("visualization", "1", {packages:["corechart"]});
+	google.setOnLoadCallback(drawVisualization);
+	
+	function drawVisualization(){
+		var current_date = "${current_date}"; //현재날짜
+		var title = "${title}"; // 제목모음
+		var i_title1 = "${i_title1}"; //문항1 모음
+		var i_title2 = "${i_title2}"; //문항2 모음
+		var i_title3 = "${i_title3}"; //문항3 모음
+		var i_title4 = "${i_title4}"; //문항4 모음
+		var i_title5 = "${i_title5}"; //문항5 모음
+		
+		
+		
+		var data = google.visualization.arrayToDataTable([
+			['Month', '1번문항', '2번문항', '3번문항', '4번문항', '5번문항'],
+			[current_date, 165, 938, 522, 998, 450],
+		]);
+		
+		var options = {
+			title : '문제',
+			vAxis: {title: "선택횟수"},
+			hAxis: {title: "문항"},
+			seriesType: "bars",
+			series: {5: {type: "line"}}
+		};
+		
+		var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+		chart.draw(data, options);
+	}
 
-
+	
 	//이곳 위쪽은 추가
 	//이곳 아래는 원본
 	
@@ -77,13 +110,14 @@
 							</td>
 						</tr>
 						
-						<!-- 
-						차트출력공간
-						<tr><td>
 						
+						<!-- 차트출력공간 -->
+						<tr><td>
+							<div id="chart_div" style="width: 900px; height: 500px;"></div>
 						</td></tr>
-						  -->
 						 
+						 
+						<%-- 
 						<!-- 기존출력공간 -->
 						<tr>
 							<td class="tl">①</td>
@@ -127,7 +161,7 @@
 						
 						<tr><td colsapn="4"><br/></td></tr>
 						<!-- .//기존출력공간 -->
-						
+						 --%>
 						
 					</c:forEach>
 					
