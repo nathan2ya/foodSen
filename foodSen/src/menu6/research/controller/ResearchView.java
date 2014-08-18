@@ -321,17 +321,7 @@ public class ResearchView {
 		
 		
 		
-		//2. 엑셀파일 생성
-		
-		/*
-		-------------------[ 엑셀파일생성 ]-------------------
-		                   
-		// 설문조사 문제 // 설문조사 선택문항 //  설문조사 선택사유  //
-		//  sur_title[i] //    sur_item[j]    //  sur_description[k] //
-		
-		-------------------------------------------------------
-		*/
-		
+		//2. 엑셀파일에 insert할 데이터 저장
 		int i = 0; int j = 0; int k = 0;
 		
 		//설문조사 문제 (sur_title)
@@ -356,7 +346,23 @@ public class ResearchView {
 		
 		
 		
-		//3. 엑셀다운로드 제공
+		//3. 엑셀파일 생성
+		
+		/*
+		-------------------[ 엑셀파일생성 ]-------------------
+		                   
+		// 설문조사 문제 // 설문조사 선택문항 //  설문조사 선택사유  //
+		//  sur_title[i] //    sur_item[j]    //  sur_description[k] //
+		
+		-------------------------------------------------------
+		*/
+		
+		
+		
+		
+		
+		
+		//4. 엑셀다운로드 제공
 		String uploadPath = file_path; //엑셀파일이 저장되어있는 경로
 		String requestedFile = "test.xlsx"; //위에서 만든 엑셀파일명.확장자
 		//String attach_path = request.getParameter("attach_path"); //파일과 모든 경로를 포함한 변수(향후 쓰일 수 있음)
