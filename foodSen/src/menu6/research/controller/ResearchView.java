@@ -35,6 +35,8 @@ import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
+import common.Constants;
+
 @Controller
 public class ResearchView {
 	
@@ -51,6 +53,8 @@ public class ResearchView {
 	private ResearchDTO3 paramClass3 = new ResearchDTO3();
 	private List<ResearchDTO3> resultClass3 = new ArrayList<ResearchDTO3>();
 	private List<ResearchDTO3> resultClass33 = new ArrayList<ResearchDTO3>();
+	//설문조사(엑셀파일경로)
+	private String file_path = Constants.COMMON_FILE_PATH + Constants.MENU6_RESEARCH_FILE_PATH;
 	
 	//설문조사 문제 모음
 	private int[] resultClass1_seq = new int[16];//문제의시퀀스 모음
@@ -300,6 +304,54 @@ public class ResearchView {
 		request.setAttribute("title", title); //설문조사(문제배열)
 		request.setAttribute("resultClass3", resultClass3);//설문조사(결과)레코드
 		return "/view/menu6/research/researchChoiceReasonPopup.jsp";
+	}
+	
+	//엑셀 파일생성
+	@RequestMapping("/writeExcel.do") 
+	public void writeExcel(HttpServletRequest request, HttpServletResponse response, HttpSession session)  throws Exception {
+		
+		//요청한 뷰정보 초기화
+		int sur_seq = Integer.parseInt(request.getParameter("sur_seq"));
+		
+		//데이터 가지고 옴
+		//엑셀만듬 파일이름을-> test.txt
+		
+		//위에서 만든 엑셀파일 다운로드
+		String uploadPath = file_path; //엑셀 저장 경로
+		String requestedFile = "test.txt"; //파일명.확장자
+		//String attach_path = request.getParameter("attach_path"); //파일과 모든 경로를 포함한 변수(향후 쓰일 수 있음)
+
+		File uFile = new File(uploadPath, requestedFile); //경로,파일명으로 파일객체 생성
+		int fSize = (int) uFile.length();
+		boolean ctrl = uFile.exists(); //파일존재유무
+		
+		if (ctrl){
+			BufferedInputStream in = new BufferedInputStream(new FileInputStream(uFile)); //파일을 읽어오되 // 버퍼에
+
+			String mimetype = "text/html";
+
+			response.setBufferSize(fSize); //버퍼크기설정
+			response.setContentType(mimetype); //컨텐츠형식설정
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + requestedFile + "\"");
+			response.setContentLength(fSize); //컨텐츠 본체의 길이
+
+			FileCopyUtils.copy(in, response.getOutputStream());
+			in.close();
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+		}else{ //에러페이지 화면 구성
+			//setContentType을 프로젝트 환경에 맞추어 변경
+			response.setContentType("application/x-msdownload");
+			PrintWriter printwriter = response.getWriter();
+			printwriter.println("<html>");
+			printwriter.println("<br><br><br><h2>Could not get file name:<br>" + requestedFile + "</h2>");
+			printwriter
+			.println("<br><br><br><center><h3><a href='javascript: history.go(-1)'>Back</a></h3></center>");
+			printwriter.println("<br><br><br>&copy; webAccess");
+			printwriter.println("</html>");
+			printwriter.flush();
+			printwriter.close();
+		}
 	}
 	
 } //end of class

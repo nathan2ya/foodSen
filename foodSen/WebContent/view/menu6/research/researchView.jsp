@@ -6,6 +6,14 @@
 <jsp:include page="../../include/top.jsp"/>
 
 <script>
+
+	//엑셀파일생성
+	function goWriteExcel(){
+		var sur_seq = "${resultClass.sur_seq}"; //이글의 시퀀스(정보)
+		
+		location.href = '/foodSen/writeExcel.do?sur_seq='+sur_seq;
+	}
+	
 	//수정
 	function goEdit(cnt){
 		var sur_seq = "${resultClass.sur_seq}"; //이글의 시퀀스(정보)
@@ -301,18 +309,21 @@
 						<c:if test="${current_date < resultClass.sur_sat_date}">
 							<span class="wte_l"><a href="javascript:goAlert()" class="wte_r">설문결과</a></span>
 							<span class="wte_l"><a href="javascript:goAlert()" class="wte_r">사유전체보기</a></span>
+							<span class="wte_l"><a href="javascript:goAlert()" class="wte_r">엑셀다운로드</a></span>
 						</c:if>
 						
 						<!-- 진행중 -->
 						<c:if test="${resultClass.sur_sat_date <= current_date && current_date <= resultClass.sur_end_date}">
 							<span class="wte_l"><a href="javascript:goResultView()" class="wte_r">설문결과</a></span>
 							<span class="wte_l"><a href="javascript:goReason()" class="wte_r">사유전체보기</a></span>
+							<span class="wte_l"><a href="javascript:goWriteExcel()" class="wte_r">엑셀다운로드</a></span>
 						</c:if>
 						
 						<!-- 완료시 -->
 						<c:if test="${resultClass.sur_end_date < current_date}">
 							<span class="wte_l"><a href="javascript:goResultView()" class="wte_r">설문결과</a></span>
 							<span class="wte_l"><a href="javascript:goReason()" class="wte_r">사유전체보기</a></span>
+							<span class="wte_l"><a href="javascript:goWriteExcel()" class="wte_r">엑셀다운로드</a></span>
 						</c:if>
 					</c:if>
 
