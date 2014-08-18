@@ -46,24 +46,22 @@
 			res_cnt_arr3[i] = document.getElementById("res_cnt_arr3"+i).value;
 			res_cnt_arr4[i] = document.getElementById("res_cnt_arr4"+i).value;
 			res_cnt_arr5[i] = document.getElementById("res_cnt_arr5"+i).value;
-		}
 		
+			/* 
+			alert(res_cnt_arr1[0]);
+			alert(res_cnt_arr2[0]);
+			alert(res_cnt_arr3[0]);
+			alert(res_cnt_arr4[0]);
+			alert(res_cnt_arr5[0]);
+			 */
 		
-		alert(res_cnt_arr1[0]);
-		alert(res_cnt_arr2[0]);
-		alert(res_cnt_arr3[0]);
-		alert(res_cnt_arr4[0]);
-		alert(res_cnt_arr5[0]);
-		
-		
-		for(var i = 0; i<cnt; i++){
 			var data = google.visualization.arrayToDataTable([
-				['title[0]', i_title1[i], i_title2[i], i_title3[i], i_title4[i], i_title5[i]],
-				['', 11, 22, 33, 44, 55],
+				['title', i_title1[i], i_title2[i], i_title3[i], i_title4[i], i_title5[i]],
+				[title[i], 11, 22, 33, 44, 55],
 			]);
 			
 			var options = {
-				title : i+'. 문제 : '+title[0],
+				title : (i+1)+'. 문제 : '+title[i],
 				vAxis: {title: "선택횟수"},
 				hAxis: {title: "문항"},
 				seriesType: "bars",
@@ -132,13 +130,10 @@
 					</colgroup>
 					
 					<c:forEach var="i" begin="0" end="${cnt-1}" step="1">
-						<tr>
-							<td colspan="4">
-								<h2>${i+1}. ${title[i]} </h2>
-							</td>
-						</tr>
 						
+						<!-- 차트출력을 위한 hidden값 초기화 -->
 						<input type="hidden" id="title${i}" name="title" class="txt" value="${title[i]}">
+						
 						<input type="hidden" id="i_title1${i}" name="i_title1" class="txt" value="${i_title1[i]}">
 						<input type="hidden" id="i_title2${i}" name="i_title2" class="txt" value="${i_title2[i]}">
 						<input type="hidden" id="i_title3${i}" name="i_title3" class="txt" value="${i_title3[i]}">
@@ -150,6 +145,8 @@
 						<input type="hidden" id="res_cnt_arr3${i}" name="res_cnt_arr" class="txt" value="${res_cnt_arr[i][2]}">
 						<input type="hidden" id="res_cnt_arr4${i}" name="res_cnt_arr" class="txt" value="${res_cnt_arr[i][3]}">
 						<input type="hidden" id="res_cnt_arr5${i}" name="res_cnt_arr" class="txt" value="${res_cnt_arr[i][4]}">
+						<!-- .//차트출력을 위한 hidden값 초기화 -->
+						
 						
 						<!-- 차트출력공간 -->
 						<tr><td>
@@ -158,9 +155,13 @@
 						<!-- .//차트출력공간 -->
 						
 						
-						 
 						<%-- 
 						<!-- 기존출력공간 -->
+						<tr>
+							<td colspan="4">
+								<h2>${i+1}. ${title[i]} </h2>
+							</td>
+						</tr>
 						<tr>
 							<td class="tl">①</td>
 							<td class="tl"><img alt="${i_title1[i]}" src="./images/graph/bar1.JPG" width="${res_cnt_arr[i][0] * 10}px" height="10px"></td>
