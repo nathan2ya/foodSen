@@ -400,7 +400,7 @@ public class ResearchView {
 		//¿­³ÐÀÌ ¼³Á¤ (¿­ À§Ä¡, ³ÐÀÌ)
 		sh.setColumnView(0, 20);
 		sh.setColumnView(1, 20);
-		sh.setColumnView(2, 20);
+		sh.setColumnView(2, 40);
 		sh.setColumnView(3, 20);
 		
 		// ¼¿Çü½Ä
