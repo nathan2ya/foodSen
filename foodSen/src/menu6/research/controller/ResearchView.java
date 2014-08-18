@@ -11,12 +11,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import jxl.Workbook;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
 import menu6.research.dto.ResearchDTO;
 import menu6.research.dto.ResearchDTO1;
 import menu6.research.dto.ResearchDTO2;
@@ -34,6 +40,23 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import jxl.Workbook;
+import jxl.format.Alignment;
+import jxl.format.Border;
+import jxl.format.BorderLineStyle;
+import jxl.write.Label;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 
 import common.Constants;
 
@@ -340,9 +363,8 @@ public class ResearchView {
 		
 		//설문조사 선택사유 (sur_description)
 		for(k=0; k<resultClass3.size(); k++){
-			sur_description[i] = resultClass3.get(i).getDescription();
+			sur_description[k] = resultClass3.get(k).getDescription();
 		}
-		
 		
 		
 		
@@ -357,14 +379,78 @@ public class ResearchView {
 		-------------------------------------------------------
 		*/
 		
+		File file = new File(file_path+"researchResult.xls"); //
+		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>(); //
+		Map<String, Object> map = new HashMap<String, Object>(); //
+		map.put("sur_title", sur_title[0]);
+		map.put("sur_item", sur_item[0]);
+		map.put("sur_description", sur_description[0]);
+		data.add(map);
+		
+		for(i=1; i<resultClass3.size(); i++){
+			map = new HashMap<String, Object>();
+			map.put("sur_title", sur_title[i]);
+			map.put("sur_item", sur_item[i]);
+			map.put("sur_description", sur_description[i]);
+			data.add(map);
+		}
 		
 		
+		//WorkBook 생성
+		WritableWorkbook wb = Workbook.createWorkbook(file);
 		
+		//WorkSheet 생성
+		WritableSheet sh = wb.createSheet("테스트", 0);
+		//열넓이 설정 (열 위치, 넓이)
+		sh.setColumnView(0, 20);
+		sh.setColumnView(1, 20);
+		sh.setColumnView(2, 20);
+		sh.setColumnView(3, 20);
+		
+		// 셀형식
+		WritableCellFormat textFormat = new WritableCellFormat();
+		//생성
+		textFormat.setAlignment(Alignment.CENTRE);
+		//테두리
+		textFormat.setBorder(Border.ALL, BorderLineStyle.THIN);
+		int row = 0;
+
+		//헤더
+		Label label = new jxl.write.Label(0, row, "설문조사문제", textFormat);
+		sh.addCell(label);
+		label = new jxl.write.Label(1, row, "설문조사 선택문항", textFormat);
+		sh.addCell(label);
+		label = new jxl.write.Label(2, row, "설문조사 선택사유", textFormat);
+		sh.addCell(label);
+		//label = new jxl.write.Label(3, row, "비고", textFormat);
+		//sh.addCell(label);
+		row++;
+		
+		
+		//데이터
+		for (Map<String, Object> tem : data) {
+			// 이름
+			label = new jxl.write.Label(0, row, (String) tem.get("sur_title"), textFormat);
+			sh.addCell(label);
+			// 주소
+			label = new jxl.write.Label(1, row, (String) tem.get("sur_item"),textFormat);
+			sh.addCell(label);
+			// 전화번호
+			label = new jxl.write.Label(2, row, (String) tem.get("sur_description"),textFormat);
+			sh.addCell(label);
+			// 비고
+			//label = new jxl.write.Label(3, row, (String) tem.get("etc"),textFormat);
+			//sh.addCell(label);
+
+			row++;
+		}
+		wb.write(); //WorkSheet 쓰기
+		wb.close(); //WorkSheet 닫기
 		
 		
 		//4. 엑셀다운로드 제공
 		String uploadPath = file_path; //엑셀파일이 저장되어있는 경로
-		String requestedFile = "test.xlsx"; //위에서 만든 엑셀파일명.확장자
+		String requestedFile = "researchResult.xls"; //위에서 만든 엑셀파일명.확장자
 		//String attach_path = request.getParameter("attach_path"); //파일과 모든 경로를 포함한 변수(향후 쓰일 수 있음)
 
 		File uFile = new File(uploadPath, requestedFile); //경로,파일명으로 파일객체 생성
