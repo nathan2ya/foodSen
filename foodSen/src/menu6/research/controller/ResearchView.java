@@ -1,5 +1,6 @@
 package menu6.research.controller;
 
+import java.awt.Font;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -54,10 +55,10 @@ import jxl.format.Border;
 import jxl.format.BorderLineStyle;
 import jxl.write.Label;
 import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
-
 import common.Constants;
 
 @Controller
@@ -436,26 +437,33 @@ public class ResearchView {
 		
 		//열넓이 설정 (열 위치, 넓이)
 		sh.setColumnView(0, 40);
-		sh.setColumnView(1, 20);
+		sh.setColumnView(1, 35);
 		sh.setColumnView(2, 50);
 		sh.setColumnView(3, 20);
 		
+		//폰트
+		WritableFont font = new WritableFont(WritableFont.ARIAL, 12, WritableFont.BOLD, false); 
+
 		// 셀형식
 		WritableCellFormat textFormat = new WritableCellFormat();
+		WritableCellFormat textFormat1 = new WritableCellFormat(font);
 		
 		//생성
 		textFormat.setAlignment(Alignment.CENTRE);
+		textFormat1.setAlignment(Alignment.CENTRE);
 		
 		//테두리
 		textFormat.setBorder(Border.ALL, BorderLineStyle.THIN);
+		textFormat1.setBorder(Border.ALL, BorderLineStyle.THIN);
+		
 		int row = 0;
 
 		//헤더
-		Label label = new jxl.write.Label(0, row, "설문조사문제", textFormat);
+		Label label = new jxl.write.Label(0, row, "설문조사문제", textFormat1);
 		sh.addCell(label);
-		label = new jxl.write.Label(1, row, "설문조사 선택문항", textFormat);
+		label = new jxl.write.Label(1, row, "설문조사 선택문항", textFormat1);
 		sh.addCell(label);
-		label = new jxl.write.Label(2, row, "설문조사 선택사유", textFormat);
+		label = new jxl.write.Label(2, row, "설문조사 선택사유", textFormat1);
 		sh.addCell(label);
 		//label = new jxl.write.Label(3, row, "비고", textFormat);
 		//sh.addCell(label);
