@@ -432,7 +432,8 @@ public class ResearchView {
 		WritableWorkbook wb = Workbook.createWorkbook(file);
 		
 		//WorkSheet 생성
-		WritableSheet sh = wb.createSheet("테스트", 0);
+		WritableSheet sh = wb.createSheet("설문조사결과("+sur_seq+"번 게시글)", 0);
+		
 		//열넓이 설정 (열 위치, 넓이)
 		sh.setColumnView(0, 40);
 		sh.setColumnView(1, 20);
