@@ -469,7 +469,7 @@ public class ResearchView {
 		//sh.addCell(label);
 		row++;
 		
-		//데이터
+		//해당셀에 map 데이터를 write
 		for (Map<String, Object> tem : data) {
 			// 이름
 			label = new jxl.write.Label(0, row, (String) tem.get("sur_title"), textFormat);
