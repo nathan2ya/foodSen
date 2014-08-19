@@ -392,7 +392,7 @@ public class ResearchView {
 			if(resultClass3.get(j).getSuri_num().substring(0, 1).equals("u")){
 				sur_item[j] = "선택하지 않음";
 			}else{
-				sur_item[j] = resultClass3.get(j).getSuri_num().substring(0, 1);
+				sur_item[j] = resultClass3.get(j).getSuri_num(); //.substring(0, 1);
 			}
 		}
 		
