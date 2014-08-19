@@ -9,6 +9,10 @@
 <link href="/css/base.css" rel="stylesheet" type="text/css" />
 <link href="/css/common.css" rel="stylesheet" type="text/css" />
 
+<!-- 네이버에디터 -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/assets/se1/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/assets/se1/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
+
 
 <script type="text/javascript">
 	function goCreate(){
@@ -169,6 +173,7 @@
 			
 			<!-- 게시판영역 -->
 			<div class="tbl_box">
+				
 				<form name="inspectionResultCreateFrom" action="/foodSen/inspectionResultCreate.do" method="post" enctype="multipart/form-data">
 					
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tbl_type01" summary="위생.안전성 검사결과">
@@ -192,9 +197,21 @@
 								<th>
 									내용<br/>(2000자 이내)
 								</th>
+								<!-- 네이버에디터 -->
+								<td colspan="5" class="tl">
+									<div class="form-group">
+										<!-- <label for="test_content">내용</label> -->
+							  			<!-- <textarea name="notice_content" id="notice_content" Style="width:1098px"></textarea> -->
+							  			<textarea id="description" name="description" rows="12" Style="width:610px" cols="*" class="area"></textarea>
+							  		</div>
+						  		</td>
+								
+								<!-- 
+								기존 내용입력 공간
 								<td colspan="5" class="tl">
 									<textarea id="description" name="description" rows="12" cols="*" class="area"></textarea>
 								</td>
+								 -->
 							</tr>
 							<tr>
 								<th>첨부파일</th>
@@ -220,7 +237,15 @@
 						<a href="/foodSen/inspectionResultList.do" class="wte_r">목록</a>
 					</span> 
 					<span class="per_l">
+					
+						<!-- 
+						기존 저장버튼
 						<a href="javascript:goCreate()" class="pre_r">저장</a>
+						 -->
+						 
+						 <!-- 네이버스마트에디터 저장버튼 -->
+						 <a href="javascript:submitContents(this)" class="pre_r">저장</a>
+						 
 					</span>
 				</span>
 				<!-- .//버튼-->
@@ -240,3 +265,26 @@
 </div>
 
 <jsp:include page="/view/include/footer.jsp"/>
+
+<script type="text/javascript">
+	var oEditors = [];
+		nhn.husky.EZCreator.createInIFrame({
+   		oAppRef: oEditors,
+   		elPlaceHolder: "description",
+   		sSkinURI: "<%=request.getContextPath()%>/assets/se1/SmartEditor2Skin.html",
+   		fCreator: "createSEditor2"
+	});
+		
+	function submitContents(elClickedObj){ 
+		oEditors.getById["description"].exec("UPDATE_CONTENTS_FIELD", []);
+		try{ 
+			elClickedObj.inspectionResultCreateFrom.submit();
+		}catch(e){} 
+	} 
+	
+	// textArea에 이미지 첨부
+	function pasteHTML(filepath){
+	    var sHTML = '<img src="<%=request.getContextPath()%>/assets/se1/notice_upload/'+filepath+'">';
+	    oEditors.getById["description"].exec("PASTE_HTML", [sHTML]); 
+	}
+</script>
