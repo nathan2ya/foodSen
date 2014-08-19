@@ -29,14 +29,6 @@
 						</c:if>
 					</ul>
 					
-					<%-- 
-					<c:if test="${resultClass3.description != ' ' || resultClass3.description != ' '}">
-						<li>${resultClass3.suri_num}</li>
-						<li>&nbsp;&nbsp;&nbsp; ${resultClass3.description}</li>
-					</c:if>
-					 --%>
-					
-					
 				</c:forEach>
 				
 			</div>

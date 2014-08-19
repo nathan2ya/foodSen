@@ -35,7 +35,8 @@
 		var res_cnt_arr5 = new Array();
 		
 		for(var i = 0; i<cnt; i++){
-			var itemCnt = 5;
+			var itemCnt = 5; //항목수
+			var researchCnt = 0; //참여횟수
 			
 			//제목
 			title[i] = document.getElementById("title"+i).value;
@@ -65,6 +66,8 @@
 			res_cnt_arr4[i] = Number(document.getElementById("res_cnt_arr4"+i).value);
 			res_cnt_arr5[i] = Number(document.getElementById("res_cnt_arr5"+i).value);
 			
+			researchCnt = res_cnt_arr1[i]+res_cnt_arr2[i]+res_cnt_arr3[i]+res_cnt_arr4[i]+res_cnt_arr5[i];
+			
 			//데이터기입
 			if(itemCnt == 5){
 				var data = google.visualization.arrayToDataTable([
@@ -93,7 +96,7 @@
 			
 			//추가차트정보
 			var options = {
-				title : (i+1)+'. 문제 : '+title[i],
+				title : (i+1)+'. 문제 : '+title[i]+"  ( "+researchCnt+"명 참여 )",
 				vAxis: {title: "선택횟수"},
 				hAxis: {title: "문항"},
 				seriesType: "bars",
