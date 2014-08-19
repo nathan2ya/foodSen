@@ -9,7 +9,10 @@
 <div class="pop">
 	<div class="pop_box">
 	
-		<h1>${resultClass.sur_title}</h1>
+		<font size=3> <b>${resultClass.sur_title}</b></font> <br/>
+		<font color='gray'> &nbsp;&nbsp;└
+							선택사유 작성자는 <font color=red><b>${selectedCnt}</b></font>명 입니다. (집계일시 : ${current_date})</font>
+		
 		<div class="pop_list">
 			<div class="research_box">
 			

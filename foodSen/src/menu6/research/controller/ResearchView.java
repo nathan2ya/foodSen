@@ -343,6 +343,21 @@ public class ResearchView {
 			description[i] = resultClass3.get(i).getDescription();
 		}
 		
+		int selectedCnt = 0;
+		for(int j = 0; j<resultClass3.size(); j++){
+			if(!(resultClass3.get(j).getDescription().equals(" "))){
+				selectedCnt++;
+			}
+		}
+		
+		//현재날짜
+		Calendar today = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년MM월dd일hh:mm:ss");
+		String current_date = sdf.format(today.getTime());
+		//.현재날짜
+		
+		request.setAttribute("current_date", current_date); //현재날짜
+		request.setAttribute("selectedCnt", selectedCnt); //설문조사 선택사유를 기입한 참여자수
 		request.setAttribute("resultClass3Cnt", resultClass3.size());
 		request.setAttribute("sur_seq", sur_seq);
 		request.setAttribute("item", item);//문항배열
