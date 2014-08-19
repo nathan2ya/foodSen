@@ -299,7 +299,7 @@
 						<span class="wte_l"><a href="javascript:goDelete()" class="wte_r">삭제</a></span>
 					</c:if>
 					
-					<c:if test="${sessionScope.session_admin_yn != 'y'}">
+					<c:if test="${sessionScope.session_admin_yn != 'y' && sessionScope.session_id != null}">
 						<span class="per_l"><a href="javascript:goSave()" class="pre_r" id="goSave">저장</a></span>
 					</c:if>
 					
