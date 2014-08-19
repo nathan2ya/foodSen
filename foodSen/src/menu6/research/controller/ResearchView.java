@@ -91,6 +91,10 @@ public class ResearchView {
 	private String[] i_title4 = new String[16];
 	private String[] i_title5 = new String[16];
 	
+	//설문조사 사유 보여주기 배열
+	private String[] item = new String[1000];
+	private String[] description = new String[1000];
+	
 	//설문조사 결과 배열
 	private int[][] res_cnt_arr = new int[16][5];
 	
@@ -333,7 +337,14 @@ public class ResearchView {
 		//설문조사(결과) 레코드get
 		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq);
 		
+		for(int i = 0; i<resultClass3.size(); i++){
+			item[i] = resultClass3.get(i).getSuri_num();
+			description[i] = resultClass3.get(i).getDescription();
+		}
+		
 		request.setAttribute("sur_seq", sur_seq);
+		request.setAttribute("item", item);//문항배열
+		request.setAttribute("description", description);//사유배열
 		request.setAttribute("resultClass", resultClass);//설문조사(정보)레코드
 		request.setAttribute("cnt", cnt); //설문조사 문항개수
 		request.setAttribute("resultClass1", resultClass1);//설문조사(문제)레코드

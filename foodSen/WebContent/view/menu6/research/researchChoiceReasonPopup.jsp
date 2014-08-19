@@ -18,16 +18,24 @@
 					<h2>${i+1}. ${title[i]} </h2>
 					
 					<ul class="research_list">
-						<c:forEach var="resultClass3" items="${resultClass3}" varStatus="i">
+					
+						<c:if test="${item[i] != ' ' && description[i] != ' '}">
+							${item[i]} <br/>
+							${description[i]} <br/>
+						</c:if>
 						
-							<!-- 사유를 입력하지 않으면 출력하지 않음 -->
-							<c:if test="${resultClass3.description != ' ' || resultClass3.description != ' '}">
-								<li>${resultClass3.suri_num}</li>
-								<li>&nbsp;&nbsp;&nbsp; ${resultClass3.description}</li>
-							</c:if>
-							
-						</c:forEach>
+						<c:if test="${description[i] == ' '}">
+							<font color='gray'> &nbsp;&nbsp;&nbsp;해당 문항에는 작성된 사유가 없습니다. </font>
+						</c:if>
 					</ul>
+					
+					<%-- 
+					<c:if test="${resultClass3.description != ' ' || resultClass3.description != ' '}">
+						<li>${resultClass3.suri_num}</li>
+						<li>&nbsp;&nbsp;&nbsp; ${resultClass3.description}</li>
+					</c:if>
+					 --%>
+					
 					
 				</c:forEach>
 				
