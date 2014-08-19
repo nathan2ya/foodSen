@@ -81,7 +81,7 @@ public class ResearchView {
 	
 	//설문조사 문제 모음
 	private int[] resultClass1_seq = new int[16];//문제의시퀀스 모음
-	private String[] title = new String[16];
+	private String[] title = new String[1000];
 	
 	//설문조사 문항 모음
 	private int[] resultClass2_seq = new int[16];//문항의시퀀스 모음
@@ -331,17 +331,19 @@ public class ResearchView {
 		resultClass1 = sqlMapper.queryForList("Research.selectResearchOne1", sur_seq);
 		for(int i=0; i<resultClass1.size(); i++){
 			resultClass1_seq[i] = resultClass1.get(i).getSurq_seq(); //문제의시퀀스 모음
-			title[i] = resultClass1.get(i).getSurq_title(); //문제모음
+			//title[i] = resultClass1.get(i).getSurq_title(); //문제모음
 		}
 		
 		//설문조사(결과) 레코드get
 		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq);
 		
 		for(int i = 0; i<resultClass3.size(); i++){
+			title[i] = resultClass3.get(i).getSurq_title();
 			item[i] = resultClass3.get(i).getSuri_num();
 			description[i] = resultClass3.get(i).getDescription();
 		}
 		
+		request.setAttribute("resultClass3Cnt", resultClass3.size());
 		request.setAttribute("sur_seq", sur_seq);
 		request.setAttribute("item", item);//문항배열
 		request.setAttribute("description", description);//사유배열

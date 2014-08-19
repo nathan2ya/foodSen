@@ -13,21 +13,19 @@
 		<div class="pop_list">
 			<div class="research_box">
 			
-				<c:forEach var="i" begin="0" end="${cnt-1}" step="1">
+				<c:forEach var="i" begin="0" end="${resultClass3Cnt-1}" step="1">
 					
-					<h2>${i+1}. ${title[i]} </h2>
+					<c:if test="${description[i] != ' '}">
+						<h2>${title[i]} </h2>
+					</c:if>
 					
-					<ul class="research_list">
-					
-						<c:if test="${item[i] != ' ' && description[i] != ' '}">
+					<!-- 문항, 사유 둘다 존재할경우 -->
+					<c:if test="${item[i] != ' ' && description[i] != ' '}">
+						<ul class="research_list">
 							${item[i]} <br/>
 							${description[i]} <br/>
-						</c:if>
-						
-						<c:if test="${description[i] == ' '}">
-							<font color='gray'> &nbsp;&nbsp;&nbsp;해당 문항에는 작성된 사유가 없습니다. </font>
-						</c:if>
-					</ul>
+						</ul>
+					</c:if>
 					
 				</c:forEach>
 				
