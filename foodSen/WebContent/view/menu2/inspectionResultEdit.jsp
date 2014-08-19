@@ -9,6 +9,9 @@
 <link href="/css/base.css" rel="stylesheet" type="text/css" />
 <link href="/css/common.css" rel="stylesheet" type="text/css" />
 
+<!-- 네이버에디터 -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/assets/se1/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/assets/se1/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
 
 
 <script type="text/javascript">
@@ -227,10 +230,17 @@
 							</tr>
 							<tr>
 								<th>
-									내용<br/>(2000자 이내)
+									내용
 								</th>
 								<td colspan="5" class="tl">
+									<%-- 
+									기존 내용수정 공간
 									<textarea id="description" name="description" rows="12" cols="*" class="area">${resultClass.description}</textarea>
+									 --%>
+									 <!-- 네이버스마트에디터 -->
+									 <div class="form-group">
+									 	<textarea id="description" name="description" rows="12" Style="width:610px" cols="*" class="area">${resultClass.description}</textarea>
+									 </div>
 								</td>
 							</tr>
 							<tr>
@@ -287,7 +297,12 @@
 					</c:if>
 					
 					<span class="per_l">
+						<!-- 
+						기존저장버튼
 						<a href="javascript:goCreate()" class="pre_r">저장</a>
+						 -->
+						 <!-- 네이버스마트에디터 -->
+						 <a href="javascript:submitContents(this)" class="pre_r">저장</a>
 					</span>
 				</span>
 				<!-- .//버튼-->
@@ -306,3 +321,45 @@
 </div>
 
 <jsp:include page="/view/include/footer.jsp"/>
+
+
+<script type="text/javascript">
+	var oEditors = [];
+		nhn.husky.EZCreator.createInIFrame({
+   		oAppRef: oEditors,
+   		elPlaceHolder: "description",
+   		sSkinURI: "<%=request.getContextPath()%>/assets/se1/SmartEditor2Skin.html",
+   		fCreator: "createSEditor2"
+	});
+		
+	function submitContents(elClickedObj){ 
+		oEditors.getById["description"].exec("UPDATE_CONTENTS_FIELD", []);
+		
+		//val
+		var oriPassword = "${resultClass.pw}";
+		
+		if(!inspectionResultEditFrom.pw.value){
+			alert("수정을 하시려면 비밀번호를 입력하세요.");
+			inspectionResultEditFrom.pw.focus();
+			return;
+		}
+		
+		if(oriPassword != inspectionResultEditFrom.pw.value){
+			alert("비밀번호를 다시 확인해주세요.");
+			inspectionResultEditFrom.pw.focus();
+			return;
+		}
+		//.val
+		
+		
+		try{ 
+			elClickedObj.inspectionResultEditFrom.submit();
+		}catch(e){} 
+	} 
+	
+	// textArea에 이미지 첨부
+	function pasteHTML(filepath){
+	    var sHTML = '<img src="<%=request.getContextPath()%>/assets/se1/notice_upload/'+filepath+'">';
+	    oEditors.getById["description"].exec("PASTE_HTML", [sHTML]); 
+	}
+</script>
