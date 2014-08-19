@@ -150,7 +150,7 @@
 	<div class="pop_box" style="overflow-y: scroll; height: 500px;">
 		
 		<!-- 力格 -->
-		<h1>${resultClass.sur_title}</h1>
+		<font size=3><b>${resultClass.sur_title}</b></font>
 		<!-- .//力格 -->
 		
 		<!-- 搬苞冠胶 -->
