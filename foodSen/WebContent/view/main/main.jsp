@@ -7,11 +7,179 @@
 <link href="/css/base.css" rel="stylesheet" type="text/css" />
 <link href="/css/common.css" rel="stylesheet" type="text/css" />
 	
-<html>
-<head>
-<title>main</title>
-</head>
-<body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+	doGoTab1 = function(thisObject, tab) {
+		
+		$(".main_tab").find(">li>a").each(function(index, el) {
+			$(el).removeClass("main_tab0"+(index+1)+"_on");
+			$(el).addClass("main_tab0"+(index+1));
+		});
+		
+		$(thisObject).addClass("main_tab"+tab+"_on");
+
+		if("01"==tab){
+			$("#tab02,#tab03").hide();
+			$("#tab01").show();
+		}else if("02"==tab){
+			$("#tab01,#tab03").hide();
+			$("#tab02").show();
+		}else{
+			$("#tab01,#tab02").hide();
+			$("#tab03").show();
+		}
+	};
+	
+	doGoTab2 = function(thisObject, tab) {
+		$(".s_main_tab").find(">li>a").each(function(index, el) {
+			$(el).removeClass("s_main_tab0"+(index+1)+"_on");
+			$(el).addClass("s_main_tab0"+(index+1));
+		});
+		$(thisObject).addClass("s_main_tab"+tab+"_on");
+		if("01"==tab){
+			$("#s_tab02,#s_tab03,#s_tab04").hide();
+			$("#s_tab01").show();
+		}else if("02"==tab){
+			$("#s_tab01,#s_tab03,#s_tab04").hide();
+			$("#s_tab02").show();
+		}else if("03"==tab){
+			$("#s_tab01,#s_tab02,#s_tab04").hide();
+			$("#s_tab03").show();
+		}else{
+			$("#s_tab01,#s_tab02,#s_tab03").hide();
+			$("#s_tab04").show();
+		}
+	};
+		 
+	function getCookie( name ){
+		var nameOfCookie = name + "=";
+		var x = 0;
+		while ( x <= document.cookie.length )
+		{
+			var y = (x+nameOfCookie.length);
+			if ( document.cookie.substring( x, y ) == nameOfCookie ) {
+				if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
+					endOfCookie = document.cookie.length;
+					return unescape( document.cookie.substring( y, endOfCookie ) );
+			}
+			x = document.cookie.indexOf( " ", x ) + 1;
+			if ( x == 0 )
+			break;
+		}
+		return "";
+	}
+
+	/* 
+	// 팝업창에서 만들어진 쿠키 pop1 의 값이 done 이 아니면(즉, 체크하지 않으면,) 
+	// 공지창 (pop1.html) 을 띄웁니다
+	$(document).ready(function(){
+		$(".title1").each(function(index, item){
+			if(getStrByte($(item).text())>36){
+				$(item).html($(item).text().cut(36));
+			}
+		});
+		
+		$(".title2").each(function(index, item){
+			if(getStrByte($(item).text())>28){
+				$(item).html($(item).text().cut(28));
+			}
+		});
+		
+		$(".title3").each(function(index, item){
+			if(getStrByte($(item).text())>110){
+				$(item).html($(item).text().cut(110));
+			}
+		});
+		
+		var cnt1=0;
+		var cnt2=0;
+		
+		cnt1=$('#popup1Cnt').val();
+		cnt2=$('#popup2Cnt').val();
+		
+		var left=0;
+		
+		if(cnt1 > 0){
+			for(var i=0;i < cnt1;i++){
+				if ( getCookie( "pop1_"+(i+1) ) != "done" ) {
+					noticeWindow = window.open("popup1_"+(i+1)+".do", "popup1_"+(i+1),"left="+left+", top=0, width=427, height=460");
+					left = left+460;
+				}
+			}
+		}
+		 
+
+		if(cnt2 > 0){
+			for(var k=0;k < cnt2;k++){
+				if ( getCookie( "pop2_"+(k+1) ) != "done" ) {
+					setWindow = window.open("popup2_"+(k+1)+".do", "popup2_"+(k+1),"left="+left+" , top=0, width=420, height=470");
+					left = left+450;
+				}
+			}
+		}
+	});
+	 */
+	 
+	
+	function getStrByte(str) {
+		var p, len = 0;
+		for(p=0; p<str.length; p++) {
+			(str.charCodeAt(p) > 255) ? len+=2 : len++; // charCodeAt(문자열) - 문자열을 유니코드값으로 변환하여 255보다 크면 한글.
+		}
+		return len;
+	} // 문자열의 byte수를 구하는 함수 - 한글이라면 글자당 2bytes, 그외에는 1byte로 계산한다.
+
+	String.prototype.cut = function(len) {
+        var str = this;
+        var l = 0;
+        for (var i=0; i<str.length; i++) {
+                l += (str.charCodeAt(i) > 255) ? 2 : 1;
+                if (l > len) return str.substring(0,i) + "...";
+        }
+        return str;
+	}; // 문자열을 잘라주는 함수 - 원하는 byte수만큼 잘라주고 '...'을 붙여준다
+	
+	function goView(seq, type){
+		if(type == "news"){
+			view.seq.value = seq;
+			view.action = "foodNewsView.do";
+			view.submit();
+		}else if(type == "event"){
+			view.seq.value = seq;
+			view.action = "trainingEventView.do";
+			view.submit();
+		}else if(type == "research"){
+			view.sur_seq.value = seq;
+			view.action = "researchView.do";
+			view.submit();
+		}else if(type == "pa"){
+			view.seq.value = seq;
+			view.action = "peculiarityActivityView.do";
+			view.submit();
+		}else if(type == "te"){
+			view.seq.value = seq;
+			view.action = "trainingEventResultView.do";
+			view.submit();
+		}
+	}
+	
+	function goEventView(seq, up_seq){
+		if(seq == up_seq){
+			view.seq.value = seq;
+			view.action = "trainingEventView.do";
+			view.submit();
+		}else if(seq != up_seq){
+			view.seq.value = seq;
+			view.action = "trainingEventResultView.do";
+			view.submit();
+		}
+	}
+	
+	function goSearch(){
+		search.submit();
+	}
+	
+</script>
 
 
 <div id="container">
@@ -111,6 +279,8 @@
 
 			</div>
 			<!-- .//공지사항 -->
+			
+			
 
 			<!-- 학교급식 인력풀 -->
 			<div class="m_search_box">
@@ -191,7 +361,6 @@
 				</dl>
 			</div>
 			<!-- .//하단 왼쪽영역 -->
-			
 			
 			
 			
@@ -308,7 +477,3 @@
 <!-- 푸터 -->
 <jsp:include page="/view/include/footer.jsp"/>
 
-
-
-</body>
-</html>
