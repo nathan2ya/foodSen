@@ -28,12 +28,13 @@
 		location.href='/foodSen/inspectionResultEditFrom.do?seq='+seq+'&currentPage='+currentPage+'&searchingNow='+searchingNow;
 	}
 	
-	
+	/* 
+	네이버 스마트에디터로 인한 주석처리
 	//내용 부분 오토링크
 	$(document).ready(function(){
 		autolink(document.getElementById("description"));
 	});
-	
+	 */
 	function autolink(id) {
 		
 	    var container = id;
