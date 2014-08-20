@@ -75,6 +75,7 @@ public class ResearchView {
 	private List<ResearchDTO2> resultClass2 = new ArrayList<ResearchDTO2>();
 	//설문조사(결과)
 	private ResearchDTO3 paramClass3 = new ResearchDTO3();
+	private ResearchDTO3 resultClassForExcel = new ResearchDTO3();
 	private List<ResearchDTO3> resultClass3 = new ArrayList<ResearchDTO3>();
 	private List<ResearchDTO3> resultClass33 = new ArrayList<ResearchDTO3>();
 	//설문조사(엑셀파일경로)
@@ -94,12 +95,6 @@ public class ResearchView {
 	
 	//설문조사 결과 모음
 	private int[] resultClass3_seq = new int[16];//결과의시퀀스 모음
-	private int item1Cnt=0;//항목1 선택횟수
-	private int item2Cnt=0;//항목2 선택횟수
-	private int item3Cnt=0;//항목3 선택횟수
-	private int item4Cnt=0;//항목4 선택횟수
-	private int item5Cnt=0;//항목5 선택횟수
-	
 	
 	//설문조사 사유 보여주기 배열
 	private String[] item = new String[1000];
@@ -442,40 +437,68 @@ public class ResearchView {
 
 		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
+		int tempCount = 0;
+		String tempCount1 = "";
+		String tempDescription ="";
 		
 		for(int i=0; i<cnt; i++){
 			map = new HashMap<String, Object>();
 			map.put("sur_title", title[i]);
 			map.put("sur_item", "① "+i_title1[i]);
-			map.put("sur_count", "0");
-			map.put("sur_description", "");
+			
+			//선택회수 산출
+			paramClass3.setSur_seq(sur_seq);
+			paramClass3.setSurq_seq(resultClass1_seq[i]);
+			paramClass3.setSuri_seq(resultClass2_seq[i]);
+			System.out.println("정보의 시퀀스 : "+sur_seq);
+			System.out.println("문제의 시퀀스 : "+resultClass1_seq[i]);
+			System.out.println("문항의 시퀀스 : "+resultClass2_seq[i]);
+			System.out.println("의 레코드를 산출");
+			
+			resultClass33 = sqlMapper.queryForList("Research.selectResearchOne33", paramClass3);//문제and문항 레코드get
+			tempCount = resultClass33.size();
+			tempCount1 = Integer.toString(tempCount);
+			map.put("sur_count", tempCount1);
+			
+			//선택사유 산출
+			for(int x=0; x<resultClass33.size(); x++){
+				tempDescription += resultClass33.get(x).getDescription();
+				
+				if(x != 0 && (x+1) != resultClass33.size()){ //처음이 아니고, 끝도 아닌경우에 쉼표로 구분
+					tempDescription += ", ";//쉼표로 구분
+				}
+			}
+			map.put("sur_description", tempDescription);
 			data.add(map);
+			
+			
+			
 			
 			map = new HashMap<String, Object>();
 			map.put("sur_title", "");
 			map.put("sur_item", "② "+i_title2[i]);
-			map.put("sur_count", "0");
+			map.put("sur_count", tempCount1);
 			map.put("sur_description", "");
 			data.add(map);
 			
 			map = new HashMap<String, Object>();
 			map.put("sur_title", "");
 			map.put("sur_item", "③ "+i_title3[i]);
-			map.put("sur_count", "0");
+			map.put("sur_count", tempCount1);
 			map.put("sur_description", "");
 			data.add(map);
 			
 			map = new HashMap<String, Object>();
 			map.put("sur_title", "");
 			map.put("sur_item", "④ "+i_title4[i]);
-			map.put("sur_count", "0");
+			map.put("sur_count", tempCount1);
 			map.put("sur_description", "");
 			data.add(map);
 			
 			map = new HashMap<String, Object>();
 			map.put("sur_title", "");
 			map.put("sur_item", "⑤ "+i_title5[i]);
-			map.put("sur_count", "0");
+			map.put("sur_count", tempCount1);
 			map.put("sur_description", "");
 			data.add(map);
 			
