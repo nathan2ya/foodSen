@@ -92,6 +92,15 @@ public class ResearchView {
 	private String[] i_title4 = new String[16];
 	private String[] i_title5 = new String[16];
 	
+	//설문조사 결과 모음
+	private int[] resultClass3_seq = new int[16];//결과의시퀀스 모음
+	private int item1Cnt=0;//항목1 선택횟수
+	private int item2Cnt=0;//항목2 선택횟수
+	private int item3Cnt=0;//항목3 선택횟수
+	private int item4Cnt=0;//항목4 선택횟수
+	private int item5Cnt=0;//항목5 선택횟수
+	
+	
 	//설문조사 사유 보여주기 배열
 	private String[] item = new String[1000];
 	private String[] description = new String[1000];
@@ -375,36 +384,52 @@ public class ResearchView {
 	@RequestMapping("/writeExcel.do") 
 	public void writeExcel(HttpServletRequest request, HttpServletResponse response, HttpSession session)  throws Exception {
 		
-		//1. 엑셀에 기입될 데이터 get
+		//현재날짜
+		Calendar today = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd.hh:mm:ss");
+		String current_date = sdf.format(today.getTime());
+		//.현재날짜
+		
+		
+		//1. 엑셀에 기입될 데이터
 		int sur_seq = Integer.parseInt(request.getParameter("sur_seq")); //요청한뷰의 시퀀스넘버
-		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq); //엑셀에 write될 데이터
 		
-		//2. 엑셀파일에 insert할 데이터 저장
-		int i = 0; int j = 0; int k = 0;
+		//설문조사(정보) 레코드get
+		resultClass = (ResearchDTO)sqlMapper.queryForObject("Research.selectResearchOne", sur_seq);
+		int cnt = Integer.parseInt(resultClass.getQue_cnt());//문항의개수
+		String mainTitle = resultClass.getSur_title();//제목
 		
-		//설문조사 문제 (sur_title)
-		for(i=0; i<resultClass3.size(); i++){
-			sur_title[i] = resultClass3.get(i).getSurq_title();
+		//설문조사(문제) 레코드get
+		resultClass1 = sqlMapper.queryForList("Research.selectResearchOne1", sur_seq);
+		for(int i=0; i<resultClass1.size(); i++){
+			resultClass1_seq[i] = resultClass1.get(i).getSurq_seq();//문제의시퀀스 모음
+			title[i] = resultClass1.get(i).getSurq_title();//문제모음
 		}
 		
-		//설문조사 선택문항 (sur_item)
-		for(j=0; j<resultClass3.size(); j++){
-			if(resultClass3.get(j).getSuri_num().substring(0, 1).equals("u")){
-				sur_item[j] = "선택하지 않음";
-			}else{
-				sur_item[j] = resultClass3.get(j).getSuri_num(); //.substring(0, 1);
-			}
+		//설문조사(문항) 레코드get
+		resultClass2 = sqlMapper.queryForList("Research.selectResearchOne2", sur_seq);
+		for(int j=0; j<resultClass2.size(); j++){
+			resultClass2_seq[j] = resultClass2.get(j).getSuri_seq();//문항의시퀀스 모음
+			i_title1[j] = resultClass2.get(j).getSuri_title1();//문항1모음
+			i_title2[j] = resultClass2.get(j).getSuri_title2();//문항2모음
+			i_title3[j] = resultClass2.get(j).getSuri_title3();//문항3모음
+			i_title4[j] = resultClass2.get(j).getSuri_title4();//문항4모음
+			i_title5[j] = resultClass2.get(j).getSuri_title5();//문항5모음
 		}
 		
-		//설문조사 선택사유 (sur_description)
-		for(k=0; k<resultClass3.size(); k++){
-			sur_description[k] = resultClass3.get(k).getDescription();
+		//결과 데이터
+		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq);
+		for(int k=0; k<resultClass3.size(); k++){
+			resultClass3_seq[k] = resultClass3.get(k).getSurr_seq(); //결과의시퀀스 모음
+			
 		}
 		
 		
-		//3. 엑셀파일 생성
+		//-----------------------------------------------------------------------------------------------------------------------------------------//
 		
-		/*
+		
+		//2. map에 데이터저장
+																	 /*
 		-------------------[ 엑셀파일생성 ]-------------------
 		                   
 		// 설문조사 문제 // 설문조사 선택문항 //  설문조사 선택사유  //
@@ -413,21 +438,60 @@ public class ResearchView {
 		-------------------------------------------------------
 		*/
 		
-		File file = new File(file_path+"researchResult.xls"); //
-		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>(); //
-		Map<String, Object> map = new HashMap<String, Object>(); //
-		map.put("sur_title", sur_title[0]);
-		map.put("sur_item", sur_item[0]);
-		map.put("sur_description", sur_description[0]);
-		data.add(map);
+		File file = new File(file_path+"researchResult.xls");
+
+		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		for(i=1; i<resultClass3.size(); i++){
+		for(int i=0; i<cnt; i++){
 			map = new HashMap<String, Object>();
-			map.put("sur_title", sur_title[i]);
-			map.put("sur_item", sur_item[i]);
-			map.put("sur_description", sur_description[i]);
+			map.put("sur_title", title[i]);
+			map.put("sur_item", "① "+i_title1[i]);
+			map.put("sur_count", "0");
+			map.put("sur_description", "");
+			data.add(map);
+			
+			map = new HashMap<String, Object>();
+			map.put("sur_title", "");
+			map.put("sur_item", "② "+i_title2[i]);
+			map.put("sur_count", "0");
+			map.put("sur_description", "");
+			data.add(map);
+			
+			map = new HashMap<String, Object>();
+			map.put("sur_title", "");
+			map.put("sur_item", "③ "+i_title3[i]);
+			map.put("sur_count", "0");
+			map.put("sur_description", "");
+			data.add(map);
+			
+			map = new HashMap<String, Object>();
+			map.put("sur_title", "");
+			map.put("sur_item", "④ "+i_title4[i]);
+			map.put("sur_count", "0");
+			map.put("sur_description", "");
+			data.add(map);
+			
+			map = new HashMap<String, Object>();
+			map.put("sur_title", "");
+			map.put("sur_item", "⑤ "+i_title5[i]);
+			map.put("sur_count", "0");
+			map.put("sur_description", "");
+			data.add(map);
+			
+			//빈공백 구분을 위한 행
+			map = new HashMap<String, Object>();
+			map.put("sur_title", "");
+			map.put("sur_item", "");
+			map.put("sur_count", "");
+			map.put("sur_description", "");
 			data.add(map);
 		}
+		
+		//-----------------------------------------------------------------------------------------------------------------------------------------//
+		
+		
+		//3. 엑셀 write
 		
 		//WorkBook 생성
 		WritableWorkbook wb = Workbook.createWorkbook(file);
@@ -436,54 +500,80 @@ public class ResearchView {
 		WritableSheet sh = wb.createSheet("설문조사결과("+sur_seq+"번 게시글)", 0);
 		
 		//열넓이 설정 (열 위치, 넓이)
-		sh.setColumnView(0, 40);
-		sh.setColumnView(1, 35);
-		sh.setColumnView(2, 50);
-		sh.setColumnView(3, 20);
+		sh.setColumnView(0, 60);
+		sh.setColumnView(1, 60);
+		sh.setColumnView(2, 20);
+		sh.setColumnView(3, 200);
 		
 		//폰트
-		WritableFont font = new WritableFont(WritableFont.ARIAL, 12, WritableFont.BOLD, false); 
+		//WritableFont font = new WritableFont(WritableFont.ARIAL, 10, WritableFont.BOLD, false);
+		WritableFont font1 = new WritableFont(WritableFont.ARIAL, 12, WritableFont.BOLD, false);
+		WritableFont font2 = new WritableFont(WritableFont.ARIAL, 28, WritableFont.BOLD, false); 
 
 		// 셀형식
 		WritableCellFormat textFormat = new WritableCellFormat();
-		WritableCellFormat textFormat1 = new WritableCellFormat(font);
+		WritableCellFormat textFormat1 = new WritableCellFormat(font1);
+		WritableCellFormat textFormat2 = new WritableCellFormat(font2);
 		
 		//생성
 		textFormat.setAlignment(Alignment.CENTRE);
 		textFormat1.setAlignment(Alignment.CENTRE);
+		textFormat2.setAlignment(Alignment.CENTRE);
 		
 		//테두리
 		textFormat.setBorder(Border.ALL, BorderLineStyle.THIN);
 		textFormat1.setBorder(Border.ALL, BorderLineStyle.THIN);
+		textFormat2.setBorder(Border.ALL, BorderLineStyle.THIN);
 		
+		//시작row
 		int row = 0;
-
+		
+		//제목헤더
+		Label label = new jxl.write.Label(0, row, "", textFormat2);
+		sh.addCell(label);
+		label = new jxl.write.Label(1, row, mainTitle, textFormat2);
+		sh.addCell(label);
+		label = new jxl.write.Label(2, row, "보고서", textFormat2);
+		sh.addCell(label);
+		label = new jxl.write.Label(3, row, "집계일시 : "+current_date, textFormat);
+		sh.addCell(label);
+		row+=3;
+		
 		//헤더
-		Label label = new jxl.write.Label(0, row, "설문조사문제", textFormat1);
+		label = new jxl.write.Label(0, row, "문제", textFormat1);
 		sh.addCell(label);
-		label = new jxl.write.Label(1, row, "설문조사 선택문항", textFormat1);
+		label = new jxl.write.Label(1, row, "문항", textFormat1);
 		sh.addCell(label);
-		label = new jxl.write.Label(2, row, "설문조사 선택사유", textFormat1);
+		label = new jxl.write.Label(2, row, "선택횟수", textFormat1);
 		sh.addCell(label);
-		//label = new jxl.write.Label(3, row, "비고", textFormat);
-		//sh.addCell(label);
+		label = new jxl.write.Label(3, row, "선택사유", textFormat1);
+		sh.addCell(label);
 		row++;
 		
-		//해당셀에 map 데이터를 write
+		//데이터
 		for (Map<String, Object> tem : data) {
-			// 이름
+			//문제
 			label = new jxl.write.Label(0, row, (String) tem.get("sur_title"), textFormat);
 			sh.addCell(label);
-			// 주소
+			//문항
 			label = new jxl.write.Label(1, row, (String) tem.get("sur_item"),textFormat);
 			sh.addCell(label);
-			// 전화번호
-			label = new jxl.write.Label(2, row, (String) tem.get("sur_description"),textFormat);
+			
+			//선택횟수
+			label = new jxl.write.Label(2, row, (String) tem.get("sur_count"),textFormat);
+			sh.addCell(label);
+			//선택사유
+			label = new jxl.write.Label(3, row, (String) tem.get("sur_description"),textFormat);
 			sh.addCell(label);
 			row++;
 		}
+		
 		wb.write(); //WorkSheet 쓰기
 		wb.close(); //WorkSheet 닫기
+		
+		
+		//-----------------------------------------------------------------------------------------------------------------------------------------//
+		
 		
 		//4. 엑셀다운로드 제공
 		String uploadPath = file_path; //엑셀파일이 저장되어있는 경로
