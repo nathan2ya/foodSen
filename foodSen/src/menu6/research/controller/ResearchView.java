@@ -513,20 +513,41 @@ public class ResearchView {
 				}
 			}
 			
+			String totalCountTemp1 = Integer.toString(item1Cnt);
+			if(totalCountTemp1.equals("0")){
+				totalCountTemp1 = "";
+			}
+			String totalCountTemp2 = Integer.toString(item2Cnt);
+			if(totalCountTemp2.equals("0")){
+				totalCountTemp2 = "";
+			}
+			String totalCountTemp3 = Integer.toString(item3Cnt);
+			if(totalCountTemp3.equals("0")){
+				totalCountTemp3 = "";
+			}
+			String totalCountTemp4 = Integer.toString(item4Cnt);
+			if(totalCountTemp4.equals("0")){
+				totalCountTemp4 = "";
+			}
+			String totalCountTemp5 = Integer.toString(item5Cnt);
+			if(totalCountTemp5.equals("0")){
+				totalCountTemp5 = "";
+			}
+			
 			//위에서 만든 데이터 순서데로 배열에 저장
-			totalCount[a] = Integer.toString(item1Cnt);
+			totalCount[a] = totalCountTemp1;
 			totalDescription[a] = item1Description;
 			a++;
-			totalCount[a] = Integer.toString(item2Cnt); 
+			totalCount[a] = totalCountTemp2; 
 			totalDescription[a] = item2Description;
 			a++;
-			totalCount[a] = Integer.toString(item3Cnt); 
+			totalCount[a] = totalCountTemp3; 
 			totalDescription[a] = item3Description;
 			a++;
-			totalCount[a] = Integer.toString(item4Cnt); 
+			totalCount[a] = totalCountTemp4; 
 			totalDescription[a] = item4Description;
 			a++;
-			totalCount[a] = Integer.toString(item5Cnt);
+			totalCount[a] = totalCountTemp5;
 			totalDescription[a] = item5Description;
 			
 			b++;
