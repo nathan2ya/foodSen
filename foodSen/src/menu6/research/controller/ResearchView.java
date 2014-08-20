@@ -92,6 +92,7 @@ public class ResearchView {
 	private String[] i_title3 = new String[16];
 	private String[] i_title4 = new String[16];
 	private String[] i_title5 = new String[16];
+	private String[]totalItem = new String[9000]; //모든문항 모음(엑셀용)
 	
 	//설문조사 결과 모음
 	private int[] resultClass3_seq = new int[16];//결과의시퀀스 모음
@@ -412,6 +413,32 @@ public class ResearchView {
 			i_title5[j] = resultClass2.get(j).getSuri_title5();//문항5모음
 		}
 		
+		
+		//설문조사(문항) 정렬해서 모두다집어넣기
+		int temp = resultClass2.size();
+		int temp1 = temp * 5;
+		
+		int a = 0;
+		int b = 0;
+
+		for(a=0; a<temp1; a++){
+			totalItem[a] = i_title1[b];
+			a++;
+			
+			totalItem[a] = i_title2[b];
+			a++;
+			
+			totalItem[a] = i_title3[b];
+			a++;
+			
+			totalItem[a] = i_title4[b];
+			a++;
+			
+			totalItem[a] = i_title5[b];
+			b++;
+		}
+		
+		
 		//결과 데이터
 		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq);
 		for(int k=0; k<resultClass3.size(); k++){
@@ -421,7 +448,7 @@ public class ResearchView {
 		
 		
 		//-----------------------------------------------------------------------------------------------------------------------------------------//
-		
+
 		
 		//2. map에 데이터저장
 																	 /*
@@ -439,77 +466,34 @@ public class ResearchView {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int tempCount = 0;
 		String tempCount1 = "";
-		String tempDescription ="";
+		String tempDescription = "";
 		
-		for(int i=0; i<cnt; i++){
+		//map에 저장
+		for(int i=0; i<temp1; i++){
 			map = new HashMap<String, Object>();
-			map.put("sur_title", title[i]);
-			map.put("sur_item", "① "+i_title1[i]);
+			map.put("sur_title", title[i]);//1. 문제
+			map.put("sur_item", totalItem[i]);//2. 문항
 			
 			//선택회수 산출
 			paramClass3.setSur_seq(sur_seq);
 			paramClass3.setSurq_seq(resultClass1_seq[i]);
 			paramClass3.setSuri_seq(resultClass2_seq[i]);
-			System.out.println("정보의 시퀀스 : "+sur_seq);
-			System.out.println("문제의 시퀀스 : "+resultClass1_seq[i]);
-			System.out.println("문항의 시퀀스 : "+resultClass2_seq[i]);
-			System.out.println("의 레코드를 산출");
-			
 			resultClass33 = sqlMapper.queryForList("Research.selectResearchOne33", paramClass3);//문제and문항 레코드get
 			tempCount = resultClass33.size();
 			tempCount1 = Integer.toString(tempCount);
-			map.put("sur_count", tempCount1);
+			map.put("sur_count", tempCount1);//3. 선택횟수
 			
 			//선택사유 산출
 			for(int x=0; x<resultClass33.size(); x++){
 				tempDescription += resultClass33.get(x).getDescription();
-				
 				if(x != 0 && (x+1) != resultClass33.size()){ //처음이 아니고, 끝도 아닌경우에 쉼표로 구분
 					tempDescription += ", ";//쉼표로 구분
 				}
 			}
-			map.put("sur_description", tempDescription);
-			data.add(map);
-			
-			
-			
-			
-			map = new HashMap<String, Object>();
-			map.put("sur_title", "");
-			map.put("sur_item", "② "+i_title2[i]);
-			map.put("sur_count", tempCount1);
-			map.put("sur_description", "");
-			data.add(map);
-			
-			map = new HashMap<String, Object>();
-			map.put("sur_title", "");
-			map.put("sur_item", "③ "+i_title3[i]);
-			map.put("sur_count", tempCount1);
-			map.put("sur_description", "");
-			data.add(map);
-			
-			map = new HashMap<String, Object>();
-			map.put("sur_title", "");
-			map.put("sur_item", "④ "+i_title4[i]);
-			map.put("sur_count", tempCount1);
-			map.put("sur_description", "");
-			data.add(map);
-			
-			map = new HashMap<String, Object>();
-			map.put("sur_title", "");
-			map.put("sur_item", "⑤ "+i_title5[i]);
-			map.put("sur_count", tempCount1);
-			map.put("sur_description", "");
-			data.add(map);
-			
-			//빈공백 구분을 위한 행
-			map = new HashMap<String, Object>();
-			map.put("sur_title", "");
-			map.put("sur_item", "");
-			map.put("sur_count", "");
-			map.put("sur_description", "");
+			map.put("sur_description", tempDescription); //4. 선택사유모음
 			data.add(map);
 		}
+		
 		
 		//-----------------------------------------------------------------------------------------------------------------------------------------//
 		
@@ -625,8 +609,7 @@ public class ResearchView {
 			PrintWriter printwriter = response.getWriter();
 			printwriter.println("<html>");
 			printwriter.println("<br><br><br><h2>Could not get file name:<br>" + requestedFile + "</h2>");
-			printwriter
-			.println("<br><br><br><center><h3><a href='javascript: history.go(-1)'>Back</a></h3></center>");
+			printwriter.println("<br><br><br><center><h3><a href='javascript: history.go(-1)'>Back</a></h3></center>");
 			printwriter.println("<br><br><br>&copy; webAccess");
 			printwriter.println("</html>");
 			printwriter.flush();
