@@ -481,30 +481,37 @@ public class ResearchView {
 			resultClass33 = sqlMapper.queryForList("Research.selectResearchOne33", paramClass3);//문제and문항 레코드get
 			
 			item1Cnt = 0; item2Cnt = 0; item3Cnt = 0; item4Cnt = 0; item5Cnt = 0;
+			item1Description = ""; item2Description = ""; item3Description = ""; item4Description = ""; item5Description = ""; 
 			
 			for(int i=0; i<resultClass33.size(); i++){
 				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("①")){
 					item1Cnt++;
 					item1Description += resultClass33.get(i).getDescription();
+					item1Description += "   ";
 				}
 				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("②")){
 					item2Cnt++;
 					item2Description += resultClass33.get(i).getDescription();
+					item2Description += "   ";
 				}
 				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("③")){
 					item3Cnt++;
 					item3Description += resultClass33.get(i).getDescription();
+					item3Description += "   ";
 				}
 				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("④")){
 					item4Cnt++;
 					item4Description += resultClass33.get(i).getDescription();
+					item4Description += "   ";
 				}
 				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("⑤")){
 					item5Cnt++;
 					item5Description += resultClass33.get(i).getDescription();
+					item5Description += "   ";
 				}
 			}
 			
+			//위에서 만든 데이터 순서데로 배열에 저장
 			totalCount[a] = Integer.toString(item1Cnt);
 			totalDescription[a] = item1Description;
 			a++;
