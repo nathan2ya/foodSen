@@ -477,11 +477,9 @@ public class ResearchView {
 			paramClass3.setSur_seq(sur_seq);
 			paramClass3.setSurq_seq(resultClass1_seq[b]);
 			paramClass3.setSuri_seq(resultClass2_seq[b]);
-			
-			System.out.println(resultClass1_seq[b]);
-			System.out.println(resultClass2_seq[b]);
-			
 			resultClass33 = sqlMapper.queryForList("Research.selectResearchOne33", paramClass3);//문제and문항 레코드get
+			
+			item1Cnt = 0; item2Cnt = 0; item3Cnt = 0; item4Cnt = 0; item5Cnt = 0;
 			
 			for(int i=0; i<resultClass33.size(); i++){
 				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("①")){
