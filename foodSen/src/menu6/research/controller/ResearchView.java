@@ -392,6 +392,8 @@ public class ResearchView {
 		//.현재날짜
 		
 		
+		
+		
 		//1. 엑셀에 기입될 데이터
 		int sur_seq = Integer.parseInt(request.getParameter("sur_seq")); //요청한뷰의 시퀀스넘버
 		
@@ -529,15 +531,6 @@ public class ResearchView {
 			
 			b++;
 		}
-		
-		
-		
-		//설문조사(선택사유) 정렬해서 모두다집어넣기
-		
-		
-		
-		//totalCount[], totalDescription
-		
 		
 		
 		//-----------------------------------------------------------------------------------------------------------------------------------------//
