@@ -471,6 +471,7 @@ public class ResearchView {
 		
 		a = 0; b = 0;
 		int item1Cnt = 0; int item2Cnt = 0; int item3Cnt = 0; int item4Cnt = 0; int item5Cnt = 0;
+		//int item1Description = ""; int item1D
 		
 		for(a=0; a<cnt*5; a++){
 			

@@ -298,13 +298,6 @@
 			return;
 		}
 		
-		if(getStrByte(inspectionResultCreateFrom.description.value) > 1200){
-			alert("내용은 2000자까지만 입력할 수 있습니다.");
-			inspectionResultCreateFrom.description.value = inspectionResultCreateFrom.description.value.cut(1200);
-			inspectionResultCreateFrom.description.focus();
-			return;
-		}
-		
 		// 제목 : <아아아아아
 		if(validateSQL(inspectionResultCreateFrom.title.value) > -1){
 			alert("특수문자는 입력할 수 없습니다.");
