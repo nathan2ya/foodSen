@@ -92,6 +92,9 @@ public class ResearchView {
 	private String[] i_title3 = new String[16];
 	private String[] i_title4 = new String[16];
 	private String[] i_title5 = new String[16];
+	
+	//엑셀용
+	private String[]totalTitle = new String[9000]; //모든문제 모음(엑셀용)
 	private String[]totalItem = new String[9000]; //모든문항 모음(엑셀용)
 	
 	//설문조사 결과 모음
@@ -414,12 +417,40 @@ public class ResearchView {
 		}
 		
 		
-		//설문조사(문항) 정렬해서 모두다집어넣기
-		int temp = resultClass2.size();
+		
+		
+		//설문조사(문제) 정렬해서 모두다집어넣기
+		int temp = resultClass1.size();
 		int temp1 = temp * 5;
 		
 		int a = 0;
 		int b = 0;
+		
+		for(a=0; a<temp1; a++){
+			totalTitle[a] = title[b];
+			a++;
+			
+			totalTitle[a] = "";
+			a++;
+			
+			totalTitle[a] = "";
+			a++;
+			
+			totalTitle[a] = "";
+			a++;
+			
+			totalTitle[a] = "";
+			b++;
+		}
+		
+		
+		
+		//설문조사(문항) 정렬해서 모두다집어넣기
+		temp = resultClass2.size();
+		temp1 = temp * 5;
+		
+		a = 0;
+		b = 0;
 
 		for(a=0; a<temp1; a++){
 			totalItem[a] = i_title1[b];
@@ -471,7 +502,7 @@ public class ResearchView {
 		//map에 저장
 		for(int i=0; i<temp1; i++){
 			map = new HashMap<String, Object>();
-			map.put("sur_title", title[i]);//1. 문제
+			map.put("sur_title", totalTitle[i]);//1. 문제
 			map.put("sur_item", totalItem[i]);//2. 문항
 			
 			//선택회수 산출
