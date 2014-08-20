@@ -277,6 +277,66 @@
 		
 	function submitContents(elClickedObj){ 
 		oEditors.getById["description"].exec("UPDATE_CONTENTS_FIELD", []);
+		
+		//val
+		if(!inspectionResultCreateFrom.title.value){
+			alert("제목을 입력하세요.");
+			inspectionResultCreateFrom.title.focus();
+			return;
+		}
+		
+		if(!inspectionResultCreateFrom.pw.value){
+			alert("비밀번호를 입력하세요.");
+			inspectionResultCreateFrom.pw.focus();
+			return;
+		}
+		
+		if(getStrByte(inspectionResultCreateFrom.title.value) > 120){
+			alert("제목은 200자까지만 입력할 수 있습니다.");
+			inspectionResultCreateFrom.title.value = inspectionResultCreateFrom.title.value.cut(120);
+			inspectionResultCreateFrom.title.focus();
+			return;
+		}
+		
+		if(getStrByte(inspectionResultCreateFrom.description.value) > 1200){
+			alert("내용은 2000자까지만 입력할 수 있습니다.");
+			inspectionResultCreateFrom.description.value = inspectionResultCreateFrom.description.value.cut(1200);
+			inspectionResultCreateFrom.description.focus();
+			return;
+		}
+		
+		// 제목 : <아아아아아
+		if(validateSQL(inspectionResultCreateFrom.title.value) > -1){
+			alert("특수문자는 입력할 수 없습니다.");
+			inspectionResultCreateFrom.title.focus();
+			return;
+		}
+		
+		var thumbext = document.getElementById("filename").value;
+
+		thumbext = thumbext.slice(thumbext.indexOf(".") + 1).toLowerCase();
+		
+		if(thumbext=="mp4" || thumbext=="avi" || thumbext=="mkv" || thumbext=="ts" || thumbext=="gom"
+			|| thumbext=="svi" || thumbext=="divx" || thumbext=="sax" || thumbext=="asf" || thumbext=="wmx"
+			|| thumbext=="wmv" || thumbext=="wm" || thumbext=="wmp" || thumbext=="mpg" || thumbext=="mpe"
+			|| thumbext=="mpeg" || thumbext=="ifo" || thumbext=="vob" || thumbext=="m1v" || thumbext=="m2v"
+			|| thumbext=="tp" || thumbext=="trp" || thumbext=="mts" || thumbext=="m2ts" || thumbext=="m2t"
+			|| thumbext=="dmb" || thumbext=="m4v" || thumbext=="k3g" || thumbext=="3gp" || thumbext=="skm"
+			|| thumbext=="dmskm" || thumbext=="lmp4" || thumbext=="rm" || thumbext=="rmvb" || thumbext=="ogm"
+			|| thumbext=="obv" || thumbext=="swf" || thumbext=="flv" || thumbext=="mqv" || thumbext=="mov"){ 
+			alert('동영상은 첨부할 수 없습니다.');
+			return;
+		}
+		
+		var upfiles=document.getElementById("filename").value;
+		
+		//match 는 없으면 null 을 반환함
+		if(upfiles.match(/\.(php|php3|html|htm|cgi|pl|asp|jsp)$/i)){ //기호뒤에 다음의 확장명이 있으면 true
+			alert('업로드가 불가능한 확장자 입니다.');
+			return;
+		}
+		//.val
+				
 		try{ 
 			elClickedObj.inspectionResultCreateFrom.submit();
 		}catch(e){} 

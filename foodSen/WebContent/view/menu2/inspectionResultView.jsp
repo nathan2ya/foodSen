@@ -99,7 +99,9 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td id="description" colspan="5" class="tl h150"><pre>${resultClass.description}</pre></td>
+							<td id="description" colspan="5" class="tl h150">
+								<pre>${resultClass.description}</pre>
+							</td>
 						</tr>
 						<tr>
 							<th>첨부파일</th>
