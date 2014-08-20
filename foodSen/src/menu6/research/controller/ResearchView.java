@@ -471,7 +471,7 @@ public class ResearchView {
 		
 		a = 0; b = 0;
 		int item1Cnt = 0; int item2Cnt = 0; int item3Cnt = 0; int item4Cnt = 0; int item5Cnt = 0;
-		//int item1Description = ""; int item1D
+		String item1Description = ""; String item2Description = ""; String item3Description = ""; String item4Description = ""; String item5Description = ""; 
 		
 		for(a=0; a<cnt*5; a++){
 			
@@ -485,26 +485,40 @@ public class ResearchView {
 			for(int i=0; i<resultClass33.size(); i++){
 				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("¨ç")){
 					item1Cnt++;
+					item1Description += resultClass33.get(i).getDescription();
 				}
 				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("¨è")){
 					item2Cnt++;
+					item2Description += resultClass33.get(i).getDescription();
 				}
 				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("¨é")){
 					item3Cnt++;
+					item3Description += resultClass33.get(i).getDescription();
 				}
 				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("¨ê")){
 					item4Cnt++;
+					item4Description += resultClass33.get(i).getDescription();
 				}
 				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("¨ë")){
 					item5Cnt++;
+					item5Description += resultClass33.get(i).getDescription();
 				}
 			}
 			
-			totalCount[a] = Integer.toString(item1Cnt); a++;
-			totalCount[a] = Integer.toString(item2Cnt); a++;
-			totalCount[a] = Integer.toString(item3Cnt); a++;
-			totalCount[a] = Integer.toString(item4Cnt); a++;
+			totalCount[a] = Integer.toString(item1Cnt);
+			totalDescription[a] = item1Description;
+			a++;
+			totalCount[a] = Integer.toString(item2Cnt); 
+			totalDescription[a] = item2Description;
+			a++;
+			totalCount[a] = Integer.toString(item3Cnt); 
+			totalDescription[a] = item3Description;
+			a++;
+			totalCount[a] = Integer.toString(item4Cnt); 
+			totalDescription[a] = item4Description;
+			a++;
 			totalCount[a] = Integer.toString(item5Cnt);
+			totalDescription[a] = item5Description;
 			
 			b++;
 		}
