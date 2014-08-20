@@ -94,8 +94,10 @@ public class ResearchView {
 	private String[] i_title5 = new String[16];
 	
 	//엑셀용
-	private String[]totalTitle = new String[9000]; //모든문제 모음(엑셀용)
-	private String[]totalItem = new String[9000]; //모든문항 모음(엑셀용)
+	private String[]totalTitle = new String[9000];//모든문제 모음(엑셀용)
+	private String[]totalItem = new String[9000];//모든문항 모음(엑셀용)
+	private String[]totalCount = new String[9000];//각문항 선택횟수 모음(엑셀용)
+	private String[]totalDescription = new String[9000];//각문항 선택사유 모음(엑셀용)
 	
 	//설문조사 결과 모음
 	private int[] resultClass3_seq = new int[16];//결과의시퀀스 모음
@@ -416,66 +418,106 @@ public class ResearchView {
 			i_title5[j] = resultClass2.get(j).getSuri_title5();//문항5모음
 		}
 		
-		
-		
-		
-		//설문조사(문제) 정렬해서 모두다집어넣기
-		int temp = resultClass1.size();
-		int temp1 = temp * 5;
-		
-		int a = 0;
-		int b = 0;
-		
-		for(a=0; a<temp1; a++){
-			totalTitle[a] = title[b];
-			a++;
-			
-			totalTitle[a] = "";
-			a++;
-			
-			totalTitle[a] = "";
-			a++;
-			
-			totalTitle[a] = "";
-			a++;
-			
-			totalTitle[a] = "";
-			b++;
-		}
-		
-		
-		
-		//설문조사(문항) 정렬해서 모두다집어넣기
-		temp = resultClass2.size();
-		temp1 = temp * 5;
-		
-		a = 0;
-		b = 0;
-
-		for(a=0; a<temp1; a++){
-			totalItem[a] = i_title1[b];
-			a++;
-			
-			totalItem[a] = i_title2[b];
-			a++;
-			
-			totalItem[a] = i_title3[b];
-			a++;
-			
-			totalItem[a] = i_title4[b];
-			a++;
-			
-			totalItem[a] = i_title5[b];
-			b++;
-		}
-		
-		
 		//결과 데이터
 		resultClass3 = sqlMapper.queryForList("Research.selectResearchOne3", sur_seq);
 		for(int k=0; k<resultClass3.size(); k++){
 			resultClass3_seq[k] = resultClass3.get(k).getSurr_seq(); //결과의시퀀스 모음
 			
 		}
+		
+		
+		//-----------------------------------------------------------------------------------------------------------------------------------------//
+		
+		
+		//설문조사(문제) 정렬해서 모두다집어넣기
+		int temp = resultClass1.size();
+		int temp1 = temp * 5;
+		
+		int a = 0; int b = 0;
+		
+		for(a=0; a<temp1; a++){
+			totalTitle[a] = title[b];
+			a++;
+			totalTitle[a] = "";
+			a++;
+			totalTitle[a] = "";
+			a++;
+			totalTitle[a] = "";
+			a++;
+			totalTitle[a] = "";
+			b++;
+		}
+		
+		//설문조사(문항) 정렬해서 모두다집어넣기
+		temp = resultClass2.size();
+		temp1 = temp * 5;
+		
+		a = 0; b = 0;
+
+		for(a=0; a<temp1; a++){
+			totalItem[a] = i_title1[b];
+			a++;
+			totalItem[a] = i_title2[b];
+			a++;
+			totalItem[a] = i_title3[b];
+			a++;
+			totalItem[a] = i_title4[b];
+			a++;
+			totalItem[a] = i_title5[b];
+			b++;
+		}
+		
+		//설문조사(선택회수) 정렬해서 모두다집어넣기
+		
+		a = 0; b = 0;
+		int item1Cnt = 0; int item2Cnt = 0; int item3Cnt = 0; int item4Cnt = 0; int item5Cnt = 0;
+		
+		for(a=0; a<cnt*5; a++){
+			
+			paramClass3.setSur_seq(sur_seq);
+			paramClass3.setSurq_seq(resultClass1_seq[b]);
+			paramClass3.setSuri_seq(resultClass2_seq[b]);
+			
+			System.out.println(resultClass1_seq[b]);
+			System.out.println(resultClass2_seq[b]);
+			
+			resultClass33 = sqlMapper.queryForList("Research.selectResearchOne33", paramClass3);//문제and문항 레코드get
+			
+			for(int i=0; i<resultClass33.size(); i++){
+				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("①")){
+					item1Cnt++;
+				}
+				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("②")){
+					item2Cnt++;
+				}
+				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("③")){
+					item3Cnt++;
+				}
+				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("④")){
+					item4Cnt++;
+				}
+				if(resultClass33.get(i).getSuri_num().substring(0, 1).equals("⑤")){
+					item5Cnt++;
+				}
+			}
+			
+			totalCount[a] = Integer.toString(item1Cnt); a++;
+			totalCount[a] = Integer.toString(item2Cnt); a++;
+			totalCount[a] = Integer.toString(item3Cnt); a++;
+			totalCount[a] = Integer.toString(item4Cnt); a++;
+			totalCount[a] = Integer.toString(item5Cnt);
+			
+			b++;
+		}
+		
+		
+		
+		//설문조사(선택사유) 정렬해서 모두다집어넣기
+		
+		
+		
+		//totalCount[], totalDescription
+		
 		
 		
 		//-----------------------------------------------------------------------------------------------------------------------------------------//
@@ -495,33 +537,14 @@ public class ResearchView {
 
 		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
-		int tempCount = 0;
-		String tempCount1 = "";
-		String tempDescription = "";
 		
 		//map에 저장
 		for(int i=0; i<temp1; i++){
 			map = new HashMap<String, Object>();
 			map.put("sur_title", totalTitle[i]);//1. 문제
 			map.put("sur_item", totalItem[i]);//2. 문항
-			
-			//선택회수 산출
-			paramClass3.setSur_seq(sur_seq);
-			paramClass3.setSurq_seq(resultClass1_seq[i]);
-			paramClass3.setSuri_seq(resultClass2_seq[i]);
-			resultClass33 = sqlMapper.queryForList("Research.selectResearchOne33", paramClass3);//문제and문항 레코드get
-			tempCount = resultClass33.size();
-			tempCount1 = Integer.toString(tempCount);
-			map.put("sur_count", tempCount1);//3. 선택횟수
-			
-			//선택사유 산출
-			for(int x=0; x<resultClass33.size(); x++){
-				tempDescription += resultClass33.get(x).getDescription();
-				if(x != 0 && (x+1) != resultClass33.size()){ //처음이 아니고, 끝도 아닌경우에 쉼표로 구분
-					tempDescription += ", ";//쉼표로 구분
-				}
-			}
-			map.put("sur_description", tempDescription); //4. 선택사유모음
+			map.put("sur_count", totalCount[i]);//3. 선택횟수
+			map.put("sur_description", totalDescription[i]); //4. 선택사유모음
 			data.add(map);
 		}
 		
