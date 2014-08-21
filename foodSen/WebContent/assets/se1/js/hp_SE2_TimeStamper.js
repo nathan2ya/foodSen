@@ -3,7 +3,7 @@ nhn.husky.SE2_TimeStamper = jindo.$Class({
 		
 		var text = this.oApp.getContents();
 		var div_len = document.getElementById("length");
-		alert(div_len);
+		
 
 		for (i = 0; i < text.length; i++) {
 			var a = text.charCodeAt(i);
@@ -16,12 +16,12 @@ nhn.husky.SE2_TimeStamper = jindo.$Class({
 
 		div_len.innerHTML = bytes;
 		if (bytes >= 4000) {
-			alert("4000byte 이하로 작성해주세요.");
+			alert("4000byte Test!!!!!");
 			this.oApp.exec("SET_CONTENTS", [ text.substring(0, 1998) ]);
 			text = this.oApp.getContents();
 			div_len = document.getElementById("length");
 			bytes = text.length * 2;
-			div_len.innerHTML = bytes;
+			div_len.innerHTML = bytes-4;
 		}
 	}
 });
