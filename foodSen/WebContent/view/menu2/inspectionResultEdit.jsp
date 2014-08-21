@@ -15,6 +15,7 @@
 
 
 <script type="text/javascript">
+	
 	function goCreate(){
 		var oriPassword = "${resultClass.pw}";
 		

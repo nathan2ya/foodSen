@@ -1,5 +1,6 @@
 package menu6.research.controller;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -53,6 +54,7 @@ import jxl.Workbook;
 import jxl.format.Alignment;
 import jxl.format.Border;
 import jxl.format.BorderLineStyle;
+import jxl.format.Colour;
 import jxl.write.Label;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
@@ -600,6 +602,10 @@ public class ResearchView {
 		sh.setColumnView(2, 20);
 		sh.setColumnView(3, 200);
 		
+		//셀 합칠 부분 정의
+		sh.mergeCells(1, 0, 2, 0);
+		
+		
 		//폰트
 		//WritableFont font = new WritableFont(WritableFont.ARIAL, 10, WritableFont.BOLD, false);
 		WritableFont font1 = new WritableFont(WritableFont.ARIAL, 12, WritableFont.BOLD, false);
@@ -609,16 +615,21 @@ public class ResearchView {
 		WritableCellFormat textFormat = new WritableCellFormat();
 		WritableCellFormat textFormat1 = new WritableCellFormat(font1);
 		WritableCellFormat textFormat2 = new WritableCellFormat(font2);
+		WritableCellFormat textFormat3 = new WritableCellFormat();
 		
-		//생성
+		//정렬
 		textFormat.setAlignment(Alignment.CENTRE);
 		textFormat1.setAlignment(Alignment.CENTRE);
 		textFormat2.setAlignment(Alignment.CENTRE);
+		textFormat3.setAlignment(Alignment.LEFT);
 		
 		//테두리
 		textFormat.setBorder(Border.ALL, BorderLineStyle.THIN);
 		textFormat1.setBorder(Border.ALL, BorderLineStyle.THIN);
 		textFormat2.setBorder(Border.ALL, BorderLineStyle.THIN);
+		
+		//색상
+		textFormat1.setBackground(Colour.AQUA);
 		
 		//시작row
 		int row = 0;
@@ -630,7 +641,7 @@ public class ResearchView {
 		sh.addCell(label);
 		label = new jxl.write.Label(2, row, "보고서", textFormat2);
 		sh.addCell(label);
-		label = new jxl.write.Label(3, row, "집계일시 : "+current_date, textFormat);
+		label = new jxl.write.Label(3, row, "집계일시 : "+current_date, textFormat3);
 		sh.addCell(label);
 		row+=3;
 		
