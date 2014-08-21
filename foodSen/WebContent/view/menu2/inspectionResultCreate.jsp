@@ -11,10 +11,13 @@
 
 <!-- 네이버에디터 -->
 <script type="text/javascript" src="<%=request.getContextPath()%>/assets/se1/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/assets/se1/js/hp_SE2_TimeStamper.js" charset="utf-8"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/assets/se1/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
 
 
 <script type="text/javascript">
+/* 
+	//네이버에디터로인해 기존 유효성 검사 스크립트 주석처리
 	function goCreate(){
 		if(!inspectionResultCreateFrom.title.value){
 			alert("제목을 입력하세요.");
@@ -81,8 +84,7 @@
 		
 		inspectionResultCreateFrom.submit();
 	}
-	
-	
+ */	
 	
 	function validateSQL(obj){ //태그를 막는 스크립트
 		var x=obj; // 사용자가 입력한 제목 :   <아아아아아   일경우
@@ -111,6 +113,7 @@
 		}
 	}
 	
+ 
 	//문자수 체크
 	function getStrByte(str) {
 		var p, len = 0;
@@ -277,6 +280,7 @@
 		
 	function submitContents(elClickedObj){ 
 		oEditors.getById["description"].exec("UPDATE_CONTENTS_FIELD", []);
+		
 		
 		//val
 		if(!inspectionResultCreateFrom.title.value){
