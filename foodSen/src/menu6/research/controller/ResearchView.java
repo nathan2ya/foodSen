@@ -389,7 +389,7 @@ public class ResearchView {
 		
 		//현재날짜
 		Calendar today = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd.hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년MM월dd일 hh:mm:ss");
 		String current_date = sdf.format(today.getTime());
 		//.현재날짜
 		
@@ -598,38 +598,45 @@ public class ResearchView {
 		
 		//열넓이 설정 (열 위치, 넓이)
 		sh.setColumnView(0, 60);
-		sh.setColumnView(1, 60);
+		sh.setColumnView(1, 70);
 		sh.setColumnView(2, 20);
-		sh.setColumnView(3, 200);
+		sh.setColumnView(3, 70);
 		
 		//셀 합칠 부분 정의
 		sh.mergeCells(1, 0, 2, 0);
 		
-		
 		//폰트
-		//WritableFont font = new WritableFont(WritableFont.ARIAL, 10, WritableFont.BOLD, false);
-		WritableFont font1 = new WritableFont(WritableFont.ARIAL, 12, WritableFont.BOLD, false);
+		WritableFont font = new WritableFont(WritableFont.ARIAL, 12, WritableFont.NO_BOLD, false);
+		WritableFont font1 = new WritableFont(WritableFont.ARIAL, 15, WritableFont.BOLD, false);
 		WritableFont font2 = new WritableFont(WritableFont.ARIAL, 28, WritableFont.BOLD, false); 
 
 		// 셀형식
-		WritableCellFormat textFormat = new WritableCellFormat();
+		WritableCellFormat textFormat = new WritableCellFormat(font);
 		WritableCellFormat textFormat1 = new WritableCellFormat(font1);
+		WritableCellFormat textFormat11 = new WritableCellFormat(font);
+		WritableCellFormat textFormat111 = new WritableCellFormat(font);
 		WritableCellFormat textFormat2 = new WritableCellFormat(font2);
-		WritableCellFormat textFormat3 = new WritableCellFormat();
+		WritableCellFormat textFormat3 = new WritableCellFormat(font);
 		
 		//정렬
 		textFormat.setAlignment(Alignment.CENTRE);
 		textFormat1.setAlignment(Alignment.CENTRE);
+		textFormat11.setAlignment(Alignment.CENTRE);
+		textFormat111.setAlignment(Alignment.CENTRE);
 		textFormat2.setAlignment(Alignment.CENTRE);
 		textFormat3.setAlignment(Alignment.LEFT);
 		
 		//테두리
 		textFormat.setBorder(Border.ALL, BorderLineStyle.THIN);
 		textFormat1.setBorder(Border.ALL, BorderLineStyle.THIN);
-		textFormat2.setBorder(Border.ALL, BorderLineStyle.THIN);
+		textFormat11.setBorder(Border.ALL, BorderLineStyle.THIN);
+		textFormat111.setBorder(Border.ALL, BorderLineStyle.THIN);
+		textFormat2.setBorder(Border.ALL, BorderLineStyle.NONE);
+		textFormat3.setBorder(Border.ALL, BorderLineStyle.NONE);
 		
 		//색상
 		textFormat1.setBackground(Colour.AQUA);
+		textFormat11.setBackground(Colour.GRAY_25);
 		
 		//시작row
 		int row = 0;
@@ -637,13 +644,46 @@ public class ResearchView {
 		//제목헤더
 		Label label = new jxl.write.Label(0, row, "", textFormat2);
 		sh.addCell(label);
-		label = new jxl.write.Label(1, row, mainTitle, textFormat2);
+		label = new jxl.write.Label(1, row, "설문결과 보고서", textFormat2);
 		sh.addCell(label);
-		label = new jxl.write.Label(2, row, "보고서", textFormat2);
+		label = new jxl.write.Label(2, row, "", textFormat2);
 		sh.addCell(label);
-		label = new jxl.write.Label(3, row, "집계일시 : "+current_date, textFormat3);
+		label = new jxl.write.Label(3, row, "", textFormat3);
 		sh.addCell(label);
-		row+=3;
+		row+=2;
+		
+		
+		//문서정보
+		label = new jxl.write.Label(0, row, "문서번호", textFormat11);
+		sh.addCell(label);
+		label = new jxl.write.Label(1, row, "", textFormat111);
+		sh.addCell(label);
+		label = new jxl.write.Label(2, row, "작성일자", textFormat11);
+		sh.addCell(label);
+		label = new jxl.write.Label(3, row, "", textFormat111);
+		sh.addCell(label);
+		row++;
+		
+		label = new jxl.write.Label(0, row, "기간", textFormat11);
+		sh.addCell(label);
+		label = new jxl.write.Label(1, row, "", textFormat111);
+		sh.addCell(label);
+		label = new jxl.write.Label(2, row, "작성자", textFormat11);
+		sh.addCell(label);
+		label = new jxl.write.Label(3, row, "", textFormat111);
+		sh.addCell(label);
+		row++;
+		
+		label = new jxl.write.Label(0, row, "제목", textFormat11);
+		sh.addCell(label);
+		label = new jxl.write.Label(1, row, mainTitle, textFormat111);
+		sh.addCell(label);
+		label = new jxl.write.Label(2, row, "집계일자", textFormat11);
+		sh.addCell(label);
+		label = new jxl.write.Label(3, row, current_date, textFormat111);
+		sh.addCell(label);
+		row+=4;
+		
 		
 		//헤더
 		label = new jxl.write.Label(0, row, "문제", textFormat1);
