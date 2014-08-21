@@ -257,8 +257,6 @@
 			</div>
 			<!-- .//°Ô½ÃÆÇ¿µ¿ª -->
 			
-			
-			
 		</div>
 		<!-- .//¿ìÃø ÄÁÅÙÃ÷ -->
 		
@@ -281,6 +279,7 @@
 	function submitContents(elClickedObj){ 
 		oEditors.getById["description"].exec("UPDATE_CONTENTS_FIELD", []);
 		
+		alert(document.getElementById("description").value);
 		
 		//val
 		if(!inspectionResultCreateFrom.title.value){

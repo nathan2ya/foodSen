@@ -4,24 +4,23 @@ nhn.husky.SE2_TimeStamper = jindo.$Class({
 		var text = this.oApp.getContents();
 		var div_len = document.getElementById("length");
 		
-
 		for (i = 0; i < text.length; i++) {
 			var a = text.charCodeAt(i);
 			if (a > 128) {
-				var bytes = text.length * 2;
+				var bytes = text.length * 1;
 			} else if (a < 128) {
 				var bytes = text.length * 1;
-			}
+			} 
 		}
-
+		
 		div_len.innerHTML = bytes;
 		if (bytes >= 4000) {
-			alert("4000byte Test!!!!!");
-			this.oApp.exec("SET_CONTENTS", [ text.substring(0, 1998) ]);
+			alert("4000 Over Test!!!!!");
+			this.oApp.exec("SET_CONTENTS", [ text.substring(0, 4000) ]);
 			text = this.oApp.getContents();
 			div_len = document.getElementById("length");
-			bytes = text.length * 2;
-			div_len.innerHTML = bytes-4;
+			bytes = text.length;
+			div_len.innerHTML = bytes;
 		}
 	}
 });
