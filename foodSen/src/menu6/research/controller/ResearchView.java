@@ -676,7 +676,7 @@ public class ResearchView {
 		
 		label = new jxl.write.Label(0, row, "기간", textFormat11);
 		sh.addCell(label);
-		label = new jxl.write.Label(1, row, sat_date+"~"+end_date, textFormat111);
+		label = new jxl.write.Label(1, row, sat_date+" ~ "+end_date, textFormat111);
 		sh.addCell(label);
 		label = new jxl.write.Label(2, row, "작성자", textFormat11);
 		sh.addCell(label);
