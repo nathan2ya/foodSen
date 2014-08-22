@@ -85,11 +85,11 @@ public class ResearchView {
 	private String file_path = Constants.COMMON_FILE_PATH + Constants.MENU6_RESEARCH_FILE_PATH;
 	
 	//설문조사 문제 모음
-	private int[] resultClass1_seq = new int[16];//문제의시퀀스 모음
+	private int[] resultClass1_seq = new int[9000];//문제의시퀀스 모음
 	private String[] title = new String[1000];
 	
 	//설문조사 문항 모음
-	private int[] resultClass2_seq = new int[16];//문항의시퀀스 모음
+	private int[] resultClass2_seq = new int[9000];//문항의시퀀스 모음
 	private String[] i_title1 = new String[16];
 	private String[] i_title2 = new String[16];
 	private String[] i_title3 = new String[16];
@@ -103,7 +103,7 @@ public class ResearchView {
 	private String[]totalDescription = new String[9000];//각문항 선택사유 모음(엑셀용)
 	
 	//설문조사 결과 모음
-	private int[] resultClass3_seq = new int[16];//결과의시퀀스 모음
+	private int[] resultClass3_seq = new int[9000];//결과의시퀀스 모음
 	
 	//설문조사 사유 보여주기 배열
 	private String[] item = new String[1000];
@@ -611,7 +611,8 @@ public class ResearchView {
 		sh.setColumnView(3, 70);
 		
 		//셀 합칠 부분 정의
-		sh.mergeCells(1, 0, 2, 0);
+		//sh.mergeCells(1, 0, 2, 0);
+		sh.mergeCells(1, 1, 2, 1);
 		
 		//폰트
 		WritableFont font = new WritableFont(WritableFont.ARIAL, 12, WritableFont.NO_BOLD, false);
@@ -650,6 +651,8 @@ public class ResearchView {
 		
 		//시작row
 		int row = 0;
+		
+		row++;
 		
 		//제목헤더
 		Label label = new jxl.write.Label(0, row, "", textFormat2);
