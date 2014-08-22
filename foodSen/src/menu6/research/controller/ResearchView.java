@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -403,6 +404,12 @@ public class ResearchView {
 		resultClass = (ResearchDTO)sqlMapper.queryForObject("Research.selectResearchOne", sur_seq);
 		int cnt = Integer.parseInt(resultClass.getQue_cnt());//문항의개수
 		String mainTitle = resultClass.getSur_title();//제목
+		Date tempDate = resultClass.getReg_date();
+		String reg_date = sdf.format(tempDate);//작성일
+		String sat_date = resultClass.getSur_sat_date();//시작일
+		String end_date = resultClass.getSur_end_date();//종료일
+		String writer = resultClass.getWriter(); //작성자
+		
 		
 		//설문조사(문제) 레코드get
 		resultClass1 = sqlMapper.queryForList("Research.selectResearchOne1", sur_seq);
@@ -410,6 +417,7 @@ public class ResearchView {
 			resultClass1_seq[i] = resultClass1.get(i).getSurq_seq();//문제의시퀀스 모음
 			title[i] = resultClass1.get(i).getSurq_title();//문제모음
 		}
+		int surq_seq = resultClass1.get(0).getSurq_seq();
 		
 		//설문조사(문항) 레코드get
 		resultClass2 = sqlMapper.queryForList("Research.selectResearchOne2", sur_seq);
@@ -608,13 +616,15 @@ public class ResearchView {
 		//폰트
 		WritableFont font = new WritableFont(WritableFont.ARIAL, 12, WritableFont.NO_BOLD, false);
 		WritableFont font1 = new WritableFont(WritableFont.ARIAL, 15, WritableFont.BOLD, false);
+		WritableFont font11 = new WritableFont(WritableFont.ARIAL, 14, WritableFont.BOLD, false);
+		WritableFont font111 = new WritableFont(WritableFont.ARIAL, 13, WritableFont.NO_BOLD, false);
 		WritableFont font2 = new WritableFont(WritableFont.ARIAL, 28, WritableFont.BOLD, false); 
-
+		
 		// 셀형식
 		WritableCellFormat textFormat = new WritableCellFormat(font);
 		WritableCellFormat textFormat1 = new WritableCellFormat(font1);
-		WritableCellFormat textFormat11 = new WritableCellFormat(font);
-		WritableCellFormat textFormat111 = new WritableCellFormat(font);
+		WritableCellFormat textFormat11 = new WritableCellFormat(font11);
+		WritableCellFormat textFormat111 = new WritableCellFormat(font111);
 		WritableCellFormat textFormat2 = new WritableCellFormat(font2);
 		WritableCellFormat textFormat3 = new WritableCellFormat(font);
 		
@@ -656,21 +666,21 @@ public class ResearchView {
 		//문서정보
 		label = new jxl.write.Label(0, row, "문서번호", textFormat11);
 		sh.addCell(label);
-		label = new jxl.write.Label(1, row, "", textFormat111);
+		label = new jxl.write.Label(1, row, sur_seq+"-"+surq_seq, textFormat111);
 		sh.addCell(label);
 		label = new jxl.write.Label(2, row, "작성일자", textFormat11);
 		sh.addCell(label);
-		label = new jxl.write.Label(3, row, "", textFormat111);
+		label = new jxl.write.Label(3, row, reg_date, textFormat111);
 		sh.addCell(label);
 		row++;
 		
 		label = new jxl.write.Label(0, row, "기간", textFormat11);
 		sh.addCell(label);
-		label = new jxl.write.Label(1, row, "", textFormat111);
+		label = new jxl.write.Label(1, row, sat_date+"~"+end_date, textFormat111);
 		sh.addCell(label);
 		label = new jxl.write.Label(2, row, "작성자", textFormat11);
 		sh.addCell(label);
-		label = new jxl.write.Label(3, row, "", textFormat111);
+		label = new jxl.write.Label(3, row, writer, textFormat111);
 		sh.addCell(label);
 		row++;
 		
