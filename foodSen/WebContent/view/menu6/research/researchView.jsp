@@ -85,6 +85,13 @@
 	//사유전체보기
 	function goReason(sur_seq){
 		var sur_seq = "${resultClass.sur_seq}";
+		var res_cnt = "${res_cnt}";
+		
+		//설문조사 참여자가 없을 경우
+		if(res_cnt == 0){
+			alert("설문조사 참여자가 없습니다.");
+			return;
+		}
 		
 		//url
 		url = '/foodSen/researchResult1.do?sur_seq='+sur_seq;
