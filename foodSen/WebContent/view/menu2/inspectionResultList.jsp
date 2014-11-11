@@ -45,6 +45,8 @@
 		}
 	}
 	
+	
+	
 	$(document).ready(function(){
 		$(".title").each(function(index, item){
 			if(getStrByte($(item).text())>46){
