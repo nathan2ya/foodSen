@@ -102,7 +102,7 @@ public class TrainingEvent {
 
 		JSONObject json = new JSONObject();
 		json = JSONObject.fromObject(map);
-
+		
 		write.print(json);
 		write.close();
 		

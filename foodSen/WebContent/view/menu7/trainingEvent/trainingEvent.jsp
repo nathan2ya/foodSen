@@ -266,7 +266,8 @@
 		msg += '<tbody><tr><th><span class="c_ff2d2d">일</span></th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th><span class="c_6391c5">토</span></th></tr>';
 		
 		var Day_Counter = 1;
-		   var Loop_Counter = 1;
+		var Loop_Counter = 1;
+		
 		   for (var j = 1; j <= Rows; j++) {
 			   msg += '<tr>';
 			   for (var i = 1; i < 8; i++) {
