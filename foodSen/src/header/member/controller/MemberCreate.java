@@ -86,6 +86,7 @@ public class MemberCreate {
 		gun = tempAddr.substring(0, space);//군,구
 		//도,시 와 군,구 분류 종료
 		
+		
 		System.out.println("우편번호 : "+post1+"-"+post2);
 		System.out.println("주소 : "+addr);
 		System.out.println("상세주소 : "+addr2);
