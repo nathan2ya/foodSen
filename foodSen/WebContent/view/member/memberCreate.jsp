@@ -196,7 +196,6 @@
 
 <body style="padding-left: 50px">
 	
-	
 	<form name="memberCreateForm" action="/foodSen/memberCreate.do" method="post" onSubmit="return checkIt()">
 	
 		<table border="1" align="center" width="700" bordercolor="#E7E7E7">
