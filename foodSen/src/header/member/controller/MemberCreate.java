@@ -22,6 +22,10 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 @Controller
 public class MemberCreate {
 	
+	//주소테스트
+	private String city;
+	private String gun;
+	
 	//아이디중복체크
 	private String viewPath; //return경로
 	private int notFound; //ID중복여부를 판단하는 논리값
@@ -47,6 +51,7 @@ public class MemberCreate {
 	//회원가입 form
 	@RequestMapping("/memberCreateFrom.do")
 	public String memberCreateFrom() throws Exception{
+		
 		return "/view/member/memberCreate.jsp";
 	}
 	
@@ -72,9 +77,21 @@ public class MemberCreate {
 		String post2 = request.getParameter("post2");
 		String addr = request.getParameter("addr");
 		String addr2 = request.getParameter("addr2");
+		
+		//도,시 와 군,구 분류 시작
+		int space = addr.indexOf(" ");
+		city = addr.substring(0, space);//도,시
+		String tempAddr = addr.substring(space+1);
+		space = tempAddr.indexOf(" ");
+		gun = tempAddr.substring(0, space);//군,구
+		//도,시 와 군,구 분류 종료
+		
 		System.out.println("우편번호 : "+post1+"-"+post2);
 		System.out.println("주소 : "+addr);
 		System.out.println("상세주소 : "+addr2);
+		System.out.println("#######################################");
+		System.out.println("도,시 : "+city);
+		System.out.println("군,구 : "+gun);
 		//.주소테스트 종료
 		
 		//사용자 정보 DB insert
