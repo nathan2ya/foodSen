@@ -67,7 +67,16 @@ public class MemberCreate {
 		String sen_email = request.getParameter("sen_email");
 		String phone = request.getParameter("phone");
 		Calendar today = Calendar.getInstance(); //날짜
-
+		//주소테스트
+		String post1 = request.getParameter("post1");
+		String post2 = request.getParameter("post2");
+		String addr = request.getParameter("addr");
+		String addr2 = request.getParameter("addr2");
+		System.out.println("우편번호 : "+post1+"-"+post2);
+		System.out.println("주소 : "+addr);
+		System.out.println("상세주소 : "+addr2);
+		//.주소테스트 종료
+		
 		//사용자 정보 DB insert
 		paramClass.setUser_id(user_id);
 		paramClass.setUser_pw(user_pw);

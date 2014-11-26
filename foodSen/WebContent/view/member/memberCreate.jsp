@@ -197,19 +197,6 @@
 <body style="padding-left: 50px">
 	
 	
-	<!-- 다음 주소 테스트 -->
-	
-	<form class="form-inline well">
-	    <input type="text" id="post1" class="d_form mini"> -
-	    <input type="text" id="post2" class="d_form mini">
-	    <input type="button" onclick="openDaumPostcode()" value="우편번호 찾기" class="d_btn"><br>
-	    <input type="text" id="addr" class="d_form" placeholder="주소">
-	    <input type="text" id="addr2" class="d_form" placeholder="상세주소">
-	</form>
-	
-	<!-- .//다음 주소 테스트 -->
-	
-	
 	<form name="memberCreateForm" action="/foodSen/memberCreate.do" method="post" onSubmit="return checkIt()">
 	
 		<table border="1" align="center" width="700" bordercolor="#E7E7E7">
@@ -244,6 +231,28 @@
 				<td width="500" height="8" align="left">
 					<input type="text" name="member_name" id="member_name" size="7" maxlength="4" />
 					<font color="gray" size="2">이름은 4글자까지 입력가능합니다.</font>
+				</td>
+			</tr>
+			
+			<tr>	
+				<td width="200" height="8" align="right">우편번호</td>
+				<td width="500" height="8" align="left">
+					<input type="text" id="post1" name="post1" size="8" class="d_form mini"> - <input type="text" id="post2" name="post2" size="8" class="d_form mini">
+				    <input type="button" onclick="openDaumPostcode()" value="우편번호 찾기" class="d_btn">
+				</td>
+			</tr>
+			
+			<tr>	
+				<td width="200" height="8" align="right">주소</td>
+				<td width="500" height="8" align="left">
+					<input type="text" id="addr" name="addr" class="d_form" size="45" placeholder="주소">
+				</td>
+			</tr>
+			
+			<tr>	
+				<td width="200" height="8" align="right">상세주소</td>
+				<td width="500" height="8" align="left">
+					<input type="text" id="addr2" name="addr2" class="d_form" size="45" placeholder="상세주소">
 				</td>
 			</tr>
 			
