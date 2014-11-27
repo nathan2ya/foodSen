@@ -78,13 +78,13 @@ public class MemberCreate {
 		String addr = request.getParameter("addr");
 		String addr2 = request.getParameter("addr2");
 		
-		
 		//도,시 와 군,구 분류 시작
 		int space = addr.indexOf(" ");
 		city = addr.substring(0, space);//도,시
 		String tempAddr = addr.substring(space+1);
 		space = tempAddr.indexOf(" ");
 		gun = tempAddr.substring(0, space);//군,구
+		String dong = tempAddr.substring(space+1);//기타
 		//도,시 와 군,구 분류 종료
 		
 		System.out.println("우편번호 : "+post1+"-"+post2);
@@ -93,6 +93,7 @@ public class MemberCreate {
 		System.out.println("#######################################");
 		System.out.println("도,시 : "+city);
 		System.out.println("군,구 : "+gun);
+		System.out.println("동,리 : "+dong);
 		//.주소테스트 종료
 		
 		//사용자 정보 DB insert
