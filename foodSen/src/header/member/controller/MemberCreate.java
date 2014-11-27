@@ -90,7 +90,7 @@ public class MemberCreate {
 		System.out.println("快祈锅龋 : "+post1+"-"+post2);
 		System.out.println("林家 : "+addr);
 		System.out.println("惑技林家 : "+addr2);
-		System.out.println("#######################################");
+		System.out.println("######################################");
 		System.out.println("档,矫 : "+city);
 		System.out.println("焙,备 : "+gun);
 		System.out.println("悼,府 : "+dong);
