@@ -168,7 +168,6 @@
 		
 		
 		
-		
 		//다음 주소 API
 		function openDaumPostcode() {
 	    	new daum.Postcode({
@@ -186,7 +185,6 @@
 	        }).open();
 	    }
 		//.다음 주소 API 종료
-		
 		
 		
 	</script>
